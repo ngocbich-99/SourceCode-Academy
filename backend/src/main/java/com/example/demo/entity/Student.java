@@ -16,6 +16,7 @@ public class Student {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idStudent;
 
+    @OneToOne
     private int idAccount;
 
     private Date createdTime;

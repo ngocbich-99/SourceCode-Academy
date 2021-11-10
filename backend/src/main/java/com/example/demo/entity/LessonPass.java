@@ -16,9 +16,9 @@ import java.util.Date;
 public class LessonPass {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int idStudent;
-
     private int idLesson;
+
+    private int idStudent;
 
     private Date createdTime;
 

@@ -28,7 +28,7 @@ public class Account {
 
     private String phone;
 
-    @Column(name="role", columnDefinition = "varchar(255) default 'GIANG_VIEN'")
+    @Column(name="role", columnDefinition = "varchar(255) default 'HOC_VIEN'")
     private String role;
 
     private Date createdTime;

@@ -17,6 +17,7 @@ public class Course {
 
     private int idTeacher;
 
+    @ManyToOne
     private int idCategory;
 
     private String nameCourse;
