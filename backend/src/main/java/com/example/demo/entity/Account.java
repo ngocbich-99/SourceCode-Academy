@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -28,9 +29,13 @@ public class Account {
 
     private String phone;
 
-    @Column(name="role", columnDefinition = "varchar(255) default 'GIANG_VIEN'")
+    @Column(name="role", columnDefinition = "varchar(255) default 'HOC_VIEN'")
     private String role;
 
     private Date createdTime;
+
+    @OneToMany
+    private Set<Comment> commentSet;
+
 
 }

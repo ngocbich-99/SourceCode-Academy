@@ -3,11 +3,9 @@ package com.example.demo.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -18,9 +16,11 @@ public class Lesson {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idLesson;
 
-    private int idSection;
+    @ManyToOne
+    private Section section;
 
-    private int idTest;
+    @OneToOne
+    private Test test;
 
     private Date createdTime;
 
@@ -28,4 +28,6 @@ public class Lesson {
 
     private String attachment;
 
+    @OneToMany(mappedBy = "lesson")
+    Set<LessonPass> lessonPasses;
 }

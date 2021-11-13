@@ -1,0 +1,47 @@
+.container {
+  height: 100%;
+  /* background: url("/assets/images/bg.png") top center / cover no-repeat; */
+  background-color: #605eff;
+}
+.side-bar {
+  width: 150px;
+  height: 60%;
+  background: url("/assets/images/Sidebar.png") top center / contain no-repeat;
+  border-radius: 10px 0 0 10px;
+}
+.card-login {
+  height: 60%;
+  width: 528px;
+  background: #ffffff;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-login {
+  width: 100%;
+}
+.form-login h2 {
+  width: 80%;
+  margin: 0 auto 16px;
+}
+mat-form-field {
+  width: 80%;
+}
+button {
+  width: 80%;
+  height: 48px;
+  background-color: var(--color-primary);
+  border-radius: 24px;
+  color: #fff;
+  margin: 24px 0;
+}
+.dang-nhap {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.dang-nhap a {
+  color: #605eff;
+  padding: 0;
+}

@@ -16,10 +16,17 @@ public class Student {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idStudent;
 
-    private int idAccount;
+    @OneToOne
+    private Account account;
 
     private Date createdTime;
 
     @ManyToMany
     private Set<Course> courseSet;
+
+    @OneToMany
+    private Set<ResultTest> resultTestSet;
+
+    @OneToMany(mappedBy = "student")
+    Set<LessonPass> lessonPasses;
 }

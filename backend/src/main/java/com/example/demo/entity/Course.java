@@ -17,7 +17,8 @@ public class Course {
 
     private int idTeacher;
 
-    private int idCategory;
+    @ManyToOne
+    private Category category;
 
     private String nameCourse;
 
@@ -33,4 +34,10 @@ public class Course {
 
     @ManyToMany
     private Set<Student> studentSet;
+
+    @OneToMany
+    private Set<Question> questionSet;
+
+    @OneToMany
+    private Set<Section> sectionSet;
 }

@@ -24,7 +24,11 @@ public class AccountMapper {
         account.setEmail(accountReq.getEmail());
         account.setPhone(accountReq.getPhone());
         account.setUserName(accountReq.getUserName());
-        account.setRole(accountReq.getRole());
+        if (accountReq.getRole().equals("")) {
+            account.setRole("HOC_VIEN");
+        } else {
+            account.setRole(accountReq.getRole());
+        }
         account.setCreatedTime(accountReq.getCreatedTime());
 
 //        ma hoa password
