@@ -16,7 +16,7 @@ public class Section {
     private int idSection;
 
     @ManyToOne
-    private int idCourse;
+    private Course course;
 
     private Date createdTime;
 

@@ -3,22 +3,25 @@ package com.example.demo.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-
 public class LessonPass {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int idLesson;
+    @EmbeddedId
+    LessonPassKey id;
 
-    private int idStudent;
+    @ManyToOne
+    @MapsId("studentId")
+    @JoinColumn(name = "student_id")
+    Student student;
+
+    @ManyToOne
+    @MapsId("lessonId")
+    @JoinColumn(name = "lesson_id")
+    Lesson lesson;
 
     private Date createdTime;
 

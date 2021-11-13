@@ -17,10 +17,16 @@ public class Student {
     private int idStudent;
 
     @OneToOne
-    private int idAccount;
+    private Account account;
 
     private Date createdTime;
 
     @ManyToMany
     private Set<Course> courseSet;
+
+    @OneToMany
+    private Set<ResultTest> resultTestSet;
+
+    @OneToMany(mappedBy = "student")
+    Set<LessonPass> lessonPasses;
 }

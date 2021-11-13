@@ -16,7 +16,7 @@ public class Teacher {
     private int idTeacher;
 
     @OneToOne
-    private int idAccount;
+    private Account account;
 
     private int idCourse;
 

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -16,10 +17,10 @@ public class Lesson {
     private int idLesson;
 
     @ManyToOne
-    private int idSection;
+    private Section section;
 
     @OneToOne
-    private int idTest;
+    private Test test;
 
     private Date createdTime;
 
@@ -27,4 +28,6 @@ public class Lesson {
 
     private String attachment;
 
+    @OneToMany(mappedBy = "lesson")
+    Set<LessonPass> lessonPasses;
 }

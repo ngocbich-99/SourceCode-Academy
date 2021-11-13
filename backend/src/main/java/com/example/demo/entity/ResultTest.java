@@ -15,7 +15,7 @@ public class ResultTest {
     private int idRsTest;
 
     @ManyToOne
-    private int idStudent;
+    private Student student;
 
     private int idTest;
 

@@ -11,5 +11,9 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  OnSignUp() {
+    console.log('sign up');
+    
+  }
 
 }

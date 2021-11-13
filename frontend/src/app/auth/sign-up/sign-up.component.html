@@ -1,1 +1,32 @@
-<p>sign-up works!</p>
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
+    <section class="side-bar">
+    </section>
+    <section class="card-login">
+        <div class="form-login">
+            <h2>Bắt đầu miễn phí ngay!</h2>
+            <form fxLayout="column" fxLayoutAlign="center center">
+                <mat-form-field appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput placeholder="Your name" ngModel name="name" required #nameInput="ngModel">
+                    <mat-error *ngIf="!nameInput.hasError('required')">Name is invalid.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
+                    <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
+                    <mat-error *ngIf="!emailInput.hasError('required')">E-Mail is invalid.</mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" hintLabel="Dài hơn 6 ký tự">
+                    <mat-label>Mật khẩu</mat-label>
+                    <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="6" #pwInput="ngModel">
+                    <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
+                    <mat-error>Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
+                </mat-form-field>
+                <button (click)="OnSignUp()" mat-button>Đăng ký</button>
+            </form>
+            <p class="dang-nhap">
+              Đã là thành viên? <a mat-button href="/">Đăng nhập</a>
+            </p>
+        </div>
+    </section>
+</div>

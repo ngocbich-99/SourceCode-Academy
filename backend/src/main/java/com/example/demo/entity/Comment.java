@@ -18,7 +18,7 @@ public class Comment {
     private int idCmtParent;
 
     @ManyToOne
-    private int idAccount;
+    private Account account;
 
     private String content;
 

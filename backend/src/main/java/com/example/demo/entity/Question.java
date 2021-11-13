@@ -16,7 +16,7 @@ public class Question {
     private int idQuestion;
 
     @ManyToOne
-    private int idCourse;
+    private Course course;
 
     private String content;
 
