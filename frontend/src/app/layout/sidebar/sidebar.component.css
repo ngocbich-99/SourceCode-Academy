@@ -1,3 +1,24 @@
 .sidebar {
   width: 280px;
 }
+.logo {
+  margin-top: 22px;
+}
+mat-nav-list {
+  padding-top: 60px;
+}
+mat-nav-list a {
+  height: 64px;
+}
+mat-nav-list a.active {
+  color: var(--color-primary);
+}
+mat-nav-list a.active::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 40px;
+  background: var(--color-primary);
+  position: absolute;
+  top: calc(50% - 40px / 2);
+}

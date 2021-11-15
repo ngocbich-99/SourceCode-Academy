@@ -1,26 +1,26 @@
-<div class="logo">
+<div class="logo" fxLayout fxLayoutAlign="center">
     <a routerLink="/">
-        
+        <img src="assets/images/Logo-full.png" alt="">
     </a>
 </div>
 <mat-nav-list>
-    <a mat-list-item [routerLink]= "['/courses']">
+    <a mat-list-item [routerLink]= "['/courses']" routerLinkActive="active" >
         <mat-icon>home</mat-icon>
         <span class="nav-caption">Khoá học</span>
     </a>
-    <a mat-list-item routerLink="/category">
+    <a mat-list-item routerLink="/category" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span class="nav-caption">Danh mục</span>
     </a>
-    <a mat-list-item routerLink="/tests">
+    <a mat-list-item routerLink="/tests" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span class="nav-caption">Bài kiểm tra</span>
     </a>
-    <a mat-list-item routerLink="/questions">
+    <a mat-list-item routerLink="/questions" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span class="nav-caption">Ngân hàng câu hỏi</span>
     </a>
-    <a mat-list-item routerLink="/accounts">
+    <a mat-list-item routerLink="/accounts" routerLinkActive="active">
         <mat-icon>home</mat-icon>
         <span class="nav-caption">Tài khoản</span>
     </a>
