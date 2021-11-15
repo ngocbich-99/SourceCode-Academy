@@ -102,9 +102,7 @@ button.codex-btn.danger:hover {
 /* ====================== */
 
 /* =============== Course tab component ======================= */
-.codex-course-tab-active {
-  background: #f0f0fa;
-  color: var(--color-primary);
+.codex-course-tab {
   height: 52px;
   width: 180px;
   display: flex;
@@ -112,10 +110,15 @@ button.codex-btn.danger:hover {
   justify-content: center;
   position: relative;
 }
-.codex-course-tab-active p {
+.codex-course-tab p {
   margin: 0;
   padding: 0 8px;
 }
+.codex-course-tab-active {
+  background: #f0f0fa;
+  color: var(--color-primary);
+}
+
 .codex-course-tab-active::before {
   content: "";
   width: 4px;
@@ -124,6 +127,9 @@ button.codex-btn.danger:hover {
   background: var(--color-primary);
   position: absolute;
   left: 0;
+}
+.codex-course-tab-default {
+  color: rgba(0, 0, 0, 0.6);
 }
 /* ====================== */
 

@@ -1,0 +1,33 @@
+<div class="logo">
+    <a routerLink="/">
+        
+    </a>
+</div>
+<mat-nav-list>
+    <a mat-list-item [routerLink]= "['/courses']">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">Khoá học</span>
+    </a>
+    <a mat-list-item routerLink="/category">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">Danh mục</span>
+    </a>
+    <a mat-list-item routerLink="/tests">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">Bài kiểm tra</span>
+    </a>
+    <a mat-list-item routerLink="/questions">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">Ngân hàng câu hỏi</span>
+    </a>
+    <a mat-list-item routerLink="/accounts">
+        <mat-icon>home</mat-icon>
+        <span class="nav-caption">Tài khoản</span>
+    </a>
+    <!-- <mat-list-item>
+        <button mat-icon-button (click)="onLogout()" *ngIf="isAuth">
+            <mat-icon>eject</mat-icon>
+            <span class="nav-caption">Logout</span>
+        </button>
+    </mat-list-item> -->
+</mat-nav-list>
