@@ -13,7 +13,6 @@ export class SignUpComponent implements OnInit {
   }
   OnSignUp() {
     console.log('sign up');
-    
   }
 
 }

@@ -6,7 +6,7 @@
 .side-bar {
   width: 150px;
   height: 60%;
-  background: url("/assets/images/Sidebar.png") top center / contain no-repeat;
+  background: url("/assets/images/Sidebar.png") top center / cover no-repeat;
   border-radius: 10px 0 0 10px;
 }
 .card-login {
