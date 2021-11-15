@@ -8,13 +8,31 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './auth/login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AccountsComponent } from './home/accounts/accounts.component';
+import { CategoryComponent } from './home/category/category.component';
+import { CoursesComponent } from './home/courses/courses.component';
+import { MainPageComponent } from './home/main-page/main-page.component';
+import { QuestionsComponent } from './home/questions/questions.component';
+import { TestsComponent } from './home/tests/tests.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
+import { TopbarComponent } from './layout/topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     LoginComponent,
+    MainPageComponent,
+    CoursesComponent,
+    CategoryComponent,
+    TestsComponent,
+    QuestionsComponent,
+    AccountsComponent,
+    FooterComponent, 
+    TopbarComponent, 
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +40,8 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

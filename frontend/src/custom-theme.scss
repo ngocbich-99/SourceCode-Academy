@@ -1,18 +1,48 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat-core();
-
+$md-codex: (
+  50: #ececff,
+  100: #cfcfff,
+  200: #b0afff,
+  300: #908eff,
+  400: #7876ff,
+  500: #605eff,
+  600: #5856ff,
+  700: #4e4cff,
+  800: #4442ff,
+  900: #3331ff,
+  A100: #ffffff,
+  A200: #ffffff,
+  A400: #dcdcff,
+  A700: #c3c3ff,
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #000000,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000,
+  ),
+);
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$codex-academy-primary: mat-palette($mat-indigo);
+$codex-academy-primary: mat-palette($md-codex);
 $codex-academy-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -20,16 +50,17 @@ $codex-academy-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$codex-academy-theme: mat-light-theme((
-  color: (
-    primary: $codex-academy-primary,
-    accent: $codex-academy-accent,
-    warn: $codex-academy-warn,
+$codex-academy-theme: mat-light-theme(
+  (
+    color: (
+      primary: $codex-academy-primary,
+      accent: $codex-academy-accent,
+      warn: $codex-academy-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($codex-academy-theme);
-
