@@ -1,0 +1,23 @@
+<div class="card-account">
+    <button mat-button [matMenuTriggerFor]="beforeMenu">
+        <div fxLayout="row" fxLayoutAlign="start center">
+            <mat-icon class="avatar" svgIcon="avatar"></mat-icon>
+            <div class="info" fxLayout="column">
+                <h3>Đào Minh Đức</h3>
+                <p>ducdaominh.sample@gmail.com</p>
+            </div>
+            <!-- icon arrow down -->
+            <mat-icon class="arrow-down" svgIcon="arrow-down"></mat-icon>
+        </div>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="settingAcc()">
+            <mat-icon svgIcon="setting-account"></mat-icon>
+            Cài đặt tài khoản
+        </button>
+        <button mat-menu-item (click)="logout()">
+            <mat-icon svgIcon="logout"></mat-icon>
+            Đăng xuất
+        </button>
+    </mat-menu>
+</div>

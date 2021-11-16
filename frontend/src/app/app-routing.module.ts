@@ -12,11 +12,12 @@ import { QuestionsComponent } from './home/questions/questions.component';
 import { TestsComponent } from './home/tests/tests.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent },
+  { path: '', component: CourseCategoryItemComponent },
   { 
     path: 'courses', 
     component: CoursesComponent,
     children: [
+      { path: 'category-item', component: CourseCategoryItemComponent },
       { path: 'category-item/:id', component: CourseCategoryItemComponent },
     ]
   },

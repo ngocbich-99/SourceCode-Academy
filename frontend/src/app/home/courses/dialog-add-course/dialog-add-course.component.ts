@@ -18,8 +18,24 @@ export class DialogAddCourseComponent implements OnInit {
     }
   ];
   selectedStatus = this.listStatus[0].key;
-  nameCourseFormControl = new FormControl('', [Validators.required]);
 
+  listCategory: {name: string, id: string}[] = [
+    {
+      name: 'HTML',
+      id: '1'
+    },
+    {
+      name: 'JS',
+      id: '2'
+    },
+    {
+      name: 'Python',
+      id: '3'
+    },
+  ];
+  selectedCategory = this.listCategory[0].id;
+
+  nameCourseFormControl = new FormControl('', [Validators.required]);
   constructor() { }
 
   ngOnInit(): void {

@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AllCourseComponent } from './home/courses/all-course/all-course.component';
 import { CourseCategoryItemComponent } from './home/courses/course-category-item/course-category-item.component';
 import { DialogAddCourseComponent } from './home/courses/dialog-add-course/dialog-add-course.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { DialogAddCourseComponent } from './home/courses/dialog-add-course/dialo
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, 
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -28,19 +28,17 @@
             <div class="row-category-couse" fxLayout="row" fxLayoutAlign="space-between center">
                 <h3>Danh mục</h3>
                 <mat-form-field fxFlex="80">
-                    <input type="text" matInput [formControl]="nameCourseFormControl" placeholder="Tên khoá học">
-                    <mat-error *ngIf="nameCourseFormControl.hasError('required')">
-                        Danh mục is <strong>required</strong>
-                    </mat-error>
+                    <mat-select [(value)]="selectedCategory">
+                        <mat-option *ngFor="let category of listCategory" [value]="category.id">
+                            {{category.name}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
             <div class="row-note-couse" fxLayout="row" fxLayoutAlign="space-between center">
                 <h3>Mô tả khoá học</h3>
                 <mat-form-field fxFlex="80">
-                    <input type="text" matInput [formControl]="nameCourseFormControl" placeholder="Tên khoá học">
-                    <mat-error *ngIf="nameCourseFormControl.hasError('required')">
-                        Tên is <strong>required</strong>
-                    </mat-error>
+                    <textarea type="text" matInput placeholder="Mô tả cho khoá học"></textarea>
                 </mat-form-field>
             </div>
             <div class="row-status-couse" fxLayout="row" fxLayoutAlign="space-between center">

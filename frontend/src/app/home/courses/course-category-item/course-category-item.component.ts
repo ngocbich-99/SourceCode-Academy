@@ -12,4 +12,11 @@ export class CourseCategoryItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  updateCourse() {
+    
+  }
+  deleteCourse() {
+
+  }
+
 }

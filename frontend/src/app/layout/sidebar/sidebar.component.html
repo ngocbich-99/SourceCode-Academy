@@ -4,25 +4,29 @@
     </a>
 </div>
 <mat-nav-list class="sidebar">
-    <a #course mat-list-item [routerLink]= "['/courses']" routerLinkActive="active" (click)="tabActive($event)">
-        <mat-icon svgIcon="course-fill" routerLinkActive="active"></mat-icon>
-        <mat-icon svgIcon="course-outline" routerLinkActive="active"></mat-icon>
+    <a #course mat-list-item [routerLink]= "['/courses/category-item']" routerLinkActive="active" (click)="onTabChange('courses')">
+        <mat-icon *ngIf="activeTab === 'courses'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'courses'" svgIcon="course-outline" routerLinkActive="active"></mat-icon>
         <span class="nav-caption">Khoá học</span>
     </a>
-    <a mat-list-item routerLink="/category" routerLinkActive="active">
-        <mat-icon svgIcon="category-outline"></mat-icon>
+    <a mat-list-item routerLink="/category" routerLinkActive="active" (click)="onTabChange('category')">
+        <mat-icon *ngIf="activeTab !== 'category'" svgIcon="category-outline"></mat-icon>
+        <mat-icon *ngIf="activeTab === 'category'" svgIcon="category-fill"></mat-icon>
         <span class="nav-caption">Danh mục</span>
     </a>
-    <a mat-list-item routerLink="/tests" routerLinkActive="active">
-        <mat-icon svgIcon="test-outline"></mat-icon>
+    <a mat-list-item routerLink="/tests" routerLinkActive="active" (click)="onTabChange('tests')">
+        <mat-icon *ngIf="activeTab !== 'tests'" svgIcon="test-outline"></mat-icon>
+        <mat-icon *ngIf="activeTab === 'tests'" svgIcon="test-fill"></mat-icon>
         <span class="nav-caption">Bài kiểm tra</span>
     </a>
-    <a mat-list-item routerLink="/questions" routerLinkActive="active">
-        <mat-icon svgIcon="question-outline"></mat-icon>
+    <a mat-list-item routerLink="/questions" routerLinkActive="active" (click)="onTabChange('questions')">
+        <mat-icon *ngIf="activeTab !== 'questions'" svgIcon="question-outline"></mat-icon>
+        <mat-icon *ngIf="activeTab === 'questions'" svgIcon="question-fill"></mat-icon>
         <span class="nav-caption">Ngân hàng câu hỏi</span>
     </a>
-    <a mat-list-item routerLink="/accounts" routerLinkActive="active">
-        <mat-icon svgIcon="account-outline"></mat-icon>
+    <a mat-list-item routerLink="/accounts" routerLinkActive="active" (click)="onTabChange('accounts')">
+        <mat-icon *ngIf="activeTab !== 'accounts'"  svgIcon="account-outline"></mat-icon>
+        <mat-icon *ngIf="activeTab === 'accounts'"  svgIcon="account-fill"></mat-icon>
         <span class="nav-caption">Tài khoản</span>
     </a>
 </mat-nav-list>

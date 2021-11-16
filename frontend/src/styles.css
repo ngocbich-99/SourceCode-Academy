@@ -79,6 +79,11 @@ button.codex-btn.danger:hover {
   height: 24px;
   color: #fff;
   padding: 3px 8px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
 }
 .codex-tag-new {
   background: var(--color-primary);

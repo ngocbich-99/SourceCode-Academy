@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   constructor() { }
+  activeTab = 'courses';
 
   ngOnInit(): void {
   }
-  tabActive(event: any) {
-    console.log(event);
-    
+  onTabChange(nameTab: string) {
+    console.log(nameTab);
+    this.activeTab = nameTab;
   }
 }

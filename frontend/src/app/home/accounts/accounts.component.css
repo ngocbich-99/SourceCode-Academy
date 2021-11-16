@@ -1,0 +1,10 @@
+/* section topbar */
+.search-bar mat-form-field {
+  width: 100%;
+}
+.search-bar mat-icon {
+  width: 20px;
+  height: 20px;
+  padding-right: 14px;
+}
+/* ========================== */

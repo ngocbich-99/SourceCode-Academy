@@ -30,8 +30,16 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons//category-outline.svg")
     );
     this.matIconRegistry.addSvgIcon(
+      `test-fill`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/test-fill.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
       `test-outline`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/test-outline.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `question-fill`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/question-fill.svg")
     );
     this.matIconRegistry.addSvgIcon(
       `question-outline`,
@@ -72,6 +80,38 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon(
       `close`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/close.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `subscribe`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/subscribe.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `public-status`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/public-status.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `private-status`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/private-status.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `level-basic`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/level-basic.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `level-advanced`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/level-advanced.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `3-dot-white`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/3-dot-white.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `edit`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/edit.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `trash`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/trash.svg")
     );
   }
 }
