@@ -65,5 +65,13 @@ export class AppComponent {
       `logout`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/logout.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      `add`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/add.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `close`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/close.svg")
+    );
   }
 }

@@ -1,0 +1,16 @@
+::ng-deep .mat-dialog-container {
+  width: 800px;
+  height: 618px;
+  border-radius: 10px;
+}
+mat-dialog-actions {
+  margin: 0;
+}
+.dialog-header h2 {
+  margin: 0;
+}
+.row-image {
+}
+.row-name-couse h3 {
+  margin: 0;
+}

@@ -32,3 +32,20 @@
         </mat-menu>
     </div>
 </section>
+<section class="content">
+    <mat-tab-group>
+        <mat-tab label="Tất cả"> 
+            <app-all-course></app-all-course>
+        </mat-tab>
+        <mat-tab label="Công khai"> 
+            Content 2 
+        </mat-tab>
+        <mat-tab label="Chưa công khai"> 
+            Content 3 
+        </mat-tab>
+    </mat-tab-group>
+    <button (click)="dialogAddCourse()" mat-button class="codex-btn-primary btn-big btn-add-course">
+        <mat-icon svgIcon="add"></mat-icon>
+        <span>Tạo Khoá học</span>
+    </button>
+</section>

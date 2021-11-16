@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.component';
 
 @Component({
   selector: 'app-courses',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoursesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +22,13 @@ export class CoursesComponent implements OnInit {
 
   logout() {
     console.log('logout');
+  }
+  dialogAddCourse() {
+    const dialogRef = this.dialog.open(DialogAddCourseComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
