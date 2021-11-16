@@ -1,0 +1,71 @@
+/* section topbar */
+.search-bar mat-form-field {
+  width: 100%;
+}
+.search-bar mat-icon {
+  width: 20px;
+  height: 20px;
+  padding-right: 14px;
+}
+.card-account .avatar {
+  width: 26px;
+  height: 26px;
+  padding-right: 10px;
+}
+.card-account .info h3,
+.card-account .info p {
+  margin: 0;
+}
+.card-account .info h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+.card-account .info p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(0, 0, 0, 0.38);
+}
+.card-account .arrow-down {
+  width: 13px;
+  padding-left: 18px;
+}
+.card-account .mat-button {
+  text-align: left;
+  padding: 8px 16px;
+}
+/* ========================== */
+/* section content */
+.content {
+  position: relative;
+  margin-top: 24px;
+}
+.content .btn-add-course {
+  width: 198px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  top: 0;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+}
+.content .btn-add-course mat-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
+.content app-all-course {
+  padding: 16px 0;
+  display: block;
+}
+::ng-deep.mat-tab-header {
+  border: none;
+}
+::ng-deep.mat-tab-label-active {
+  color: var(--color-primary);
+}
+/* ========================== */

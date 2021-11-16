@@ -18,6 +18,10 @@ import { TestsComponent } from './home/tests/tests.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { TopbarComponent } from './layout/topbar/topbar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AllCourseComponent } from './home/courses/all-course/all-course.component';
+import { CourseCategoryItemComponent } from './home/courses/course-category-item/course-category-item.component';
+import { DialogAddCourseComponent } from './home/courses/dialog-add-course/dialog-add-course.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,10 @@ import { TopbarComponent } from './layout/topbar/topbar.component';
     AccountsComponent,
     FooterComponent, 
     TopbarComponent, 
-    SidebarComponent
+    SidebarComponent, 
+    AllCourseComponent, 
+    CourseCategoryItemComponent, 
+    DialogAddCourseComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +48,11 @@ import { TopbarComponent } from './layout/topbar/topbar.component';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogAddCourseComponent]
 })
 export class AppModule { }

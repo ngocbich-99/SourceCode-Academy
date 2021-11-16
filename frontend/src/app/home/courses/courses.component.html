@@ -1,1 +1,51 @@
-<p>courses works!</p>
+
+<section class="topbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- search bar -->
+    <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon svgIcon="search"></mat-icon>
+        <mat-form-field >
+            <input type="text" matInput placeholder="Tìm kiếm khoá học, danh mục,…">
+        </mat-form-field>
+    </div>
+    <!-- info personal -->
+    <div class="card-account">
+        <button mat-button [matMenuTriggerFor]="beforeMenu">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="avatar" svgIcon="avatar"></mat-icon>
+                <div class="info" fxLayout="column">
+                    <h3>Đào Minh Đức</h3>
+                    <p>ducdaominh.sample@gmail.com</p>
+                </div>
+                <!-- icon arrow down -->
+                <mat-icon class="arrow-down" svgIcon="arrow-down"></mat-icon>
+            </div>
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="settingAcc()">
+                <mat-icon svgIcon="setting-account"></mat-icon>
+                Cài đặt tài khoản
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon svgIcon="logout"></mat-icon>
+                Đăng xuất
+            </button>
+        </mat-menu>
+    </div>
+</section>
+<section class="content">
+    <mat-tab-group>
+        <mat-tab label="Tất cả"> 
+            <app-all-course></app-all-course>
+        </mat-tab>
+        <mat-tab label="Công khai"> 
+            Content 2 
+        </mat-tab>
+        <mat-tab label="Chưa công khai"> 
+            Content 3 
+        </mat-tab>
+    </mat-tab-group>
+    <button (click)="dialogAddCourse()" mat-button class="codex-btn-primary btn-big btn-add-course">
+        <mat-icon svgIcon="add"></mat-icon>
+        <span>Tạo Khoá học</span>
+    </button>
+</section>
