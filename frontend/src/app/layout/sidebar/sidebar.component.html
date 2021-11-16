@@ -3,31 +3,25 @@
         <img src="assets/images/Logo-full.png" alt="">
     </a>
 </div>
-<mat-nav-list>
-    <a mat-list-item [routerLink]= "['/courses']" routerLinkActive="active" >
-        <mat-icon>home</mat-icon>
+<mat-nav-list class="sidebar">
+    <a mat-list-item [routerLink]= "['/courses']" routerLinkActive="active" (click)="tabActive($event)">
+        <mat-icon svgIcon="course-fill" routerLinkActive="active"></mat-icon>
         <span class="nav-caption">Khoá học</span>
     </a>
     <a mat-list-item routerLink="/category" routerLinkActive="active">
-        <mat-icon>home</mat-icon>
+        <mat-icon svgIcon="category-outline"></mat-icon>
         <span class="nav-caption">Danh mục</span>
     </a>
     <a mat-list-item routerLink="/tests" routerLinkActive="active">
-        <mat-icon>home</mat-icon>
+        <mat-icon svgIcon="test-outline"></mat-icon>
         <span class="nav-caption">Bài kiểm tra</span>
     </a>
     <a mat-list-item routerLink="/questions" routerLinkActive="active">
-        <mat-icon>home</mat-icon>
+        <mat-icon svgIcon="question-outline"></mat-icon>
         <span class="nav-caption">Ngân hàng câu hỏi</span>
     </a>
     <a mat-list-item routerLink="/accounts" routerLinkActive="active">
-        <mat-icon>home</mat-icon>
+        <mat-icon svgIcon="account-outline"></mat-icon>
         <span class="nav-caption">Tài khoản</span>
     </a>
-    <!-- <mat-list-item>
-        <button mat-icon-button (click)="onLogout()" *ngIf="isAuth">
-            <mat-icon>eject</mat-icon>
-            <span class="nav-caption">Logout</span>
-        </button>
-    </mat-list-item> -->
 </mat-nav-list>

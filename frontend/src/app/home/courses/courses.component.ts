@@ -12,4 +12,12 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  settingAcc() {
+    console.log('setting acc');
+  }
+
+  logout() {
+    console.log('logout');
+  }
+
 }

@@ -1,0 +1,38 @@
+.search-bar mat-form-field {
+  width: 100%;
+}
+.search-bar mat-icon {
+  width: 20px;
+  height: 20px;
+  padding-right: 14px;
+}
+.card-account .avatar {
+  width: 26px;
+  height: 26px;
+  padding-right: 10px;
+}
+.card-account .info h3,
+.card-account .info p {
+  margin: 0;
+}
+.card-account .info h3 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+}
+.card-account .info p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: rgba(0, 0, 0, 0.38);
+}
+.card-account .arrow-down {
+  width: 13px;
+  padding-left: 18px;
+}
+.card-account .mat-button {
+  text-align: left;
+  padding: 8px 16px;
+}

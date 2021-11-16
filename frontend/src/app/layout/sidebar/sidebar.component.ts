@@ -10,5 +10,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  tabActive(event: any) {
+    console.log(event);
+    
+  }
 }
