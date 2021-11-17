@@ -23,6 +23,7 @@ import { AllCourseComponent } from './home/courses/all-course/all-course.compone
 import { CourseCategoryItemComponent } from './home/courses/course-category-item/course-category-item.component';
 import { DialogAddCourseComponent } from './home/courses/dialog-add-course/dialog-add-course.component';
 import { SharedModule } from './shared/shared.module';
+import { DialogAddAccountComponent } from './home/accounts/dialog-add-account/dialog-add-account.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { SharedModule } from './shared/shared.module';
     SidebarComponent, 
     AllCourseComponent, 
     CourseCategoryItemComponent, 
-    DialogAddCourseComponent
+    DialogAddCourseComponent, 
+    DialogAddAccountComponent, 
   ],
   imports: [
     BrowserModule,

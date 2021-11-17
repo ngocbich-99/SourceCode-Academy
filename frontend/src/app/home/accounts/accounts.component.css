@@ -8,3 +8,57 @@
   padding-right: 14px;
 }
 /* ========================== */
+/* section content */
+.content {
+  position: relative;
+  margin-top: 24px;
+}
+.content .btn-add-course {
+  width: 198px;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  top: 0;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+}
+.content .btn-add-course mat-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}
+::ng-deep.mat-tab-header {
+  border: none;
+}
+::ng-deep.mat-tab-label-active {
+  color: var(--color-primary);
+}
+.content h3 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 24px 0;
+}
+mat-header-row {
+  background: #f5f5f5;
+  border: none;
+}
+mat-header-cell {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.38);
+}
+mat-cell,
+mat-header-cell {
+  padding: 0 16px;
+}
+mat-paginator {
+  justify-content: center;
+  display: flex;
+  margin: 28px 0;
+}
+/* ========================== */

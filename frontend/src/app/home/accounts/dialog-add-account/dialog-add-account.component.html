@@ -1,0 +1,53 @@
+<section class="dialog-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>
+        Thêm tài khoản giảng viên
+    </h2>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>
+            <mat-icon svgIcon="close"></mat-icon>
+        </button>
+    </mat-dialog-actions>
+</section>
+<section class="dialog-content">
+    <div class="row-name-acc" fxLayout="row" fxLayoutAlign="space-between center">
+        <h3>Họ tên</h3>
+        <mat-form-field fxFlex="80">
+            <input type="text" matInput placeholder="Tên người dùng">
+        </mat-form-field>
+    </div>
+    <div class="row-email" fxLayout="row" fxLayoutAlign="space-between center">
+        <h3>Email</h3>
+        <mat-form-field fxFlex="80">
+            <input type="text" matInput placeholder="Địa chỉ email">
+        </mat-form-field>
+    </div>
+    <div class="row-phone" fxLayout="row" fxLayoutAlign="space-between center">
+        <h3>Số điện thoại</h3>
+        <mat-form-field fxFlex="80">
+            <input type="text" matInput placeholder="Số điện thoại">
+        </mat-form-field>
+    </div>
+    <div class="row-password" fxLayout="row" fxLayoutAlign="space-between center">
+        <h3>Mật khẩu</h3>
+        <mat-form-field fxFlex="80">
+            <input type="text" matInput placeholder="Mật khẩu tài khoản">
+        </mat-form-field>
+    </div>
+    <div class="row-password" fxLayout="row" fxLayoutAlign="space-between center">
+        <h3>Trạng thái</h3>
+        <mat-slide-toggle
+            fxFlex="80"
+            [checked]="'true'"
+            [color]="'primary'">
+            Kích hoạt
+        </mat-slide-toggle>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button (click)="onCancel()" mat-button class="btn-cancel">
+            <span>Huỷ</span>
+        </button>
+        <button (click)="addAccount()" mat-button class="codex-btn-primary btn-big btn-add-acc">
+            <span>Thêm tài khoản</span>
+        </button>
+    </div>
+</section>
