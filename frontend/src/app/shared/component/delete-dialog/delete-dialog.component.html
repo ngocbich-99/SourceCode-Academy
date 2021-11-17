@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Bạn có chắc chắn xoá name?</h1>
+<div mat-dialog-content>
+  <p>Hành động này không thể khôi phục dữ liệu</p>
+</div>
+<div mat-dialog-actions>
+  <button class="btn-delete codex-btn-danger" mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Xoá</button>
+  <button class="btn-cancel" mat-button (click)="cancel()">Trở lại</button>
+</div>

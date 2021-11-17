@@ -10,7 +10,10 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
     imports: [
         MatButtonModule,
@@ -23,7 +26,11 @@ import {MatSelectModule} from '@angular/material/select';
         MatMenuModule,
         MatTabsModule,
         MatDialogModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule,
+        MatSlideToggleModule, 
+        MatSortModule,
+        MatPaginatorModule
     ],
     exports: [
         MatButtonModule,
@@ -36,7 +43,11 @@ import {MatSelectModule} from '@angular/material/select';
         MatMenuModule,
         MatTabsModule,
         MatDialogModule,
-        MatSelectModule
+        MatSelectModule,
+        MatTableModule,
+        MatSlideToggleModule,
+        MatSortModule,
+        MatPaginatorModule
     ]
 })
 export class MaterialModule {}

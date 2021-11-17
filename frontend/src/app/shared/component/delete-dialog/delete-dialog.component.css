@@ -1,0 +1,27 @@
+h1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 30px;
+  color: rgba(0, 0, 0, 0.87);
+  min-height: 60px;
+}
+p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.btn-delete,
+.btn-cancel {
+  width: 212px;
+}
+::ng-deep .mat-dialog-container {
+  border-radius: 10px;
+  padding: 40px;
+}
+::ng-deep .mat-dialog-actions {
+  justify-content: space-between;
+}

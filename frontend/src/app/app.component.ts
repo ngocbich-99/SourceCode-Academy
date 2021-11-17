@@ -106,6 +106,10 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/3-dot-white.svg")
     );
     this.matIconRegistry.addSvgIcon(
+      `3-dot-activate`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/3-dot-activate.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
       `edit`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/edit.svg")
     );

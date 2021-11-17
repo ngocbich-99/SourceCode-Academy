@@ -3,9 +3,103 @@
     <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
         <mat-icon svgIcon="search"></mat-icon>
         <mat-form-field >
-            <input type="text" matInput placeholder="Tìm kiếm tài khoản">
+            <input type="text" matInput (keyup)="doFilter($event.target.value)" placeholder="Tìm kiếm tài khoản">
         </mat-form-field>
     </div>
     <!-- info personal -->
     <app-personal-info></app-personal-info>
+</section>
+<section class="content">
+    <mat-tab-group>
+        <mat-tab label="Tất cả"> 
+            <h3>Danh sách tài khoản</h3>
+            <mat-table [dataSource]="dataSource" matSort>
+                <!-- stt Column -->
+                <ng-container matColumnDef="stt">
+                  <mat-header-cell *matHeaderCellDef>Stt</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.stt}}</mat-cell>
+                </ng-container>
+            
+                <!-- Name account Column -->
+                <ng-container matColumnDef="nameUser">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.nameUser}}</mat-cell>
+                </ng-container>
+            
+                <!-- email Column -->
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+                </ng-container>
+            
+                <!-- sdt Column -->
+                <ng-container matColumnDef="phoneNumber">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.phoneNumber}}</mat-cell>
+                </ng-container>
+
+                <!-- chuc vu Column -->
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Chức vụ</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{element.position}}</mat-cell>
+                </ng-container>
+
+                <!-- trang thai Column -->
+                <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-slide-toggle
+                            [color]="'primary'"
+                            [checked]="element.isActivate">
+                            {{element.isActivate === true ? 'Kích hoạt' : ''}}
+                        </mat-slide-toggle>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- action column -->
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div>
+                            <button mat-button class="btn-more" [matMenuTriggerFor]="beforeMenu">
+                                <mat-icon svgIcon="3-dot-activate"></mat-icon>
+                            </button>
+                            <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="updateAccount()">
+                                    <mat-icon svgIcon="edit"></mat-icon>
+                                    <span>Chi tiết</span> 
+                                </button>
+                                <button mat-menu-item (click)="deleteAccount()">
+                                    <mat-icon svgIcon="trash"></mat-icon>
+                                    <span>Xoá</span> 
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+        
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator 
+                [pageSize]="5"
+                [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+
+        </mat-tab>
+        <mat-tab label="Kích hoạt"> 
+            <h3>Danh sách tài khoản</h3>
+            Content 2 
+        </mat-tab>
+        <mat-tab label="Đã khoá"> 
+            <h3>Danh sách tài khoản</h3>
+            Content 3 
+        </mat-tab>
+    </mat-tab-group>
+    <button (click)="addTeacher()" mat-button class="codex-btn-primary btn-big btn-add-course">
+        <mat-icon svgIcon="add"></mat-icon>
+        <span>Thêm giảng viên</span>
+    </button>
 </section>

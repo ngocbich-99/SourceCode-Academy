@@ -4,6 +4,10 @@
   margin: 12px;
   position: relative;
 }
+.card-course .div-img {
+  min-width: 283px;
+  min-height: 158px;
+}
 .card-course .btn-more {
   position: absolute;
   top: 0;

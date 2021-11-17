@@ -40,7 +40,7 @@ import { SharedModule } from './shared/shared.module';
     SidebarComponent, 
     AllCourseComponent, 
     CourseCategoryItemComponent, 
-    DialogAddCourseComponent
+    DialogAddCourseComponent, 
   ],
   imports: [
     BrowserModule,
