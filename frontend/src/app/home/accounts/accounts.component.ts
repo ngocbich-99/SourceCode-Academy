@@ -5,6 +5,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 import { Account } from './account.model';
+import { DialogAddAccountComponent } from './dialog-add-account/dialog-add-account.component';
 
 @Component({
   selector: 'app-accounts',
@@ -66,7 +67,10 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   addTeacher() {
-
+    const dialogRef = this.dialog.open(DialogAddAccountComponent);
+    dialogRef.afterClosed().subscribe(rs => {
+      console.log(rs);
+    })
   }
 
   updateAccount() {

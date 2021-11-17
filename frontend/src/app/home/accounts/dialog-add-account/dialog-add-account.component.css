@@ -1,8 +1,11 @@
 ::ng-deep .mat-dialog-container {
-  width: 800px;
-  height: 618px;
+  width: 640px;
+  height: 484px;
   border-radius: 10px;
   padding: 40px;
+}
+.dialog-header {
+  margin: 0 0 24px;
 }
 mat-dialog-actions {
   margin: 0;
@@ -17,8 +20,10 @@ mat-dialog-actions {
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
 }
-.row-image {
+.dialog-content .btn-cancel {
+  color: var(--color-primary);
+  width: 80px;
 }
-.row-name-couse h3 {
-  margin: 0;
+.dialog-content .btn-add-acc {
+  width: 180px;
 }
