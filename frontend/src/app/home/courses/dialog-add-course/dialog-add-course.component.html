@@ -14,11 +14,10 @@
         <mat-tab label="Thông tin chung"> 
             <div class="row-image">
                 <h3>Ảnh bìa</h3>
-
             </div>
             <div class="row-name-couse" fxLayout="row" fxLayoutAlign="space-between center">
                 <h3>Tên</h3>
-                <mat-form-field fxFlex="80">
+                <mat-form-field fxFlex="80" appearance="outline">
                     <input type="text" matInput [formControl]="nameCourseFormControl" placeholder="Tên khoá học">
                     <mat-error *ngIf="nameCourseFormControl.hasError('required')">
                         Tên is <strong>required</strong>
@@ -27,7 +26,7 @@
             </div>
             <div class="row-category-couse" fxLayout="row" fxLayoutAlign="space-between center">
                 <h3>Danh mục</h3>
-                <mat-form-field fxFlex="80">
+                <mat-form-field fxFlex="80" appearance="outline">
                     <mat-select [(value)]="selectedCategory">
                         <mat-option *ngFor="let category of listCategory" [value]="category.id">
                             {{category.name}}
@@ -37,13 +36,13 @@
             </div>
             <div class="row-note-couse" fxLayout="row" fxLayoutAlign="space-between center">
                 <h3>Mô tả khoá học</h3>
-                <mat-form-field fxFlex="80">
+                <mat-form-field fxFlex="80" appearance="outline">
                     <textarea type="text" matInput placeholder="Mô tả cho khoá học"></textarea>
                 </mat-form-field>
             </div>
             <div class="row-status-couse" fxLayout="row" fxLayoutAlign="space-between center">
                 <h3>Trạng thái</h3>
-                <mat-form-field fxFlex="80">
+                <mat-form-field fxFlex="80" appearance="outline">
                     <mat-select [(value)]="selectedStatus">
                         <mat-option *ngFor="let status of listStatus" [value]="status.key">
                             {{status.value}}
@@ -53,7 +52,14 @@
             </div>
         </mat-tab>
         <mat-tab label="Nội dung"> 
-            Content 2 
+            <mat-drawer-container class="app-container">
+                <mat-drawer mode="side" opened>
+                    <app-sidebar></app-sidebar>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <router-outlet></router-outlet>
+                </mat-drawer-content>
+            </mat-drawer-container>
         </mat-tab>
     </mat-tab-group>
 </mat-dialog-content>

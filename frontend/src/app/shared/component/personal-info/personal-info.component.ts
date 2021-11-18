@@ -17,7 +17,7 @@ export class PersonalInfoComponent implements OnInit {
 
   settingAcc() {
     console.log('setting acc');
-    this.router.navigate(['/setting-account']);
+    this.router.navigate(['/home/setting-account']);
   }
 
   logout() {
