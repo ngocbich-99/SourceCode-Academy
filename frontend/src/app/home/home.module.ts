@@ -9,7 +9,6 @@ import { SharedModule } from "../shared/shared.module";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { DialogAddAccountComponent } from "./accounts/dialog-add-account/dialog-add-account.component";
 import { CategoryComponent } from "./category/category.component";
-import { AllCourseComponent } from "./courses/all-course/all-course.component";
 import { CourseCategoryItemComponent } from "./courses/course-category-item/course-category-item.component";
 import { CoursesComponent } from "./courses/courses.component";
 import { DialogAddCourseComponent } from "./courses/dialog-add-course/dialog-add-course.component";
@@ -38,7 +37,6 @@ import { TestsComponent } from "./tests/tests.component";
         TestsComponent,
         QuestionsComponent,
         AccountsComponent,
-        AllCourseComponent, 
         CourseCategoryItemComponent, 
         DialogAddCourseComponent, 
         DialogAddAccountComponent, 

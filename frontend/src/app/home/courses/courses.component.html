@@ -13,13 +13,70 @@
 <section class="content">
     <mat-tab-group>
         <mat-tab label="Tất cả"> 
-            <app-all-course></app-all-course>
+            <mat-drawer-container>
+                <mat-drawer mode="side" opened>
+                    <!-- side bar category -->
+                    <h3>Danh mục</h3>
+                    <mat-nav-list class="sidebar">
+                        <a mat-list-item [routerLink]= "['/home/courses/all']" routerLinkActive="active">
+                            <span class="nav-caption">Tất cả</span>
+                        </a>
+                        <a mat-list-item [routerLink]= "['/home/courses/2']" routerLinkActive="active">
+                            <span class="nav-caption">HTML & CSS</span>
+                        </a>
+                        <a mat-list-item routerLink="/home/courses/3" routerLinkActive="active">
+                            <span class="nav-caption">JavaScript</span>
+                        </a>
+                    </mat-nav-list>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <app-course-category-item></app-course-category-item>
+                </mat-drawer-content>
+            </mat-drawer-container>
         </mat-tab>
         <mat-tab label="Công khai"> 
-            Content 2 
+            <mat-drawer-container>
+                <mat-drawer mode="side" opened>
+                    <!-- side bar category -->
+                    <h3>Danh mục</h3>
+                    <mat-nav-list class="sidebar">
+                        <a mat-list-item [routerLink]= "['/home/courses/all']" routerLinkActive="active">
+                            <span class="nav-caption">Tất cả</span>
+                        </a>
+                        <a mat-list-item [routerLink]= "['/home/courses/2']" routerLinkActive="active">
+                            <span class="nav-caption">HTML & CSS</span>
+                        </a>
+                        <a mat-list-item routerLink="/home/courses/3" routerLinkActive="active">
+                            <span class="nav-caption">JavaScript</span>
+                        </a>
+                    </mat-nav-list>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <app-course-category-item></app-course-category-item>
+                </mat-drawer-content>
+            </mat-drawer-container>
         </mat-tab>
         <mat-tab label="Chưa công khai"> 
-            Content 3 
+            <mat-drawer-container>
+                <mat-drawer mode="side" opened>
+                    <!-- side bar category -->
+                    <h3>Danh mục</h3>
+                    <mat-nav-list class="sidebar">
+                        <a mat-list-item [routerLink]= "['/home/courses/all']" routerLinkActive="active">
+                            <span class="nav-caption">Tất cả</span>
+                        </a>
+                        <a mat-list-item [routerLink]= "['/home/courses/2']" routerLinkActive="active">
+                            <span class="nav-caption">HTML & CSS</span>
+                        </a>
+                        <a mat-list-item routerLink="/home/courses/3" routerLinkActive="active">
+                            <span class="nav-caption">JavaScript</span>
+                        </a>
+                    </mat-nav-list>
+                </mat-drawer>
+                <mat-drawer-content>
+                    <app-course-category-item></app-course-category-item>
+                </mat-drawer-content>
+            </mat-drawer-container>
         </mat-tab>
     </mat-tab-group>
     <button (click)="dialogAddCourse()" mat-button class="codex-btn-primary btn-big btn-add-course">

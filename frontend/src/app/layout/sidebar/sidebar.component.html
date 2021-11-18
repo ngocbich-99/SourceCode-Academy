@@ -4,7 +4,7 @@
     </a>
 </div>
 <mat-nav-list class="sidebar">
-    <a #course mat-list-item [routerLink]= "['/home/courses/category-item']" routerLinkActive="active" (click)="onTabChange('courses')">
+    <a #course mat-list-item [routerLink]= "['/home/courses']" routerLinkActive="active" (click)="onTabChange('courses')">
         <mat-icon *ngIf="activeTab === 'courses'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>
         <mat-icon *ngIf="activeTab !== 'courses'" svgIcon="course-outline" routerLinkActive="active"></mat-icon>
         <span class="nav-caption">Khoá học</span>

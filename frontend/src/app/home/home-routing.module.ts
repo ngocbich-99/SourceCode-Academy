@@ -19,8 +19,8 @@ const routes: Routes = [
             { 
                 path: 'courses', component: CoursesComponent,
                 children: [
-                    { path: 'category-item', component: CourseCategoryItemComponent },
-                    { path: 'category-item/:id', component: CourseCategoryItemComponent },
+                    { path: 'all', component: CourseCategoryItemComponent },
+                    { path: ':id', component: CourseCategoryItemComponent },
                 ]
             },
             { path: 'category', component: CategoryComponent},
@@ -30,7 +30,7 @@ const routes: Routes = [
             { path: 'setting-account', component: SettingAccountComponent},
             {
                 path: '',
-                redirectTo: '/home/courses',
+                redirectTo: '/home/courses/all',
                 pathMatch: 'full'
             }
         ]
