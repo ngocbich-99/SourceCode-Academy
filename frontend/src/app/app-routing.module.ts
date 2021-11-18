@@ -9,6 +9,7 @@ import { CourseCategoryItemComponent } from './home/courses/course-category-item
 import { CoursesComponent } from './home/courses/courses.component';
 import { MainPageComponent } from './home/main-page/main-page.component';
 import { QuestionsComponent } from './home/questions/questions.component';
+import { SettingAccountComponent } from './home/setting-account/setting-account.component';
 import { TestsComponent } from './home/tests/tests.component';
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   { path: 'questions', component: QuestionsComponent},
   { path: 'accounts', component: AccountsComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignUpComponent }
+  { path: 'signup', component: SignUpComponent },
+  { path: 'setting-account', component: SettingAccountComponent}
 ];
 
 @NgModule({

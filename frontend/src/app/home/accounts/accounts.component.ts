@@ -15,7 +15,8 @@ import { DialogAddAccountComponent } from './dialog-add-account/dialog-add-accou
 export class AccountsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   displayedColumns = [
     'stt',
