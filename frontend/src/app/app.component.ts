@@ -117,5 +117,9 @@ export class AppComponent {
       `trash`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/trash.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      `back`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/back.svg")
+    );
   }
 }

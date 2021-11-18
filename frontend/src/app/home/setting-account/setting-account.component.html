@@ -1,0 +1,56 @@
+<section class="topbar" fxLayout="row" fxLayoutAlign="end center">
+    <!-- info personal -->
+    <app-personal-info></app-personal-info>
+</section>
+<section class="content">
+    <button (click)="backPrevious()" mat-button class="btn-big btn-back">
+        <mat-icon svgIcon="back"></mat-icon>
+        <span>Trở lại</span>
+    </button>
+    <div class="setting-account">
+        <h3>Cài đặt tài khoản</h3>
+        <form fxLayout="column">
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-form-field appearance="outline">
+                    <mat-label>Họ tên</mat-label>
+                    <input type="text" matInput placeholder="Your name">
+                </mat-form-field>
+    
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput placeholder="Your Email">
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Số điện thoại</mat-label>
+                <input type="text" matInput placeholder="Your phone">
+            </mat-form-field>
+            
+        </form>
+        <button [disabled]="" mat-button class="codex-btn-primary btn-big">Lưu thông tin</button>
+    </div>
+    <div class="security">
+        <h3>Bảo mật</h3>
+        <form fxLayout="column">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Mật khẩu cũ</mat-label>
+                    <input type="text" matInput placeholder="Mật khẩu cũ">
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <mat-form-field appearance="outline">
+                    <mat-label>Mật khẩu mới</mat-label>
+                    <input type="email" matInput placeholder="Your Email">
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Nhập lại mật khẩu mới</mat-label>
+                    <input type="text" matInput placeholder="Your phone">
+                </mat-form-field>
+            </div>
+        </form>
+        <button [disabled]="" mat-button class="codex-btn-primary btn-big">Đổi mật khẩu</button>
+    </div>
+</section>

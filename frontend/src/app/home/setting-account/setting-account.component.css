@@ -1,0 +1,34 @@
+.content .setting-account,
+.security {
+  width: 712px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding-bottom: 84px;
+}
+.content .btn-back {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--color-primary);
+}
+.content .btn-back mat-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 16px;
+}
+.content h3 {
+  margin-top: 40px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.content .setting-account button,
+.security button {
+  width: 169px;
+  float: right;
+}
+.content mat-form-field {
+  width: 344px;
+}
