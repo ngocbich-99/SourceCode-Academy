@@ -16,7 +16,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  // @ViewChild(MatPaginator, { static: true })paginator: MatPaginator;
 
   displayedColumns = [
     'stt',
@@ -36,7 +36,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator = this.paginator;
   }
 
   ngOnInit(): void {

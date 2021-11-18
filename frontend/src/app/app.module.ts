@@ -9,55 +9,25 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AccountsComponent } from './home/accounts/accounts.component';
-import { CategoryComponent } from './home/category/category.component';
-import { CoursesComponent } from './home/courses/courses.component';
-import { MainPageComponent } from './home/main-page/main-page.component';
-import { QuestionsComponent } from './home/questions/questions.component';
-import { TestsComponent } from './home/tests/tests.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { TopbarComponent } from './layout/topbar/topbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AllCourseComponent } from './home/courses/all-course/all-course.component';
-import { CourseCategoryItemComponent } from './home/courses/course-category-item/course-category-item.component';
-import { DialogAddCourseComponent } from './home/courses/dialog-add-course/dialog-add-course.component';
 import { SharedModule } from './shared/shared.module';
-import { DialogAddAccountComponent } from './home/accounts/dialog-add-account/dialog-add-account.component';
-import { SettingAccountComponent } from './home/setting-account/setting-account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     LoginComponent,
-    MainPageComponent,
-    CoursesComponent,
-    CategoryComponent,
-    TestsComponent,
-    QuestionsComponent,
-    AccountsComponent,
-    FooterComponent, 
-    TopbarComponent, 
-    SidebarComponent, 
-    AllCourseComponent, 
-    CourseCategoryItemComponent, 
-    DialogAddCourseComponent, 
-    DialogAddAccountComponent, SettingAccountComponent, 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule, 
-    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogAddCourseComponent]
+  
 })
 export class AppModule { }
