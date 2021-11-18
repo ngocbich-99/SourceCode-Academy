@@ -29,6 +29,8 @@ public class Account {
 
     private String phone;
 
+    private Boolean isActivate;
+
     @Column(name="role", columnDefinition = "varchar(255) default 'HOC_VIEN'")
     private String role;
 

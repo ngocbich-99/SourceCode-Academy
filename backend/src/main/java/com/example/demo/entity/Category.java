@@ -20,6 +20,8 @@ public class Category {
 
     private String nameCategory;
 
+    private String description;
+
     @OneToMany
     private Set<Course> courseSet;
 }
