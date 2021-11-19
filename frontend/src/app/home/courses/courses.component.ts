@@ -17,7 +17,10 @@ export class CoursesComponent implements OnInit {
   }
   
   dialogAddCourse() {
-    const dialogRef = this.dialog.open(DialogAddCourseComponent);
+    const dialogRef = this.dialog.open(DialogAddCourseComponent, {
+      width: '800px',
+      height: '618px',
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

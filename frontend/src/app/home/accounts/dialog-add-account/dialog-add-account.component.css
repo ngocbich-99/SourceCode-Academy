@@ -1,11 +1,19 @@
 ::ng-deep .mat-dialog-container {
-  width: 640px;
-  height: 484px;
   border-radius: 10px;
   padding: 40px;
 }
 .dialog-header {
   margin: 0 0 24px;
+}
+.dialog-header button {
+  display: flex;
+  justify-content: end;
+  padding: 0;
+  min-width: 20px;
+}
+.dialog-header button mat-icon {
+  width: 20px;
+  height: 20px;
 }
 mat-dialog-actions {
   margin: 0;
@@ -26,4 +34,8 @@ mat-dialog-actions {
 }
 .dialog-content .btn-add-acc {
   width: 180px;
+}
+::ng-deep .mat-form-field-wrapper {
+  padding: 0 0 8px;
+  margin: 0;
 }

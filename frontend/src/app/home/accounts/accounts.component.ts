@@ -68,7 +68,10 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   addTeacher() {
-    const dialogRef = this.dialog.open(DialogAddAccountComponent);
+    const dialogRef = this.dialog.open(DialogAddAccountComponent, {
+      width: '640px',
+      height: '484px',
+    });
     dialogRef.afterClosed().subscribe(rs => {
       console.log(rs);
     })
