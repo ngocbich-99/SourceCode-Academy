@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "../auth/auth.guard";
 import { LoginComponent } from "../auth/login/login.component";
+import { RoleGuard } from "../auth/role.guard";
 import { SignUpComponent } from "../auth/sign-up/sign-up.component";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { CategoryComponent } from "./category/category.component";
@@ -26,7 +28,7 @@ const routes: Routes = [
             { path: 'category', component: CategoryComponent},
             { path: 'tests', component: TestsComponent},
             { path: 'questions', component: QuestionsComponent},
-            { path: 'accounts', component: AccountsComponent},
+            { path: 'accounts', component: AccountsComponent, canActivate: [RoleGuard]},
             { path: 'setting-account', component: SettingAccountComponent},
             {
                 path: '',

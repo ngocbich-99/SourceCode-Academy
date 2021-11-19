@@ -22,5 +22,6 @@ export class PersonalInfoComponent implements OnInit {
 
   logout() {
     console.log('logout');
+    this.router.navigate(['/login']);
   }
 }
