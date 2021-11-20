@@ -8,6 +8,7 @@ import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/de
 import { Account } from './account.model';
 import { DialogAddAccountComponent } from './dialog-add-account/dialog-add-account.component';
 import { DialogInfoAccountComponent } from './dialog-info-account/dialog-info-account.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-accounts',
@@ -31,7 +32,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource<Account>();
   listAccount: Account[] = [];
-  accountSelected: Account;
+  accountSelected: Account | undefined;
 
   constructor(
     public dialog: MatDialog,
@@ -65,7 +66,27 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       height: '530px',
     });
     dialogRef.afterClosed().subscribe(rs => {
-      console.log(rs);
+      if (!!rs) {
+        const account: Account = {
+          userName: rs.username,
+          email: rs.email,
+          phone: rs.phone,
+          role: rs.role,
+          isActivate: rs.isActivate,
+          createdTime: moment().toISOString(),
+          password: rs.password,
+        }
+        
+        this.listAccount.push(account);
+        this.dataSource.data = this.listAccount;
+
+        this.accountService.createAccount(account).subscribe(resData => {
+          console.log('save acc',resData);
+        }, error => {
+          console.log('error save acc', error);
+          
+        })
+      }
     })
   }
   async updateAccount(idAcc: number) {
@@ -106,4 +127,15 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       }
     });
   }
+
+  convertLabelDisplay(role: string): string {
+    if (role === 'TEACHER') {
+      return 'Giảng viên';
+    } else if (role === 'STUDENT'){
+      return 'Học viên';
+    } else {
+      return 'Chưa có'
+    }
+  }
 }
+

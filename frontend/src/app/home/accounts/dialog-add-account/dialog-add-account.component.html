@@ -9,68 +9,55 @@
     </mat-dialog-actions>
 </section>
 <section class="dialog-content">
-    <form (ngSubmit)="addAccount(f)" #f="ngForm">
+    <form [formGroup]="createAccForm">
         <div class="row-name-acc" fxLayout="row" fxLayoutAlign="space-between center">
             <h3>Họ tên</h3>
             <mat-form-field fxFlex="80" appearance="outline">
                 <input 
-                ngModel
-                name="username"
-                #username="ngModel"
-                required
+                formControlName="username"
                 type="text" 
                 matInput 
                 placeholder="Tên người dùng">
-                <mat-error *ngIf="username.hasError('required')">Đây là trường bắt buộc</mat-error>
+                <mat-error *ngIf="createAccForm.get('username')?.hasError('required') && createAccForm.get('username')?.touched">Đây là trường bắt buộc</mat-error>
             </mat-form-field>
         </div>
         <div class="row-email" fxLayout="row" fxLayoutAlign="space-between center">
             <h3>Email</h3>
             <mat-form-field fxFlex="80" appearance="outline">
                 <input 
-                ngModel
-                name="email"
-                #email="ngModel"
-                required
-                email
+                formControlName="email"
                 type="email" 
                 matInput 
                 placeholder="Địa chỉ email">
-                <mat-error *ngIf="email.hasError('required')">Đây là trường bắt buộc</mat-error>
+                <mat-error *ngIf="createAccForm.get('email')?.hasError('required') && createAccForm.get('email')?.touched">Đây là trường bắt buộc</mat-error>
             </mat-form-field>
         </div>
         <div class="row-phone" fxLayout="row" fxLayoutAlign="space-between center">
             <h3>Số điện thoại</h3>
             <mat-form-field fxFlex="80" appearance="outline">
                 <input
-                    ngModel
-                    name="phone"
-                    #phone="ngModel"
-                    required
+                    formControlName="phone"
                     type="text" 
                     matInput 
                     placeholder="Số điện thoại">
-                <mat-error *ngIf="phone.hasError('required')">Đây là trường bắt buộc</mat-error>
+                    <mat-error *ngIf="createAccForm.get('phone')?.hasError('required') && createAccForm.get('phone')?.touched">Đây là trường bắt buộc</mat-error>
             </mat-form-field>
         </div>
         <div class="row-password" fxLayout="row" fxLayoutAlign="space-between center">
             <h3>Mật khẩu</h3>
             <mat-form-field fxFlex="80" appearance="outline">
                 <input 
-                ngModel
-                name="password"
-                #password="ngModel"
-                required
-                type="text" 
+                formControlName="password"
+                type="password" 
                 matInput 
                 placeholder="Mật khẩu tài khoản">
-                <mat-error *ngIf="password.hasError('required')">Đây là trường bắt buộc</mat-error>
+                <mat-error *ngIf="createAccForm.get('password')?.hasError('required') && createAccForm.get('password')?.touched">Đây là trường bắt buộc</mat-error>
             </mat-form-field>
         </div>
         <div class="row-password" fxLayout="row" fxLayoutAlign="space-between center">
             <h3>Trạng thái</h3>
             <mat-slide-toggle
-                [ngModel]="true"
+                formControlName="isActivate"
                 name="isActivate"
                 fxFlex="80"
                 [color]="'primary'">
@@ -83,7 +70,8 @@
                 <span>Huỷ</span>
             </button>
             <button 
-            [disabled]="f.invalid"
+            [disabled]="createAccForm.invalid"
+            [mat-dialog-close]="createAccForm.value"
             type="submit" 
             mat-button 
             class="codex-btn-primary btn-big btn-add-acc">

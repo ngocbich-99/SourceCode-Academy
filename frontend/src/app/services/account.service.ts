@@ -32,7 +32,7 @@ export class AccountService {
     }
 
     // delete account by id
-    deleteAccById(idAccount: number) {
+    deleteAccById(idAccount?: number) {
         return this.http.delete(env.backendBaseUrl + `/api/accounts/${idAccount}`);
     }
 

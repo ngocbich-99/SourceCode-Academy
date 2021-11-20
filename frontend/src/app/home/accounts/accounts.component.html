@@ -41,7 +41,7 @@
                 <!-- chuc vu Column -->
                 <ng-container matColumnDef="position">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Chức vụ</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.role}}</mat-cell>
+                    <mat-cell *matCellDef="let element">{{convertLabelDisplay(element.role)}}</mat-cell>
                 </ng-container>
 
                 <!-- trang thai Column -->

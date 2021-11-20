@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DeleteDialogComponent, DialogData } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 import { Account } from '../account.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class DialogInfoAccountComponent implements OnInit {
   updateAccForm: FormGroup;
 
   constructor(
-    public dialogRef: MatDialogRef<DeleteDialogComponent>,
+    public dialogRef: MatDialogRef<DialogInfoAccountComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {account: Account},
   ) { }
 
