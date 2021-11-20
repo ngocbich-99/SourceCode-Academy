@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/accounts")
+@RequestMapping("/api/accounts")
 public class AccountController {
     @Autowired
     private AccountService accountService;
@@ -24,6 +24,7 @@ public class AccountController {
     @ApiResponses({
             @ApiResponse(code=500,message = "")
     })
+    @CrossOrigin
     @GetMapping("")
     public ResponseEntity<?> getListAccount() {
         List<AccountDto> accountDtos = accountService.getListAccount();
@@ -35,6 +36,7 @@ public class AccountController {
             @ApiResponse(code=404,message = "No account found"),
             @ApiResponse(code=500,message = "")
     })
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<?> getAccountById(@PathVariable int id) {
         AccountDto accountDto = accountService.getAccountById(id);
@@ -46,18 +48,21 @@ public class AccountController {
             @ApiResponse(code=400,message = "Email already exists in the system"),
             @ApiResponse(code=500,message = "")
     })
+    @CrossOrigin
     @PostMapping("")
     public ResponseEntity<?> createAccount(@Valid @RequestBody CreateAccountReq accountReq) {
         AccountDto accountDto = accountService.createAcc(accountReq);
         return ResponseEntity.ok(accountDto);
     }
 
+    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity<?> updateAccount(@Valid @RequestBody UpdateAccountReq accountReq, @PathVariable int id) {
         AccountDto accountDto = accountService.updateAcc(accountReq, id);
         return ResponseEntity.ok(accountDto);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteAccount(@PathVariable int id) {
         accountService.deleteAcc(id);

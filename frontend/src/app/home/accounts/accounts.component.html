@@ -17,13 +17,13 @@
                 <!-- stt Column -->
                 <ng-container matColumnDef="stt">
                   <mat-header-cell *matHeaderCellDef>Stt</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.stt}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.idAccount}}</mat-cell>
                 </ng-container>
             
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.nameUser}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -35,13 +35,13 @@
                 <!-- sdt Column -->
                 <ng-container matColumnDef="phoneNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.phoneNumber}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
                 </ng-container>
 
                 <!-- chuc vu Column -->
                 <ng-container matColumnDef="position">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Chức vụ</mat-header-cell>
-                    <mat-cell *matCellDef="let element">{{element.position}}</mat-cell>
+                    <mat-cell *matCellDef="let element">{{element.role}}</mat-cell>
                 </ng-container>
 
                 <!-- trang thai Column -->
@@ -65,11 +65,11 @@
                                 <mat-icon svgIcon="3-dot-activate"></mat-icon>
                             </button>
                             <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
-                                <button mat-menu-item (click)="updateAccount()">
+                                <button mat-menu-item (click)="updateAccount(element.idAccount)">
                                     <mat-icon svgIcon="edit"></mat-icon>
                                     <span>Chi tiết</span> 
                                 </button>
-                                <button mat-menu-item (click)="deleteAccount()">
+                                <button mat-menu-item (click)="deleteAccount(element)">
                                     <mat-icon svgIcon="trash"></mat-icon>
                                     <span>Xoá</span> 
                                 </button>

@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DeleteDialogComponent, DialogData } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 
@@ -8,6 +9,8 @@ import { DeleteDialogComponent, DialogData } from 'src/app/shared/component/dele
   styleUrls: ['./dialog-add-account.component.css']
 })
 export class DialogAddAccountComponent implements OnInit {
+  @ViewChild('f')
+  formCreateAcc!: NgForm;
 
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
@@ -17,8 +20,8 @@ export class DialogAddAccountComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addAccount() {
-    
+  addAccount(form: NgForm) {
+    console.log('add acc', form);
   }
   onCancel() {
     this.dialogRef.close();

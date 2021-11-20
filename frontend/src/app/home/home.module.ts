@@ -17,6 +17,7 @@ import { HomePage } from "./home.page";
 import { QuestionsComponent } from "./questions/questions.component";
 import { SettingAccountComponent } from "./setting-account/setting-account.component";
 import { TestsComponent } from "./tests/tests.component";
+import { DialogInfoAccountComponent } from './accounts/dialog-info-account/dialog-info-account.component';
 
 @NgModule({
     imports: [
@@ -40,7 +41,8 @@ import { TestsComponent } from "./tests/tests.component";
         CourseCategoryItemComponent, 
         DialogAddCourseComponent, 
         DialogAddAccountComponent, 
-        SettingAccountComponent,
+        SettingAccountComponent, 
+        DialogInfoAccountComponent,
     ],
     entryComponents: [DialogAddCourseComponent]
 })

@@ -1,9 +1,9 @@
 export interface Account {
-    id: string;
-    stt: number;
-    nameUser: string;
-    email: string;
-    phoneNumber: string;
-    position: string;
-    isActivate: boolean;
+    idAccount: number;
+    userName?: string;
+    email?: string;
+    phone?: string;
+    role?: string;
+    isActivate?: boolean;
+    createdTime?: string; //doi ve dang millisecond trong db
 }

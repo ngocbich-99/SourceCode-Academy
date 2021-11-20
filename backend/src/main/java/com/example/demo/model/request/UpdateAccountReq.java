@@ -45,4 +45,6 @@ public class UpdateAccountReq {
     private String role;
 
     private Date createdTime;
+
+    private Boolean isActivate;
 }

@@ -61,4 +61,14 @@ mat-paginator {
   display: flex;
   margin: 28px 0;
 }
+::ng-deep .menu-option .mat-menu-content:not(:empty) {
+  padding: 0 !important;
+}
+::ng-deep .menu-option .mat-menu-content button:hover {
+  background: var(--color-secondary) !important;
+}
+::ng-deep .menu-option .mat-menu-content button mat-icon {
+  width: 20px;
+  margin-right: 12px;
+}
 /* ========================== */

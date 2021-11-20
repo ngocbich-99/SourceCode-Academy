@@ -46,4 +46,6 @@ public class CreateAccountReq {
     private String role;
 
     private Date createdTime;
+
+    private Boolean isActivate;
 }

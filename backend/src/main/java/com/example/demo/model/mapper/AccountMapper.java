@@ -15,6 +15,7 @@ public class AccountMapper {
         accountDto.setRole(account.getRole());
         accountDto.setUserName(account.getUserName());
         accountDto.setCreatedTime(account.getCreatedTime());
+        accountDto.setIsActivate(account.getIsActivate());
 
         return accountDto;
     }
@@ -24,8 +25,9 @@ public class AccountMapper {
         account.setEmail(accountReq.getEmail());
         account.setPhone(accountReq.getPhone());
         account.setUserName(accountReq.getUserName());
+        account.setIsActivate(accountReq.getIsActivate());
         if (accountReq.getRole().equals("")) {
-            account.setRole("HOC_VIEN");
+            account.setRole("STUDENT");
         } else {
             account.setRole(accountReq.getRole());
         }

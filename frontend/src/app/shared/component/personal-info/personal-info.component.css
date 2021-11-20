@@ -28,3 +28,9 @@
   text-align: left;
   padding: 8px 16px;
 }
+::ng-deep .menu-setting-acc .mat-menu-content:not(:empty) {
+  padding: 0 !important;
+}
+::ng-deep .menu-setting-acc .mat-menu-content button:hover {
+  background: var(--color-secondary) !important;
+}

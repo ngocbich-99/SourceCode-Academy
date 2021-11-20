@@ -3,9 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { AccountService } from 'src/app/services/account.service';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 import { Account } from './account.model';
 import { DialogAddAccountComponent } from './dialog-add-account/dialog-add-account.component';
+import { DialogInfoAccountComponent } from './dialog-info-account/dialog-info-account.component';
 
 @Component({
   selector: 'app-accounts',
@@ -29,9 +31,11 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource<Account>();
   listAccount: Account[] = [];
+  accountSelected: Account;
 
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private accountService: AccountService
   ) { }
   
   ngAfterViewInit(): void {
@@ -40,57 +44,66 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.listAccount = [
-      {
-        id: 'acc1',
-        stt: 1,
-        nameUser: 'nguyen thi ngoc bich',
-        email: 'ngocbich@gmail.com',
-        phoneNumber: '0357172637',
-        position: 'Hoc vien',
-        isActivate: true
-      },
-      {
-        id: 'acc2',
-        stt: 2,
-        nameUser: 'Dao Minh Duc',
-        email: 'daoduc@gmail.com',
-        phoneNumber: '099999999',
-        position: 'Hoc vien',
-        isActivate: false
-      }
-    ];
-    this.dataSource.data = this.listAccount;
-
+    this.getListAccount();
   }
   doFilter(filterValue: any) {
     console.log(filterValue);
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+  getListAccount() {
+    this.accountService.getListAccount().subscribe(resData => {
+      this.listAccount = resData;
+      this.dataSource.data = this.listAccount;
+    }, error => {
+      console.log('error get list acc',error);
+    })
+  }
+
   addTeacher() {
     const dialogRef = this.dialog.open(DialogAddAccountComponent, {
       width: '640px',
-      height: '484px',
+      height: '530px',
     });
     dialogRef.afterClosed().subscribe(rs => {
       console.log(rs);
     })
   }
+  async updateAccount(idAcc: number) {
+    await this.getAccountById(idAcc);
 
-  updateAccount() {
-
+    const dialogRef = this.dialog.open(DialogInfoAccountComponent, {
+      width: '640px',
+      height: '530px',
+      data: {account: this.accountSelected}
+    });
+    dialogRef.afterClosed().subscribe(rs => {
+      console.log(rs);
+    })
+  }
+  async getAccountById(idAcc: number) {
+    // this.accountService.getAccountById(idAcc).subscribe(resData => {
+    //   this.accountSelected = resData;
+    // });
+    this.accountSelected = await this.accountService.getAccountById(idAcc).toPromise();
   }
 
-  deleteAccount() {
+  deleteAccount(account: Account) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '520px',
       height: '252px',
-      // data: {name: this.name, animal: this.animal},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+      if (result === true) {
+        this.listAccount.splice(this.listAccount.indexOf(account), 1);
+        this.dataSource.data = this.listAccount;
+
+        this.accountService.deleteAccById(account.idAccount).subscribe(resData => {
+          console.log('delete acc', resData);
+        }, error => {
+          console.log('delete acc error',error);
+        });
+      }
     });
   }
 }
