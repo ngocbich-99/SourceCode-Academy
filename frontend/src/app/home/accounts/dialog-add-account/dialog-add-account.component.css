@@ -35,6 +35,9 @@ mat-dialog-actions {
 .dialog-content .btn-add-acc {
   width: 180px;
 }
+.dialog-content h3 {
+  margin: 0;
+}
 ::ng-deep .mat-form-field-wrapper {
   padding: 0 0 16px;
   margin: 0;

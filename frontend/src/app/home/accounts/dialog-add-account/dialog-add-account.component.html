@@ -30,6 +30,8 @@
                 matInput 
                 placeholder="Địa chỉ email">
                 <mat-error *ngIf="createAccForm.get('email')?.hasError('required') && createAccForm.get('email')?.touched">Đây là trường bắt buộc</mat-error>
+                <mat-error *ngIf="createAccForm.get('email')?.invalid && createAccForm.get('email')?.value.length > 0">Địa chỉ email không hợp lệ!</mat-error>
+
             </mat-form-field>
         </div>
         <div class="row-phone" fxLayout="row" fxLayoutAlign="space-between center">

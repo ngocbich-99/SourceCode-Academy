@@ -32,7 +32,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   ];
   dataSource = new MatTableDataSource<Account>();
   listAccount: Account[] = [];
-  accountSelected: Account | undefined;
+  accountSelected: Account = {};
 
   constructor(
     public dialog: MatDialog,
@@ -97,8 +97,16 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       height: '530px',
       data: {account: this.accountSelected}
     });
-    dialogRef.afterClosed().subscribe(rs => {
-      console.log(rs);
+    dialogRef.afterClosed().subscribe((rs: Account) => {
+      if (!!rs) {
+        const index = this.listAccount.findIndex(acc => acc.idAccount === rs.idAccount);
+        this.listAccount[index] = rs;
+        this.dataSource.data = this.listAccount;
+
+        this.accountService.updateAccount(rs).subscribe(resData => {
+          console.log('update acc', resData);
+        })
+      }
     })
   }
   async getAccountById(idAcc: number) {

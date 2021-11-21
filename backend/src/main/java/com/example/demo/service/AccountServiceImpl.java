@@ -65,7 +65,8 @@ public class AccountServiceImpl implements AccountService {
         account.setUserName(accountReq.getUserName());
         account.setPhone(accountReq.getPhone());
         account.setRole(accountReq.getRole());
-        account.setPassword(BCrypt.hashpw(accountReq.getPassword(), BCrypt.gensalt(12)));
+        account.setIsActivate(accountReq.getIsActivate());
+//        account.setPassword(BCrypt.hashpw(accountReq.getPassword(), BCrypt.gensalt(12)));
 
         try {
             accountRepository.save(account);

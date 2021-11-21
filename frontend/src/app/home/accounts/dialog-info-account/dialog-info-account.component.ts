@@ -10,7 +10,7 @@ import { Account } from '../account.model';
   styleUrls: ['./dialog-info-account.component.css']
 })
 export class DialogInfoAccountComponent implements OnInit {
-  updateAccForm: FormGroup;
+  updateAccForm: FormGroup = new FormGroup({});
 
   constructor(
     public dialogRef: MatDialogRef<DialogInfoAccountComponent>,
@@ -22,16 +22,28 @@ export class DialogInfoAccountComponent implements OnInit {
       'username': new FormControl(this.data.account.userName, Validators.required),
       'email': new FormControl(this.data.account.email, [Validators.required, Validators.email]),
       'phone': new FormControl(this.data.account.phone, [Validators.required]),
-      'role': new FormControl({value: this.data.account.role, disabled: true}),
-      'isActivate': new FormControl(true),
+      'role': new FormControl({value: this.convertLabelDisplay(this.data.account.role), disabled: true}),
+      'isActivate': new FormControl(this.data.account.isActivate),
     });
   }
 
   updateAccount() {
-    console.log(this.updateAccForm);
+    this.data.account.userName = this.updateAccForm.value.username;
+    this.data.account.email = this.updateAccForm.value.email;
+    this.data.account.phone = this.updateAccForm.value.phone;
+    this.data.account.isActivate = this.updateAccForm.value.isActivate;
   }
   onCancel() {
     this.dialogRef.close();
+  }
+  convertLabelDisplay(role?: string): string {
+    if (role === 'TEACHER') {
+      return 'Giảng viên';
+    } else if (role === 'STUDENT'){
+      return 'Học viên';
+    } else {
+      return 'Chưa có'
+    }
   }
 
 }

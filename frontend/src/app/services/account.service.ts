@@ -28,7 +28,7 @@ export class AccountService {
 
     // update account
     updateAccount(accountReq: Account): Observable<Account> {
-        return this.http.put<Account>(env.backendBaseUrl + '/api/accounts', accountReq);
+        return this.http.put<Account>(env.backendBaseUrl + `/api/accounts/${accountReq.idAccount?.toString()}`, accountReq);
     }
 
     // delete account by id

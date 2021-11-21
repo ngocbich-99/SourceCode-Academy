@@ -69,12 +69,13 @@
                 <span>Huỷ</span>
             </button>
             <button 
+            [mat-dialog-close]="data.account"
             type="submit" 
             (click)="updateAccount()"
             [disabled]="updateAccForm.invalid"
             mat-button 
             class="codex-btn-primary btn-big btn-add-acc">
-                <span>Thêm tài khoản</span>
+                <span>Cập nhật</span>
             </button>
         </div>
     </form>

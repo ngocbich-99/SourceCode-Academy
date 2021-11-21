@@ -6,24 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/mapper/AccountMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/mapper/AccountMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CreateAccountReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CreateAccountReq.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateAccountReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateAccountReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/AccountMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/AccountMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CreateAccountReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CreateAccountReq.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/UpdateAccountReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/UpdateAccountReq.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/account.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/account.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/environments/environment.prod.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/compiler-cli/ngcc/__ngcc_lock_file__" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/core/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-add-account/dialog-add-account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-add-account/dialog-add-account.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-info-account/dialog-info-account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-info-account/dialog-info-account.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

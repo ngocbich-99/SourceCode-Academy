@@ -12,7 +12,6 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
   onTabChange(nameTab: string) {
-    console.log(nameTab);
     this.activeTab = nameTab;
   }
 }

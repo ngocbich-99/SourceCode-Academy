@@ -12,7 +12,7 @@ export interface DialogData {
   styleUrls: ['./dialog-add-account.component.css']
 })
 export class DialogAddAccountComponent implements OnInit {
-  createAccForm: FormGroup;
+  createAccForm: FormGroup = new FormGroup({});
   account: Account = {
     idAccount: 1,
   };

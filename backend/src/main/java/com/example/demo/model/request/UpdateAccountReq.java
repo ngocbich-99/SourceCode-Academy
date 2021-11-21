@@ -24,13 +24,13 @@ public class UpdateAccountReq {
     )
     private String email;
 
-    @NotNull(message = "Password is required")
-    @ApiModelProperty(
-            example="123abc",
-            notes="Password can't be empty",
-            required=true
-    )
-    private String password;
+//    @NotNull(message = "Password is required")
+//    @ApiModelProperty(
+//            example="123abc",
+//            notes="Password can't be empty",
+//            required=true
+//    )
+//    private String password;
 
     @NotNull(message = "User name is required")
     @ApiModelProperty(
@@ -44,7 +44,7 @@ public class UpdateAccountReq {
 
     private String role;
 
-    private Date createdTime;
+//    private Date createdTime;
 
     private Boolean isActivate;
 }
