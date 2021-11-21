@@ -4,27 +4,104 @@
     </a>
 </div>
 <mat-nav-list class="sidebar">
-    <a #course mat-list-item [routerLink]= "['/home/courses']" routerLinkActive="active" (click)="onTabChange('courses')">
+    <!-- sidebar unregistered -->
+    <a mat-list-item 
+    *ngIf="role === 'user'"
+    [routerLink]= "['/home/main-page-unregistered']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('dashboard')">
+        <mat-icon *ngIf="activeTab === 'dashboard'" svgIcon="dashboard-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'dashboard'" svgIcon="dashboard-outline" routerLinkActive="active"></mat-icon>
+        <span class="nav-caption">Trang Chính</span>
+    </a>
+    <a mat-list-item 
+    *ngIf="role === 'user'"
+    [routerLink]= "['/home/courses-unregistered']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('courses-unregis')">
+        <mat-icon *ngIf="activeTab === 'courses-unregis'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'courses-unregis'" svgIcon="course-outline" routerLinkActive="active"></mat-icon>
+        <span class="nav-caption">Khoá học</span>
+    </a>
+    <a mat-list-item 
+    *ngIf="role === 'user'"
+    [routerLink]= "['/home/about-us']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('about-us')">
+        <mat-icon *ngIf="activeTab === 'about-us'" svgIcon="about-us-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'about-us'" svgIcon="setting-account" routerLinkActive="active"></mat-icon>
+        <span class="nav-caption">Về chúng tôi</span>
+    </a>
+    <!-- sidebar student -->
+    <a mat-list-item 
+    *ngIf="role === 'STUDENT'"
+    [routerLink]= "['/home/dashboard-student']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('dashboard')">
+        <mat-icon *ngIf="activeTab === 'dashboard'" svgIcon="dashboard-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'dashboard'" svgIcon="dashboard-outline" routerLinkActive="active"></mat-icon>
+        <span class="nav-caption">Trang Chính</span>
+    </a>
+    <a mat-list-item 
+    *ngIf="role === 'STUDENT'"
+    [routerLink]= "['/home/courses-student']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('course-learn')">
+        <mat-icon *ngIf="activeTab === 'course-learn'" svgIcon="course-learn-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'course-learn'" svgIcon="course-learn-outline" routerLinkActive="active"></mat-icon>
+        <span class="nav-caption">Khoá học của bạn</span>
+    </a>
+    <a mat-list-item 
+    *ngIf="role === 'STUDENT'"
+    [routerLink]= "['/home/all-course-student']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('courses')">
+        <mat-icon *ngIf="activeTab === 'courses'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'courses'" svgIcon="course-outline" routerLinkActive="active"></mat-icon>
+        <span class="nav-caption">Tất cả khoá học</span>
+    </a>
+    <!-- sidebar admin -->
+    <a mat-list-item 
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    [routerLink]= "['/home/courses']" 
+    routerLinkActive="active" 
+    (click)="onTabChange('courses')">
         <mat-icon *ngIf="activeTab === 'courses'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>
         <mat-icon *ngIf="activeTab !== 'courses'" svgIcon="course-outline" routerLinkActive="active"></mat-icon>
         <span class="nav-caption">Khoá học</span>
     </a>
-    <a mat-list-item routerLink="/home/category" routerLinkActive="active" (click)="onTabChange('category')">
+    <a mat-list-item 
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    routerLink="/home/category" 
+    routerLinkActive="active" 
+    (click)="onTabChange('category')">
         <mat-icon *ngIf="activeTab !== 'category'" svgIcon="category-outline"></mat-icon>
         <mat-icon *ngIf="activeTab === 'category'" svgIcon="category-fill"></mat-icon>
         <span class="nav-caption">Danh mục</span>
     </a>
-    <a mat-list-item routerLink="/home/tests" routerLinkActive="active" (click)="onTabChange('tests')">
+    <a mat-list-item 
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    routerLink="/home/tests" 
+    routerLinkActive="active" 
+    (click)="onTabChange('tests')">
         <mat-icon *ngIf="activeTab !== 'tests'" svgIcon="test-outline"></mat-icon>
         <mat-icon *ngIf="activeTab === 'tests'" svgIcon="test-fill"></mat-icon>
         <span class="nav-caption">Bài kiểm tra</span>
     </a>
-    <a mat-list-item routerLink="/home/questions" routerLinkActive="active" (click)="onTabChange('questions')">
+    <a mat-list-item 
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    routerLink="/home/questions" 
+    routerLinkActive="active" 
+    (click)="onTabChange('questions')">
         <mat-icon *ngIf="activeTab !== 'questions'" svgIcon="question-outline"></mat-icon>
         <mat-icon *ngIf="activeTab === 'questions'" svgIcon="question-fill"></mat-icon>
         <span class="nav-caption">Ngân hàng câu hỏi</span>
     </a>
-    <a mat-list-item routerLink="/home/accounts" routerLinkActive="active" (click)="onTabChange('accounts')">
+    <a mat-list-item 
+    *ngIf="role === 'ADMIN'"
+    routerLink="/home/accounts" 
+    routerLinkActive="active" 
+    (click)="onTabChange('accounts')">
         <mat-icon *ngIf="activeTab !== 'accounts'"  svgIcon="account-outline"></mat-icon>
         <mat-icon *ngIf="activeTab === 'accounts'"  svgIcon="account-fill"></mat-icon>
         <span class="nav-caption">Tài khoản</span>

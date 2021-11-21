@@ -4,11 +4,13 @@ import { PersonalInfoComponent } from './component/personal-info/personal-info.c
 import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DeleteDialogComponent } from './component/delete-dialog/delete-dialog.component';
+import { TopbarUnregisteredComponent } from './component/topbar-unregistered/topbar-unregistered.component';
 
 @NgModule({
   declarations: [
     PersonalInfoComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    TopbarUnregisteredComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { DeleteDialogComponent } from './component/delete-dialog/delete-dialog.c
   ],
   exports: [
     PersonalInfoComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    TopbarUnregisteredComponent
   ]
 })
 export class SharedModule { }

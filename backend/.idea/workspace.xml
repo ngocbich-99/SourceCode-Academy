@@ -6,21 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateAccountReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/UpdateAccountReq.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/compiler-cli/ngcc/__ngcc_lock_file__" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout-core.umd.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/bundles/flex-layout.umd.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/core/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/core/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/core.es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/esm5/flex-layout.es5.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/flex-layout/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-add-account/dialog-add-account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-add-account/dialog-add-account.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-info-account/dialog-info-account.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/dialog-info-account/dialog-info-account.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

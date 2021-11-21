@@ -70,8 +70,15 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/setting-account.svg")
     );
     this.matIconRegistry.addSvgIcon(
+      `about-us-fill`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/about-us-fill.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
       `logout`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/logout.svg")
+    );this.matIconRegistry.addSvgIcon(
+      `login-outline`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/login-outline.svg")
     );
     this.matIconRegistry.addSvgIcon(
       `add`,
@@ -120,6 +127,22 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon(
       `back`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/back.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `dashboard-fill`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/dashboard-fill.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `dashboard-outline`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/dashboard-outline.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `course-learn-fill`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/course-learn-fill.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `course-learn-outline`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/course-learn-outline.svg")
     );
   }
 }

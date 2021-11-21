@@ -18,6 +18,12 @@ import { QuestionsComponent } from "./questions/questions.component";
 import { SettingAccountComponent } from "./setting-account/setting-account.component";
 import { TestsComponent } from "./tests/tests.component";
 import { DialogInfoAccountComponent } from './accounts/dialog-info-account/dialog-info-account.component';
+import { MainUnregisteredComponent } from './Unregistered/main-unregistered/main-unregistered.component';
+import { CoursesUnregisteredComponent } from './Unregistered/courses-unregistered/courses-unregistered.component';
+import { AboutUsComponent } from './Unregistered/about-us/about-us.component';
+import { DashboardStudentComponent } from './student-registered/dashboard-student/dashboard-student.component';
+import { CoursesStudentComponent } from './student-registered/courses-student/courses-student.component';
+import { AllCourseStudentComponent } from './student-registered/all-course-student/all-course-student.component';
 
 @NgModule({
     imports: [
@@ -42,7 +48,7 @@ import { DialogInfoAccountComponent } from './accounts/dialog-info-account/dialo
         DialogAddCourseComponent, 
         DialogAddAccountComponent, 
         SettingAccountComponent, 
-        DialogInfoAccountComponent,
+        DialogInfoAccountComponent, MainUnregisteredComponent, CoursesUnregisteredComponent, AboutUsComponent, DashboardStudentComponent, CoursesStudentComponent, AllCourseStudentComponent,
     ],
     entryComponents: [DialogAddCourseComponent]
 })
