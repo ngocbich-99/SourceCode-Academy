@@ -10,6 +10,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { CarouselConfig, CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,12 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule, 
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    CarouselModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: CarouselConfig, useValue: { interval: 80000, noPause: true, showIndicators: true } }
+  ],
   bootstrap: [AppComponent],
   
 })

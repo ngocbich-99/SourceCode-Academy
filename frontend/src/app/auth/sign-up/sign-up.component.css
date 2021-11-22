@@ -1,16 +1,16 @@
-.container {
+.container-signup {
   height: 100%;
   /* background: url("/assets/images/bg.png") top center / cover no-repeat; */
   background-color: #605eff;
 }
 .side-bar {
   width: 150px;
-  height: 60%;
+  height: 65%;
   background: url("/assets/images/Sidebar.png") top center / cover no-repeat;
   border-radius: 10px 0 0 10px;
 }
 .card-login {
-  height: 60%;
+  height: 65%;
   width: 528px;
   background: #ffffff;
   border-radius: 0 10px 10px 0;
@@ -24,6 +24,11 @@
 .form-login h2 {
   width: 80%;
   margin: 0 auto 16px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
 }
 mat-form-field {
   width: 80%;

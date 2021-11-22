@@ -1,1 +1,35 @@
 <app-topbar-unregistered></app-topbar-unregistered>
+<carousel  [isAnimated]="true">
+    <slide>
+        <img src="assets/images/banner-1.png" alt="first slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Bắt đầu với Codex Academy</h3>
+            <p>Từng bước đơn giản nhưng hiệu quả. Học tập với Codex Academy ngay hôm nay!</p>
+            <button mat-button class="btn-big codex-btn-ghost btn-action-signup">Đăng ký ngay</button>
+        </div>
+    </slide>
+    <slide>
+        <img src="assets/images/banner-1.png" alt="second slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <button mat-button class="btn-big codex-btn-ghost btn-action-signup">Đăng ký ngay</button>
+        </div>
+    </slide>
+    <slide>
+        <img src="assets/images/banner-1.png" alt="third slide" style="display: block; width: 100%;">
+        <div class="carousel-caption d-none d-md-block">
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+            <button mat-button class="btn-big codex-btn-ghost btn-action-signup">Đăng ký ngay</button>
+        </div>
+    </slide>
+</carousel>
+<section class="course-new">
+    <h3>Khoá học mới</h3>
+    <app-course-item-student></app-course-item-student>
+</section>
+<section class="course-popular">
+    <h3>Khoá học nổi bật</h3>
+    <app-course-item-student></app-course-item-student>
+</section>

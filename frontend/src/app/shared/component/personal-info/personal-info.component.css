@@ -1,7 +1,7 @@
 .card-account .avatar {
   width: 26px;
-  height: 26px;
-  padding-right: 10px;
+  height: 45px;
+  margin-right: 10px;
 }
 .card-account .info h3,
 .card-account .info p {
@@ -22,7 +22,8 @@
 }
 .card-account .arrow-down {
   width: 13px;
-  padding-left: 18px;
+  height: 45px;
+  margin-left: 18px;
 }
 .card-account .mat-button {
   text-align: left;

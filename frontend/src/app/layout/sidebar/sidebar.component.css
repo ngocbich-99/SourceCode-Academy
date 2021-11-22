@@ -13,7 +13,7 @@ mat-nav-list a {
 mat-nav-list a mat-icon {
   width: 20px;
   height: 20px;
-  padding: 0 28px 0 12px;
+  margin: 0 28px 0 12px;
 }
 mat-nav-list a.active span {
   font-style: normal;

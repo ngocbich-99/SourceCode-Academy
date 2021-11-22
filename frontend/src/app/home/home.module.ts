@@ -24,6 +24,7 @@ import { AboutUsComponent } from './Unregistered/about-us/about-us.component';
 import { DashboardStudentComponent } from './student-registered/dashboard-student/dashboard-student.component';
 import { CoursesStudentComponent } from './student-registered/courses-student/courses-student.component';
 import { AllCourseStudentComponent } from './student-registered/all-course-student/all-course-student.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
     imports: [
@@ -34,6 +35,7 @@ import { AllCourseStudentComponent } from './student-registered/all-course-stude
         MaterialModule,
         FlexLayoutModule,
         SharedModule, 
+        CarouselModule.forRoot()
     ],
     declarations: [
         HomePage, 

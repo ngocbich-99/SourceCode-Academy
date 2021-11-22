@@ -12,8 +12,8 @@
   color: var(--color-primary);
 }
 .content .btn-back mat-icon {
-  width: 18px;
-  height: 18px;
+  width: 12px;
+  height: 48px;
   margin-right: 16px;
 }
 .content h3 {

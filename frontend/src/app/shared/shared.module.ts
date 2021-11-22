@@ -5,12 +5,14 @@ import { MaterialModule } from '../material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DeleteDialogComponent } from './component/delete-dialog/delete-dialog.component';
 import { TopbarUnregisteredComponent } from './component/topbar-unregistered/topbar-unregistered.component';
+import { CourseItemStudentComponent } from './component/course-item-student/course-item-student.component';
 
 @NgModule({
   declarations: [
     PersonalInfoComponent,
     DeleteDialogComponent,
-    TopbarUnregisteredComponent
+    TopbarUnregisteredComponent,
+    CourseItemStudentComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { TopbarUnregisteredComponent } from './component/topbar-unregistered/top
   exports: [
     PersonalInfoComponent,
     DeleteDialogComponent,
-    TopbarUnregisteredComponent
+    TopbarUnregisteredComponent,
+    CourseItemStudentComponent
   ]
 })
 export class SharedModule { }

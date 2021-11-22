@@ -36,7 +36,14 @@ const routes: Routes = [
             { path: 'setting-account', component: SettingAccountComponent},
 
             { path: 'main-page-unregistered', component: MainUnregisteredComponent},
-            { path: 'courses-unregistered', component: CoursesUnregisteredComponent},
+            { 
+                path: 'courses-unregistered', 
+                component: CoursesUnregisteredComponent, 
+                children: [
+                    { path: 'all', component: CourseCategoryItemComponent },
+                    { path: ':id', component: CourseCategoryItemComponent },
+                ]
+            },
             { path: 'about-us', component: AboutUsComponent},
 
             { path: 'dashboard-student', component: DashboardStudentComponent},

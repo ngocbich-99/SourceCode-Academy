@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-unregistered.component.css']
 })
 export class MainUnregisteredComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
