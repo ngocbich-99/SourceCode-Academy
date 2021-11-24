@@ -5,10 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/ServletInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/auth/CustomUserDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/auth/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/auth/RefreshJwtRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AuthenticationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/jwt/JwtTokenProvider.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/response/user/LoginResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/response/user/UserRoleResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/security/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AuthService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/AccountRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/security/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/AccountRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/security/SecurityConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/all-course-student/all-course-student.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/all-course-student/all-course-student.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/all-course-student/all-course-student.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/all-course-student/all-course-student.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/dashboard-student/dashboard-student.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/dashboard-student/dashboard-student.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/dashboard-student/dashboard-student.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/dashboard-student/dashboard-student.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +76,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/demo/model/response" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/demo/model/response" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/demo/model/request" />
+      <recent name="$PROJECT_DIR$/src/main/java/com/example/demo" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.demo" />
+      <recent name="com.example.demo.service" />
+      <recent name="com.example.demo.controller" />
+      <recent name="com.example.demo.jwt" />
+      <recent name="com.example.demo.security" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="CodexApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
