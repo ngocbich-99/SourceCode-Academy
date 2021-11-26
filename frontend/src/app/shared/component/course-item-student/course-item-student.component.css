@@ -16,7 +16,26 @@ button:hover {
 .card-course .div-img {
   min-width: 283px;
   min-height: 158px;
+  position: relative;
 }
+/* process tag */
+.div-tag-process,
+.div-tag-finished {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+.div-tag-process {
+  width: 146px;
+}
+.div-tag-finished {
+  width: 118px;
+}
+/* end process tag */
+
 .card-course .btn-more {
   position: absolute;
   top: 0;

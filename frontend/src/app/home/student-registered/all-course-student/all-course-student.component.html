@@ -9,3 +9,30 @@
     <!-- info personal -->
     <app-personal-info></app-personal-info>
 </section>
+<section class="section-category">
+    <mat-drawer-container>
+        <mat-drawer mode="side" opened>
+            <!-- side bar category -->
+            <h3>Danh mục</h3>
+            <mat-nav-list class="sidebar">
+                <a mat-list-item routerLink="/home/all-course-student/all" routerLinkActive="active">
+                    <span class="nav-caption">Tất cả</span>
+                </a>
+                <a mat-list-item routerLink="/home/all-course-student/1" routerLinkActive="active">
+                    <span class="nav-caption">HTML & CSS</span>
+                </a>
+                <a mat-list-item routerLink="/home/all-course-student/2" routerLinkActive="active">
+                    <span class="nav-caption">JavaScript</span>
+                </a>
+            </mat-nav-list>
+        </mat-drawer>
+        <mat-drawer-content>
+            <div class="description-category">
+                <p>
+                    HTML là nền tảng của tất cả các trang web. Nó xác định cấu trúc của một trang, trong khi CSS xác định phong cách của nó. HTML và CSS là sự khởi đầu của mọi thứ bạn cần biết để tạo trang web đầu tiên của mình! Tìm hiểu cả hai và bắt đầu tạo các trang web tuyệt vời.
+                </p>
+            </div>
+            <app-course-item-student></app-course-item-student>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</section>

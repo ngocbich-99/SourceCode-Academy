@@ -48,7 +48,14 @@ const routes: Routes = [
 
             { path: 'dashboard-student', component: DashboardStudentComponent},
             { path: 'courses-student', component: CoursesStudentComponent},
-            { path: 'all-course-student', component: AllCourseStudentComponent},
+            { 
+                path: 'all-course-student', 
+                component: AllCourseStudentComponent,
+                children: [
+                    { path: ':id', component: CourseCategoryItemComponent },
+                    { path: 'all', component: CourseCategoryItemComponent}
+                ]
+            },
             {
                 path: '',
                 redirectTo: '/home/main-page-unregistered',
