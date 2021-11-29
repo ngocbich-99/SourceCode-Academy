@@ -17,6 +17,7 @@ p {
 .btn-delete,
 .btn-cancel {
   width: 212px;
+  height: 48px;
 }
 ::ng-deep .mat-dialog-container {
   border-radius: 10px;

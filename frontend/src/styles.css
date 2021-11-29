@@ -61,6 +61,7 @@ button.codex-btn-danger {
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
+  height: 48px;
 }
 button.codex-btn.danger:hover {
   background: #e55344;

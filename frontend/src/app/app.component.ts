@@ -85,6 +85,10 @@ export class AppComponent {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/add.svg")
     );
     this.matIconRegistry.addSvgIcon(
+      `add-primary`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/add-primary.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
       `close`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/close.svg")
     );

@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SidebarComponent implements OnInit {
   constructor() { }
   activeTab = 'dashboard';
-  role='STUDENT'
+  role='ADMIN'
 
   ngOnInit(): void {
   }

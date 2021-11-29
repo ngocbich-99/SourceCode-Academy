@@ -25,6 +25,8 @@ import { DashboardStudentComponent } from './student-registered/dashboard-studen
 import { CoursesStudentComponent } from './student-registered/courses-student/courses-student.component';
 import { AllCourseStudentComponent } from './student-registered/all-course-student/all-course-student.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { TabsModule } from "ngx-bootstrap/tabs";
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
     imports: [
@@ -35,7 +37,9 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
         MaterialModule,
         FlexLayoutModule,
         SharedModule, 
-        CarouselModule.forRoot()
+        CarouselModule.forRoot(),
+        TabsModule.forRoot(),
+        ButtonsModule.forRoot()
     ],
     declarations: [
         HomePage, 

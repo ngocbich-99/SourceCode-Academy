@@ -18,8 +18,8 @@ export class CoursesComponent implements OnInit {
   
   dialogAddCourse() {
     const dialogRef = this.dialog.open(DialogAddCourseComponent, {
-      width: '800px',
-      height: '618px',
+      width: '1041px',
+      height: '646px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

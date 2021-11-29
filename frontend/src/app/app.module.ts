@@ -27,7 +27,7 @@ import { CarouselConfig, CarouselModule } from 'ngx-bootstrap/carousel';
     HttpClientModule, 
     MaterialModule,
     FlexLayoutModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
   ],
   providers: [
     { provide: CarouselConfig, useValue: { interval: 80000, noPause: true, showIndicators: true } }
