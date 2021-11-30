@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 
 interface ITab {
   title: string;
-  content: string;
+  content: any;
   removable: boolean;
   disabled: boolean;
   active?: boolean;
@@ -65,14 +65,21 @@ export class DialogAddCourseComponent implements OnInit {
 
   tabSections: ITab[] = [
     { 
+      title: 'Phần 1',
+      content: 'Phần 1 content', 
+      removable: false, 
+      disabled: false,
+      active: true
+    },
+    { 
       title: 'Phần 2',
-      content: `<h3>heading</h3>`, 
+      content: 'Phần 2 content', 
       removable: true, 
       disabled: false
     },
     { 
       title: 'Phần 3', 
-      content: 'Dynamic content 2', 
+      content: 'Phần 3 content', 
       removable: true, 
       disabled: false
     },
@@ -80,14 +87,21 @@ export class DialogAddCourseComponent implements OnInit {
 
   tabLessons: ITab[] = [
     { 
+      title: 'Bài 1',
+      content: `Bai 1 content`, 
+      removable: false, 
+      disabled: false,
+      active: true
+    },
+    { 
       title: 'Bài 2',
-      content: `<h3>heading</h3>`, 
+      content: `Bai 2 content`, 
       removable: true, 
       disabled: false
     },
     { 
       title: 'Bài 3', 
-      content: 'Dynamic content 2', 
+      content: 'Bai 3 content', 
       removable: true, 
       disabled: false
     },
@@ -116,7 +130,7 @@ export class DialogAddCourseComponent implements OnInit {
   }
   
   addTabSection(): void {
-    const newTabIndex = this.tabSections.length + 2;
+    const newTabIndex = this.tabSections.length + 1;
     this.tabSections.push({
       title: `Phần ${newTabIndex}`,
       content: `Dynamic content ${newTabIndex}`,
@@ -126,7 +140,7 @@ export class DialogAddCourseComponent implements OnInit {
   }
 
   addTabLesson() {
-    const newTabIndex = this.tabLessons.length + 2;
+    const newTabIndex = this.tabLessons.length + 1;
     this.tabLessons.push({
       title: `Bài ${newTabIndex}`,
       content: `Dynamic content ${newTabIndex}`,

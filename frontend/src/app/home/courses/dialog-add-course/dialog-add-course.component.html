@@ -92,7 +92,17 @@
                     </button>
                     <!-- tabset section of course -->
                     <tabset class="tabset-section">
-                        <tab heading="Phần 1">
+                        <tab *ngFor="let tabSection of tabSections"
+                            [heading]="tabSection.title"
+                            [active]="tabSection.active"
+                            (selectTab)="tabSection.active"
+                            (deselect)="tabSection.active = false"
+                            [disabled]="tabSection.disabled"
+                            [removable]="tabSection.removable"
+                            (removed)="removeTabSection(tabSection)"
+                            [customClass]="tabSection.customClass">
+                            <!-- {{tabSection?.content}} -->
+                            <!-- form content of section -->
                             <div class="name-section" fxLayout="row" fxLayoutAlign="space-between center">
                                 <h3>Tên phần</h3>
                                 <mat-form-field fxFlex="80" appearance="outline">
@@ -109,12 +119,20 @@
                                 </button>
                                 <!-- tabset lesson of section -->
                                 <tabset class="tabset-lesson">
-                                    <tab heading="Bài 1">
-                                        <div class="name-lesson" fxLayout="row" fxLayoutAlign="space-between center">
-                                            <h4>
-                                                Tên bài
-                                            </h4>
-                                            <mat-form-field fxFlex="80" appearance="outline">
+                                    <tab *ngFor="let tabLesson of tabLessons"
+                                        [heading]="tabLesson.title"
+                                        [active]="tabLesson.active"
+                                        (selectTab)="tabLesson.active"
+                                        (deselect)="tabLesson.active = false"
+                                        [disabled]="tabLesson.disabled"
+                                        [removable]="tabLesson.removable"
+                                        (removed)="removeTabLesson(tabLesson)"
+                                        [customClass]="tabLesson.customClass">
+                                        <!-- {{tabLesson?.content}} -->
+                                        <!-- form content of lesson -->
+                                        <div class="name-lesson">
+                                            <mat-form-field appearance="outline" fxFlex="100">
+                                                <mat-label>Tên bài</mat-label>
                                                 <input type="text" matInput placeholder="Tên bài">
                                             </mat-form-field>
                                         </div>
@@ -161,33 +179,12 @@
                                                     <textarea matInput placeholder="Tổng quan"></textarea>
                                                 </mat-form-field>
                                             </div>
-                                        </div>
-                                        
-                                    </tab>
-                                    <tab *ngFor="let tabLesson of tabLessons"
-                                        [heading]="tabLesson.title"
-                                        [active]="tabLesson.active"
-                                        (selectTab)="tabLesson.active = true"
-                                        (deselect)="tabLesson.active = false"
-                                        [disabled]="tabLesson.disabled"
-                                        [removable]="tabLesson.removable"
-                                        (removed)="removeTabLesson(tabLesson)"
-                                        [customClass]="tabLesson.customClass">
-                                    {{tabLesson?.content}}
+                                        </div> 
+                                        <!-- end form content of lesson -->
                                     </tab>
                                 </tabset>
                             </div>
-                        </tab>
-                        <tab *ngFor="let tabSection of tabSections"
-                            [heading]="tabSection.title"
-                            [active]="tabSection.active"
-                            (selectTab)="tabSection.active = true"
-                            (deselect)="tabSection.active = false"
-                            [disabled]="tabSection.disabled"
-                            [removable]="tabSection.removable"
-                            (removed)="removeTabSection(tabSection)"
-                            [customClass]="tabSection.customClass">
-                        {{tabSection?.content}}
+                            <!-- end form content of section -->
                         </tab>
                     </tabset>
                 </div>
