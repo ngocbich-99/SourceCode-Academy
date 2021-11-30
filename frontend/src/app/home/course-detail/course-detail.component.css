@@ -1,0 +1,47 @@
+/* button back */
+.header .btn-back {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--color-primary);
+}
+.header .btn-back mat-icon {
+  width: 12px;
+  height: 48px;
+  margin-right: 16px;
+}
+/* end button back */
+/* container content */
+.container-content {
+}
+/* end container content */
+/* button collapse section */
+.btn-collapse-section {
+  background: #fafafa;
+  height: 40px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  text-align: left;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+/* end button collapse section */
+
+/* ======== sidebar left ======== */
+.sidebar-left {
+  margin-left: 24px;
+}
+.sidebar-left img {
+  width: 100%;
+}
+/* button entrollment course */
+.sidebar-left .btn-enrollment {
+  width: 100%;
+}
+/* end button entrollment course */
+/* ======== end sidebar left ======== */

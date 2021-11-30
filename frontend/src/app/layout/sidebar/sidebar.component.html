@@ -6,7 +6,7 @@
 <mat-nav-list class="sidebar">
     <!-- sidebar unregistered -->
     <a mat-list-item 
-    *ngIf="role === 'user'"
+    *ngIf="role === 'USER'"
     [routerLink]= "['/home/main-page-unregistered']" 
     routerLinkActive="active" 
     (click)="onTabChange('dashboard')">
@@ -15,7 +15,7 @@
         <span class="nav-caption">Trang Chính</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'user'"
+    *ngIf="role === 'USER'"
     [routerLink]= "['/home/courses-unregistered']" 
     routerLinkActive="active" 
     (click)="onTabChange('courses-unregis')">
@@ -24,7 +24,7 @@
         <span class="nav-caption">Khoá học</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'user'"
+    *ngIf="role === 'USER'"
     [routerLink]= "['/home/about-us']" 
     routerLinkActive="active" 
     (click)="onTabChange('about-us')">

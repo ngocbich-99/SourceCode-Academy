@@ -148,5 +148,21 @@ export class AppComponent {
       `course-learn-outline`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/course-learn-outline.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      `lesson-video`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/video.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `lesson-test`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/test.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `close-collapse`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons//close-collapse.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `expand-collapse`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/expand-collapse.svg")
+    );
   }
 }

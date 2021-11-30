@@ -1,0 +1,64 @@
+<section class="header">
+    <button (click)="backPrevious()" mat-button class="btn-big btn-back">
+        <mat-icon svgIcon="back"></mat-icon>
+        <span>Trở lại</span>
+    </button>
+</section>
+<section class="container-content" fxLayout="row" fxLayoutAlign="space-between start">
+    <div class="container-structure-course" fxFlex="70">
+        <h2>
+            Name course
+        </h2>
+        <p>
+            description course
+        </p>
+        <h3>
+            Nội dung khoá học
+        </h3>
+        <!-- collapse section  -->
+        <button type="button" class="btn btn-collapse-section" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+            <span>
+                <mat-icon *ngIf="!isCollapsed" svgIcon="close-collapse"></mat-icon>
+                <mat-icon *ngIf="isCollapsed" svgIcon="expand-collapse"></mat-icon>
+                Phần 1: Giới thiệu
+            </span>
+            <span>2 bài học</span>
+        </button>
+        <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+            <p>
+                <mat-icon svgIcon="lesson-video"></mat-icon>
+                <span>1. Kĩ năng trước khi bắt đầu</span>
+            </p>
+            <p>
+                <mat-icon svgIcon="lesson-test"></mat-icon>
+                <span>Bài kiểm tra 1</span>
+            </p>
+        </div>
+        <!-- end collapse section  -->
+    </div>
+    <div class="sidebar-left" fxFlex="30">
+        <img src="/assets/images/img-cover-course.png" alt="">
+        <div class="container-info-course" fxLayout="row" fxLayoutAlign="start">
+            <div class="title-info" fxFlex="30">
+                <p>Danh mục:</p>
+                <p>Mức độ:</p>
+                <p>Giảng viên:</p>
+                <p>Số học viên:</p>
+                <p>Số chương:</p>
+                <p>Số bài học: </p>
+            </div>
+            <div class="content-info">
+                <p>HTML & CSS</p>
+                <p>Cơ bản</p>
+                <p>Nguyễn thị ngọc bích</p>
+                <p>265</p>
+                <p>8</p>
+                <p>61</p>
+            </div>
+        </div>
+        <button mat-button class="codex-btn-primary btn-big btn-enrollment">
+            Đăng ký học
+        </button>
+    </div>
+</section>

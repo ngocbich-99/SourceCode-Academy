@@ -27,6 +27,8 @@ import { AllCourseStudentComponent } from './student-registered/all-course-stude
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CourseDetailComponent } from './course-detail/course-detail.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
     imports: [
@@ -39,7 +41,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
         SharedModule, 
         CarouselModule.forRoot(),
         TabsModule.forRoot(),
-        ButtonsModule.forRoot()
+        ButtonsModule.forRoot(),
+        CollapseModule.forRoot(),
     ],
     declarations: [
         HomePage, 
@@ -54,7 +57,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
         DialogAddCourseComponent, 
         DialogAddAccountComponent, 
         SettingAccountComponent, 
-        DialogInfoAccountComponent, MainUnregisteredComponent, CoursesUnregisteredComponent, AboutUsComponent, DashboardStudentComponent, CoursesStudentComponent, AllCourseStudentComponent,
+        DialogInfoAccountComponent, MainUnregisteredComponent, CoursesUnregisteredComponent, AboutUsComponent, DashboardStudentComponent, CoursesStudentComponent, AllCourseStudentComponent, CourseDetailComponent,
     ],
     entryComponents: [DialogAddCourseComponent]
 })

@@ -4,6 +4,7 @@ import { AuthGuard } from "../auth/auth.guard";
 import { RoleGuard } from "../auth/role.guard";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { CategoryComponent } from "./category/category.component";
+import { CourseDetailComponent } from "./course-detail/course-detail.component";
 import { CourseCategoryItemComponent } from "./courses/course-category-item/course-category-item.component";
 import { CoursesComponent } from "./courses/courses.component";
 import { HomePage } from "./home.page";
@@ -28,6 +29,9 @@ const routes: Routes = [
                     { path: 'all', component: CourseCategoryItemComponent },
                     { path: ':id', component: CourseCategoryItemComponent },
                 ]
+            },
+            { 
+                path: 'course-detail', component: CourseDetailComponent
             },
             { path: 'category', component: CategoryComponent},
             { path: 'tests', component: TestsComponent},
