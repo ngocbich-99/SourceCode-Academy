@@ -5,38 +5,42 @@
     </button>
 </section>
 <section class="container-content" fxLayout="row" fxLayoutAlign="space-between start">
+    <!-- structure-course -->
     <div class="container-structure-course" fxFlex="70">
         <h2>
-            Name course
+            HTML Cơ bản
         </h2>
         <p>
-            description course
+            HTML là nền tảng của tất cả các trang web. Nó xác định cấu trúc của một trang, trong khi CSS xác định phong cách của nó. HTML và CSS là sự khởi đầu của mọi thứ bạn cần biết để tạo trang web đầu tiên của mình! Tìm hiểu cả hai và bắt đầu tạo các trang web tuyệt vời.
         </p>
         <h3>
             Nội dung khoá học
         </h3>
-        <!-- collapse section  -->
-        <button type="button" class="btn btn-collapse-section" (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
-            <span>
-                <mat-icon *ngIf="!isCollapsed" svgIcon="close-collapse"></mat-icon>
-                <mat-icon *ngIf="isCollapsed" svgIcon="expand-collapse"></mat-icon>
-                Phần 1: Giới thiệu
-            </span>
-            <span>2 bài học</span>
-        </button>
-        <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
-            <p>
-                <mat-icon svgIcon="lesson-video"></mat-icon>
-                <span>1. Kĩ năng trước khi bắt đầu</span>
-            </p>
-            <p>
-                <mat-icon svgIcon="lesson-test"></mat-icon>
-                <span>Bài kiểm tra 1</span>
-            </p>
+        <div class="section-collapse">
+            <!-- collapse section  -->
+            <button type="button" class="btn btn-collapse-section" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+                <span class="name-section">
+                    <mat-icon *ngIf="!isCollapsed" svgIcon="close-collapse"></mat-icon>
+                    <mat-icon *ngIf="isCollapsed" svgIcon="expand-collapse"></mat-icon>
+                    Phần 1: Giới thiệu
+                </span>
+                <span class="number-lesson">2 bài học</span>
+            </button>
+            <div class="container-content-section" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+                <p>
+                    <mat-icon svgIcon="lesson-video"></mat-icon>
+                    <span>1. Kĩ năng trước khi bắt đầu</span>
+                </p>
+                <p>
+                    <mat-icon svgIcon="lesson-test"></mat-icon>
+                    <span>Bài kiểm tra 1</span>
+                </p>
+            </div>
+            <!-- end collapse section  -->
         </div>
-        <!-- end collapse section  -->
     </div>
+    <!-- sidebar left -->
     <div class="sidebar-left" fxFlex="30">
         <img src="/assets/images/img-cover-course.png" alt="">
         <div class="container-info-course" fxLayout="row" fxLayoutAlign="start">
@@ -50,7 +54,10 @@
             </div>
             <div class="content-info">
                 <p>HTML & CSS</p>
-                <p>Cơ bản</p>
+                <p>
+                    <mat-icon svgIcon="level-basic"></mat-icon>
+                    Cơ bản
+                </p>
                 <p>Nguyễn thị ngọc bích</p>
                 <p>265</p>
                 <p>8</p>
