@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-course-detail',
@@ -10,7 +11,9 @@ export class CourseDetailComponent implements OnInit {
   isCollapsed = false;
 
   constructor(
-    private _location: Location
+    private _location: Location,
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -19,6 +22,10 @@ export class CourseDetailComponent implements OnInit {
   backPrevious() {
     // this.router.navigate([".."]);
     this._location.back();
+  }
+
+  enrollmentCourse() {
+    this.router.navigate(['/home/learning-course']);
   }
 
 }

@@ -5,6 +5,7 @@ import { RoleGuard } from "../auth/role.guard";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { CategoryComponent } from "./category/category.component";
 import { CourseDetailComponent } from "./course-detail/course-detail.component";
+import { LearningCourseComponent } from "./course-detail/learning-course/learning-course.component";
 import { CourseCategoryItemComponent } from "./courses/course-category-item/course-category-item.component";
 import { CoursesComponent } from "./courses/courses.component";
 import { HomePage } from "./home.page";
@@ -31,7 +32,10 @@ const routes: Routes = [
                 ]
             },
             { 
-                path: 'course-detail', component: CourseDetailComponent
+                path: 'course-detail', component: CourseDetailComponent,
+            },
+            {
+                path: 'learning-course', component: LearningCourseComponent
             },
             { path: 'category', component: CategoryComponent},
             { path: 'tests', component: TestsComponent},

@@ -1,3 +1,15 @@
+<section class="topbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- search bar -->
+    <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon svgIcon="search"></mat-icon>
+        <mat-form-field >
+            <input type="text" matInput placeholder="Tìm kiếm khoá học, danh mục,…">
+        </mat-form-field>
+    </div>
+    <!-- info personal -->
+    <app-personal-info></app-personal-info>
+</section>
+
 <section class="header">
     <button (click)="backPrevious()" mat-button class="btn-big btn-back">
         <mat-icon svgIcon="back"></mat-icon>
@@ -54,7 +66,7 @@
             </div>
             <div class="content-info">
                 <p>HTML & CSS</p>
-                <p>
+                <p style="height:20px">
                     <mat-icon svgIcon="level-basic"></mat-icon>
                     Cơ bản
                 </p>
@@ -64,8 +76,8 @@
                 <p>61</p>
             </div>
         </div>
-        <button mat-button class="codex-btn-primary btn-big btn-enrollment">
-            Đăng ký học
+        <button (click)="enrollmentCourse()" mat-button class="codex-btn-primary btn-big btn-enrollment">
+            Tham gia học
         </button>
     </div>
 </section>

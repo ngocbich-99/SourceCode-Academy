@@ -29,6 +29,7 @@ import { TabsModule } from "ngx-bootstrap/tabs";
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { LearningCourseComponent } from './course-detail/learning-course/learning-course.component';
 
 @NgModule({
     imports: [
@@ -57,7 +58,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
         DialogAddCourseComponent, 
         DialogAddAccountComponent, 
         SettingAccountComponent, 
-        DialogInfoAccountComponent, MainUnregisteredComponent, CoursesUnregisteredComponent, AboutUsComponent, DashboardStudentComponent, CoursesStudentComponent, AllCourseStudentComponent, CourseDetailComponent,
+        DialogInfoAccountComponent, MainUnregisteredComponent, CoursesUnregisteredComponent, AboutUsComponent, DashboardStudentComponent, CoursesStudentComponent, AllCourseStudentComponent, CourseDetailComponent, LearningCourseComponent,
     ],
     entryComponents: [DialogAddCourseComponent]
 })
