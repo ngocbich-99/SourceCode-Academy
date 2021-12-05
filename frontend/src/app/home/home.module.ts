@@ -30,6 +30,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { CourseDetailComponent } from './course-detail/course-detail.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LearningCourseComponent } from './course-detail/learning-course/learning-course.component';
+import { DialogAddCategoryComponent } from "./category/dialog-add-category/dialog-add-category.component";
 
 @NgModule({
     imports: [
@@ -58,7 +59,16 @@ import { LearningCourseComponent } from './course-detail/learning-course/learnin
         DialogAddCourseComponent, 
         DialogAddAccountComponent, 
         SettingAccountComponent, 
-        DialogInfoAccountComponent, MainUnregisteredComponent, CoursesUnregisteredComponent, AboutUsComponent, DashboardStudentComponent, CoursesStudentComponent, AllCourseStudentComponent, CourseDetailComponent, LearningCourseComponent,
+        DialogInfoAccountComponent, 
+        MainUnregisteredComponent, 
+        CoursesUnregisteredComponent, 
+        AboutUsComponent,
+        DashboardStudentComponent, 
+        CoursesStudentComponent, 
+        AllCourseStudentComponent, 
+        CourseDetailComponent, 
+        LearningCourseComponent,
+        DialogAddCategoryComponent
     ],
     entryComponents: [DialogAddCourseComponent]
 })

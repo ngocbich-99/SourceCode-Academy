@@ -13,9 +13,6 @@ export interface DialogData {
 })
 export class DialogAddAccountComponent implements OnInit {
   createAccForm: FormGroup = new FormGroup({});
-  account: Account = {
-    idAccount: 1,
-  };
 
   constructor(
     public dialogRef: MatDialogRef<DialogAddAccountComponent>,

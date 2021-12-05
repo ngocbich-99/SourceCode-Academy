@@ -35,8 +35,8 @@ mat-dialog-actions {
   color: var(--color-primary);
   width: 80px;
 }
-.dialog-content .btn-add-acc {
-  width: 180px;
+.dialog-content .btn-add-category {
+  width: 168px;
 }
 .dialog-content h3 {
   margin: 0;
