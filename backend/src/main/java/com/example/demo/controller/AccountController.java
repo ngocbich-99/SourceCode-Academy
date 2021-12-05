@@ -69,4 +69,11 @@ public class AccountController {
         return ResponseEntity.ok("Delete success");
     }
 
+    @CrossOrigin
+    @GetMapping("/account-activate")
+    public ResponseEntity<?> getAccActivate() {
+        List<AccountDto> listAccDto = accountService.getAccountActivate();
+        return ResponseEntity.ok(listAccDto);
+    }
+
 }

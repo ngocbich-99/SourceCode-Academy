@@ -18,4 +18,6 @@ public interface AccountService {
     public AccountDto updateAcc(UpdateAccountReq accountReq, int id);
 
     public void deleteAcc(int id);
+
+    public List<AccountDto> getAccountActivate();
 }

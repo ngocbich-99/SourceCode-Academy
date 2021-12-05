@@ -83,4 +83,15 @@ public class AccountServiceImpl implements AccountService {
 
         accountRepository.deleteById(id);
     }
+
+    @Override
+    public List<AccountDto> getAccountActivate() {
+        List<Account> accounts = accountRepository.getAccountActivate();
+//        convert to accountDto
+        List<AccountDto> accountDtos = new ArrayList<AccountDto>();
+        for (Account acc : accounts) {
+            accountDtos.add(AccountMapper.toAccountDto(acc));
+        }
+        return accountDtos;
+    }
 }
