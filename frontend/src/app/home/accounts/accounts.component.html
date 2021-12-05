@@ -17,7 +17,92 @@
                 <!-- stt Column -->
                 <ng-container matColumnDef="stt">
                   <mat-header-cell *matHeaderCellDef>Stt</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.idAccount}}</mat-cell>
+                  <mat-cell *matCellDef="let element">
+                        {{element.stt}}
+                    </mat-cell>
+                </ng-container>
+            
+                <!-- Name account Column -->
+                <ng-container matColumnDef="nameUser">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
+                </ng-container>
+            
+                <!-- email Column -->
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+                </ng-container>
+            
+                <!-- sdt Column -->
+                <ng-container matColumnDef="phoneNumber">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+                </ng-container>
+
+                <!-- chuc vu Column -->
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Chức vụ</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{convertLabelDisplay(element.role)}}</mat-cell>
+                </ng-container>
+
+                <!-- trang thai Column -->
+                <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-slide-toggle
+                            #toggleActivate
+                            (toggleChange)="toggleStatusAccount(toggleActivate, element)"
+                            [color]="'primary'"
+                            [(ngModel)]="element.isActivate"
+                            [checked]="element.isActivate">
+                            <!-- {{element.isActivate === true ? 'Kích hoạt' : 'Khoá'}} -->
+                            Kích hoạt
+                        </mat-slide-toggle>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- action column -->
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div>
+                            <button mat-button class="btn-more" [matMenuTriggerFor]="beforeMenu">
+                                <mat-icon svgIcon="3-dot-activate"></mat-icon>
+                            </button>
+                            <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="updateAccount(element.idAccount)">
+                                    <mat-icon svgIcon="edit"></mat-icon>
+                                    <span>Chi tiết</span> 
+                                </button>
+                                <button mat-menu-item (click)="deleteAccount(element)">
+                                    <mat-icon svgIcon="trash"></mat-icon>
+                                    <span>Xoá</span> 
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+        
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator 
+                #paginatorAll
+                [pageSize]="10"
+                [pageSizeOptions]="[1, 5, 10, 20]">
+            </mat-paginator>
+
+        </mat-tab>
+        <mat-tab label="Kích hoạt"> 
+            <h3>Danh sách tài khoản</h3>
+            <mat-table [dataSource]="dataSourceActivate" matSort>
+                <!-- stt Column -->
+                <ng-container matColumnDef="stt">
+                  <mat-header-cell *matHeaderCellDef>Stt</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.stt}}</mat-cell>
                 </ng-container>
             
                 <!-- Name account Column -->
@@ -51,7 +136,8 @@
                         <mat-slide-toggle
                             [color]="'primary'"
                             [checked]="element.isActivate">
-                            {{element.isActivate === true ? 'Kích hoạt' : ''}}
+                            <!-- {{element.isActivate === true ? 'Kích hoạt' : 'Khoá'}} -->
+                            Kích hoạt
                         </mat-slide-toggle>
                     </mat-cell>
                 </ng-container>
@@ -84,18 +170,89 @@
             </mat-table>
 
             <mat-paginator 
+                #paginatorActivate
                 [pageSize]="1"
                 [pageSizeOptions]="[1, 5, 10, 20]">
             </mat-paginator>
-
-        </mat-tab>
-        <mat-tab label="Kích hoạt"> 
-            <h3>Danh sách tài khoản</h3>
-            Content 2 
         </mat-tab>
         <mat-tab label="Đã khoá"> 
             <h3>Danh sách tài khoản</h3>
-            Content 3 
+            <mat-table [dataSource]="dataSourceLock" matSort>
+                <!-- stt Column -->
+                <ng-container matColumnDef="stt">
+                  <mat-header-cell *matHeaderCellDef>Stt</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.stt}}</mat-cell>
+                </ng-container>
+            
+                <!-- Name account Column -->
+                <ng-container matColumnDef="nameUser">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
+                </ng-container>
+            
+                <!-- email Column -->
+                <ng-container matColumnDef="email">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+                </ng-container>
+            
+                <!-- sdt Column -->
+                <ng-container matColumnDef="phoneNumber">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+                </ng-container>
+
+                <!-- chuc vu Column -->
+                <ng-container matColumnDef="position">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Chức vụ</mat-header-cell>
+                    <mat-cell *matCellDef="let element">{{convertLabelDisplay(element.role)}}</mat-cell>
+                </ng-container>
+
+                <!-- trang thai Column -->
+                <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <mat-slide-toggle
+                            [color]="'primary'"
+                            [checked]="element.isActivate">
+                            <!-- {{element.isActivate === true ? 'Kích hoạt' : 'Khoá'}} -->
+                            Kích hoạt
+                        </mat-slide-toggle>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- action column -->
+                <ng-container matColumnDef="action">
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <div>
+                            <button mat-button class="btn-more" [matMenuTriggerFor]="beforeMenu">
+                                <mat-icon svgIcon="3-dot-activate"></mat-icon>
+                            </button>
+                            <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="updateAccount(element.idAccount)">
+                                    <mat-icon svgIcon="edit"></mat-icon>
+                                    <span>Chi tiết</span> 
+                                </button>
+                                <button mat-menu-item (click)="deleteAccount(element)">
+                                    <mat-icon svgIcon="trash"></mat-icon>
+                                    <span>Xoá</span> 
+                                </button>
+                            </mat-menu>
+                        </div>
+                    </mat-cell>
+                </ng-container>
+
+        
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator 
+                #paginatorLock
+                [pageSize]="1"
+                [pageSizeOptions]="[1, 5, 10, 20]">
+            </mat-paginator> 
         </mat-tab>
     </mat-tab-group>
     <button (click)="addTeacher()" mat-button class="codex-btn-primary btn-big btn-add-course">

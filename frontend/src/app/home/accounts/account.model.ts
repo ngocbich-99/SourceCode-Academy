@@ -1,4 +1,5 @@
 export interface Account {
+    stt?: number;
     idAccount?: number;
     userName?: string;
     email?: string;

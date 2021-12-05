@@ -9,6 +9,7 @@ import { Account } from './account.model';
 import { DialogAddAccountComponent } from './dialog-add-account/dialog-add-account.component';
 import { DialogInfoAccountComponent } from './dialog-info-account/dialog-info-account.component';
 import * as moment from 'moment';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-accounts',
@@ -19,7 +20,9 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort)
   sort: MatSort = new MatSort;
 
-  // @ViewChild(MatPaginator, { static: true })paginator: MatPaginator;
+  @ViewChild('paginatorAll', { static: true }) paginatorAll!: MatPaginator;
+  @ViewChild('paginatorActivate', {static: true}) paginatorActivate!: MatPaginator;
+  @ViewChild('paginatorLock', {static: true}) paginatorLock!: MatPaginator;
 
   displayedColumns = [
     'stt',
@@ -31,7 +34,11 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     'action'
   ];
   dataSource = new MatTableDataSource<Account>();
+  dataSourceActivate = new MatTableDataSource<Account>();
+  dataSourceLock = new MatTableDataSource<Account>();
+
   listAccount: Account[] = [];
+
   accountSelected: Account = {};
 
   constructor(
@@ -41,23 +48,48 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator = this.paginatorAll;
+    this.dataSourceActivate.paginator = this.paginatorActivate;
+    this.dataSourceLock.paginator = this.paginatorLock;
   }
 
   ngOnInit(): void {
     this.getListAccount();
   }
   doFilter(filterValue: any) {
-    console.log(filterValue);
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.value.trim().toLowerCase();
   }
   getListAccount() {
     this.accountService.getListAccount().subscribe(resData => {
+      // get all list account
       this.listAccount = resData;
+      this.listAccount.forEach((acc, index) => {
+        acc.stt = index + 1;
+      })
       this.dataSource.data = this.listAccount;
+
+      // get list account activate
+      this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
+
+      // get list account is locked
+      this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
     }, error => {
       console.log('error get list acc',error);
     })
+  }
+  toggleStatusAccount(toggle: MatSlideToggle, account: Account) {
+    console.log(account);
+    account.isActivate = !toggle.checked;
+    this.accountService.updateAccount(account).subscribe(resData => {
+      console.log('update toggle kich hoat acc', resData);
+    });
+
+    // get list account activate
+    this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
+
+    // get list account is locked
+    this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
+
   }
 
   addTeacher() {
@@ -78,7 +110,17 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         }
         
         this.listAccount.push(account);
+        this.listAccount.forEach((acc, index) => {
+          acc.stt = index + 1;
+        })
+
+        // all list account
         this.dataSource.data = this.listAccount;
+        // get list account activate
+        this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
+
+        // get list account is locked
+        this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
 
         this.accountService.createAccount(account).subscribe(resData => {
           console.log('save acc',resData);
@@ -90,7 +132,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     })
   }
   async updateAccount(idAcc: number) {
-    await this.getAccountById(idAcc);
+    await this.getAccountById(idAcc);    
 
     const dialogRef = this.dialog.open(DialogInfoAccountComponent, {
       width: '640px',
@@ -101,8 +143,18 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       if (!!rs) {
         const index = this.listAccount.findIndex(acc => acc.idAccount === rs.idAccount);
         this.listAccount[index] = rs;
+        this.listAccount.forEach((acc, index) => {
+          acc.stt = index + 1;
+        })
+        
         this.dataSource.data = this.listAccount;
+        // get list account activate
+        this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
 
+        // get list account is locked
+        this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
+
+        // goi api de update account trong csdl
         this.accountService.updateAccount(rs).subscribe(resData => {
           console.log('update acc', resData);
         })
