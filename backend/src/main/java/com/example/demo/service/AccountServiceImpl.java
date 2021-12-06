@@ -7,6 +7,7 @@ import com.example.demo.model.mapper.AccountMapper;
 import com.example.demo.model.request.CreateAccountReq;
 import com.example.demo.model.request.UpdateAccountReq;
 import com.example.demo.repository.AccountRepository;
+import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -43,6 +44,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto createAcc(CreateAccountReq accountReq) {
 //        kiem tra email da ton tai chua
+        Account accountExist = accountRepository.findByEmail(accountReq.getEmail());
+        if (accountExist != null) {
+            throw  new InternalException("Email is already in db");
+        }
 
 //        convert account req -> account
         Account account = new Account();
@@ -55,9 +60,10 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto updateAcc(UpdateAccountReq accountReq, int id) {
 //        kiem tra email da ton tai chua
+
+//        find account in Db
         Optional<Account> accountRs = accountRepository.findById(id);
 
-//        convert accountReq -> Account
         Account account = accountRs.get();
 
 //        update info account
@@ -91,6 +97,17 @@ public class AccountServiceImpl implements AccountService {
         List<AccountDto> accountDtos = new ArrayList<AccountDto>();
         for (Account acc : accounts) {
             accountDtos.add(AccountMapper.toAccountDto(acc));
+        }
+        return accountDtos;
+    }
+
+    @Override
+    public List<AccountDto> getAccountLock() {
+        List<Account> accounts = accountRepository.getAccountLock();
+//        convert Entity to Dto
+        List<AccountDto> accountDtos = new ArrayList<AccountDto>();
+        for (Account entity : accounts) {
+            accountDtos.add(AccountMapper.toAccountDto(entity));
         }
         return accountDtos;
     }

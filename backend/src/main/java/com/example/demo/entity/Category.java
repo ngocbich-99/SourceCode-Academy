@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -17,10 +18,12 @@ public class Category {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idCategory;
 
-    private Date createdTime;
+    private int createdTime;
 
+    @NotNull
     private String nameCategory;
 
+    @NotNull
     private String description;
 
 //    @OneToMany

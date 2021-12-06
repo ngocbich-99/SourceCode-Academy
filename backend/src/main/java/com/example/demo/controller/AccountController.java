@@ -76,4 +76,10 @@ public class AccountController {
         return ResponseEntity.ok(listAccDto);
     }
 
+    @GetMapping("/lock")
+    public ResponseEntity<?> getAccLock() {
+        List<AccountDto> listAcc = accountService.getAccountLock();
+        return ResponseEntity.ok(listAcc);
+    }
+
 }

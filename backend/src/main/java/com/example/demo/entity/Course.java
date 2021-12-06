@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,6 +22,7 @@ public class Course {
     @NotNull
     private int idTeacher;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="id_category")
     private Category category;

@@ -20,4 +20,6 @@ public interface AccountService {
     public void deleteAcc(int id);
 
     public List<AccountDto> getAccountActivate();
+
+    public List<AccountDto> getAccountLock();
 }

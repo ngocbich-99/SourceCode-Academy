@@ -3,7 +3,6 @@ package com.example.demo.model.mapper;
 import com.example.demo.entity.Account;
 import com.example.demo.model.dto.AccountDto;
 import com.example.demo.model.request.CreateAccountReq;
-import com.example.demo.model.request.UpdateAccountReq;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class AccountMapper {
