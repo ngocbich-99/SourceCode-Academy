@@ -18,7 +18,7 @@ public class Section {
     @ManyToOne
     private Course course;
 
-    private Date createdTime;
+    private long createdTime;
 
     private String nameSection;
 

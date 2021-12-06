@@ -22,7 +22,7 @@ public class Lesson {
     @OneToOne
     private Test test;
 
-    private Date createdTime;
+    private long createdTime;
 
     private String content; //video or test
 

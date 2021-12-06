@@ -30,7 +30,7 @@ public class Course {
     @NotNull
     private String nameCourse;
 
-    private Date createdTime;
+    private long createdTime;
 
     @NotNull
     private Boolean status;

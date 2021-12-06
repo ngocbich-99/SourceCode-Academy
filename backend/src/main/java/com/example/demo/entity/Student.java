@@ -19,7 +19,7 @@ public class Student {
     @OneToOne
     private Account account;
 
-    private Date createdTime;
+    private long createdTime;
 
     @ManyToMany
     private Set<Course> courseSet;

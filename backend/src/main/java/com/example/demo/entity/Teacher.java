@@ -20,5 +20,5 @@ public class Teacher {
 
     private int idCourse;
 
-    private Date createdTime;
+    private long createdTime;
 }

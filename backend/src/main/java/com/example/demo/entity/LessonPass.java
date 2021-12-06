@@ -23,7 +23,7 @@ public class LessonPass {
     @JoinColumn(name = "lesson_id")
     Lesson lesson;
 
-    private Date createdTime;
+    private long createdTime;
 
     private int percentLearned;
 }

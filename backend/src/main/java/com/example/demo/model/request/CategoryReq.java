@@ -23,5 +23,5 @@ public class CategoryReq {
     @NotEmpty(message = "Discription is required")
     private String discription;
 
-    private int createdTime;
+    private long createdTime;
 }

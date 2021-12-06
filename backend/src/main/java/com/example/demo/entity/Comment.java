@@ -22,6 +22,6 @@ public class Comment {
 
     private String content;
 
-    private Date createdTime;
+    private long createdTime;
 
 }

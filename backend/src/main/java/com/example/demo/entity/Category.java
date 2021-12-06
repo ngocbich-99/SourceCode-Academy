@@ -18,7 +18,7 @@ public class Category {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idCategory;
 
-    private int createdTime;
+    private long createdTime;
 
     @NotNull
     private String nameCategory;

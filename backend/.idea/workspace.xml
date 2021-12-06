@@ -5,31 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/mapper/CategoryMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CategoryReq.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CategoryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CategoryServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/mapper/AccountMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/mapper/AccountMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/AccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/AccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/LessonPass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/LessonPass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Section.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CategoryReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CategoryReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CreateAccountReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/request/CreateAccountReq.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Comment.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Lesson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Lesson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/LessonPass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/LessonPass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Section.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Section.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Teacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/AccountMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/AccountMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/AccountRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CategoryRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/CategoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/CategoryMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CategoryReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CategoryReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CreateAccountReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CreateAccountReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

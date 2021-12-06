@@ -23,7 +23,7 @@ public class AccountDto {
 
     private String role;
 
-    private Date createdTime;
+    private long createdTime;
 
     private Boolean isActivate;
 }

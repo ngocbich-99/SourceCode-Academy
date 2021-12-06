@@ -39,7 +39,7 @@ public class Account {
     @Column(name="role", columnDefinition = "varchar(255) default 'HOC_VIEN'")
     private String role;
 
-    private Date createdTime;
+    private long createdTime;
 
     @OneToMany
     private Set<Comment> commentSet;

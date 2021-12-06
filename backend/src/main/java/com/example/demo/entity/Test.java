@@ -20,7 +20,7 @@ public class Test {
 
     private int idCourse;
 
-    private Date createdTime;
+    private long createdTime;
 
     private String nameTest;
 

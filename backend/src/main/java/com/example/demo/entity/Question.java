@@ -30,6 +30,6 @@ public class Question {
 
     private int correctAns;
 
-    private Date createdTime;
+    private long createdTime;
 
 }
