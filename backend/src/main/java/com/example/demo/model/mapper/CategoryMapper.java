@@ -7,7 +7,7 @@ public class CategoryMapper {
     public static Category reqToCategory(CategoryReq categoryReq) {
       Category category = new Category();
       category.setNameCategory(categoryReq.getNameCategory());
-      category.setDescription(categoryReq.getDiscription());
+      category.setDescription(categoryReq.getDescription());
       category.setCreatedTime(categoryReq.getCreatedTime());
 
       return category;

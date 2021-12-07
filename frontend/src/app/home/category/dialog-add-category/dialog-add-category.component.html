@@ -25,8 +25,8 @@
         <div class="row-name-acc" fxLayout="row" fxLayoutAlign="space-between start">
             <h3>Miêu tả</h3>
             <mat-form-field fxFlex="80" appearance="outline">
-                <textarea formControlName="discription" type="text" matInput placeholder="Mô tả cho danh mục"></textarea>
-                <mat-error *ngIf="createCategoryForm.get('discription')?.hasError('required') && createCategoryForm.get('discription')?.touched">Đây là trường bắt buộc</mat-error>
+                <textarea formControlName="description" type="text" matInput placeholder="Mô tả cho danh mục"></textarea>
+                <mat-error *ngIf="createCategoryForm.get('description')?.hasError('required') && createCategoryForm.get('description')?.touched">Đây là trường bắt buộc</mat-error>
             </mat-form-field>
         </div>
         

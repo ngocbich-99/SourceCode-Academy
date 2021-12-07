@@ -4,6 +4,7 @@ import { AuthGuard } from "../auth/auth.guard";
 import { RoleGuard } from "../auth/role.guard";
 import { AccountsComponent } from "./accounts/accounts.component";
 import { CategoryComponent } from "./category/category.component";
+import { DetailCategoryComponent } from "./category/detail-category/detail-category.component";
 import { CourseDetailComponent } from "./course-detail/course-detail.component";
 import { LearningCourseComponent } from "./course-detail/learning-course/learning-course.component";
 import { CourseCategoryItemComponent } from "./courses/course-category-item/course-category-item.component";
@@ -37,7 +38,15 @@ const routes: Routes = [
             {
                 path: 'learning-course', component: LearningCourseComponent
             },
-            { path: 'category', component: CategoryComponent},
+            { 
+                path: 'category', component: CategoryComponent,
+                children: [
+                    {path: ':id', component: DetailCategoryComponent}
+                ]
+            },
+            // {
+            //     path: 'detail-category', component: DetailCategoryComponent
+            // },
             { path: 'tests', component: TestsComponent},
             { path: 'questions', component: QuestionsComponent},
             { path: 'accounts', component: AccountsComponent, canActivate: [RoleGuard]},

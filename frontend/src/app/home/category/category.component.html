@@ -31,19 +31,19 @@
         <!-- Name account Column -->
         <ng-container matColumnDef="nameCategory">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Tên danh mục</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.nameCategory}}</mat-cell>
         </ng-container>
     
         <!-- email Column -->
         <ng-container matColumnDef="numberCourse">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Số khoá học</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.courses.length}}</mat-cell>
         </ng-container>
     
         <!-- sdt Column -->
         <ng-container matColumnDef="discription">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Miêu tả</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.description}}</mat-cell>
         </ng-container>
 
         <!-- action column -->
@@ -55,12 +55,12 @@
                         <mat-icon svgIcon="3-dot-activate"></mat-icon>
                     </button>
                     <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
-                        <button mat-menu-item (click)="detailCategory()">
+                        <button mat-menu-item (click)="detailCategory(element)">
                             <mat-icon svgIcon="edit"></mat-icon>
                             <span>Chi tiết</span> 
                         </button>
 
-                        <button mat-menu-item (click)="deleteCategory()">
+                        <button mat-menu-item (click)="deleteCategory(element)">
                             <mat-icon svgIcon="trash"></mat-icon>
                             <span>Xoá</span> 
                         </button>

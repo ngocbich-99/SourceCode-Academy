@@ -17,7 +17,7 @@ export class DialogAddCategoryComponent implements OnInit {
   ngOnInit(): void {
     this.createCategoryForm = new FormGroup({
       'nameCategory': new FormControl('', Validators.required),
-      'discription': new FormControl('', Validators.required)
+      'description': new FormControl('', Validators.required)
     })
   }
 

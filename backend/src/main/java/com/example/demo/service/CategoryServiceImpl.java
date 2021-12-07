@@ -60,7 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 //        update category
         category.setNameCategory(categoryReq.getNameCategory());
-        category.setDescription(categoryReq.getDiscription());
+        category.setDescription(categoryReq.getDescription());
         category.setCreatedTime(categoryReq.getCreatedTime());
 
         try {

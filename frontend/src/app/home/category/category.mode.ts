@@ -2,8 +2,9 @@ import { Course } from "../courses/course.model";
 
 export interface Category {
     stt?: number;
-    idCategory?: string;
+    idCategory?: number;
     nameCategory?: string;
-    discription?: string;
-    listCourse: Course[];
+    description?: string;
+    createdTime?: number;
+    courses?: Course[];
 }

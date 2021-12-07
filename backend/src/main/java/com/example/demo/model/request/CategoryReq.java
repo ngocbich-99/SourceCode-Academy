@@ -19,9 +19,9 @@ public class CategoryReq {
     @NotEmpty(message = "Name is required")
     private String nameCategory;
 
-    @NotNull(message = "Discription is required")
-    @NotEmpty(message = "Discription is required")
-    private String discription;
+    @NotNull(message = "Description is required")
+    @NotEmpty(message = "Description is required")
+    private String description;
 
     private long createdTime;
 }

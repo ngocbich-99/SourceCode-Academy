@@ -16,30 +16,35 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    @CrossOrigin
     @GetMapping("/list")
     public ResponseEntity<?> getList() {
         List<Category> listCategory = categoryService.getListCategory();
         return ResponseEntity.ok(listCategory);
     }
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public ResponseEntity<?> getCategoryById(@PathVariable int id) {
         Category category = categoryService.getCategoryById(id);
         return ResponseEntity.ok(category);
     }
 
+    @CrossOrigin
     @PostMapping("/create")
     public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryReq categoryReq) {
         Category category = categoryService.createCategory(categoryReq);
         return ResponseEntity.ok(category);
     }
 
+    @CrossOrigin
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> editCategory(@Valid @RequestBody CategoryReq req, @PathVariable int id) {
         Category category = categoryService.updateCategory(req, id);
         return ResponseEntity.ok(category);
     }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCategory(@PathVariable int id) {
         categoryService.deleteCategory(id);

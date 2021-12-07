@@ -35,4 +35,8 @@ export class AccountService {
         return this.http.delete(env.backendBaseUrl + `/api/accounts/${idAccount}`);
     }
 
+    // get account activate
+
+    // get account locked
+
 }
