@@ -35,7 +35,6 @@ export class CategoryComponent implements OnInit {
   }
   getListCategory() {
     this.categoryService.getListCategory().subscribe(resData => {
-      console.log('list category', resData);
       this.listCategory = resData;
       this.listCategory.forEach((category, index) => {
         category.stt = index + 1;
@@ -77,7 +76,7 @@ export class CategoryComponent implements OnInit {
   }
 
   detailCategory(category: Category) {
-    this.router.navigate(['/home/category/1']);
+    this.router.navigate([`/home/category/${category.idCategory}`]);
   }
 
   deleteCategory(category: Category) {

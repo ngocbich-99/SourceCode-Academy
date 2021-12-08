@@ -18,8 +18,8 @@ export class CategoryService {
     }
 
     // get category by id
-    getCategoryById(id: number) {
-        return this.http.get(env.backendBaseUrl + `/api/category/${id}`);
+    getCategoryById(id: number): Observable<Category> {
+        return this.http.get<Category>(env.backendBaseUrl + `/api/category/${id}`);
     }
 
     // add category by id

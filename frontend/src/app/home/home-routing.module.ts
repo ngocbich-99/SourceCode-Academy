@@ -40,13 +40,13 @@ const routes: Routes = [
             },
             { 
                 path: 'category', component: CategoryComponent,
-                children: [
-                    {path: ':id', component: DetailCategoryComponent}
-                ]
+                // children: [
+                //     {path: ':id', component: DetailCategoryComponent}
+                // ]
             },
-            // {
-            //     path: 'detail-category', component: DetailCategoryComponent
-            // },
+            {
+                path: 'category/:id', component: DetailCategoryComponent
+            },
             { path: 'tests', component: TestsComponent},
             { path: 'questions', component: QuestionsComponent},
             { path: 'accounts', component: AccountsComponent, canActivate: [RoleGuard]},

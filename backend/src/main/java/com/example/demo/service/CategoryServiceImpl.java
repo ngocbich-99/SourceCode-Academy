@@ -49,11 +49,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(CategoryReq categoryReq, int id) {
-//        kiem tra xem danh muc da ton tai chua
-        Category rs = categoryRepository.findBynameCategory((categoryReq.getNameCategory()));
-        if (rs != null) {
-            throw new InternalException("Category is already in db");
-        }
+//        kiem tra voi cac danh muc khac xem danh muc da ton tai chua
+//        Category rs = categoryRepository.findBynameCategory((categoryReq.getNameCategory()));
+//        if (rs != null) {
+//            throw new InternalException("Category is already in db");
+//        }
 //        get category in db
         Optional<Category> categoryInDb = categoryRepository.findById(id);
         Category category = categoryInDb.get();

@@ -1,1 +1,60 @@
-<p>detail-category works!</p>
+<section class="topbar" fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- search bar -->
+    <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+        <mat-icon svgIcon="search"></mat-icon>
+        <mat-form-field >
+            <input type="text" matInput placeholder="Tìm kiếm danh mục,…">
+        </mat-form-field>
+    </div>
+    <!-- info personal -->
+    <app-personal-info></app-personal-info>
+</section>
+<section class="content">
+    <button (click)="backPrevious()" mat-button class="btn-big btn-back">
+        <mat-icon svgIcon="back"></mat-icon>
+        <span>Trở lại</span>
+    </button>
+    <div class="container-edit-category">
+        <h3>Thông tin danh mục</h3>
+        <form [formGroup]="editCategoryForm">
+            <div class="row-name" fxLayout="column">
+                <h4>Tên</h4>
+                <mat-form-field fxFlex="80" appearance="outline">
+                    <input 
+                    formControlName="nameCategory"
+                    type="text" 
+                    matInput 
+                    placeholder="Tên danh mục">
+                    <mat-error *ngIf="editCategoryForm.get('nameCategory')?.hasError('required') && editCategoryForm.get('nameCategory')?.touched">Đây là trường bắt buộc</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row-description" fxLayout="column">
+                <h4>Miêu tả</h4>
+                <mat-form-field fxFlex="80" appearance="outline">
+                    <textarea formControlName="description" type="text" matInput placeholder="Mô tả cho danh mục"></textarea>
+                    <mat-error *ngIf="editCategoryForm.get('description')?.hasError('required') && editCategoryForm.get('description')?.touched">Đây là trường bắt buộc</mat-error>
+                </mat-form-field>
+            </div>
+    
+            <button 
+            (click)="editCategory()"
+            mat-button 
+            [disabled]="editCategoryForm.invalid"
+            class="codex-btn-primary btn-big btn-save">
+                Lưu
+            </button>
+        </form>
+    </div>
+    
+
+    <div class="row-basic-course">
+        <h3>Khoá học cơ bản</h3>
+        <app-course-category-item></app-course-category-item>
+    </div>
+
+    <div class="row-advance-course">
+        <h3>Khoá học nâng cao</h3>
+
+    </div>
+    
+</section>

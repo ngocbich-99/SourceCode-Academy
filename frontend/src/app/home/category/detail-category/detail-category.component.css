@@ -1,0 +1,66 @@
+/* section topbar */
+.search-bar mat-form-field {
+  width: 100%;
+}
+.search-bar mat-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 14px;
+}
+.topbar {
+  margin-bottom: 24px;
+}
+/* ========================== */
+/* button baack */
+.content .btn-back {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--color-primary);
+}
+.content .btn-back mat-icon {
+  width: 12px;
+  height: 48px;
+  margin-right: 16px;
+}
+/* ========================== */
+/* container edit category */
+.container-edit-category {
+  width: 70%;
+  padding-bottom: 72px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.container-edit-category h3 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 32px 0 24px;
+}
+.row-name h4,
+.row-description h4 {
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 8px 0;
+}
+/* ========================== */
+
+/* section khoa hoc */
+.row-basic-course h3,
+.row-advance-course h3 {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+  margin: 24px 0;
+}
+/* ========================== */
+
+/* button save */
+.btn-save {
+  width: 120px;
+  float: right;
+}
