@@ -32,6 +32,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { LearningCourseComponent } from './course-detail/learning-course/learning-course.component';
 import { DialogAddCategoryComponent } from "./category/dialog-add-category/dialog-add-category.component";
 import { DetailCategoryComponent } from "./category/detail-category/detail-category.component";
+import { ToastrModule } from "ngx-toastr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
     imports: [
@@ -72,6 +74,6 @@ import { DetailCategoryComponent } from "./category/detail-category/detail-categ
         DialogAddCategoryComponent,
         DetailCategoryComponent
     ],
-    entryComponents: [DialogAddCourseComponent]
+    entryComponents: [DialogAddCourseComponent],
 })
 export class HomePageModule {}

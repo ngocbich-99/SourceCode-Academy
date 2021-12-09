@@ -76,6 +76,7 @@ public class AccountController {
         return ResponseEntity.ok(listAccDto);
     }
 
+    @CrossOrigin
     @GetMapping("/lock")
     public ResponseEntity<?> getAccLock() {
         List<AccountDto> listAcc = accountService.getAccountLock();

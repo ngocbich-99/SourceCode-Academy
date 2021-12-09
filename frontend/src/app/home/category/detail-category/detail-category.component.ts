@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { Category } from '../category.mode';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detail-category',
@@ -18,7 +19,8 @@ export class DetailCategoryComponent implements OnInit {
   constructor(
     private _location: Location,
     private route: ActivatedRoute,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -52,11 +54,18 @@ export class DetailCategoryComponent implements OnInit {
   }
 
   editCategory() {
-    this.category.nameCategory = this.editCategoryForm.value.nameCategory;
-    this.category.description = this.editCategoryForm.value.description;
-
-    this.categoryService.updateCategory(this.category).subscribe(resData => {
-      console.log(resData);
-    })
+    if (this.category.nameCategory !== this.editCategoryForm.value.nameCategory 
+      || this.category.description !== this.editCategoryForm.value.description) {
+      this.category.nameCategory = this.editCategoryForm.value.nameCategory;
+      this.category.description = this.editCategoryForm.value.description;
+      this.categoryService.updateCategory(this.category).subscribe(resData => {
+        console.log(resData);
+        this.toastr.success('Cập nhật danh mục thành công!','Thành công', {
+          closeButton: true,
+          timeOut: 3000000,
+          extendedTimeOut: 3000000
+        });
+      })
+    }
   }
 }

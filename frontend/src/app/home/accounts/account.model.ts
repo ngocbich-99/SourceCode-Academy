@@ -6,6 +6,6 @@ export interface Account {
     phone?: string;
     role?: string;
     isActivate?: boolean;
-    createdTime?: string; //doi ve dang millisecond trong db
+    createdTime?: number; //doi ve dang millisecond trong db
     password?: string;
 }

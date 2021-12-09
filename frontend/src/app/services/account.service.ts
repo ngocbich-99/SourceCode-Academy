@@ -32,11 +32,17 @@ export class AccountService {
 
     // delete account by id
     deleteAccById(idAccount?: number) {
-        return this.http.delete(env.backendBaseUrl + `/api/accounts/${idAccount}`);
+        return this.http.delete(env.backendBaseUrl + `/api/accounts/${idAccount}`, {responseType: 'text'});
     }
 
     // get account activate
+    getAccountActivate(): Observable<Account[]> {
+        return this.http.get<Account[]>(env.backendBaseUrl + '/api/accounts/account-activate');
+    }
 
     // get account locked
+    getAccountLock(): Observable<Account[]> {
+        return this.http.get<Account[]>(env.backendBaseUrl + '/api/accounts/lock');
+    }
 
 }

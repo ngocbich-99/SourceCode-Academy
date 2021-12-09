@@ -55,6 +55,8 @@ export class AccountsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getListAccount();
+    this.getAccountActivate();
+    this.getAccountLock();
   }
   doFilter(filterValue: any) {
     this.dataSource.filter = filterValue.value.trim().toLowerCase();
@@ -68,27 +70,40 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       })
       this.dataSource.data = this.listAccount;
 
-      // get list account activate
-      this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
+      // // get list account activate
+      // this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
 
       // get list account is locked
-      this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
+      // this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
     }, error => {
       console.log('error get list acc',error);
     })
   }
-  toggleStatusAccount(toggle: MatSlideToggle, account: Account) {
-    console.log(account);
-    account.isActivate = !toggle.checked;
-    this.accountService.updateAccount(account).subscribe(resData => {
-      console.log('update toggle kich hoat acc', resData);
+  async getAccountActivate() {
+    const listAcc = await this.accountService.getAccountActivate().toPromise();
+    listAcc.forEach((acc, index) => {
+      acc.stt = index + 1;
     });
+    this.dataSourceActivate.data = listAcc;
+    console.log(this.dataSourceActivate.data);
+  }
+  getAccountLock() {
+    this.accountService.getAccountLock().subscribe(resData => {
+      resData.forEach((acc, index) => {
+        acc.stt = index + 1;
+      });
+      this.dataSourceLock.data = resData;
+    })
+  }
+  async toggleStatusAccount(toggle: MatSlideToggle, account: Account) {
+    account.isActivate = !toggle.checked;
+    await this.accountService.updateAccount(account).toPromise();
 
     // get list account activate
-    this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
+    this.getAccountActivate();
 
     // get list account is locked
-    this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
+    this.getAccountLock();
 
   }
 
@@ -97,7 +112,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       width: '640px',
       height: '530px',
     });
-    dialogRef.afterClosed().subscribe(rs => {
+    dialogRef.afterClosed().subscribe(async rs => {
       if (!!rs) {
         const account: Account = {
           userName: rs.username,
@@ -105,29 +120,25 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           phone: rs.phone,
           role: rs.role,
           isActivate: rs.isActivate,
-          createdTime: moment().toISOString(),
+          createdTime: moment().valueOf(),
           password: rs.password,
         }
-        
         this.listAccount.push(account);
         this.listAccount.forEach((acc, index) => {
           acc.stt = index + 1;
         })
 
+        const accountRes = await this.accountService.createAccount(account).toPromise();
+        this.listAccount[this.listAccount.indexOf(account)].idAccount = accountRes.idAccount;
+
         // all list account
         this.dataSource.data = this.listAccount;
+
         // get list account activate
-        this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
+        this.getAccountActivate();
 
         // get list account is locked
-        this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
-
-        this.accountService.createAccount(account).subscribe(resData => {
-          console.log('save acc',resData);
-        }, error => {
-          console.log('error save acc', error);
-          
-        })
+        this.getAccountLock();
       }
     })
   }
@@ -139,25 +150,24 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       height: '530px',
       data: {account: this.accountSelected}
     });
-    dialogRef.afterClosed().subscribe((rs: Account) => {
+    dialogRef.afterClosed().subscribe(async (rs: Account) => {
       if (!!rs) {
         const index = this.listAccount.findIndex(acc => acc.idAccount === rs.idAccount);
         this.listAccount[index] = rs;
         this.listAccount.forEach((acc, index) => {
           acc.stt = index + 1;
-        })
-        
-        this.dataSource.data = this.listAccount;
-        // get list account activate
-        this.dataSourceActivate.data = this.listAccount.filter(account => account.isActivate === true);
-
-        // get list account is locked
-        this.dataSourceLock.data = this.listAccount.filter(account => account.isActivate === false);
+        });
 
         // goi api de update account trong csdl
-        this.accountService.updateAccount(rs).subscribe(resData => {
-          console.log('update acc', resData);
-        })
+        await this.accountService.updateAccount(rs).toPromise();
+        
+        this.dataSource.data = this.listAccount;
+
+        // get list account activate
+        this.getAccountActivate();
+
+        // get list account is locked
+        this.getAccountLock();
       }
     })
   }
@@ -174,16 +184,19 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       height: '252px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe(async result => {
       if (result === true) {
         this.listAccount.splice(this.listAccount.indexOf(account), 1);
         this.dataSource.data = this.listAccount;
+        
+        const res = await this.accountService.deleteAccById(account.idAccount).toPromise();
+        console.log(res);
 
-        this.accountService.deleteAccById(account.idAccount).subscribe(resData => {
-          console.log('delete acc', resData);
-        }, error => {
-          console.log('delete acc error',error);
-        });
+        // get list account activate
+        this.getAccountActivate();
+
+        // get list account is locked
+        this.getAccountLock();
       }
     });
   }
