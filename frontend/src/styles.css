@@ -38,14 +38,14 @@ button.codex-btn-primary.mat-button-disabled {
 button.codex-btn-secondary {
   background: var(--color-secondary);
   border-radius: 24px;
-  color: #fff;
+  color: var(--color-primary);
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 21px;
 }
 button.codex-btn-secondary:hover {
-  background: #dcdce6;
+  background: #dfdfff;
 }
 button.codex-btn-secondary.mat-button-disabled {
   background: #f0f0fa;

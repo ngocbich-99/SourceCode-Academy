@@ -6,6 +6,7 @@ import com.example.demo.model.mapper.CategoryMapper;
 import com.example.demo.model.request.CategoryReq;
 import com.example.demo.repository.CategoryRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -54,6 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
 //        if (rs != null) {
 //            throw new InternalException("Category is already in db");
 //        }
+
 //        get category in db
         Optional<Category> categoryInDb = categoryRepository.findById(id);
         Category category = categoryInDb.get();

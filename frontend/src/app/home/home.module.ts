@@ -34,6 +34,7 @@ import { DialogAddCategoryComponent } from "./category/dialog-add-category/dialo
 import { DetailCategoryComponent } from "./category/detail-category/detail-category.component";
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DialogAddQuestionComponent } from './questions/dialog-add-question/dialog-add-question.component';
 
 @NgModule({
     imports: [
@@ -72,7 +73,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         CourseDetailComponent, 
         LearningCourseComponent,
         DialogAddCategoryComponent,
-        DetailCategoryComponent
+        DetailCategoryComponent,
+        DialogAddQuestionComponent
     ],
     entryComponents: [DialogAddCourseComponent],
 })

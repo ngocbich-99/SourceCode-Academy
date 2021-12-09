@@ -28,6 +28,18 @@
   width: 20px;
   margin-right: 8px;
 }
+/* Filter selection */
+::ng-deep .filter-select.mat-form-field {
+  width: 50%;
+}
+::ng-deep
+  .filter-select.mat-form-field-appearance-outline
+  .mat-form-field-wrapper {
+  padding: 0px;
+  margin: 0;
+}
+/*  =====================end Filter selection===================== */
+
 /*  =====================tabledata===================== */
 ::ng-deep.mat-tab-header {
   border: none;

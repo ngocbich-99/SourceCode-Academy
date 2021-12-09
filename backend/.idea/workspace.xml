@@ -6,16 +6,35 @@
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/@angular/animations/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/@angular/animations/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/__ngcc_entry_points__.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/__ngcc_entry_points__.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CategoryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/ngx-toastr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/ngx-toastr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay-container.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay-container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast-noanimation.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast-noanimation.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.component.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.directive.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.module.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/category/category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/category/category.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/category/detail-category/detail-category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/category/detail-category/detail-category.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/course.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/course.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/courses.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/courses.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/material.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/material.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,5 +136,16 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/CategoryController.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

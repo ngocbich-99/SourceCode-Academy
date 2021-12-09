@@ -124,6 +124,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           password: rs.password,
         }
         this.listAccount.push(account);
+        
         this.listAccount.forEach((acc, index) => {
           acc.stt = index + 1;
         })

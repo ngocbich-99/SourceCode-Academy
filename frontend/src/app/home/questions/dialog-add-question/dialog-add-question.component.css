@@ -1,0 +1,79 @@
+/* ===================== header ==================*/
+::ng-deep .mat-dialog-container {
+  border-radius: 10px;
+  padding: 24px;
+}
+.dialog-header {
+  margin: 0 0 24px;
+}
+.dialog-header button {
+  display: flex;
+  justify-content: end;
+  padding: 0;
+  min-width: 20px;
+}
+.dialog-header button mat-icon {
+  display: flex;
+}
+.dialog-header button mat-icon {
+  width: 20px;
+  height: 20px;
+}
+mat-dialog-actions {
+  margin: 0;
+  padding: 0;
+  min-height: 32px;
+}
+.dialog-header h2 {
+  margin: 0;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.dialog-content .btn-cancel {
+  color: var(--color-primary);
+  width: 80px;
+}
+.dialog-content .btn-add-question {
+  width: 148px;
+}
+.dialog-content h3 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.87);
+}
+/* ===================== end header ==================*/
+
+::ng-deep .mat-form-field-wrapper {
+  padding: 0 0 16px;
+  margin: 0;
+}
+
+/* ===================== content ==================*/
+.btn-add {
+  width: 172px;
+}
+/* row question */
+.row-question .group-radio .mat-radio-button {
+  height: 56px;
+  display: flex;
+}
+::ng-deep .row-question .mat-radio-label {
+  margin: 0;
+}
+.row-question .col-input mat-form-field {
+}
+.row-question {
+  margin-bottom: 24px;
+}
+::ng-deep
+  .row-question
+  .mat-form-field-appearance-outline
+  .mat-form-field-wrapper {
+  padding: 0;
+}
+/* ================== end content ==================*/

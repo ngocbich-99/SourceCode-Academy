@@ -58,12 +58,13 @@ export class DetailCategoryComponent implements OnInit {
       || this.category.description !== this.editCategoryForm.value.description) {
       this.category.nameCategory = this.editCategoryForm.value.nameCategory;
       this.category.description = this.editCategoryForm.value.description;
+
       this.categoryService.updateCategory(this.category).subscribe(resData => {
         console.log(resData);
         this.toastr.success('Cập nhật danh mục thành công!','Thành công', {
           closeButton: true,
-          timeOut: 3000000,
-          extendedTimeOut: 3000000
+          timeOut: 1000,
+          extendedTimeOut: 2000
         });
       })
     }

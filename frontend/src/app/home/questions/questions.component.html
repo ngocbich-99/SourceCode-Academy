@@ -11,7 +11,18 @@
 </section>
 <section class="content">
     <div class="header-content" fxLayout="row" fxLayoutAlign="space-between center">
-        <h3>Danh sách danh mục</h3>
+        <mat-form-field appearance="outline" class="filter-select">
+            <mat-label>Lọc theo khoá học</mat-label>
+            <mat-select [formControl]="categoryControl" (selectionChange)="filterCourse($event)">
+                <mat-option>-- Chọn --</mat-option>
+                <mat-optgroup *ngFor="let group of categoryGroups" [label]="group.nameCategory"
+                            [disabled]="group.disabled">
+                    <mat-option *ngFor="let course of group.course" [value]="course.id">
+                    {{course.name}}
+                    </mat-option>
+                </mat-optgroup>
+            </mat-select>
+        </mat-form-field>
         <button (click)="addQuestion()" mat-button class="codex-btn-primary btn-big btn-add-question">
             <mat-icon svgIcon="add"></mat-icon>
             <span>Tạo Câu hỏi</span>

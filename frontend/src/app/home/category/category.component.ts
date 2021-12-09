@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { CategoryService } from 'src/app/services/category.service';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
@@ -27,10 +27,43 @@ export class CategoryComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     public categoryService: CategoryService,
-    public router: Router
+    public router: Router,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if (params['openDialog']) {
+        const dialogRef = this.dialog.open(DialogAddCategoryComponent, {
+          width: '640px',
+          height: '428px',
+        });
+        dialogRef.afterClosed().subscribe(rs => {
+          if (!!rs) {
+            // todo logic
+            console.log(rs);
+            const category: Category = {
+              nameCategory: rs.nameCategory,
+              description: rs.description,
+              createdTime: moment().valueOf(),
+              courses: []
+            }
+            this.listCategory.push(category);
+            this.listCategory.forEach((cat, index) => {
+              cat.stt = index + 1;
+            });
+            // update table data material
+            this.dataSource.data = this.listCategory;
+            // add category to db
+            this.categoryService.createCategory(category).subscribe(resData => {
+              console.log('add category', resData);
+            }, error => {
+              console.log('error when add category', error);
+            })
+          }
+        })
+      }
+    })
     this.getListCategory();
   }
   getListCategory() {

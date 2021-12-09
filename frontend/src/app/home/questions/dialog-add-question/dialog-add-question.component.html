@@ -1,0 +1,106 @@
+<section class="dialog-header" fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>
+        Tạo câu hỏi
+    </h2>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close>
+            <mat-icon svgIcon="close"></mat-icon>
+        </button>
+    </mat-dialog-actions>
+</section>
+<section class="dialog-content">
+    <form [formGroup]="createQuestionForm">
+        <div class="row-select-category" fxLayout="row" fxLayoutAlign="space-between start">
+            <h3>Danh mục</h3>
+            <div fxFlex="80" fxLayout="row" fxLayoutAlign="space-between start">
+                <mat-form-field appearance="outline" fxFlex="66">
+                    <mat-label>Chọn danh mục</mat-label>
+                    <mat-select formControlName="category" (selectionChange)="selectCategory($event)">
+                        <mat-option *ngFor="let category of listCategory" [value]="category.idCategory">
+                            {{category.nameCategory}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button type="button" (click)="openCategory()" mat-button class="codex-btn-secondary btn-big btn-add">
+                    Tạo danh mục
+                </button>
+            </div>
+        </div>
+
+        <div class="row-select-course" fxLayout="row" fxLayoutAlign="space-between start">
+            <h3>Khoá học trực thuộc</h3>
+            <div fxFlex="80" fxLayout="row" fxLayoutAlign="space-between start">
+                <mat-form-field appearance="outline" fxFlex="66">
+                    <mat-label>Chọn khoá học trực thuộc</mat-label>
+                    <mat-select formControlName="course" (selectionChange)="selectCourse($event)">
+                        <mat-option *ngFor="let course of listCourse" [value]="course.id">
+                            {{course.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button type="button" (click)="openCourse()" mat-button class="codex-btn-secondary btn-big btn-add">
+                    Tạo khoá học
+                </button>
+            </div>
+        </div>
+
+        <div class="row-content-question" fxLayout="row" fxLayoutAlign="space-between start">
+            <h3>Câu hỏi </h3>
+            <mat-form-field fxFlex="80" appearance="outline">
+                <textarea 
+                    rows="6" 
+                    formControlName="content" 
+                    type="text" 
+                    matInput 
+                    placeholder="Tiêu đề câu hỏi">
+                </textarea>
+                <mat-error *ngIf="createQuestionForm.get('content')?.hasError('required') && createQuestionForm.get('content')?.touched">Đây là trường bắt buộc</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="row-question" fxLayout="row" fxLayoutAlign="space-between start">
+            <mat-radio-group formControlName="correctAns" class="group-radio" aria-label="Select an option" fxLayout="column">
+                <mat-radio-button value="1">
+                    Đáp án 1
+                </mat-radio-button>
+                <mat-radio-button value="2">
+                    Đáp án 2
+                </mat-radio-button>
+                <mat-radio-button value="3">
+                    Đáp án 3
+                </mat-radio-button>
+                <mat-radio-button value="4">
+                    Đáp án 4
+                </mat-radio-button>
+            </mat-radio-group>
+            <div class="col-input" fxLayout="column" fxFlex="80">
+                <mat-form-field appearance="outline">
+                    <input formControlName="ans1" type="text" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input formControlName="ans2" type="text" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input formControlName="ans3" type="text" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input formControlName="ans4" type="text" matInput>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row" fxLayoutAlign="end center">
+            <button (click)="onCancel()" mat-button class="btn-cancel">
+                <span>Huỷ</span>
+            </button>
+            <button 
+            [disabled]="createQuestionForm.invalid"
+            [mat-dialog-close]="createQuestionForm.value"
+            type="submit" 
+            mat-button 
+            class="codex-btn-primary btn-big btn-add-question">
+                <span>Tạo câu hỏi</span>
+            </button>
+        </div>
+    </form>
+</section>
