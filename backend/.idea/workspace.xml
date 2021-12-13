@@ -3,38 +3,73 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/CodexApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/CodexApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/ServletInitializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/ServletInitializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/auth/CustomUserDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/auth/CustomUserDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/auth/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/auth/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/auth/RefreshJwtRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/auth/RefreshJwtRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AccountController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AuthenticationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/AuthenticationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/CategoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/CategoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Comment.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Lesson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Lesson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/LessonPass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/LessonPass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Question.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Question.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/ResultTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/ResultTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Section.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Section.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Student.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Teacher.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Teacher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/exception/CustomExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/exception/CustomExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/exception/ErrorResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/exception/ErrorResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/exception/NotFoundException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/exception/NotFoundException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/jwt/JwtAuthenticationEntryPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/jwt/JwtAuthenticationEntryPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/jwt/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/jwt/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/jwt/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/jwt/JwtTokenProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/AccountMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/AccountMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/CategoryMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/mapper/CategoryMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CategoryReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CategoryReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CreateAccountReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/CreateAccountReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/UpdateAccountReq.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/request/UpdateAccountReq.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/response/user/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/response/user/LoginResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/response/user/UserRoleResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/response/user/UserRoleResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/AccountRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/AccountRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CategoryRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CategoryRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/security/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/AccountServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CategoryServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/bundles/ngx-toastr.umd.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/ngx-toastr.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/ngx-toastr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay-container.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay-container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/overlay/overlay.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast-noanimation.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast-noanimation.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.component.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.component.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.directive.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toast.directive.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/esm2015/toastr/toastr.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/ngx-toastr/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/accounts/accounts.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/category/category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/category/category.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/category/detail-category/detail-category.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/category/detail-category/detail-category.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/course.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/course.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/courses.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/courses.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/material.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/material.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/UserDetailsServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/UserDetailsServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/node_modules/__ngcc_entry_points__.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/node_modules/__ngcc_entry_points__.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +104,9 @@
     </option>
   </component>
   <component name="ProjectId" id="20izP6qzg6FiU07f3mrbWWQL4JE" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -78,6 +115,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/example/demo/model/response" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -96,8 +134,10 @@
   </component>
   <component name="RunManager">
     <configuration name="CodexApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.example.demo.CodexApplication" />
-      <module name="demo" />
+      <module name="backend" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.demo.*" />
@@ -136,6 +176,44 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="262" y="87" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1639409336829">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state x="262" y="87" width="1089" height="713" key="#com.intellij.execution.impl.EditConfigurationsDialog/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639409336829" />
+    <state x="613" y="139" key="#com.intellij.ide.util.MemberChooser" timestamp="1639412260345">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state x="613" y="139" key="#com.intellij.ide.util.MemberChooser/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639412260345" />
+    <state x="379" y="357" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1639410135884">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state x="379" y="357" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639410135884" />
+    <state x="587" y="173" key="FileChooserDialogImpl" timestamp="1639409301484">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state x="587" y="173" key="FileChooserDialogImpl/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639409301484" />
+    <state width="1415" height="283" key="GridCell.Tab.0.bottom" timestamp="1639411923453">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state width="1415" height="283" key="GridCell.Tab.0.bottom/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639411923453" />
+    <state width="1415" height="283" key="GridCell.Tab.0.center" timestamp="1639411923452">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state width="1415" height="283" key="GridCell.Tab.0.center/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639411923452" />
+    <state width="1415" height="283" key="GridCell.Tab.0.left" timestamp="1639411923452">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state width="1415" height="283" key="GridCell.Tab.0.left/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639411923452" />
+    <state width="1415" height="283" key="GridCell.Tab.0.right" timestamp="1639411923452">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state width="1415" height="283" key="GridCell.Tab.0.right/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639411923452" />
+    <state x="625" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1639409285719">
+      <screen x="78" y="0" width="1458" height="864" />
+    </state>
+    <state x="625" y="346" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/78.0.1458.864/123.-1080.1920.1080@78.0.1458.864" timestamp="1639409285719" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
