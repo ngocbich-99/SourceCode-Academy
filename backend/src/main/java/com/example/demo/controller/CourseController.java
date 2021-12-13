@@ -2,12 +2,16 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
+import com.example.demo.model.dto.AccountDto;
+import com.example.demo.model.request.CreateAccountReq;
+import com.example.demo.model.request.CreateCourseReq;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -27,6 +31,14 @@ public class CourseController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getCourseById(@PathVariable int id) {
         Course course = courseService.getCourseById(id);
+        return ResponseEntity.ok(course);
+    }
+
+    @CrossOrigin
+    @PostMapping("")
+    public ResponseEntity<?> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
+
+        Course course = courseService.createCourse(courseReq);
         return ResponseEntity.ok(course);
     }
 
