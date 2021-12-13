@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -45,8 +46,8 @@ public class Course {
     @ManyToMany
     private Set<Student> studentSet;
 
-    @OneToMany
-    private Set<Question> questionSet;
+    @OneToMany(mappedBy = "course")
+    private List<Question> questionList;
 
     @OneToMany
     private Set<Section> sectionSet;

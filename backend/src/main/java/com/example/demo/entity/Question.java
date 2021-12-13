@@ -16,6 +16,7 @@ public class Question {
     private int idQuestion;
 
     @ManyToOne
+    @JoinColumn(name="id_course")
     private Course course;
 
     private String content;
