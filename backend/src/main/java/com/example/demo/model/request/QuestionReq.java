@@ -12,33 +12,32 @@ import javax.validation.constraints.NotNull;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class QuestionReq {
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "id course is required")
     private int idCourse;
 
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "content is required")
+    @NotEmpty(message = "content is required")
     private String content;
 
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "ans1 is required")
+    @NotEmpty(message = "ans1 is required")
     private String ans1;
 
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "ans2 is required")
+    @NotEmpty(message = "ans2 is required")
     private String ans2;
 
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "ans3 is required")
+    @NotEmpty(message = "ans3 is required")
     private String ans3;
 
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "ans4 is required")
+    @NotEmpty(message = "ans4 is required")
     private String ans4;
 
-    @NotNull(message = "Name is required")
-    @NotEmpty(message = "Name is required")
+    @NotNull(message = "correctAns is required")
     private int correctAns;
 
     private long createdTime;

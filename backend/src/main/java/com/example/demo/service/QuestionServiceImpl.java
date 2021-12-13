@@ -41,10 +41,10 @@ public class QuestionServiceImpl implements QuestionService{
 
 //        convert questionReq => question
         Question question = new Question();
-        question = QuestionMapper
+        question = QuestionMapper.reqToQuestion(questionReq);
+        questionRepository.save(question);
 
-
-        return null;
+        return question;
     }
 
     @Override

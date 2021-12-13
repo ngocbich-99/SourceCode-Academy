@@ -5,11 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-
 public class Question {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
@@ -32,5 +32,8 @@ public class Question {
     private int correctAns;
 
     private long createdTime;
+
+    @ManyToMany(mappedBy = "questions")
+    private List<Test> tests;
 
 }

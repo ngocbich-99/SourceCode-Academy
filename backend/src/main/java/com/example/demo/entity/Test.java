@@ -3,11 +3,9 @@ package com.example.demo.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,4 +27,12 @@ public class Test {
     private long timeTest;
 
     private int totalOfQues;
+
+    @ManyToMany
+    @JoinTable(
+            name="question-test",
+            joinColumns = @JoinColumn(name="id_question"),
+            inverseJoinColumns = @JoinColumn(name = "id_test")
+    )
+    private List<Question> questions;
 }
