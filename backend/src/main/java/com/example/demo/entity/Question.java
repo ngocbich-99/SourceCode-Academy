@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -33,7 +34,7 @@ public class Question {
 
     private long createdTime;
 
-    @ManyToMany(mappedBy = "questions")
-    private List<Test> tests;
+    @ManyToMany
+    private Set<Test> testSet;
 
 }

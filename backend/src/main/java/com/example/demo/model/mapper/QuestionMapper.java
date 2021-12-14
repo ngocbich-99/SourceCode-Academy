@@ -14,10 +14,9 @@ import java.util.Optional;
 
 public class QuestionMapper {
     @Autowired
-    private static CourseRepository courseRepository;
-    private static CourseService courseService;
+    private CourseService courseService;
 
-    public static Question reqToQuestion(QuestionReq questionReq) {
+    public Question reqToQuestion(QuestionReq questionReq) {
         Question question = new Question();
         question.setContent(questionReq.getContent());
         question.setAns1(questionReq.getAns1());

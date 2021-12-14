@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,10 +30,5 @@ public class Test {
     private int totalOfQues;
 
     @ManyToMany
-    @JoinTable(
-            name="question-test",
-            joinColumns = @JoinColumn(name="id_question"),
-            inverseJoinColumns = @JoinColumn(name = "id_test")
-    )
-    private List<Question> questions;
+    private Set<Question> questionSet;
 }
