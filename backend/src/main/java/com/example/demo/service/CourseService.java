@@ -12,4 +12,8 @@ public interface CourseService {
     List<Course> getAll();
     Course getCourseById(int id);
     Course createCourse(CreateCourseReq courseReq);
+
+    Course updateCourse(CreateCourseReq req, int id);
+
+    void deleteCourse(int id);
 }

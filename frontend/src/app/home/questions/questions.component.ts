@@ -82,7 +82,7 @@ export class QuestionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getListQuestion();
+    //this.getListQuestion();
   }
 
   getListQuestion() {
