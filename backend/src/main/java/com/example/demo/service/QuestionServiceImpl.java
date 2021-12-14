@@ -39,10 +39,13 @@ public class QuestionServiceImpl implements QuestionService{
 
     @Override
     public Question createQuestion(QuestionReq questionReq) {
-        Question rs = questionRepository.findByContent(questionReq.getContent());
-        if (rs != null) {
-            throw new InternalException("Question is already in db");
-        }
+//        Question rs = questionRepository.findByContent(questionReq.getContent());
+//        if (rs != null) {
+//            throw new InternalException("Question is already in db");
+//        }
+//
+////        convert questionReq => question
+//        Question question = new Question();
 
 //        convert questionReq => question
         Question question = new Question();
