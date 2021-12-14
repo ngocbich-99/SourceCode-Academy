@@ -29,7 +29,7 @@ public class Lesson {
 
     private long createdTime;
 
-    private String content; //video or test
+    private String type; //video or test
 
     private String description;
 

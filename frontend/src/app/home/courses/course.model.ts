@@ -24,12 +24,8 @@ export interface Section {
 export interface Lesson {
     idLesson?: number;
     createdTime?: number;
-    content?: ContentLesson; 
-    description?: string;
-}
-
-export interface ContentLesson {
-    type?: string; // video or test
+    type?: string; 
     urlVideo?: string;
-    idTest?: string;
+    idTest?: number;
+    description?: string;
 }
