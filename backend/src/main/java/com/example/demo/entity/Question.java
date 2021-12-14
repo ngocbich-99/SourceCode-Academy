@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ public class Question {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idQuestion;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="id_course")
     private Course course;
