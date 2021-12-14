@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,17 +17,21 @@ public class Lesson {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private int idLesson;
 
+    @JsonIgnore
     @ManyToOne
+    @JoinColumn(name="id_section")
     private Section section;
 
     @OneToOne
     private Test test;
 
+    private String urlVideo;
+
     private long createdTime;
 
     private String content; //video or test
 
-    private String attachment;
+    private String description;
 
     @OneToMany(mappedBy = "lesson")
     Set<LessonPass> lessonPasses;

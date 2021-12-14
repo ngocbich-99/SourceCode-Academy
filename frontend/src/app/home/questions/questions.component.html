@@ -17,8 +17,8 @@
                 <mat-option>-- Chọn --</mat-option>
                 <mat-optgroup *ngFor="let group of categoryGroups" [label]="group.nameCategory"
                             [disabled]="group.disabled">
-                    <mat-option *ngFor="let course of group.course" [value]="course.id">
-                    {{course.name}}
+                    <mat-option *ngFor="let course of group.course" [value]="course.idCourse">
+                    {{course.nameCourse}}
                     </mat-option>
                 </mat-optgroup>
             </mat-select>
@@ -41,7 +41,7 @@
         <!-- Name account Column -->
         <ng-container matColumnDef="category">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Danh mục</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.nameCategory}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.category.nameCategory}}</mat-cell>
         </ng-container>
     
         <!-- email Column -->

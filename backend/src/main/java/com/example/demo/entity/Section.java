@@ -5,11 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-
+@Table(name="section")
 public class Section {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
@@ -21,5 +22,8 @@ public class Section {
     private long createdTime;
 
     private String nameSection;
+
+    @OneToMany(mappedBy = "section")
+    private List<Lesson> listLesson;
 
 }

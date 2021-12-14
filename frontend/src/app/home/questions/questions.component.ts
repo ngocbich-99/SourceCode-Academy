@@ -3,10 +3,20 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { MatTableDataSource } from '@angular/material/table';
+import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
+import { QuestionService } from 'src/app/services/question.service';
 import { Course } from '../courses/course.model';
 import { DialogAddQuestionComponent } from './dialog-add-question/dialog-add-question.component';
 import { Question } from './question.model';
 
+
+enum StatusToast {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  INFO = 'info',
+  WARNING = 'warning',
+}
 interface CategoryGroup {
   disabled?: boolean;
   nameCategory: string;
@@ -32,41 +42,55 @@ export class QuestionsComponent implements OnInit {
     {
       nameCategory: 'Grass',
       course: [
-        {id: 0, name: 'Bulbasaur'},
-        {id: 1, name: 'Bulbasaur'},
-        {id: 2, name: 'Bulbasaur'},
+        {idCourse: 0, nameCourse: 'Bulbasaur'},
+        {idCourse: 1, nameCourse: 'Bulbasaur'},
+        {idCourse: 2, nameCourse: 'Bulbasaur'},
       ],
     },
     {
       nameCategory: 'Water',
       course: [
-        {id: 0, name: 'Bulbasaur'},
-        {id: 1, name: 'Bulbasaur'},
-        {id: 2, name: 'Bulbasaur'},
+        {idCourse: 0, nameCourse: 'Bulbasaur'},
+        {idCourse: 1, nameCourse: 'Bulbasaur'},
+        {idCourse: 2, nameCourse: 'Bulbasaur'},
       ],
     },
     {
       nameCategory: 'Fire',
       disabled: true,
       course: [
-        {id: 0, name: 'Bulbasaur'},
-        {id: 1, name: 'Bulbasaur'},
-        {id: 2, name: 'Bulbasaur'},
+        {idCourse: 0, nameCourse: 'Bulbasaur'},
+        {idCourse: 1, nameCourse: 'Bulbasaur'},
+        {idCourse: 2, nameCourse: 'Bulbasaur'},
       ],
     },
     {
       nameCategory: 'Psychic',
       course: [
-        {id: 0, name: 'Bulbasaur'},
-        {id: 1, name: 'Bulbasaur'},
+        {idCourse: 0, nameCourse: 'Bulbasaur'},
+        {idCourse: 1, nameCourse: 'Bulbasaur'},
       ],
     },
   ];
+
+  listQuestion: Question[] = [];
+
   constructor(
     public dialog: MatDialog,
+    private questionService: QuestionService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
+    this.getListQuestion();
+  }
+
+  getListQuestion() {
+    this.questionService.getListQuestion().subscribe(resData => {
+      console.log(resData);
+      this.listQuestion = resData;
+      this.dataSource.data = this.listQuestion;
+    })
   }
   addQuestion() {
     const dialogRef = this.dialog.open(DialogAddQuestionComponent, {
@@ -76,7 +100,23 @@ export class QuestionsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(rs => {
       if (!!rs) {
         // todo logic
-        console.log(rs);
+        console.log('form create question value',rs);
+        const questionReq: Question = {
+          idCourse: rs.idCourse,
+          content: rs.content,
+          ans1: rs.ans1,
+          ans2: rs.ans2,
+          ans3: rs.ans3,
+          ans4: rs.ans4,
+          correctAns: rs.correctAns,
+          createdTime: moment().valueOf()
+        }
+        this.questionService.createQuestion(questionReq).subscribe(resData => {
+          this.showToast('Thêm câu hỏi thành công!', StatusToast.SUCCESS);
+        }, error => {
+          console.log(error);
+          this.showToast('Thêm câu hỏi thất bại!', StatusToast.ERROR);
+        })
       }
     })
   }
@@ -87,6 +127,21 @@ export class QuestionsComponent implements OnInit {
 
   }
 
+  showToast(mess: string, status: string) {
+    if (status === StatusToast.SUCCESS) {
+      this.toastr.success(mess,'Thành công', {
+        closeButton: true,
+        timeOut: 2000,
+        extendedTimeOut: 2000
+      });
+    } else if (status === StatusToast.ERROR) {
+      this.toastr.error(mess, 'Thất bại', {
+        closeButton: true,
+        timeOut: 2000,
+        extendedTimeOut: 2000
+      })
+    }
+  }
   filterCourse(event: any) {
     // value is id of course
     console.log(event.value);

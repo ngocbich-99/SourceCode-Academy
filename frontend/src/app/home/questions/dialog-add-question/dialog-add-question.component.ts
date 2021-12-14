@@ -26,7 +26,7 @@ export class DialogAddQuestionComponent implements OnInit {
   ngOnInit(): void {
     this.createQuestionForm = new FormGroup({
       'category': new FormControl('', Validators.required),
-      'course': new FormControl(''),
+      'idCourse': new FormControl('', Validators.required),
       'content': new FormControl('', Validators.required),
       'ans1': new FormControl('', Validators.required),
       'ans2': new FormControl('', Validators.required),
@@ -38,10 +38,18 @@ export class DialogAddQuestionComponent implements OnInit {
   }
   async getListCategory() {
     this.listCategory = await this.categoryService.getListCategory().toPromise();
+    
+    console.log(this.listCategory);
   }
 
   selectCategory(event: any) {
     console.log(event);
+    
+    const courses = this.listCategory.find(category => category.idCategory === event.value)?.courses;
+    if (!!courses) {
+      this.listCourse = courses;
+    } 
+    console.log(this.listCourse);
   }
 
   selectCourse(event: any) {

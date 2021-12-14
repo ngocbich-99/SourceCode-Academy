@@ -32,9 +32,12 @@
             <div fxFlex="80" fxLayout="row" fxLayoutAlign="space-between start">
                 <mat-form-field appearance="outline" fxFlex="66">
                     <mat-label>Chọn khoá học trực thuộc</mat-label>
-                    <mat-select formControlName="course" (selectionChange)="selectCourse($event)">
-                        <mat-option *ngFor="let course of listCourse" [value]="course.id">
-                            {{course.name}}
+                    <mat-select formControlName="idCourse" (selectionChange)="selectCourse($event)">
+                        <mat-option *ngFor="let course of listCourse" [value]="course.idCourse">
+                            {{course.nameCourse}}
+                        </mat-option>
+                        <mat-option *ngIf="listCourse.length === 0">
+                            Chưa có khoá học nào
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
