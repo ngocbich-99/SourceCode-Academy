@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Course;
 import com.example.demo.entity.Question;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.mapper.QuestionMapper;
 import com.example.demo.model.request.QuestionReq;
+import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.QuestionRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import java.util.Optional;
 public class QuestionServiceImpl implements QuestionService{
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Autowired
+    private CourseRepository courseRepository;
 
     @Override
     public List<Question> getListQuestion() {
@@ -42,9 +47,27 @@ public class QuestionServiceImpl implements QuestionService{
 ////        convert questionReq => question
 //        Question question = new Question();
 
+//        convert questionReq => question
+        Question question = new Question();
+        question.setContent(questionReq.getContent());
+        question.setAns1(questionReq.getAns1());
+        question.setAns2(questionReq.getAns2());
+        question.setAns3(questionReq.getAns3());
+        question.setAns4(questionReq.getAns4());
+        question.setCorrectAns(questionReq.getCorrectAns());
+        question.setCreatedTime(questionReq.getCreatedTime());
 
+        Optional<Course> course = courseRepository.findById(questionReq.getIdCourse());
 
-        return null;
+        if (!course.isPresent()) {
+            throw new NotFoundException("Course not found");
+        } else {
+            question.setCourse(course.get());
+        }
+
+        questionRepository.save(question);
+
+        return question;
     }
 
     @Override

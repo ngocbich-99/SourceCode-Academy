@@ -6,13 +6,15 @@ import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.request.QuestionReq;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.QuestionRepository;
+import com.example.demo.service.CourseService;
+import com.example.demo.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
 public class QuestionMapper {
     @Autowired
-    private CourseRepository courseRepository;
+    private CourseService courseService;
 
     public Question reqToQuestion(QuestionReq questionReq) {
         Question question = new Question();
@@ -25,12 +27,15 @@ public class QuestionMapper {
         question.setCreatedTime(questionReq.getCreatedTime());
 
 //        find course theo id front-end tra ve
-        Optional<Course> course = courseRepository.findById(questionReq.getIdCourse());
-        if (!course.isPresent()) {
-            throw new NotFoundException("Not found question");
-        } else {
-            question.setCourse(course.get());
-        }
+//        Optional<Course> course = courseRepository.findById(questionReq.getIdCourse());
+        Course course = courseService.getCourseById(questionReq.getIdCourse());
+        question.setCourse(course);
+//
+//        if (!course.isPresent()) {
+//            throw new NotFoundException("Not found question");
+//        } else {
+//            question.setCourse(course.get());
+//        }
 
         return question;
     }
