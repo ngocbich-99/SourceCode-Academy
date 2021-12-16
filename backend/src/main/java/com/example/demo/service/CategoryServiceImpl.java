@@ -1,11 +1,15 @@
 package com.example.demo.service;
 
+import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.entity.Category;
 import com.example.demo.exception.NotFoundException;
 import com.example.demo.model.mapper.CategoryMapper;
 import com.example.demo.model.request.CategoryReq;
 import com.example.demo.repository.CategoryRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,13 +19,21 @@ import java.util.Optional;
 
 @Component
 public class CategoryServiceImpl implements CategoryService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CategoryServiceImpl.class);
+
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    ModelMapper mapper;
     @Override
-    public List<Category> getListCategory() {
+    public List<CategoryDTO> getListCategory() {
         List<Category> listCategory = categoryRepository.findAll();
-        return listCategory;
+        TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
+        };
+        List<CategoryDTO> categoryDTOS = mapper.map(listCategory,typeToken.getType());
+        return categoryDTOS;
     }
 
     @Override

@@ -2,10 +2,13 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
+import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.request.CreateCourseReq;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.CourseRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,9 +21,15 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    ModelMapper mapper;
+
     @Override
-    public List<Course> getAll() {
-        return courseRepository.findAll();
+    public List<CourseDTO> getAll() {
+        List<Course> all = courseRepository.findAll();
+        TypeToken<List<CourseDTO>> typeToken = new TypeToken<List<CourseDTO>>() {
+        };
+        return mapper.map(all,typeToken.getType());
     }
 
     @Override
@@ -47,8 +56,9 @@ public class CourseServiceImpl implements CourseService {
         course.setIdTeacher(req.getIdTeacher());
         course.setLevel(req.getLevel());
         course.setStatus(req.getStatus());
-        Category category = categoryRepository.findById(req.getIdCategory()).get();
-        course.setCategory(category);
+        List<Category> categories = course.getCategory();
+        categories.add(categoryRepository.findById(req.getIdCategory()).get());
+        course.setCategory(categories);
         course.setNameCourse(req.getNameCourse());
         courseRepository.save(course);
         return course;

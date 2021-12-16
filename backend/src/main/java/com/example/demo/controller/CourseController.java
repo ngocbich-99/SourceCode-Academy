@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
 import com.example.demo.model.dto.AccountDto;
+import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.request.CategoryReq;
 import com.example.demo.model.request.CreateAccountReq;
 import com.example.demo.model.request.CreateCourseReq;
@@ -16,26 +17,27 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/course")
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
 
-    @CrossOrigin
+
     @GetMapping("/list")
-    public ResponseEntity<?> getList() {
+    public ResponseEntity<List<CourseDTO>> getList() {
         return ResponseEntity.ok(courseService.getAll());
     }
 
-    @CrossOrigin
+
     @GetMapping("/{id}")
     public ResponseEntity<?> getCourseById(@PathVariable int id) {
         Course course = courseService.getCourseById(id);
         return ResponseEntity.ok(course);
     }
 
-    @CrossOrigin
+
     @PostMapping("")
     public ResponseEntity<?> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
 
@@ -44,14 +46,13 @@ public class CourseController {
     }
 
 
-    @CrossOrigin
+
     @PutMapping("/edit/{id}")
     public ResponseEntity<?> editCourse(@Valid @RequestBody CreateCourseReq req, @PathVariable int id) {
         Course course = courseService.updateCourse(req, id);
         return ResponseEntity.ok(course);
     }
 
-    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCourse(@PathVariable int id) {
         courseService.deleteCourse(id);
