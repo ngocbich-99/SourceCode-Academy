@@ -1,16 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from '../../category/category.mode';
 
-interface ITab {
+interface TabSection {
   title: string;
   content: any;
   removable: boolean;
   disabled: boolean;
   active?: boolean;
   customClass?: string;
+  nameSection?: string; 
+  lessons: TabLesson[];
 }
-
+interface TabLesson {
+  title: string;
+  content: any;
+  removable: boolean;
+  disabled: boolean;
+  active?: boolean;
+  customClass?: string;
+  nameLesson?: string; 
+  urlVideo?: string;
+  description?: string;
+}
 @Component({
   selector: 'app-dialog-add-course',
   templateUrl: './dialog-add-course.component.html',
@@ -27,95 +41,120 @@ export class DialogAddCourseComponent implements OnInit {
       value: 'Chưa công khai'
     }
   ];
-  selectedStatus = this.listStatus[0].key;
 
-  listCategory: {name: string, id: string}[] = [
-    {
-      name: 'HTML',
-      id: '1'
-    },
-    {
-      name: 'JS',
-      id: '2'
-    },
-    {
-      name: 'Python',
-      id: '3'
-    },
-  ];
-  selectedCategory = this.listCategory[0].id;
-
-  listLevel: {name: string, id: string}[] = [
+  listLevel: {name: string, id: number}[] = [
     {
       name: 'Cơ bản',
-      id: '1'
+      id: 1
     },
     {
       name: 'Nâng cao',
-      id: '2'
+      id: 2
     },
   ];
-  selectedLevel = this.listLevel[0].id;
 
-  nameCourseFormControl = new FormControl('', [Validators.required]);
-
-  btnInfo: any;
-  btnContent: any;
-  tabInfo = true;
-
-  tabSections: ITab[] = [
+  tabSections: TabSection[] = [
     { 
       title: 'Phần 1',
       content: 'Phần 1 content', 
       removable: false, 
       disabled: false,
-      active: true
+      active: true,
+      nameSection: '',
+      lessons: [
+        { 
+          title: 'Bài 1',
+          content: `Bai 1 content`, 
+          removable: false, 
+          disabled: false,
+          active: true,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+        { 
+          title: 'Bài 2',
+          content: `Bai 2 content`, 
+          removable: true, 
+          disabled: false,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+      ]
     },
     { 
       title: 'Phần 2',
       content: 'Phần 2 content', 
       removable: true, 
-      disabled: false
-    },
-    { 
-      title: 'Phần 3', 
-      content: 'Phần 3 content', 
-      removable: true, 
-      disabled: false
+      disabled: false,
+      nameSection: '', 
+      lessons: [
+        { 
+          title: 'Bài 1',
+          content: `Bai 1 content`, 
+          removable: false, 
+          disabled: false,
+          active: true,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+        { 
+          title: 'Bài 2',
+          content: `Bai 2 content`, 
+          removable: true, 
+          disabled: false,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+      ]
     },
   ];
 
-  tabLessons: ITab[] = [
-    { 
-      title: 'Bài 1',
-      content: `Bai 1 content`, 
-      removable: false, 
-      disabled: false,
-      active: true
-    },
-    { 
-      title: 'Bài 2',
-      content: `Bai 2 content`, 
-      removable: true, 
-      disabled: false
-    },
-    { 
-      title: 'Bài 3', 
-      content: 'Bai 3 content', 
-      removable: true, 
-      disabled: false
-    },
-  ];
+  btnInfo: any;
+  btnContent: any;
+  tabInfo = true;
 
   radioModel = 'Video';
 
+  listCategory: Category[] = [];
+  formInforCourse: FormGroup = new FormGroup({});
+  formContentCourse: FormGroup = new FormGroup({});
+
+  urlImg = '';
+
   constructor(
     public dialogRef: MatDialogRef<DialogAddCourseComponent>,
+    private categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
     this.btnInfo = document.getElementById('btn-info');
     this.btnContent = document.getElementById('btn-content');
+
+    this.createForm();
+    this.getListCategory();
+  }
+
+  async getListCategory() {
+    this.listCategory = await this.categoryService.getListCategory().toPromise();
+  }
+
+  createForm() {
+    this.formInforCourse = new FormGroup({
+      'imgPath': new FormControl('', Validators.required),
+      'nameCourse': new FormControl('', Validators.required),
+      'idCategory': new FormControl('', Validators.required),
+      'level': new FormControl('', Validators.required),
+      'description': new FormControl(''),
+      'status': new FormControl('', Validators.required)
+    })
+    this.formContentCourse = new FormGroup({
+      'nameSection': new FormControl('', Validators.required),
+      'nameLesson': new FormControl('', Validators.required)
+    })
   }
 
   inforGeneral() {
@@ -127,6 +166,10 @@ export class DialogAddCourseComponent implements OnInit {
     this.btnContent.classList.add('clicked');
     this.btnInfo.classList.remove('clicked');
     this.tabInfo = false;
+
+    // active section 1 lession 1
+    this.tabSections[0].active = true;
+    this.tabSections[0].lessons[0].active = true;
   }
   
   addTabSection(): void {
@@ -135,27 +178,38 @@ export class DialogAddCourseComponent implements OnInit {
       title: `Phần ${newTabIndex}`,
       content: `Dynamic content ${newTabIndex}`,
       disabled: false,
-      removable: true
+      removable: true,
+      nameSection: '',
+      lessons: [
+        { 
+          title: 'Bài 1',
+          content: `Bai 1 content`, 
+          removable: false, 
+          disabled: false,
+          active: true
+        },
+      ]
     });
   }
 
-  addTabLesson() {
-    const newTabIndex = this.tabLessons.length + 1;
-    this.tabLessons.push({
+  addTabLesson(tabSection: TabSection) {
+    const newTabIndex = tabSection.lessons.length + 1;
+    tabSection.lessons.push({
       title: `Bài ${newTabIndex}`,
       content: `Dynamic content ${newTabIndex}`,
       disabled: false,
-      removable: true
+      removable: true,
+      nameLesson: ''
     });
   }
 
-  removeTabSection(tab: ITab): void {
+  removeTabSection(tab: TabSection): void {
     this.tabSections.splice(this.tabSections.indexOf(tab), 1);
     console.log('Remove Tab section');
   }
 
-  removeTabLesson(tab: ITab) {
-    this.tabLessons.splice(this.tabLessons.indexOf(tab), 1);
+  removeTabLesson(tabLesson: TabLesson, tabSec: TabSection) {
+    tabSec.lessons.splice(tabSec.lessons.indexOf(tabLesson), 1);
     console.log('Remove Tab lesson');
   }
 
@@ -163,4 +217,23 @@ export class DialogAddCourseComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  createCourse() {
+    this.dialogRef.close();
+    console.log(this.formInforCourse);
+    console.log(this.tabSections);
+  }
+
+
+  // function upload image cover
+  onSelectImg(event: any) {
+    if (event.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        console.log('event onload reader', event);
+        
+        this.urlImg = event.target.result;
+      }
+    }
+  }
 }
