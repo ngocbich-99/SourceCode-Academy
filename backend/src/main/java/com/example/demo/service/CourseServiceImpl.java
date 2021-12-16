@@ -89,11 +89,6 @@ public class CourseServiceImpl implements CourseService {
 //            for(Lesson lesson : sections)
 //        }
 
-
-
-
-
-
     }
 
     @Override
