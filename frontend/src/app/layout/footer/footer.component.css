@@ -1,7 +1,12 @@
 .footer {
+  background-color: var(--color-shade-white);
   height: 24px;
   padding: 0 24px;
   border-top: 1px solid rgba(0, 0, 0, 0.12);
+  position: sticky;
+    bottom: 0;
+    z-index: 10;
+    display: block;
 }
 .footer img {
   width: 16px;
@@ -9,4 +14,7 @@
 }
 .footer p {
   margin: 0;
+}
+.credit {
+  color: var(--color-black3);
 }

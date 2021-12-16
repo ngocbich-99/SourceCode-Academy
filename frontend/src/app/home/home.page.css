@@ -5,3 +5,6 @@ mat-drawer-content {
   background: #fff;
   padding: 16px 40px;
 }
+mat-drawer-container mat-drawer {
+  position: fixed;
+}

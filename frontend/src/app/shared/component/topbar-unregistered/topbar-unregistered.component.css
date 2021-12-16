@@ -11,6 +11,7 @@
   width: 116px;
 }
 .btn-login {
+  margin-left: 8px;
   width: 173px;
 }
 .btn-login mat-icon {
