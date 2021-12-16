@@ -38,7 +38,7 @@ public class CourseController {
     }
 
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<?> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
 
         Course course = courseService.createCourse(courseReq);

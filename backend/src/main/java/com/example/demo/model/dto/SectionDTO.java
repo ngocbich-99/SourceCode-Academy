@@ -4,7 +4,6 @@ import com.example.demo.entity.Course;
 import com.example.demo.entity.Lesson;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Data
@@ -16,5 +15,5 @@ public class SectionDTO {
 
     private String nameSection;
 
-    private List<Lesson> listLesson;
+    private List<LessonDTO> listLesson;
 }

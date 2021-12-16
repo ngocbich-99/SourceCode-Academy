@@ -4,11 +4,12 @@ import lombok.Data;
 
 import java.util.List;
 
+
 @Data
 public class SectionReq {
     private int courseId;
     private long createTime;
     private String sectionName;
     private int level;
-    private List<LessonReq> lessonReqs;
+    private List<LessonReq> listLesson;
 }

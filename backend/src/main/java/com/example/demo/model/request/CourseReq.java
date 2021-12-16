@@ -1,22 +1,18 @@
 package com.example.demo.model.request;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Question;
 import com.example.demo.entity.Section;
-import com.example.demo.model.dto.SectionDTO;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.demo.entity.Student;
+import lombok.Data;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Set;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-
-public class CreateCourseReq {
+@Data
+public class CourseReq {
 
     private int idCourse;
 
@@ -36,5 +32,6 @@ public class CreateCourseReq {
 
     private String description;
 
-    private Set<SectionReq> sectionSet;
+    private Set<Section> sectionSet;
+
 }

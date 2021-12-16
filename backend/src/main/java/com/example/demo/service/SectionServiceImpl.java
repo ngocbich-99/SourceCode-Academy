@@ -34,14 +34,9 @@ public class SectionServiceImpl implements SectionService{
         Course course= courseService.getCourseById(request.getCourseId());
         BeanUtils.copyProperties(request,section);
         section.setCourse(course);
-        if(request.getLessonReqs() != null){
-            TypeToken<List<Lesson>> typeToken = new TypeToken<List<Lesson>>(){};
-            List<Lesson> lessons= mapper.map(request.getLessonReqs(),typeToken.getType());
-            section.setListLesson(lessons);
-        }
         Section sectionSaved = sectionRepository.save(section);
         SectionDTO sectionDTO = new SectionDTO();
-        mapper.map(sectionDTO,sectionSaved);
+        mapper.map(sectionSaved,sectionDTO);
         return sectionDTO;
     }
 

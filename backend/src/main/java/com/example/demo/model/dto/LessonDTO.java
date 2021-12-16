@@ -12,9 +12,7 @@ public class LessonDTO {
 
     private int idLesson;
 
-    private Section section;
-
-    private Test test;
+//    private Test test;
 
     private String urlVideo;
 
@@ -24,5 +22,4 @@ public class LessonDTO {
 
     private String description;
 
-    Set<LessonPass> lessonPasses;
 }
