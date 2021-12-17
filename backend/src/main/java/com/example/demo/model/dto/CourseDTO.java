@@ -35,8 +35,10 @@ public class CourseDTO {
 
     private String description;
 
-    private Set<Student> studentSet;
+//    private Set<Student> studentSet;
+//
+//    private List<Question> questionList;
 
-    private List<Question> questionList;
+    private List<SectionDTO> sectionList;
 
 }

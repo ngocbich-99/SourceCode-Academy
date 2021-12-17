@@ -39,10 +39,8 @@ public class CourseController {
 
 
     @PostMapping
-    public ResponseEntity<?> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
-
-        Course course = courseService.createCourse(courseReq);
-        return ResponseEntity.ok(course);
+    public ResponseEntity<CourseDTO> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
+        return ResponseEntity.ok(courseService.createCourse(courseReq));
     }
 
 

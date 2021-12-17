@@ -22,7 +22,7 @@ public class CreateCourseReq {
 
     private int idTeacher;
 
-    private List<Category> category;
+    private List<String> categoryIds;
 
     private String nameCourse;
 
@@ -36,5 +36,5 @@ public class CreateCourseReq {
 
     private String description;
 
-    private Set<SectionReq> sectionSet;
+    private List<SectionReq> sectionList;
 }

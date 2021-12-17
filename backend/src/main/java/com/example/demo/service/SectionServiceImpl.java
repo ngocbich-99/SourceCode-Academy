@@ -45,4 +45,15 @@ public class SectionServiceImpl implements SectionService{
         List<SectionDTO> sections = new ArrayList<>();
         return null;
     }
+
+    @Override
+    public SectionDTO addSection(SectionReq request, Course course) {
+        Section section = new Section();
+        BeanUtils.copyProperties(request,section);
+        section.setCourse(course);
+        Section sectionSaved = sectionRepository.save(section);
+        SectionDTO sectionDTO = new SectionDTO();
+        mapper.map(sectionSaved,sectionDTO);
+        return sectionDTO;
+    }
 }

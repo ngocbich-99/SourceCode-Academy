@@ -11,8 +11,10 @@ import java.util.List;
 @Service
 public interface CourseService {
     List<CourseDTO> getAll();
+
     Course getCourseById(int id);
-    Course createCourse(CreateCourseReq courseReq);
+
+    CourseDTO createCourse(CreateCourseReq courseReq);
 
     Course updateCourse(CreateCourseReq req, int id);
 
