@@ -45,3 +45,7 @@ carousel .btn-action-signup {
   height: 280px;
   background-repeat: no-repeat;
 }
+
+.page-conent {
+  margin: 104px 40px 0px 40px;
+}

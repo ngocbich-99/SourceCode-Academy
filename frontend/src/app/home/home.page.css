@@ -3,7 +3,7 @@
 }
 mat-drawer-content {
   background: #fff;
-  padding: 16px 40px;
+  padding: 16px 0px;
 }
 mat-drawer-container mat-drawer {
   position: fixed;
