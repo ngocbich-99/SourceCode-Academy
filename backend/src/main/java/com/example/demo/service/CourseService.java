@@ -14,6 +14,8 @@ public interface CourseService {
 
     Course getCourseById(int id);
 
+    CourseDTO getCourseDTOById(Integer id);
+
     CourseDTO createCourse(CreateCourseReq courseReq);
 
     Course updateCourse(CreateCourseReq req, int id);

@@ -11,7 +11,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name="course")
 public class Course {
@@ -51,7 +52,7 @@ public class Course {
     @OneToMany(mappedBy = "course")
     private List<Question> questionList;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Section> sectionSet;
 
     public int getIdTeacher() {

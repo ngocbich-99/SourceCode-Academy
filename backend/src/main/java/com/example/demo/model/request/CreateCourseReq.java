@@ -18,11 +18,9 @@ import java.util.Set;
 
 public class CreateCourseReq {
 
-    private int idCourse;
-
     private int idTeacher;
 
-    private List<String> categoryIds;
+    private List<Integer> categoryIds;
 
     private String nameCourse;
 

@@ -2,8 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
-import com.example.demo.entity.Lesson;
-import com.example.demo.entity.Section;
+import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.dto.SectionDTO;
@@ -24,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CourseServiceImpl implements CourseService {
@@ -39,6 +39,9 @@ public class CourseServiceImpl implements CourseService {
     private LessonRepository lessonRepository;
 
     @Autowired
+    CategoryService categoryService;
+
+    @Autowired
     SectionService sectionService;
 
     @Autowired
@@ -52,7 +55,7 @@ public class CourseServiceImpl implements CourseService {
         List<Course> all = courseRepository.findAll();
         TypeToken<List<CourseDTO>> typeToken = new TypeToken<List<CourseDTO>>() {
         };
-        return mapper.map(all,typeToken.getType());
+        return mapper.map(all, typeToken.getType());
     }
 
     @Override
@@ -61,42 +64,59 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public CourseDTO getCourseDTOById(Integer id) {
+        CourseDTO courseDTO = new CourseDTO();
+        Course course = this.getCourseById(id);
+        TypeToken<List<SectionDTO>> typeToken = new TypeToken<List<SectionDTO>>(){};
+        courseDTO.setSectionList(mapper.map(sectionRepository.findAllByCourse(course),typeToken.getType()));
+
+        TypeToken<List<CategoryDTO>> categoryTokenType = new TypeToken<List<CategoryDTO>>(){};
+        courseDTO.setSectionList(mapper.map(sectionRepository.findAllByCourse(course),typeToken.getType()));
+        courseDTO.setCategory(mapper.map(course.getCategory(),categoryTokenType.getType()));
+        mapper.map(course,courseDTO);
+        return courseDTO;
+    }
+
+    @Override
     @Transactional
     public CourseDTO createCourse(CreateCourseReq courseReq) {
 
         Course course = new Course();
-        List<Section> sectionList = new ArrayList<>();
-        List<Lesson> lessonList = new ArrayList<>();
-        TypeToken<List<Section>> sectionTypeToken = new TypeToken<List<Section>>() {
-        };
-        TypeToken<List<Lesson>> lessonTypeToken = new TypeToken<List<Lesson>>() {
-        };
-        BeanUtils.copyProperties(courseReq,course);
+        if (courseReq.getCategoryIds() != null && !courseReq.getCategoryIds().isEmpty()) {
+            course.setCategory(this.getListCategory(courseReq.getCategoryIds()));
+        }
+        BeanUtils.copyProperties(courseReq, course);
         course = courseRepository.save(course);
-
-//        for(SectionReq sectionReq : courseReq.getSectionSet()){
-//            SectionDTO sectionDTO = sectionService.addSection(sectionReq);
-//            sectionDTO.setListLesson(this.saveLessonList(sectionReq.getListLesson(),sectionDTO.getIdSection()));
-//        }
+        TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
+        };
         CourseDTO courseDTO = new CourseDTO();
-        BeanUtils.copyProperties(course,courseDTO);
-        courseDTO.setSectionList(this.saveSectionList(courseReq.getSectionList(),course));
+        courseDTO.setCategory(mapper.map(course.getCategory(), typeToken.getType()));
+        BeanUtils.copyProperties(course, courseDTO);
+
+        if (!courseReq.getSectionList().isEmpty() && courseReq.getSectionList() != null) {
+            courseDTO.setSectionList(this.saveSectionList(courseReq.getSectionList(), course));
+        }
+
         return courseDTO;
 
     }
 
     @Override
     public Course updateCourse(CreateCourseReq req, int id) {
-        Course course = courseRepository.findById(id).get();
-        course.setIdTeacher(req.getIdTeacher());
-        course.setLevel(req.getLevel());
-        course.setStatus(req.getStatus());
-        List<Category> categories = course.getCategory();
-//        categories.add(categoryRepository.findById(req.getIdCategory()).get());
-        course.setCategory(categories);
-        course.setNameCourse(req.getNameCourse());
-        courseRepository.save(course);
-        return course;
+        Optional<Course> course = courseRepository.findById(id);
+        if (course.isPresent()) {
+            course.get().setIdTeacher(req.getIdTeacher());
+            course.get().setLevel(req.getLevel());
+            course.get().setStatus(req.getStatus());
+            List<Category> categories = course.get().getCategory();
+            course.get().setCategory(categories);
+            course.get().setNameCourse(req.getNameCourse());
+            return courseRepository.save(course.get());
+        }
+        /**
+         * must be throw exception
+         */
+        return null;
     }
 
     @Override
@@ -108,16 +128,27 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
-    private List<LessonDTO> saveLessonList(List<LessonReq> lessonReqs, Integer sectionId){
-        return lessonService.addLessons(lessonReqs,sectionId);
+    private List<LessonDTO> saveLessonList(List<LessonReq> lessonReqs, Integer sectionId) {
+        return lessonService.addLessons(lessonReqs, sectionId);
     }
-    private List<SectionDTO> saveSectionList(List<SectionReq> sectionReqs,Course course){
+
+    private List<SectionDTO> saveSectionList(List<SectionReq> sectionReqs, Course course) {
         List<SectionDTO> sectionDTOList = new ArrayList<>();
-        for(SectionReq sectionReq : sectionReqs){
+        for (SectionReq sectionReq : sectionReqs) {
             SectionDTO sectionDTO = sectionService.addSection(sectionReq, course);
-            sectionDTO.setListLesson(this.saveLessonList(sectionReq.getListLesson(),sectionDTO.getIdSection()));
+            if (sectionReq.getListLesson().isEmpty() && sectionReq.getListLesson() != null) {
+                sectionDTO.setListLesson(this.saveLessonList(sectionReq.getListLesson(), sectionDTO.getIdSection()));
+            }
             sectionDTOList.add(sectionDTO);
         }
         return sectionDTOList;
+    }
+
+    private List<Category> getListCategory(List<Integer> ids) {
+        List<Category> categoryList = new ArrayList<>();
+        for (Integer id : ids) {
+            categoryList.add(categoryService.getCategoryById(id));
+        }
+        return categoryList;
     }
 }
