@@ -133,6 +133,9 @@ export class DialogAddCourseComponent implements OnInit {
   ngOnInit(): void {
     this.btnInfo = document.getElementById('btn-info');
     this.btnContent = document.getElementById('btn-content');
+
+    this.createForm();
+    this.getListCategory();
   }
 
   async getListCategory() {
