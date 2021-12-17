@@ -37,7 +37,7 @@
         <!-- email Column -->
         <ng-container matColumnDef="numberCourse">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Số khoá học</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.courses.length}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.courses?.length}}</mat-cell>
         </ng-container>
     
         <!-- sdt Column -->

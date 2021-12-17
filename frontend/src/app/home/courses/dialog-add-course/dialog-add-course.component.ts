@@ -1,14 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import * as moment from 'moment';
+import { CategoryService } from 'src/app/services/category.service';
+import { CourseService } from 'src/app/services/course.service';
+import { Category } from '../../category/category.mode';
+import { CourseRequest, Lesson, Section } from '../course.model';
 
-interface ITab {
+interface TabSection {
   title: string;
-  content: any;
   removable: boolean;
   disabled: boolean;
   active?: boolean;
   customClass?: string;
+  nameSection?: string; 
+  lessons: TabLesson[];
+}
+interface TabLesson {
+  title: string;
+  removable: boolean;
+  disabled: boolean;
+  active?: boolean;
+  customClass?: string;
+  nameLesson?: string; 
+  urlVideo?: string;
+  description?: string;
 }
 
 @Component({
@@ -29,21 +45,7 @@ export class DialogAddCourseComponent implements OnInit {
   ];
   selectedStatus = this.listStatus[0].key;
 
-  listCategory: {name: string, id: string}[] = [
-    {
-      name: 'HTML',
-      id: '1'
-    },
-    {
-      name: 'JS',
-      id: '2'
-    },
-    {
-      name: 'Python',
-      id: '3'
-    },
-  ];
-  selectedCategory = this.listCategory[0].id;
+  listCategory: Category[] = [];
 
   listLevel: {name: string, id: string}[] = [
     {
@@ -63,59 +65,93 @@ export class DialogAddCourseComponent implements OnInit {
   btnContent: any;
   tabInfo = true;
 
-  tabSections: ITab[] = [
+  tabSections: TabSection[] = [
     { 
       title: 'Phần 1',
-      content: 'Phần 1 content', 
       removable: false, 
       disabled: false,
-      active: true
+      active: true,
+      nameSection: '',
+      lessons: [
+        { 
+          title: 'Bài 1',
+          removable: false, 
+          disabled: false,
+          active: true,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+        { 
+          title: 'Bài 2',
+          removable: true, 
+          disabled: false,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+      ]
     },
     { 
       title: 'Phần 2',
-      content: 'Phần 2 content', 
       removable: true, 
-      disabled: false
-    },
-    { 
-      title: 'Phần 3', 
-      content: 'Phần 3 content', 
-      removable: true, 
-      disabled: false
-    },
-  ];
-
-  tabLessons: ITab[] = [
-    { 
-      title: 'Bài 1',
-      content: `Bai 1 content`, 
-      removable: false, 
       disabled: false,
-      active: true
-    },
-    { 
-      title: 'Bài 2',
-      content: `Bai 2 content`, 
-      removable: true, 
-      disabled: false
-    },
-    { 
-      title: 'Bài 3', 
-      content: 'Bai 3 content', 
-      removable: true, 
-      disabled: false
+      nameSection: '', 
+      lessons: [
+        { 
+          title: 'Bài 1',
+          removable: false, 
+          disabled: false,
+          active: true,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+        { 
+          title: 'Bài 2',
+          removable: true, 
+          disabled: false,
+          nameLesson: '',
+          urlVideo: '',
+          description: ''
+        },
+      ]
     },
   ];
 
   radioModel = 'Video';
-
+  formInforCourse: FormGroup = new FormGroup({});
+  formContentCourse: FormGroup = new FormGroup({});
+  urlImg = '';
+  
   constructor(
     public dialogRef: MatDialogRef<DialogAddCourseComponent>,
+    private categoryService: CategoryService,
+    private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
     this.btnInfo = document.getElementById('btn-info');
     this.btnContent = document.getElementById('btn-content');
+  }
+
+  async getListCategory() {
+    this.listCategory = await this.categoryService.getListCategory().toPromise();
+  }
+
+  createForm() {
+    this.formInforCourse = new FormGroup({
+      'imgCover': new FormControl('', Validators.required),
+      'nameCourse': new FormControl('', Validators.required),
+      'idCategory': new FormControl('', Validators.required),
+      'level': new FormControl('', Validators.required),
+      'description': new FormControl(''),
+      'status': new FormControl('', Validators.required)
+    })
+    this.formContentCourse = new FormGroup({
+      'nameSection': new FormControl('', Validators.required),
+      'nameLesson': new FormControl('', Validators.required)
+    })
   }
 
   inforGeneral() {
@@ -128,39 +164,111 @@ export class DialogAddCourseComponent implements OnInit {
     this.btnInfo.classList.remove('clicked');
     this.tabInfo = false;
   }
-  
+
+  createCourse() {
+    this.dialogRef.close();
+    console.log(this.formInforCourse);
+    console.log(this.tabSections);
+
+    // truyen info course o form vao
+    const courseReq: CourseRequest = {
+      categoryIds: [this.formInforCourse.value.idCategory],
+      createdTime: moment().valueOf(),
+      description: this.formInforCourse.value.description,
+      imgCover: this.formInforCourse.value.imgCover,
+      level: this.formInforCourse.value.level,
+      nameCourse: this.formInforCourse.value.nameCourse,
+    }
+    // doi type cua status cho phu hop voi body request api
+    if (this.formInforCourse.value.status === 'public') {
+      courseReq.status = true;
+    } else if (this.formInforCourse.value.status === 'private'){
+      courseReq.status = false;
+    }
+
+    // truyen list section cho course
+    const sectionList: Section[] = [];
+
+    this.tabSections.forEach(section => {
+      const sectionReq: Section = {
+        sectionName: section.nameSection,
+        createdTime: moment().valueOf(),
+        listLesson: section.lessons.map(lesson => {
+          return {
+            nameLesson: lesson.nameLesson,
+            description: lesson.description,
+            urlVideo: lesson.urlVideo,
+            createdTime: moment().valueOf(),
+          }
+        })
+      };
+      if (section.nameSection !== '') {
+        sectionReq.listLesson = sectionReq.listLesson?.filter(lesson => lesson.nameLesson !== '');
+        sectionList.push(sectionReq);
+      }
+    });
+
+    courseReq.sectionList = sectionList;
+    this.courseService.createCourse(courseReq).subscribe(resData => {
+      console.log(resData);
+    });
+    // toast tao khoa hoc thanh cong
+  }
+
+
+  // function upload image cover
+  onSelectImg(event: any) {
+    if (event.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.urlImg = event.target.result;
+      }
+    }
+  }
+
   addTabSection(): void {
     const newTabIndex = this.tabSections.length + 1;
     this.tabSections.push({
       title: `Phần ${newTabIndex}`,
-      content: `Dynamic content ${newTabIndex}`,
       disabled: false,
-      removable: true
+      removable: true,
+      nameSection: '',
+      lessons: [
+        { 
+          title: 'Bài 1',
+          removable: false, 
+          disabled: false,
+          active: true
+        },
+      ]
     });
   }
 
-  addTabLesson() {
-    const newTabIndex = this.tabLessons.length + 1;
-    this.tabLessons.push({
+  addTabLesson(tabSec: TabSection) {
+    const newTabIndex = tabSec.lessons.length + 1;
+    tabSec.lessons.push({
       title: `Bài ${newTabIndex}`,
-      content: `Dynamic content ${newTabIndex}`,
       disabled: false,
       removable: true
     });
   }
 
-  removeTabSection(tab: ITab): void {
+  removeTabSection(tab: TabSection): void {
     this.tabSections.splice(this.tabSections.indexOf(tab), 1);
     console.log('Remove Tab section');
   }
 
-  removeTabLesson(tab: ITab) {
-    this.tabLessons.splice(this.tabLessons.indexOf(tab), 1);
+  removeTabLesson(tabLess: TabLesson, tabSec: TabSection) {
+    tabSec.lessons.splice(tabSec.lessons.indexOf(tabLess), 1);
     console.log('Remove Tab lesson');
+  }
+
+  openCategory() {
+    window.open('/home/category?openDialog=true', '_blank');
   }
 
   onCancel() {
     this.dialogRef.close();
   }
-
 }

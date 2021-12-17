@@ -27,59 +27,71 @@
                 <div class="header-tab">
                     <h3>Thông tin chung</h3>
                 </div>
-                <div class="row-image" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h3>Ảnh bìa</h3>
-                    <div fxFlex="80" >
-                        <button mat-button class="btn-add-image">
-                            <mat-icon svgIcon="add-primary"></mat-icon>
-                        </button>
+                <form [formGroup]="formInforCourse">
+                    <div class="row-image" fxLayout="row" fxLayoutAlign="space-between center">
+                        <h3>Ảnh bìa</h3>
+                        <div fxFlex="80" >
+                            <!-- <button mat-button class="btn-add-image">
+                                <mat-icon svgIcon="add-primary"></mat-icon>
+                            </button> -->
+                            <input formControlName="imgCover" type="file" title=" " (change)="onSelectImg($event)">
+                            <img mat-card-image [src]="urlImg">
+                        </div>
                     </div>
-                </div>
-                <div class="row-name-couse" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h3>Tên</h3>
-                    <mat-form-field fxFlex="80" appearance="outline">
-                        <input type="text" matInput [formControl]="nameCourseFormControl" placeholder="Tên khoá học">
-                        <mat-error *ngIf="nameCourseFormControl.hasError('required')">
-                            Tên is <strong>required</strong>
-                        </mat-error>
-                    </mat-form-field>
-                </div>
-                <div class="row-category-couse" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h3>Danh mục</h3>
-                    <mat-form-field fxFlex="80" appearance="outline">
-                        <mat-select [(value)]="selectedCategory">
-                            <mat-option *ngFor="let category of listCategory" [value]="category.id">
-                                {{category.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="row-level-couse" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h3>Mức độ</h3>
-                    <mat-form-field fxFlex="80" appearance="outline">
-                        <mat-select [(value)]="selectedLevel">
-                            <mat-option *ngFor="let level of listLevel" [value]="level.id">
-                                {{level.name}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
-                <div class="row-note-couse" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h3>Mô tả khoá học</h3>
-                    <mat-form-field fxFlex="80" appearance="outline">
-                        <textarea type="text" matInput placeholder="Mô tả cho khoá học"></textarea>
-                    </mat-form-field>
-                </div>
-                <div class="row-status-couse" fxLayout="row" fxLayoutAlign="space-between center">
-                    <h3>Trạng thái</h3>
-                    <mat-form-field fxFlex="80" appearance="outline">
-                        <mat-select [(value)]="selectedStatus">
-                            <mat-option *ngFor="let status of listStatus" [value]="status.key">
-                                {{status.value}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </div>
+                    <div class="row-name-couse" fxLayout="row" fxLayoutAlign="space-between center">
+                        <h3>Tên</h3>
+                        <mat-form-field fxFlex="80" appearance="outline">
+                            <input type="text" matInput formControlName="nameCourse" placeholder="Tên khoá học">
+                            <mat-error *ngIf="formInforCourse.get('nameCourse')?.hasError('required')">
+                                Tên is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row-category-couse" fxLayout="row" fxLayoutAlign="space-between center">
+                        <h3>Danh mục</h3>
+                        <div fxFlex="80" fxLayout="row" fxLayoutAlign="space-between start">
+                            <mat-form-field  appearance="outline" fxFlex="66">
+                                <mat-label>Chọn danh mục</mat-label>
+                                <mat-select formControlName="idCategory">
+                                    <mat-option *ngFor="let category of listCategory" [value]="category.idCategory">
+                                        {{category.nameCategory}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button type="button" (click)="openCategory()" mat-button class="codex-btn-secondary btn-big btn-add">
+                                Tạo danh mục
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row-level-couse" fxLayout="row" fxLayoutAlign="space-between center">
+                        <h3>Mức độ</h3>
+                        <mat-form-field fxFlex="80" appearance="outline">
+                            <mat-label>Chọn mức độ</mat-label>
+                            <mat-select formControlName="level">
+                                <mat-option *ngFor="let level of listLevel" [value]="level.id">
+                                    {{level.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="row-note-couse" fxLayout="row" fxLayoutAlign="space-between center">
+                        <h3>Mô tả khoá học</h3>
+                        <mat-form-field fxFlex="80" appearance="outline">
+                            <textarea formControlName="description" type="text" matInput placeholder="Mô tả cho khoá học"></textarea>
+                        </mat-form-field>
+                    </div>
+                    <div class="row-status-couse" fxLayout="row" fxLayoutAlign="space-between center">
+                        <h3>Trạng thái</h3>
+                        <mat-form-field fxFlex="80" appearance="outline">
+                            <mat-label>Chọn trạng thái</mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option *ngFor="let status of listStatus" [value]="status.key">
+                                    {{status.value}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </form>
             </div>
             <!-- tab content of course -->
             <div *ngIf="!tabInfo" class="tab-content-course">
@@ -106,7 +118,12 @@
                             <div class="name-section" fxLayout="row" fxLayoutAlign="space-between center">
                                 <h3>Tên phần</h3>
                                 <mat-form-field fxFlex="80" appearance="outline">
-                                    <input type="text" matInput placeholder="Tên phần">
+                                    <input 
+                                    [(ngModel)]="tabSection.nameSection" 
+                                    required
+                                    type="text" 
+                                    matInput 
+                                    placeholder="Tên phần">
                                     <!-- <mat-error *ngIf="nameCourseFormControl.hasError('required')">
                                         Tên is <strong>required</strong>
                                     </mat-error> -->
@@ -114,26 +131,31 @@
                             </div>
                             <div class="content-section">
                                 <h4>Bài học</h4>
-                                <button type="button" class="btn codex-btn-add-lesson" (click)="addTabLesson()">
+                                <button type="button" class="btn codex-btn-add-lesson" (click)="addTabLesson(tabSection)">
                                     Thêm bài
                                 </button>
                                 <!-- tabset lesson of section -->
                                 <tabset class="tabset-lesson">
-                                    <tab *ngFor="let tabLesson of tabLessons"
+                                    <tab *ngFor="let tabLesson of tabSection.lessons"
                                         [heading]="tabLesson.title"
                                         [active]="tabLesson.active"
                                         (selectTab)="tabLesson.active"
                                         (deselect)="tabLesson.active = false"
                                         [disabled]="tabLesson.disabled"
                                         [removable]="tabLesson.removable"
-                                        (removed)="removeTabLesson(tabLesson)"
+                                        (removed)="removeTabLesson(tabLesson, tabSection)"
                                         [customClass]="tabLesson.customClass">
                                         <!-- {{tabLesson?.content}} -->
                                         <!-- form content of lesson -->
                                         <div class="name-lesson">
                                             <mat-form-field appearance="outline" fxFlex="100">
                                                 <mat-label>Tên bài</mat-label>
-                                                <input type="text" matInput placeholder="Tên bài">
+                                                <input 
+                                                [(ngModel)]="tabLesson.nameLesson" 
+                                                required
+                                                type="text" 
+                                                matInput 
+                                                placeholder="Tên bài">
                                             </mat-form-field>
                                         </div>
                                         
@@ -158,19 +180,29 @@
                                             <div class="container-content-video" *ngIf="radioModel === 'Video'" fxLayout="column">
                                                 <mat-form-field appearance="outline">
                                                     <mat-label>URL video</mat-label>
-                                                    <input type="text" matInput placeholder="URL video">
+                                                    <input 
+                                                    [(ngModel)]="tabLesson.urlVideo" 
+                                                    required
+                                                    type="text" 
+                                                    matInput 
+                                                    placeholder="URL video">
                                                 </mat-form-field>
                                                 <mat-form-field appearance="outline">
                                                     <mat-label>Tổng quan</mat-label>
-                                                    <textarea matInput placeholder="Tổng quan"></textarea>
+                                                    <textarea 
+                                                        required
+                                                        [(ngModel)]="tabLesson.description" 
+                                                        matInput 
+                                                        placeholder="Tổng quan">
+                                                    </textarea>
                                                 </mat-form-field>
                                             </div>
                                             <!-- content test -->
-                                            <div class="container-content-test" *ngIf="radioModel === 'Test'" fxLayout="column">
+                                            <!-- <div class="container-content-test" *ngIf="radioModel === 'Test'" fxLayout="column">
                                                 <mat-form-field appearance="outline">
-                                                    <mat-select [(value)]="selectedCategory">
-                                                        <mat-option *ngFor="let category of listCategory" [value]="category.id">
-                                                            {{category.name}}
+                                                    <mat-select >
+                                                        <mat-option *ngFor="let category of listCategory" [value]="category.idCategory">
+                                                            {{category.nameCategory}}
                                                         </mat-option>
                                                     </mat-select>
                                                 </mat-form-field>
@@ -178,7 +210,7 @@
                                                     <mat-label>Tổng quan</mat-label>
                                                     <textarea matInput placeholder="Tổng quan"></textarea>
                                                 </mat-form-field>
-                                            </div>
+                                            </div> -->
                                         </div> 
                                         <!-- end form content of lesson -->
                                     </tab>

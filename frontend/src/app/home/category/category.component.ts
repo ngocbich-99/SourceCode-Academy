@@ -46,7 +46,6 @@ export class CategoryComponent implements OnInit {
               nameCategory: rs.nameCategory,
               description: rs.description,
               createdTime: moment().valueOf(),
-              courses: []
             }
             this.listCategory.push(category);
             this.listCategory.forEach((cat, index) => {
@@ -90,7 +89,6 @@ export class CategoryComponent implements OnInit {
           nameCategory: rs.nameCategory,
           description: rs.description,
           createdTime: moment().valueOf(),
-          courses: []
         }
         this.listCategory.push(category);
         this.listCategory.forEach((cat, index) => {

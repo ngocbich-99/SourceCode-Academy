@@ -86,6 +86,10 @@ button.clicked:before {
 .row-name-couse h3 {
   margin: 0;
 }
+/* button add category */
+.btn-add {
+  width: 172px;
+}
 /* ====== end tab information ====== */
 
 /* ====== tab content of course ====== */

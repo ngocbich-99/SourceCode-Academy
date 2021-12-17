@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from '../category/category.mode';
 import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.component';
 
 @Component({
@@ -9,10 +11,12 @@ import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
+  listCategory: Category[] = [];
 
   constructor(
     public dialog: MatDialog,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public categoryService: CategoryService
   ) { }
 
   ngOnInit(): void {
@@ -28,6 +32,8 @@ export class CoursesComponent implements OnInit {
         });
       }
     })
+    // get list category
+    this.getListCategory();
   }
   
   dialogAddCourse() {
@@ -39,6 +45,14 @@ export class CoursesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
+  }
+
+  async getListCategory() {
+    this.listCategory = await this.categoryService.getListCategory().toPromise();
+  }
+
+  getCategory() {
+
   }
 
 }
