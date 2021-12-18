@@ -16,7 +16,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

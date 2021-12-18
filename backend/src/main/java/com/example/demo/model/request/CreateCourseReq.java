@@ -1,9 +1,15 @@
 package com.example.demo.model.request;
 
+import com.example.demo.entity.Category;
+import com.example.demo.entity.Section;
+import com.example.demo.model.dto.SectionDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -12,59 +18,21 @@ import lombok.Setter;
 
 public class CreateCourseReq {
 
-    private  int idTeacher;
-    private  int idCategory;
+    private int idTeacher;
+
+    private List<Integer> categoryIds;
+
     private String nameCourse;
+
     private long createdTime;
+
     private Boolean status;
+
     private int level;
 
+    private String imgCover;
 
-    public int getIdTeacher() {
-        return idTeacher;
-    }
+    private String description;
 
-    public void setIdTeacher(int idTeacher) {
-        this.idTeacher = idTeacher;
-    }
-
-    public int getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
-    public String getNameCourse() {
-        return nameCourse;
-    }
-
-    public void setNameCourse(String nameCourse) {
-        this.nameCourse = nameCourse;
-    }
-
-    public long getCreatedTime() {
-        return createdTime;
-    }
-
-    public void setCreatedTime(long createdTime) {
-        this.createdTime = createdTime;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
+    private List<SectionReq> sectionList;
 }

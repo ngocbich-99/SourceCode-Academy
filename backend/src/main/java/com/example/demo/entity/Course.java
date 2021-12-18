@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-
 @Table(name="course")
 public class Course {
     @Id
@@ -23,10 +23,13 @@ public class Course {
     @NotNull
     private int idTeacher;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name="id_category")
-    private Category category;
+
+    @ManyToMany
+    @JoinTable(
+            name = "course_category",
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> category;
 
     @NotNull
     private String nameCourse;
@@ -43,13 +46,13 @@ public class Course {
 
     private String description;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Set<Student> studentSet;
 
     @OneToMany(mappedBy = "course")
     private List<Question> questionList;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Section> sectionSet;
 
     public int getIdTeacher() {
@@ -66,13 +69,9 @@ public class Course {
         this.idCourse = idCourse;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+
+
 
     public String getNameCourse() {
         return nameCourse;

@@ -66,5 +66,6 @@ export interface Lesson {
 export interface ContentLesson {
     type?: string; // video or test
     urlVideo?: string;
-    idTest?: string;
+    idTest?: number;
+    description?: string;
 }

@@ -26,7 +26,6 @@ interface TabLesson {
   urlVideo?: string;
   description?: string;
 }
-
 @Component({
   selector: 'app-dialog-add-course',
   templateUrl: './dialog-add-course.component.html',
@@ -43,27 +42,19 @@ export class DialogAddCourseComponent implements OnInit {
       value: 'Chưa công khai'
     }
   ];
-  selectedStatus = this.listStatus[0].key;
 
   listCategory: Category[] = [];
 
-  listLevel: {name: string, id: string}[] = [
+  listLevel: {name: string, id: number}[] = [
     {
       name: 'Cơ bản',
-      id: '1'
+      id: 1
     },
     {
       name: 'Nâng cao',
-      id: '2'
+      id: 2
     },
   ];
-  selectedLevel = this.listLevel[0].id;
-
-  nameCourseFormControl = new FormControl('', [Validators.required]);
-
-  btnInfo: any;
-  btnContent: any;
-  tabInfo = true;
 
   tabSections: TabSection[] = [
     { 
@@ -119,6 +110,10 @@ export class DialogAddCourseComponent implements OnInit {
     },
   ];
 
+  btnInfo: any;
+  btnContent: any;
+  tabInfo = true;
+
   radioModel = 'Video';
   formInforCourse: FormGroup = new FormGroup({});
   formContentCourse: FormGroup = new FormGroup({});
@@ -166,6 +161,10 @@ export class DialogAddCourseComponent implements OnInit {
     this.btnContent.classList.add('clicked');
     this.btnInfo.classList.remove('clicked');
     this.tabInfo = false;
+
+    // active section 1 lession 1
+    this.tabSections[0].active = true;
+    this.tabSections[0].lessons[0].active = true;
   }
 
   createCourse() {
@@ -253,7 +252,8 @@ export class DialogAddCourseComponent implements OnInit {
     tabSec.lessons.push({
       title: `Bài ${newTabIndex}`,
       disabled: false,
-      removable: true
+      removable: true,
+      nameLesson: ''
     });
   }
 

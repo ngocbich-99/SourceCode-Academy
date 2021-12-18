@@ -72,6 +72,19 @@ button.clicked:before {
 .row-image {
   margin: 24px 0;
 }
+.row-image div {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.row-image img {
+  width: 180px;
+  height: 100px;
+  border: 1px dashed var(--color-primary);
+}
+.row-image input {
+  position: absolute;
+}
 .row-image .btn-add-image {
   width: 180px;
   height: 100px;
