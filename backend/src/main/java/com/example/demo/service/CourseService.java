@@ -18,7 +18,7 @@ public interface CourseService {
 
     CourseDTO createCourse(CreateCourseReq courseReq);
 
-    Course updateCourse(CreateCourseReq req, int id);
+    CourseDTO updateCourse(CreateCourseReq req, int id);
 
     void deleteCourse(int id);
 }

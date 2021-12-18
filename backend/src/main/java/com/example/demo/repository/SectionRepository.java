@@ -12,4 +12,5 @@ import java.util.List;
 public interface SectionRepository extends JpaRepository<Section,Integer> {
 
     public List<Section> findAllByCourse(Course course);
+
 }

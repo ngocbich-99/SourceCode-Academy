@@ -15,6 +15,7 @@ public class LessonDTO {
     private int idLesson;
 
 //    private Test test;
+    private String lessonName;
 
     private String urlVideo;
 

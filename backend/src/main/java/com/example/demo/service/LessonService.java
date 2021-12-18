@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Lesson;
+import com.example.demo.entity.Section;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.request.LessonReq;
 
@@ -11,4 +12,5 @@ public interface LessonService {
 
     public List<LessonDTO> addLessons(List<LessonReq> request,Integer sectionId);
 
+    public List<LessonDTO> getLessons(Section section);
 }

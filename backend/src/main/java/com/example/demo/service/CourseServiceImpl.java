@@ -67,13 +67,14 @@ public class CourseServiceImpl implements CourseService {
     public CourseDTO getCourseDTOById(Integer id) {
         CourseDTO courseDTO = new CourseDTO();
         Course course = this.getCourseById(id);
-        TypeToken<List<SectionDTO>> typeToken = new TypeToken<List<SectionDTO>>(){};
-        courseDTO.setSectionList(mapper.map(sectionRepository.findAllByCourse(course),typeToken.getType()));
+        mapper.map(course, courseDTO);
+        TypeToken<List<SectionDTO>> typeToken = new TypeToken<List<SectionDTO>>() {
+        };
+        courseDTO.setSections(sectionService.findAllByCourse(course));
+        TypeToken<List<CategoryDTO>> categoryTokenType = new TypeToken<List<CategoryDTO>>() {
+        };
+        courseDTO.setCategory(mapper.map(course.getCategorys(), categoryTokenType.getType()));
 
-        TypeToken<List<CategoryDTO>> categoryTokenType = new TypeToken<List<CategoryDTO>>(){};
-        courseDTO.setSectionList(mapper.map(sectionRepository.findAllByCourse(course),typeToken.getType()));
-        courseDTO.setCategory(mapper.map(course.getCategory(),categoryTokenType.getType()));
-        mapper.map(course,courseDTO);
         return courseDTO;
     }
 
@@ -83,18 +84,18 @@ public class CourseServiceImpl implements CourseService {
 
         Course course = new Course();
         if (courseReq.getCategoryIds() != null && !courseReq.getCategoryIds().isEmpty()) {
-            course.setCategory(this.getListCategory(courseReq.getCategoryIds()));
+            course.setCategorys(this.getListCategory(courseReq.getCategoryIds()));
         }
         BeanUtils.copyProperties(courseReq, course);
         course = courseRepository.save(course);
         TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
         };
         CourseDTO courseDTO = new CourseDTO();
-        courseDTO.setCategory(mapper.map(course.getCategory(), typeToken.getType()));
+        courseDTO.setCategory(mapper.map(course.getCategorys(), typeToken.getType()));
         BeanUtils.copyProperties(course, courseDTO);
 
-        if (!courseReq.getSectionList().isEmpty() && courseReq.getSectionList() != null) {
-            courseDTO.setSectionList(this.saveSectionList(courseReq.getSectionList(), course));
+        if (!courseReq.getSections().isEmpty() && courseReq.getSections() != null) {
+            courseDTO.setSections(this.saveSectionList(courseReq.getSections(), course));
         }
 
         return courseDTO;
@@ -102,27 +103,38 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Course updateCourse(CreateCourseReq req, int id) {
-        Optional<Course> course = courseRepository.findById(id);
-        if (course.isPresent()) {
-            course.get().setIdTeacher(req.getIdTeacher());
-            course.get().setLevel(req.getLevel());
-            course.get().setStatus(req.getStatus());
-            List<Category> categories = course.get().getCategory();
-            course.get().setCategory(categories);
-            course.get().setNameCourse(req.getNameCourse());
-            return courseRepository.save(course.get());
+    public CourseDTO updateCourse(CreateCourseReq courseReq, int id) {
+        Course course = courseRepository.findById(id).get();
+
+        mapper.map(courseReq, course);
+        BeanUtils.copyProperties(courseReq, course);
+
+        TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
+        };
+        CourseDTO courseDTO = new CourseDTO();
+        courseDTO.setCategory(mapper.map(course.getCategorys(), typeToken.getType()));
+        BeanUtils.copyProperties(course, courseDTO);
+
+        if (!courseReq.getSections().isEmpty() && courseReq.getSections() != null) {
+            courseDTO.setSections(this.saveSectionList(courseReq.getSections(), course));
         }
+        course = courseRepository.save(course);
+
+        return courseDTO;
         /**
          * must be throw exception
          */
-        return null;
+//        return null;
     }
 
     @Override
     public void deleteCourse(int id) {
         try {
-            courseRepository.deleteById(id);
+            Optional<Course> course = courseRepository.findById(id);
+            if (course.isPresent()) {
+                sectionService.deleteByCourse(course.get());
+                courseRepository.delete(course.get());
+            }
         } catch (Exception ex) {
             throw new InternalException("Db error. Can't delete course");
         }
@@ -134,10 +146,11 @@ public class CourseServiceImpl implements CourseService {
 
     private List<SectionDTO> saveSectionList(List<SectionReq> sectionReqs, Course course) {
         List<SectionDTO> sectionDTOList = new ArrayList<>();
+
         for (SectionReq sectionReq : sectionReqs) {
             SectionDTO sectionDTO = sectionService.addSection(sectionReq, course);
-            if (sectionReq.getListLesson().isEmpty() && sectionReq.getListLesson() != null) {
-                sectionDTO.setListLesson(this.saveLessonList(sectionReq.getListLesson(), sectionDTO.getIdSection()));
+            if (!sectionReq.getLessons().isEmpty() && sectionReq.getLessons() != null) {
+                sectionDTO.setLessons(this.saveLessonList(sectionReq.getLessons(), sectionDTO.getIdSection()));
             }
             sectionDTOList.add(sectionDTO);
         }

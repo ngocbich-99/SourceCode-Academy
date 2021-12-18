@@ -4,8 +4,10 @@ import lombok.Data;
 
 @Data
 public class LessonReq {
+    private int idLesson;
     private long createTime;
     private String description;
     private String urlVideo;
     private int idSection;
+    private String lessonName;
 }

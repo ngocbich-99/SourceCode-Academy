@@ -39,6 +39,6 @@ public class CourseDTO {
 //
 //    private List<Question> questionList;
 
-    private List<SectionDTO> sectionList;
+    private List<SectionDTO> sections;
 
 }

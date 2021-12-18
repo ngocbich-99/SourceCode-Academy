@@ -52,6 +52,12 @@ public class LessonServiceImpl implements LessonService {
         return mapper.map(lessonRepository.saveAll(lessonList),typeTokenDTO.getType());
     }
 
+    @Override
+    public List<LessonDTO> getLessons(Section section) {
+        TypeToken<List<LessonDTO>> typeToken = new TypeToken<List<LessonDTO>>(){};
+        return mapper.map(lessonRepository.findAllBySection(section),typeToken.getType());
+    }
+
 
     private Section findSectionById(Integer id){
         Optional<Section> section = sectionRepository.findById(id);

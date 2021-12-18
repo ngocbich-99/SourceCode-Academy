@@ -46,9 +46,8 @@ public class CourseController {
 
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editCourse(@Valid @RequestBody CreateCourseReq req, @PathVariable int id) {
-        Course course = courseService.updateCourse(req, id);
-        return ResponseEntity.ok(course);
+    public ResponseEntity<CourseDTO> editCourse(@Valid @RequestBody CreateCourseReq req, @PathVariable int id) {
+        return ResponseEntity.ok(courseService.updateCourse(req, id));
     }
 
     @DeleteMapping("/delete/{id}")

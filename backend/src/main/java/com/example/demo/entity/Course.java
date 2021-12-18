@@ -1,13 +1,10 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +26,7 @@ public class Course {
             name = "course_category",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> category;
+    private List<Category> categorys;
 
     @NotNull
     private String nameCourse;
@@ -47,13 +44,13 @@ public class Course {
     private String description;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Student> studentSet;
+    private Set<Student> students;
 
     @OneToMany(mappedBy = "course")
-    private List<Question> questionList;
+    private List<Question> questions;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Set<Section> sectionSet;
+    private Set<Section> sections;
 
     public int getIdTeacher() {
         return idTeacher;
@@ -113,27 +110,27 @@ public class Course {
     }
 
 
-    public Set<Student> getStudentSet() {
-        return studentSet;
+    public Set<Student> getStudents() {
+        return students;
     }
 
-    public void setStudentSet(Set<Student> studentSet) {
-        this.studentSet = studentSet;
+    public void setStudents(Set<Student> studentSet) {
+        this.students = studentSet;
     }
 
-    public List<Question> getQuestionList() {
-        return questionList;
+    public List<Question> getQuestions() {
+        return questions;
     }
 
-    public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
+    public void setQuestions(List<Question> questionList) {
+        this.questions = questionList;
     }
 
-    public Set<Section> getSectionSet() {
-        return sectionSet;
+    public Set<Section> getSections() {
+        return sections;
     }
 
-    public void setSectionSet(Set<Section> sectionSet) {
-        this.sectionSet = sectionSet;
+    public void setSections(Set<Section> sectionSet) {
+        this.sections = sectionSet;
     }
 }

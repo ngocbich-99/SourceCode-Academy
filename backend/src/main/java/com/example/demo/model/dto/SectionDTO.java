@@ -15,5 +15,5 @@ public class SectionDTO {
 
     private String nameSection;
 
-    private List<LessonDTO> listLesson;
+    private List<LessonDTO> lessons;
 }

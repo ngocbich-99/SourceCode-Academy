@@ -11,7 +11,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-
 public class Lesson {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
@@ -21,6 +20,8 @@ public class Lesson {
     @ManyToOne
     @JoinColumn(name="id_section")
     private Section section;
+
+    private String lessonName;
 
     @OneToOne
     private Test test;

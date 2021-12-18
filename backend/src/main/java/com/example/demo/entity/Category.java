@@ -1,18 +1,11 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -35,6 +28,6 @@ public class Category {
 //    private Set<Course> courseSet;
 
 //    @Fetch(FetchMode.JOIN) fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true
-    @ManyToMany(mappedBy = "category")
+    @ManyToMany(mappedBy = "categorys")
     private List<Course> courses;
 }

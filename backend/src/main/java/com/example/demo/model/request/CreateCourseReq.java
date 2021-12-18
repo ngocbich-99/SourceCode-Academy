@@ -15,8 +15,9 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class CreateCourseReq {
+
+    private Integer idCourse;
 
     private int idTeacher;
 
@@ -34,5 +35,5 @@ public class CreateCourseReq {
 
     private String description;
 
-    private List<SectionReq> sectionList;
+    private List<SectionReq> sections;
 }
