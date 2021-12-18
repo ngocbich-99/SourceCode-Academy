@@ -36,5 +36,8 @@ export class CourseService {
     // edit course
 
     // delete course
+    deleteCourse(id?: number) {
+        return this.http.delete(env.backendBaseUrl + `/api/course/delete/${id}`);
+    }
 
 }

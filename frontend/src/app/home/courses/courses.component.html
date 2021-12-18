@@ -32,7 +32,10 @@
                     </mat-nav-list>
                 </mat-drawer>
                 <mat-drawer-content>
-                    <app-course-category-item></app-course-category-item>
+                    <app-course-category-item
+                    *ngIf="listCourseAll.length > 0"
+                    [courses]="listCourseAll"
+                    ></app-course-category-item>
                 </mat-drawer-content>
             </mat-drawer-container>
         </mat-tab>
@@ -76,7 +79,8 @@
                     </mat-nav-list>
                 </mat-drawer>
                 <mat-drawer-content>
-                    <app-course-category-item></app-course-category-item>
+                    <app-course-category-item
+                    ></app-course-category-item>
                 </mat-drawer-content>
             </mat-drawer-container>
         </mat-tab>

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
 import { CategoryService } from 'src/app/services/category.service';
 import { CourseService } from 'src/app/services/course.service';
+import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { Category } from '../../category/category.mode';
 import { CourseRequest, Lesson, Section } from '../course.model';
 
@@ -122,7 +123,8 @@ export class DialogAddCourseComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<DialogAddCourseComponent>,
     private categoryService: CategoryService,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private toastCodexService: ToastServiceCodex
   ) { }
 
   ngOnInit(): void {
@@ -172,10 +174,10 @@ export class DialogAddCourseComponent implements OnInit {
 
     // truyen info course o form vao
     const courseReq: CourseRequest = {
-      categoryIds: [Number(this.formInforCourse.value.idCategory)],
+      categoryIds: [this.formInforCourse.value.idCategory],
       createdTime: moment().valueOf(),
       description: this.formInforCourse.value.description,
-      imgCover: this.formInforCourse.value.imgCover,
+      imgCover: this.urlImg,
       level: this.formInforCourse.value.level,
       nameCourse: this.formInforCourse.value.nameCourse,
     }
@@ -215,6 +217,10 @@ export class DialogAddCourseComponent implements OnInit {
     
     this.courseService.createCourse(courseReq).subscribe(resData => {
       console.log(resData);
+      this.toastCodexService.showToast('Tạo mới khoá học thành công!', StatusToast.SUCCESS);
+    }, error => {
+      console.log('error add course', error);
+      this.toastCodexService.showToast('Tạo mới khoá học thất bại!', StatusToast.ERROR);
     });
     // toast tao khoa hoc thanh cong
   }
@@ -227,6 +233,7 @@ export class DialogAddCourseComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
         this.urlImg = event.target.result;
+        console.log(this.urlImg);
       }
     }
   }
