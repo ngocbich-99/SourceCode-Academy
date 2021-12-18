@@ -45,11 +45,11 @@ export class DialogAddQuestionComponent implements OnInit {
   selectCategory(event: any) {
     console.log(event);
     
-    const courses = this.listCategory.find(category => category.idCategory === event.value)?.courses;
-    if (!!courses) {
-      this.listCourse = courses;
-    } 
-    console.log(this.listCourse);
+    // const courses = this.listCategory.find(category => category.idCategory === event.value)?.courses;
+    // if (!!courses) {
+    //   this.listCourse = courses;
+    // } 
+    // console.log(this.listCourse);
   }
 
   selectCourse(event: any) {

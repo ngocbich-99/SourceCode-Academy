@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import * as moment from 'moment';
 import { CategoryService } from 'src/app/services/category.service';
+import { CourseService } from 'src/app/services/course.service';
 import { Category } from '../../category/category.mode';
+import { CourseRequest, Lesson, Section } from '../course.model';
 
 interface TabSection {
   title: string;
-  content: any;
   removable: boolean;
   disabled: boolean;
   active?: boolean;
@@ -16,7 +18,6 @@ interface TabSection {
 }
 interface TabLesson {
   title: string;
-  content: any;
   removable: boolean;
   disabled: boolean;
   active?: boolean;
@@ -42,6 +43,8 @@ export class DialogAddCourseComponent implements OnInit {
     }
   ];
 
+  listCategory: Category[] = [];
+
   listLevel: {name: string, id: number}[] = [
     {
       name: 'Cơ bản',
@@ -56,7 +59,6 @@ export class DialogAddCourseComponent implements OnInit {
   tabSections: TabSection[] = [
     { 
       title: 'Phần 1',
-      content: 'Phần 1 content', 
       removable: false, 
       disabled: false,
       active: true,
@@ -64,7 +66,6 @@ export class DialogAddCourseComponent implements OnInit {
       lessons: [
         { 
           title: 'Bài 1',
-          content: `Bai 1 content`, 
           removable: false, 
           disabled: false,
           active: true,
@@ -74,7 +75,6 @@ export class DialogAddCourseComponent implements OnInit {
         },
         { 
           title: 'Bài 2',
-          content: `Bai 2 content`, 
           removable: true, 
           disabled: false,
           nameLesson: '',
@@ -85,14 +85,12 @@ export class DialogAddCourseComponent implements OnInit {
     },
     { 
       title: 'Phần 2',
-      content: 'Phần 2 content', 
       removable: true, 
       disabled: false,
       nameSection: '', 
       lessons: [
         { 
           title: 'Bài 1',
-          content: `Bai 1 content`, 
           removable: false, 
           disabled: false,
           active: true,
@@ -102,7 +100,6 @@ export class DialogAddCourseComponent implements OnInit {
         },
         { 
           title: 'Bài 2',
-          content: `Bai 2 content`, 
           removable: true, 
           disabled: false,
           nameLesson: '',
@@ -118,16 +115,14 @@ export class DialogAddCourseComponent implements OnInit {
   tabInfo = true;
 
   radioModel = 'Video';
-
-  listCategory: Category[] = [];
   formInforCourse: FormGroup = new FormGroup({});
   formContentCourse: FormGroup = new FormGroup({});
-
   urlImg = '';
-
+  
   constructor(
     public dialogRef: MatDialogRef<DialogAddCourseComponent>,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
@@ -144,7 +139,7 @@ export class DialogAddCourseComponent implements OnInit {
 
   createForm() {
     this.formInforCourse = new FormGroup({
-      'imgPath': new FormControl('', Validators.required),
+      'imgCover': new FormControl('', Validators.required),
       'nameCourse': new FormControl('', Validators.required),
       'idCategory': new FormControl('', Validators.required),
       'level': new FormControl('', Validators.required),
@@ -171,19 +166,79 @@ export class DialogAddCourseComponent implements OnInit {
     this.tabSections[0].active = true;
     this.tabSections[0].lessons[0].active = true;
   }
-  
+
+  createCourse() {
+    this.dialogRef.close();
+    console.log(this.formInforCourse);
+    console.log(this.tabSections);
+
+    // truyen info course o form vao
+    const courseReq: CourseRequest = {
+      categoryIds: [this.formInforCourse.value.idCategory],
+      createdTime: moment().valueOf(),
+      description: this.formInforCourse.value.description,
+      imgCover: this.formInforCourse.value.imgCover,
+      level: this.formInforCourse.value.level,
+      nameCourse: this.formInforCourse.value.nameCourse,
+    }
+    // doi type cua status cho phu hop voi body request api
+    if (this.formInforCourse.value.status === 'public') {
+      courseReq.status = true;
+    } else if (this.formInforCourse.value.status === 'private'){
+      courseReq.status = false;
+    }
+
+    // truyen list section cho course
+    const sectionList: Section[] = [];
+
+    this.tabSections.forEach(section => {
+      const sectionReq: Section = {
+        sectionName: section.nameSection,
+        createdTime: moment().valueOf(),
+        listLesson: section.lessons.map(lesson => {
+          return {
+            nameLesson: lesson.nameLesson,
+            description: lesson.description,
+            urlVideo: lesson.urlVideo,
+            createdTime: moment().valueOf(),
+          }
+        })
+      };
+      if (section.nameSection !== '') {
+        sectionReq.listLesson = sectionReq.listLesson?.filter(lesson => lesson.nameLesson !== '');
+        sectionList.push(sectionReq);
+      }
+    });
+
+    courseReq.sectionList = sectionList;
+    this.courseService.createCourse(courseReq).subscribe(resData => {
+      console.log(resData);
+    });
+    // toast tao khoa hoc thanh cong
+  }
+
+
+  // function upload image cover
+  onSelectImg(event: any) {
+    if (event.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = (event: any) => {
+        this.urlImg = event.target.result;
+      }
+    }
+  }
+
   addTabSection(): void {
     const newTabIndex = this.tabSections.length + 1;
     this.tabSections.push({
       title: `Phần ${newTabIndex}`,
-      content: `Dynamic content ${newTabIndex}`,
       disabled: false,
       removable: true,
       nameSection: '',
       lessons: [
         { 
           title: 'Bài 1',
-          content: `Bai 1 content`, 
           removable: false, 
           disabled: false,
           active: true
@@ -192,11 +247,10 @@ export class DialogAddCourseComponent implements OnInit {
     });
   }
 
-  addTabLesson(tabSection: TabSection) {
-    const newTabIndex = tabSection.lessons.length + 1;
-    tabSection.lessons.push({
+  addTabLesson(tabSec: TabSection) {
+    const newTabIndex = tabSec.lessons.length + 1;
+    tabSec.lessons.push({
       title: `Bài ${newTabIndex}`,
-      content: `Dynamic content ${newTabIndex}`,
       disabled: false,
       removable: true,
       nameLesson: ''
@@ -208,32 +262,16 @@ export class DialogAddCourseComponent implements OnInit {
     console.log('Remove Tab section');
   }
 
-  removeTabLesson(tabLesson: TabLesson, tabSec: TabSection) {
-    tabSec.lessons.splice(tabSec.lessons.indexOf(tabLesson), 1);
+  removeTabLesson(tabLess: TabLesson, tabSec: TabSection) {
+    tabSec.lessons.splice(tabSec.lessons.indexOf(tabLess), 1);
     console.log('Remove Tab lesson');
+  }
+
+  openCategory() {
+    window.open('/home/category?openDialog=true', '_blank');
   }
 
   onCancel() {
     this.dialogRef.close();
-  }
-
-  createCourse() {
-    this.dialogRef.close();
-    console.log(this.formInforCourse);
-    console.log(this.tabSections);
-  }
-
-
-  // function upload image cover
-  onSelectImg(event: any) {
-    if (event.target.files) {
-      var reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      reader.onload = (event: any) => {
-        console.log('event onload reader', event);
-        
-        this.urlImg = event.target.result;
-      }
-    }
   }
 }
