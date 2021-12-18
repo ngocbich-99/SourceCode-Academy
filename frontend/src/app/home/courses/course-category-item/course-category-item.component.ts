@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { CourseService } from 'src/app/services/course.service';
+import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
+import { Course } from '../course.model';
 
 @Component({
   selector: 'app-course-category-item',
@@ -8,29 +11,38 @@ import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/de
   styleUrls: ['./course-category-item.component.css']
 })
 export class CourseCategoryItemComponent implements OnInit {
-  animal: string = '';
-  name: string = '';
-
+  @Input() courses!: Course[];
+  
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private courseService: CourseService,
+    private toastServiceCodex: ToastServiceCodex
   ) { }
 
   ngOnInit(): void {
+    console.log('ngOnInit', this.courses);
   }
 
   updateCourse() {
     
   }
-  deleteCourse() {
+  deleteCourse(id?: number) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '520px',
       height: '252px',
-      data: {name: this.name, animal: this.animal},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      console.log('The dialog was closed', result);
+      if (result) {
+        this.courseService.deleteCourse(id).subscribe(resData => {
+          console.log(resData);
+          this.toastServiceCodex.showToast('Xoá khoá học thành công!', StatusToast.SUCCESS);
+        }, error => {
+          console.log(error);
+          this.toastServiceCodex.showToast('Xoá khoá học thất bại!', StatusToast.ERROR);
+        })
+      }
     });
   }
 

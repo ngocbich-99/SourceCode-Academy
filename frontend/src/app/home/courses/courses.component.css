@@ -45,7 +45,7 @@
 /* ========================== */
 /* section sidebar category */
 mat-drawer-container {
-  height: 500px;
+  height: 100%;
 }
 mat-drawer-content {
   background: #fff;

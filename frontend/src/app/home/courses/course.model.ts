@@ -6,18 +6,15 @@ export interface Course {
     idCourse?: number;
     idTeacher?: number;
     nameCourse?: string;
-    sections?: Section[];
     createdTime?: number;
     description?: string;
     imgCover?: string;
     level?: number;
     status?: boolean; // public or private
-    categoryIds?: number[];
 
     // get list course ve se chua list category
     category?: Category[]; 
-    questionList?: Question[];
-    studentSet?: Student[];
+    sections?: Section[];
 }
 
 export interface CourseRequest {
