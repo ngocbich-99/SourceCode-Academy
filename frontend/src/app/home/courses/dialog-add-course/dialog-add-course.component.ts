@@ -169,12 +169,10 @@ export class DialogAddCourseComponent implements OnInit {
 
   createCourse() {
     this.dialogRef.close();
-    console.log(this.formInforCourse);
-    console.log(this.tabSections);
 
     // truyen info course o form vao
     const courseReq: CourseRequest = {
-      categoryIds: [this.formInforCourse.value.idCategory],
+      categoryIds: [Number(this.formInforCourse.value.idCategory)],
       createdTime: moment().valueOf(),
       description: this.formInforCourse.value.description,
       imgCover: this.formInforCourse.value.imgCover,
@@ -195,9 +193,10 @@ export class DialogAddCourseComponent implements OnInit {
       const sectionReq: Section = {
         sectionName: section.nameSection,
         createdTime: moment().valueOf(),
-        listLesson: section.lessons.map(lesson => {
+        lessons: section.lessons.map(lesson => {
           return {
-            nameLesson: lesson.nameLesson,
+            lessonName: lesson.nameLesson,
+            // type: this.radioModel,
             description: lesson.description,
             urlVideo: lesson.urlVideo,
             createdTime: moment().valueOf(),
@@ -205,12 +204,15 @@ export class DialogAddCourseComponent implements OnInit {
         })
       };
       if (section.nameSection !== '') {
-        sectionReq.listLesson = sectionReq.listLesson?.filter(lesson => lesson.nameLesson !== '');
+        sectionReq.lessons = sectionReq.lessons?.filter(lesson => lesson.lessonName !== '');
         sectionList.push(sectionReq);
       }
     });
 
-    courseReq.sectionList = sectionList;
+    courseReq.sections = sectionList;
+
+    console.log(courseReq);
+    
     this.courseService.createCourse(courseReq).subscribe(resData => {
       console.log(resData);
     });

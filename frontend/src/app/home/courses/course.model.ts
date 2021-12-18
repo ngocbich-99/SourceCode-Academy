@@ -6,13 +6,13 @@ export interface Course {
     idCourse?: number;
     idTeacher?: number;
     nameCourse?: string;
-    sectionList?: Section[];
+    sections?: Section[];
     createdTime?: number;
     description?: string;
     imgCover?: string;
     level?: number;
     status?: boolean; // public or private
-    categoryIds?: string[];
+    categoryIds?: number[];
 
     // get list course ve se chua list category
     category?: Category[]; 
@@ -21,7 +21,7 @@ export interface Course {
 }
 
 export interface CourseRequest {
-    categoryIds?: string[];
+    categoryIds?: number[];
     createdTime?: number;
     description?: string;
     idCourse?: number;
@@ -29,7 +29,7 @@ export interface CourseRequest {
     imgCover?: string;
     level?: number;
     nameCourse?: string;
-    sectionList?: Section[];
+    sections?: Section[];
     status?: boolean; // public or private
 }
 
@@ -46,15 +46,16 @@ export interface CourseResponse {
     sectionList?: Section[];
 }
 export interface Section {
+    courseId?: number;
     idSection?: number;
     sectionName?: string;
     createdTime?: number;
-    listLesson?: Lesson[];
+    lessons?: Lesson[];
 }
 
 export interface Lesson {
     idLesson?: number;
-    nameLesson?: string;
+    lessonName?: string;
     idSection?: number;
     createdTime?: number;
     type?: string; // video or test
