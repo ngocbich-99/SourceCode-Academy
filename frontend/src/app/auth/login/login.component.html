@@ -4,18 +4,26 @@
   <section class="card-login" fxLayout="column">
     <div class="form-login">
       <h2>Đăng nhập</h2>
-      <form fxLayout="column" fxLayoutAlign="center center">
+      <form [formGroup]="loginForm" fxLayout="column" fxLayoutAlign="center center">
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input type="email" matInput placeholder="Your email" ngModel name="email" email required #emailInput="ngModel">
-          <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
-          <mat-error *ngIf="!emailInput.hasError('required')">E-Mail is invalid.</mat-error>
+          <input 
+          type="email" 
+          matInput 
+          placeholder="Địa chỉ email" 
+          formControlName="email">
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Nhập địa chỉ email!</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Địa chỉ email không hợp lệ!</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" hintLabel="Dài hơn 6 ký tự">
           <mat-label>Mật khẩu</mat-label>
-          <input type="password" matInput placeholder="Your password" ngModel name="password" required minlength="6" #pwInput="ngModel">
-          <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
-          <mat-error>Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
+          <input
+          type="password" 
+          matInput 
+          placeholder="Mật khẩu" 
+          formControlName="password">
+          <mat-hint align="end">{{ loginForm.get('password')?.value.length }} / 6</mat-hint>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
         </mat-form-field>
         <button (click)="onLogin()" mat-button class="codex-btn-primary btn-big">Đăng nhập</button>
       </form>

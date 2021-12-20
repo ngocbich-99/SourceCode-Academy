@@ -1,12 +1,17 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Account } from '../home/accounts/account.model';
+import {environment as env} from 'src/environments/environment';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   loggedIn = false;
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   isAuthenticated() {
     const promise = new Promise(
@@ -17,6 +22,10 @@ export class AuthService {
       }
     );
     return promise;
+  }
+
+  signUp(accountReq: Account): Observable<any> {
+    return this.http.post<any>(env.backendBaseUrl + '/api/accounts', accountReq);
   }
 
   login() {
