@@ -3,7 +3,8 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Course;
 import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.request.CreateCourseReq;
+import com.example.demo.model.request.course.CreateCourseRequest;
+import com.example.demo.model.request.course.UpdateCourseRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +13,13 @@ import java.util.List;
 public interface CourseService {
     List<CourseDTO> getAll();
 
-    Course getCourseById(int id);
+    Course getCourseById(Long id);
 
-    CourseDTO getCourseDTOById(Integer id);
+    CourseDTO getCourseDTOById(Long id);
 
-    CourseDTO createCourse(CreateCourseReq courseReq);
+    CourseDTO createCourse(CreateCourseRequest request);
 
-    CourseDTO updateCourse(CreateCourseReq req, int id);
+    CourseDTO updateCourse(UpdateCourseRequest request);
 
-    void deleteCourse(int id);
+    void deleteCourse(Long id);
 }

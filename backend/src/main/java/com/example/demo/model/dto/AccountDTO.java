@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class AccountDto {
-    private int idAccount;
+public class AccountDTO {
+    private Long id;
 
     private String email;
 
@@ -23,7 +23,7 @@ public class AccountDto {
 
     private String role;
 
-    private long createdTime;
+    private Long createdTime;
 
     private Boolean isActivate;
 }

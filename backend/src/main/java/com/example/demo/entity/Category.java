@@ -1,33 +1,31 @@
 package com.example.demo.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int idCategory;
-
-    private long createdTime;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @NotNull
-    private String nameCategory;
+    private String name;
 
     @Size(min = 3, max = 4000)
     @NotNull
     private String description;
 
-//    @OneToMany
-//    private Set<Course> courseSet;
+    private Long courseCount;
 
-//    @Fetch(FetchMode.JOIN) fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true
-    @ManyToMany(mappedBy = "categorys")
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     private List<Course> courses;
 }

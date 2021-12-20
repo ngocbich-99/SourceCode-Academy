@@ -9,12 +9,12 @@ import java.util.List;
 @Data
 public class CategoryDTO {
 
-    private int idCategory;
+    private Long id;
 
-    private long createdTime;
-
-    private String nameCategory;
+    private String name;
 
     private String description;
+
+    private Integer courseCount;
 
 }

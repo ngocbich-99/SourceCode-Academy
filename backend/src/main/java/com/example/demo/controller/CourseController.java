@@ -1,16 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Category;
-import com.example.demo.entity.Course;
-import com.example.demo.model.dto.AccountDto;
 import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.request.CategoryReq;
-import com.example.demo.model.request.CreateAccountReq;
-import com.example.demo.model.request.CreateCourseReq;
+import com.example.demo.model.request.course.CreateCourseRequest;
+import com.example.demo.model.request.course.UpdateCourseRequest;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -32,26 +27,26 @@ public class CourseController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<CourseDTO> getCourseById(@PathVariable int id) {
+    public ResponseEntity<CourseDTO> getCourseById(@PathVariable Long id) {
         CourseDTO course = courseService.getCourseDTOById(id);
         return ResponseEntity.ok(course);
     }
 
 
     @PostMapping
-    public ResponseEntity<CourseDTO> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
+    public ResponseEntity<CourseDTO> createCourse(@Valid @RequestBody CreateCourseRequest courseReq) {
         return ResponseEntity.ok(courseService.createCourse(courseReq));
     }
 
 
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<CourseDTO> editCourse(@Valid @RequestBody CreateCourseReq req, @PathVariable int id) {
-        return ResponseEntity.ok(courseService.updateCourse(req, id));
+    public ResponseEntity<CourseDTO> editCourse(@Valid @RequestBody UpdateCourseRequest body, @PathVariable int id) {
+        return ResponseEntity.ok(courseService.updateCourse(body));
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCourse(@PathVariable int id) {
+    public ResponseEntity<?> deleteCourse(@PathVariable Long id) {
         courseService.deleteCourse(id);
         return ResponseEntity.ok("Delete category success");
     }

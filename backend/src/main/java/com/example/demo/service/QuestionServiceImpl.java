@@ -3,8 +3,8 @@ package com.example.demo.service;
 import com.example.demo.entity.Course;
 import com.example.demo.entity.Question;
 import com.example.demo.exception.NotFoundException;
-import com.example.demo.model.mapper.QuestionMapper;
-import com.example.demo.model.request.QuestionReq;
+import com.example.demo.model.request.question.CreateQuestionRequest;
+import com.example.demo.model.request.question.UpdateQuestionRequest;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.QuestionRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
@@ -29,7 +29,7 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public Question getQuestionById(int id) {
+    public Question getQuestionById(Long id) {
         Optional<Question> question = questionRepository.findById(id);
         if (!question.isPresent()) {
             throw new NotFoundException("Not found question");
@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public Question createQuestion(QuestionReq questionReq) {
+    public Question createQuestion(CreateQuestionRequest createQuestionRequest) {
 //        Question rs = questionRepository.findByContent(questionReq.getContent());
 //        if (rs != null) {
 //            throw new InternalException("Question is already in db");
@@ -49,15 +49,15 @@ public class QuestionServiceImpl implements QuestionService{
 
 //        convert questionReq => question
         Question question = new Question();
-        question.setContent(questionReq.getContent());
-        question.setAns1(questionReq.getAns1());
-        question.setAns2(questionReq.getAns2());
-        question.setAns3(questionReq.getAns3());
-        question.setAns4(questionReq.getAns4());
-        question.setCorrectAns(questionReq.getCorrectAns());
-        question.setCreatedTime(questionReq.getCreatedTime());
+        question.setContent(createQuestionRequest.getContent());
+        question.setAns1(createQuestionRequest.getAns1());
+        question.setAns2(createQuestionRequest.getAns2());
+        question.setAns3(createQuestionRequest.getAns3());
+        question.setAns4(createQuestionRequest.getAns4());
+        question.setCorrectAns(createQuestionRequest.getCorrectAns());
+        question.setCreatedTime(createQuestionRequest.getCreatedTime());
 
-        Optional<Course> course = courseRepository.findById(questionReq.getIdCourse());
+        Optional<Course> course = courseRepository.findById(createQuestionRequest.getCourseId());
 
         if (!course.isPresent()) {
             throw new NotFoundException("Course not found");
@@ -71,12 +71,12 @@ public class QuestionServiceImpl implements QuestionService{
     }
 
     @Override
-    public Question updateQuestion(QuestionReq questionReq, int id) {
+    public Question updateQuestion(UpdateQuestionRequest request){
         return null;
     }
 
     @Override
-    public void deleteQuestion(int id) {
+    public void deleteQuestion(Long id) {
 //         tim bai kiem tra theo id cau hoi -> neu !== null thi ko duoc xoa
 
         Optional<Question> question = questionRepository.findById(id);

@@ -9,11 +9,11 @@ import java.util.List;
 @Data
 public class SectionDTO {
 
-    private int idSection;
+    private Long id;
 
-    private long createdTime;
+    private Long createdTime;
 
-    private String nameSection;
+    private String name;
 
     private List<LessonDTO> lessons;
 }

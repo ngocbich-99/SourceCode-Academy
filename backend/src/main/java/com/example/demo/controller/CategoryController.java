@@ -2,7 +2,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.entity.Category;
-import com.example.demo.model.request.CategoryReq;
+import com.example.demo.model.request.category.CreateCategoryRequest;
+import com.example.demo.model.request.category.UpdateCategoryRequest;
 import com.example.demo.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,28 +31,28 @@ public class CategoryController {
 
 //    @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryById(@PathVariable int id) {
+    public ResponseEntity<?> getCategoryById(@PathVariable Long id) {
         Category category = categoryService.getCategoryById(id);
         return ResponseEntity.ok(category);
     }
 
 //    @CrossOrigin
     @PostMapping("/create")
-    public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryReq categoryReq) {
-        Category category = categoryService.createCategory(categoryReq);
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody CreateCategoryRequest body) {
+        Category category = categoryService.createCategory(body);
         return ResponseEntity.ok(category);
     }
 
 //    @CrossOrigin
     @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editCategory(@Valid @RequestBody CategoryReq req, @PathVariable int id) {
-        Category category = categoryService.updateCategory(req, id);
+    public ResponseEntity<?> editCategory(@Valid @RequestBody UpdateCategoryRequest body, @PathVariable int id) {
+        Category category = categoryService.updateCategory(body);
         return ResponseEntity.ok(category);
     }
 
 //    @CrossOrigin
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable int id) {
+    public ResponseEntity<?> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
         return ResponseEntity.ok("Delete category success");
     }

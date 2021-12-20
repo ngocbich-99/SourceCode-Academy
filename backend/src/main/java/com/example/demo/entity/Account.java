@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,11 +20,15 @@ import java.util.Set;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int idAccount;
+    private Long id;
 
     @NotNull
     @Column(unique = true)
     private String email;
+
+
+    @NotEmpty
+    private String fullName;
 
     @NotNull
     private String password;
@@ -35,13 +40,16 @@ public class Account {
 
     private Boolean isActivate;
 
-    @Column(name="role", columnDefinition = "varchar(255) default 'HOC_VIEN'")
+    @Column(name="role", columnDefinition = "varchar(25) default 'HOC_VIEN'")
     private String role;
 
     private long createdTime;
 
     @OneToMany
-    private Set<Comment> commentSet;
+    private List<Comment> comments;
+
+    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
+    Set<LessonPass> lessonPasses;
 
     @Transient
     public List<GrantedAuthority> getAuthority() {

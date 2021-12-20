@@ -14,16 +14,16 @@ import java.util.List;
 public class Section {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int idSection;
+    private Long id;
+
+    private long createdTime;
+
+    private String name;
 
     @ManyToOne
     private Course course;
 
-    private long createdTime;
-
-    private String nameSection;
-
     @OneToMany(mappedBy = "section")
-    private List<Lesson> listLesson;
+    private List<Lesson> lessons;
 
 }

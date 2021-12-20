@@ -1,25 +1,25 @@
 package com.example.demo.service;
 
-import com.example.demo.model.dto.AccountDto;
-import com.example.demo.model.request.CreateAccountReq;
-import com.example.demo.model.request.UpdateAccountReq;
+import com.example.demo.model.dto.AccountDTO;
+import com.example.demo.model.request.account.CreateAccountRequest;
+import com.example.demo.model.request.account.UpdateAccountRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface AccountService {
-    public List<AccountDto> getListAccount();
+    public List<AccountDTO> getListAccount();
 
-    public AccountDto getAccountById(int id);
+    public AccountDTO getAccountById(Long id);
 
-    public AccountDto createAcc(CreateAccountReq accountReq);
+    public AccountDTO createAcc(CreateAccountRequest accountReq);
 
-    public AccountDto updateAcc(UpdateAccountReq accountReq, int id);
+    public AccountDTO updateAcc(UpdateAccountRequest request);
 
-    public void deleteAcc(int id);
+    public void deleteAcc(Long id);
 
-    public List<AccountDto> getAccountActivate();
+    public List<AccountDTO> getAccountActivate();
 
-    public List<AccountDto> getAccountLock();
+    public List<AccountDTO> getAccountLock();
 }

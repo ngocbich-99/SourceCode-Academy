@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface LessonRepository extends JpaRepository<Lesson,Integer> {
+public interface LessonRepository extends JpaRepository<Lesson,Long> {
 
     public List<Lesson> findAllBySection(Section section);
 }

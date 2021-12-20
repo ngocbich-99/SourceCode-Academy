@@ -1,21 +1,14 @@
-package com.example.demo.model.request;
+package com.example.demo.model.request.account;
 
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class UpdateAccountReq {
-    @NotNull(message = "Email is required")
+@Data
+public class CreateAccountRequest {
     @NotEmpty(message = "Email is required")
     @ApiModelProperty(
             example="ngocbich4686@gmail.com",
@@ -24,13 +17,13 @@ public class UpdateAccountReq {
     )
     private String email;
 
-//    @NotNull(message = "Password is required")
-//    @ApiModelProperty(
-//            example="123abc",
-//            notes="Password can't be empty",
-//            required=true
-//    )
-//    private String password;
+    @NotEmpty(message = "Password is required")
+    @ApiModelProperty(
+            example="123abc",
+            notes="Password can't be empty",
+            required=true
+    )
+    private String password;
 
     @NotNull(message = "User name is required")
     @ApiModelProperty(
@@ -44,7 +37,11 @@ public class UpdateAccountReq {
 
     private String role;
 
-//    private Date createdTime;
+    @ApiModelProperty(
+            example = "HOC_VIEN",
+            notes = "HOC_VIEN is default role"
+    )
+    private Long createdTime;
 
     private Boolean isActivate;
 }
