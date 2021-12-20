@@ -1,4 +1,4 @@
-import { Category } from "../category/category.mode";
+import { Category } from "../category/category.model";
 
 export interface Question {
     stt?: number;

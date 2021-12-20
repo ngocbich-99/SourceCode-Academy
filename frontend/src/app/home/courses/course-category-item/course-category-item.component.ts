@@ -4,6 +4,7 @@ import { CourseService } from 'src/app/services/course.service';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 import { Course } from '../course.model';
+import { DialogInfoCourseComponent } from '../dialog-info-course/dialog-info-course.component';
 
 @Component({
   selector: 'app-course-category-item',
@@ -23,8 +24,19 @@ export class CourseCategoryItemComponent implements OnInit {
     console.log('ngOnInit', this.courses);
   }
 
-  updateCourse() {
+  updateCourse(course: Course) {
+    // get course detail
+    const dialogRef = this.dialog.open(DialogInfoCourseComponent, {
+      width: '1041px',
+      height: '646px',
+      data: {courseSelected: course}
+    });
+    console.log(course);
     
+    dialogRef.afterClosed().subscribe(rs => {
+      console.log(rs);
+    })
+    // update course
   }
   deleteCourse(id?: number) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {

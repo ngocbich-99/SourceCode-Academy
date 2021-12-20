@@ -3,7 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { CourseService } from 'src/app/services/course.service';
-import { Category } from '../category/category.mode';
+import { Category } from '../category/category.model';
 import { Course } from './course.model';
 import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.component';
 

@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
-import { Category } from '../../category/category.mode';
+import { Category } from '../../category/category.model';
 import { Course } from '../../courses/course.model';
 
 @Component({

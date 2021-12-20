@@ -20,7 +20,10 @@ export class CourseService {
         return this.http.get<Course[]>(env.backendBaseUrl + '/api/course/list');
     }
 
-    // get list course by id
+    // get course by id
+    getCourse(id?: number): Observable<Course> {
+        return this.http.get<Course>(env.backendBaseUrl + `/api/course/${id}`);
+    }
 
     // get info course
 

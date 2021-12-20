@@ -3,7 +3,7 @@ import {Location} from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
-import { Category } from '../category.mode';
+import { Category } from '../category.model';
 import { ToastrService } from 'ngx-toastr';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 

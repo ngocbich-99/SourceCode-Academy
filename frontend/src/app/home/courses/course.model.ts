@@ -1,4 +1,4 @@
-import { Category } from "../category/category.mode";
+import { Category } from "../category/category.model";
 import { Question } from "../questions/question.model";
 import { Student } from "../student-registered/student.model";
 
@@ -55,13 +55,6 @@ export interface Lesson {
     lessonName?: string;
     idSection?: number;
     createdTime?: number;
-    type?: string; // video or test
-    urlVideo?: string;
-    idTest?: number;
-    description?: string;
-}
-
-export interface ContentLesson {
     type?: string; // video or test
     urlVideo?: string;
     idTest?: number;

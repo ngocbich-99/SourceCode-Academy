@@ -5,10 +5,10 @@ import * as moment from 'moment';
 import { CategoryService } from 'src/app/services/category.service';
 import { CourseService } from 'src/app/services/course.service';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
-import { Category } from '../../category/category.mode';
+import { Category } from '../../category/category.model';
 import { CourseRequest, Lesson, Section } from '../course.model';
 
-interface TabSection {
+export interface TabSection {
   title: string;
   removable: boolean;
   disabled: boolean;
@@ -17,7 +17,7 @@ interface TabSection {
   nameSection?: string; 
   lessons: TabLesson[];
 }
-interface TabLesson {
+export interface TabLesson {
   title: string;
   removable: boolean;
   disabled: boolean;

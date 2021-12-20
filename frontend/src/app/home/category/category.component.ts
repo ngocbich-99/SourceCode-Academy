@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { CategoryService } from 'src/app/services/category.service';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
-import { Category } from './category.mode';
+import { Category } from './category.model';
 import { DialogAddCategoryComponent } from './dialog-add-category/dialog-add-category.component';
 
 @Component({
