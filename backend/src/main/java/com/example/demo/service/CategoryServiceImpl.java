@@ -39,13 +39,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategoryById(Long id) {
+    public CategoryDTO getCategoryById(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
-
         if (!category.isPresent()) {
             throw new NotFoundException("Not found category");
         }
-        return category.get();
+        return this.convertToCategoryDTO(category.get());
     }
 
     @Override
@@ -54,42 +53,23 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category createCategory(CreateCategoryRequest request) {
+    public CategoryDTO createCategory(CreateCategoryRequest request) {
 ////        kiem tra name danh muc da ton tai chua
-//        Category rs = categoryRepository.findBynameCategory(categoryReq.getNameCategory());
-//        if (rs != null) {
-//            throw new InternalException("Category is already in db");
-//        }
-////        convert Request to Entity
-//        Category category = new Category();
-//        category = CategoryMapper.reqToCategory(categoryReq);
-//        categoryRepository.save(category);
+        Category rs = categoryRepository.findByName(request.getName());
+        if (rs != null) {
+            throw new InternalException("Category is already in db");
+        }
         Category category = new Category();
-        BeanUtils.copyProperties(request,category);
-        return categoryRepository.save(category);
+        BeanUtils.copyProperties(request, category);
+        return this.convertToCategoryDTO(categoryRepository.save(category));
     }
 
     @Override
-    public Category updateCategory(UpdateCategoryRequest request) {
-//        kiem tra voi cac danh muc khac xem danh muc da ton tai chua
-//        Category rs = categoryRepository.findBynameCategory((categoryReq.getNameCategory()));
-//        if (rs != null) {
-//            throw new InternalException("Category is already in db");
-//        }
-
-//        get category in db
-        Optional<Category> categoryInDb = categoryRepository.findById(request.getId());
-        Category category = categoryInDb.get();
-
-//        update category
-        category.setName(request.getName());
-        category.setDescription(request.getDescription());
-        try {
-            categoryRepository.save(category);
-        } catch (Exception ex) {
-            throw new InternalException("Db error. Can't update category");
-        }
-        return category;
+    public CategoryDTO updateCategory(UpdateCategoryRequest request) {
+        Optional<Category> category = categoryRepository.findById(request.getId());
+        BeanUtils.copyProperties(request, category.get());
+        categoryRepository.save(category.get());
+        return this.convertToCategoryDTO(categoryRepository.save(category.get()));
     }
 
     @Override
@@ -103,5 +83,11 @@ public class CategoryServiceImpl implements CategoryService {
         } catch (Exception ex) {
             throw new InternalException("Db error. Can't delete category");
         }
+    }
+
+    private CategoryDTO convertToCategoryDTO(Category category) {
+        CategoryDTO categoryDTO = new CategoryDTO();
+        BeanUtils.copyProperties(category, categoryDTO);
+        return categoryDTO;
     }
 }

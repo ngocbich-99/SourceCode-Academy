@@ -12,13 +12,13 @@ import java.util.List;
 public interface CategoryService {
     public List<CategoryDTO> getListCategory();
 
-    public Category getCategoryById(Long id);
+    public CategoryDTO getCategoryById(Long id);
 
     public List<Category> getCategoriesInIds(List<Long> id);
 
-    public Category createCategory(CreateCategoryRequest request);
+    public CategoryDTO createCategory(CreateCategoryRequest request);
 
-    public Category updateCategory(UpdateCategoryRequest request);
+    public CategoryDTO updateCategory(UpdateCategoryRequest request);
 
     public void deleteCategory(Long id);
 

@@ -7,11 +7,10 @@ import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.dto.SectionDTO;
 import com.example.demo.model.request.course.CreateCourseRequest;
+import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
 import com.example.demo.model.request.course.UpdateCourseRequest;
 import com.example.demo.model.request.lesson.CreateLessonRequest;
-import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.model.request.section.CreateSectionRequest;
-import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.LessonRepository;
@@ -22,13 +21,14 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
     private CourseRepository courseRepository;
@@ -80,6 +80,14 @@ public class CourseServiceImpl implements CourseService {
         courseDTO.setCategories(mapper.map(course.getCategories(), categoryTokenType.getType()));
 
         return courseDTO;
+    }
+
+    @Override
+    public List<CourseDTO> findAllByCategoriesName(FindCourseByCategoriesRequest request) {
+        categoryRepository.findAllIn()
+        return this.convertToListCourseDTO(courseRepository
+                .findAllByCategories(request.getCategories())
+        );
     }
 
     @Override
@@ -167,5 +175,11 @@ public class CourseServiceImpl implements CourseService {
 //            categoryList.add(categoryService.getCategoryById(id));
 //        }
         return categoryService.getCategoriesInIds(ids);
+    }
+
+    private List<CourseDTO> convertToListCourseDTO(List<Course> courses) {
+        TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
+        };
+        return mapper.map(courses, typeToken.getType());
     }
 }

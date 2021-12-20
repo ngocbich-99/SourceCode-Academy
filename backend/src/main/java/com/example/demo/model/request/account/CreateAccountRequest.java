@@ -27,21 +27,15 @@ public class CreateAccountRequest {
 
     @NotNull(message = "User name is required")
     @ApiModelProperty(
-            example="Nguyen Thi Ngoc Bich",
+            example="darkcloud",
             notes="User name cannot be empty",
             required=true
     )
-    private String userName;
+    private String username;
 
     private String phone;
 
     private String role;
-
-    @ApiModelProperty(
-            example = "HOC_VIEN",
-            notes = "HOC_VIEN is default role"
-    )
-    private Long createdTime;
 
     private Boolean isActivate;
 }
