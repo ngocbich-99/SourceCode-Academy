@@ -17,5 +17,7 @@ public class CreateLessonRequest {
     @NotNull(message = "Section id is required")
     private Long sectionId;
 
+    private String type;
+
     private String name;
 }

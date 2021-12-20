@@ -73,17 +73,20 @@ public class SectionServiceImpl implements SectionService{
     public List<SectionDTO> findAllByCourse(Course course) {
         List<Section> sections = sectionRepository.findAllByCourse(course);
         List<SectionDTO> sectionDTOS = new ArrayList<>();
-        TypeToken<List<LessonDTO>> typeToken = new TypeToken<List<LessonDTO>>(){};
         for(Section section : sections){
             SectionDTO sectionDTO = new SectionDTO();
-            mapper.map(sectionDTO,section);
-            sectionDTO.setLessons(this.convertToListSectionDTO(section));
+            mapper.map(section,sectionDTO);
+            sectionDTO.setLessons(this.convertToListLessonDTO(section));
             sectionDTOS.add(sectionDTO);
         }
         return sectionDTOS;
     }
 
     private  List<LessonDTO> convertToListSectionDTO(Section section){
+        TypeToken<List<SectionDTO>> typeToken = new TypeToken<List<SectionDTO>>(){};
+        return mapper.map(lessonRepository.findAllBySection(section),typeToken.getType());
+    }
+    private  List<LessonDTO> convertToListLessonDTO(Section section){
         TypeToken<List<LessonDTO>> typeToken = new TypeToken<List<LessonDTO>>(){};
         return mapper.map(lessonRepository.findAllBySection(section),typeToken.getType());
     }

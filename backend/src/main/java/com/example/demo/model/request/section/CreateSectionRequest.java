@@ -11,9 +11,6 @@ import java.util.List;
 @Data
 public class CreateSectionRequest {
 
-    @NotNull(message = "Id is required")
-    private Long id;
-
     @NotNull(message = "Course id is required")
     private Long courseId;
 
@@ -21,8 +18,6 @@ public class CreateSectionRequest {
 
     @NotEmpty(message = "Section name id is required")
     private String name;
-
-    private int level;
 
     private List<CreateLessonRequest> lessons;
 }

@@ -42,7 +42,7 @@ public class CourseController {
         return CloudResponse.ok(courseService.createCourse(courseReq));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping
     public CloudResponse<CourseDTO> editCourse(@Valid @RequestBody UpdateCourseRequest body, @PathVariable int id) {
         return CloudResponse.ok(courseService.updateCourse(body));
     }

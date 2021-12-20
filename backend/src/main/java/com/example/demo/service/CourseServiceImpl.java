@@ -84,10 +84,10 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseDTO> findAllByCategoriesName(FindCourseByCategoriesRequest request) {
-        categoryRepository.findAllIn()
-        return this.convertToListCourseDTO(courseRepository
-                .findAllByCategories(request.getCategories())
-        );
+//        return this.convertToListCourseDTO(courseRepository
+//                .findAllByCategories(request.getCategories())
+//        );
+        return null;
     }
 
     @Override

@@ -25,5 +25,5 @@ public class UpdateSectionRequest {
 
     private int level;
 
-    private List<UpdateSectionRequest> lessons;
+    private List<UpdateLessonRequest> lessons;
 }

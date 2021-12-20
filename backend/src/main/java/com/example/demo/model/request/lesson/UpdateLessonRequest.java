@@ -17,6 +17,8 @@ public class UpdateLessonRequest {
 
     private String urlVideo;
 
+    private String type;
+
     @NotNull(message = "Section id is required")
     private Long sectionId;
 
