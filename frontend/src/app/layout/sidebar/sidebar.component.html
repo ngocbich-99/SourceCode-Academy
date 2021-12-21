@@ -34,7 +34,7 @@
     </a>
     <!-- sidebar student -->
     <a mat-list-item 
-    *ngIf="role === 'STUDENT'"
+    *ngIf="role === 'HOC_VIEN'"
     [routerLink]= "['/home/dashboard-student']" 
     routerLinkActive="active" 
     (click)="onTabChange('dashboard')">
@@ -43,7 +43,7 @@
         <span class="nav-caption">Trang Chính</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'STUDENT'"
+    *ngIf="role === 'HOC_VIEN'"
     [routerLink]= "['/home/courses-student']" 
     routerLinkActive="active" 
     (click)="onTabChange('course-learn')">
@@ -52,7 +52,7 @@
         <span class="nav-caption">Khoá học của bạn</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'STUDENT'"
+    *ngIf="role === 'HOC_VIEN'"
     [routerLink]= "['/home/all-course-student']" 
     routerLinkActive="active" 
     (click)="onTabChange('courses')">
@@ -62,7 +62,7 @@
     </a>
     <!-- sidebar admin -->
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
     [routerLink]= "['/home/courses']" 
     routerLinkActive="active" 
     (click)="onTabChange('courses')">
@@ -71,7 +71,7 @@
         <span class="nav-caption">Khoá học</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
     routerLink="/home/category" 
     routerLinkActive="active" 
     (click)="onTabChange('category')">
@@ -80,7 +80,7 @@
         <span class="nav-caption">Danh mục</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
     routerLink="/home/tests" 
     routerLinkActive="active" 
     (click)="onTabChange('tests')">
@@ -89,7 +89,7 @@
         <span class="nav-caption">Bài kiểm tra</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
+    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
     routerLink="/home/questions" 
     routerLinkActive="active" 
     (click)="onTabChange('questions')">

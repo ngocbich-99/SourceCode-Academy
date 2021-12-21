@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.router.navigate(['/home/main-page-unregistered']);
         }
-        // luu user info vao store state
+        // luu user info vao store ngrx
       }, error => {
         console.log(error);
       });
