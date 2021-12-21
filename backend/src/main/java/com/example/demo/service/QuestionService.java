@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Question;
-import com.example.demo.model.request.QuestionReq;
+import com.example.demo.model.request.question.CreateQuestionRequest;
+import com.example.demo.model.request.question.UpdateQuestionRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,11 +11,11 @@ import java.util.List;
 public interface QuestionService {
     public List<Question> getListQuestion();
 
-    public Question getQuestionById(int id);
+    public Question getQuestionById(Long id);
 
-    public Question createQuestion(QuestionReq questionReq);
+    public Question createQuestion(CreateQuestionRequest request);
 
-    public Question updateQuestion(QuestionReq questionReq, int id);
+    public Question updateQuestion(UpdateQuestionRequest reques);
 
-    public void deleteQuestion(int id);
+    public void deleteQuestion(Long id);
 }

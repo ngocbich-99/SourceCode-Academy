@@ -3,7 +3,8 @@ package com.example.demo.service;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Section;
 import com.example.demo.model.dto.LessonDTO;
-import com.example.demo.model.request.LessonReq;
+import com.example.demo.model.request.lesson.CreateLessonRequest;
+import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.repository.LessonRepository;
 import com.example.demo.repository.SectionRepository;
 import org.modelmapper.ModelMapper;
@@ -28,8 +29,8 @@ public class LessonServiceImpl implements LessonService {
     ModelMapper mapper;
 
     @Override
-    public LessonDTO addLesson(LessonReq request) {
-        Optional<Section> section = sectionRepository.findById(request.getIdSection());
+    public LessonDTO addLesson(UpdateLessonRequest request) {
+        Optional<Section> section = sectionRepository.findById(request.getSectionId());
         if (section.isPresent()) {
             Lesson lesson = new Lesson();
             BeanUtils.copyProperties(request, lesson);
@@ -41,7 +42,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public List<LessonDTO> addLessons(List<LessonReq> requests,Integer sectionId) {
+    public List<LessonDTO> addLessons(List<CreateLessonRequest> requests, Long sectionId) {
         Section section = this.findSectionById(sectionId);
         TypeToken<List<Lesson>> typeToken = new TypeToken<List<Lesson>>(){};
         List<Lesson> lessonList = mapper.map(requests,typeToken.getType());
@@ -59,7 +60,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
 
-    private Section findSectionById(Integer id){
+    private Section findSectionById(Long id){
         Optional<Section> section = sectionRepository.findById(id);
         if(section.isPresent()){
             return section.get();

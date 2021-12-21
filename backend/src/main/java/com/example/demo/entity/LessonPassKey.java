@@ -7,8 +7,8 @@ import java.io.Serializable;
 @Embeddable
 public class LessonPassKey implements Serializable {
     @Column(name = "lesson_id")
-    int lessonId;
+    private Long lessonId;
 
-    @Column(name = "student_id")
-    int studentId;
+    @Column(name = "account_id")
+    private Long accountId;
 }

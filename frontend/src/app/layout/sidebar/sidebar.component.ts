@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class SidebarComponent implements OnInit {
   activeTab = 'dashboard';
-  role='ADMIN';
+  role='HOC_VIEN'; 
   closed$ = new Subject<any>();
 
   constructor(

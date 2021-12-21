@@ -9,9 +9,10 @@ import { MaterialModule } from './material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './auth/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CarouselConfig, CarouselModule } from 'ngx-bootstrap/carousel';
 import { ToastrModule } from 'ngx-toastr';
+import { GlobalHttpInterceptor } from './global-http.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ToastrModule } from 'ngx-toastr';
     CarouselModule.forRoot(),
   ],
   providers: [
-    { provide: CarouselConfig, useValue: { interval: 80000, noPause: true, showIndicators: true } }
+    { provide: CarouselConfig, useValue: { interval: 80000, noPause: true, showIndicators: true } },
+    {provide: HTTP_INTERCEPTORS, useClass: GlobalHttpInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
   

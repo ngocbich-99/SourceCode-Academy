@@ -14,16 +14,16 @@ public class LessonPass {
     LessonPassKey id;
 
     @ManyToOne
-    @MapsId("studentId")
-    @JoinColumn(name = "student_id")
-    Student student;
+    @MapsId("accountId")
+    @JoinColumn(name = "account_id")
+    Account account;
 
     @ManyToOne
     @MapsId("lessonId")
     @JoinColumn(name = "lesson_id")
     Lesson lesson;
 
-    private long createdTime;
+    private Long createdTime;
 
-    private int percentLearned;
+    private Integer percentLearned;
 }

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.dto.SectionDTO;
-import com.example.demo.model.request.SectionReq;
+import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ public class SectionController {
     SectionService sectionService;
 
     @PostMapping
-    public ResponseEntity<SectionDTO> addSection(@Valid @RequestBody SectionReq request){
+    public ResponseEntity<SectionDTO> addSection(@Valid @RequestBody UpdateSectionRequest request){
         return ResponseEntity.ok(sectionService.addSection(request));
     }
 

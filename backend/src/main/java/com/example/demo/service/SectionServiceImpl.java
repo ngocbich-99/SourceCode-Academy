@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Course;
-import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Section;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.dto.SectionDTO;
-import com.example.demo.model.request.SectionReq;
+import com.example.demo.model.request.section.CreateSectionRequest;
+import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.repository.LessonRepository;
 import com.example.demo.repository.SectionRepository;
 import org.modelmapper.ModelMapper;
@@ -34,7 +34,7 @@ public class SectionServiceImpl implements SectionService{
 
 
     @Override
-    public SectionDTO addSection(SectionReq request) {
+    public SectionDTO addSection(UpdateSectionRequest request) {
         Section section = new Section();
         Course course= courseService.getCourseById(request.getCourseId());
         BeanUtils.copyProperties(request,section);
@@ -46,13 +46,13 @@ public class SectionServiceImpl implements SectionService{
     }
 
     @Override
-    public SectionDTO addAllSection(List<SectionReq> requests) {
+    public SectionDTO addAllSection(List<UpdateSectionRequest> requests) {
         List<SectionDTO> sections = new ArrayList<>();
         return null;
     }
 
     @Override
-    public SectionDTO addSection(SectionReq request, Course course) {
+    public SectionDTO addSection(CreateSectionRequest request, Course course) {
         Section section = new Section();
         BeanUtils.copyProperties(request,section);
         section.setCourse(course);
@@ -65,7 +65,7 @@ public class SectionServiceImpl implements SectionService{
     @Override
     public void deleteByCourse(Course course) {
         List<Section> allByCourse = sectionRepository.findAllByCourse(course);
-        allByCourse.stream().forEach(section -> lessonRepository.deleteAll(section.getListLesson()));
+        allByCourse.stream().forEach(section -> lessonRepository.deleteAll(section.getLessons()));
         sectionRepository.deleteAll(allByCourse);
     }
 
@@ -73,17 +73,20 @@ public class SectionServiceImpl implements SectionService{
     public List<SectionDTO> findAllByCourse(Course course) {
         List<Section> sections = sectionRepository.findAllByCourse(course);
         List<SectionDTO> sectionDTOS = new ArrayList<>();
-        TypeToken<List<LessonDTO>> typeToken = new TypeToken<List<LessonDTO>>(){};
         for(Section section : sections){
             SectionDTO sectionDTO = new SectionDTO();
-            mapper.map(sectionDTO,section);
-            sectionDTO.setLessons(this.convertToListSectionDTO(section));
+            mapper.map(section,sectionDTO);
+            sectionDTO.setLessons(this.convertToListLessonDTO(section));
             sectionDTOS.add(sectionDTO);
         }
         return sectionDTOS;
     }
 
     private  List<LessonDTO> convertToListSectionDTO(Section section){
+        TypeToken<List<SectionDTO>> typeToken = new TypeToken<List<SectionDTO>>(){};
+        return mapper.map(lessonRepository.findAllBySection(section),typeToken.getType());
+    }
+    private  List<LessonDTO> convertToListLessonDTO(Section section){
         TypeToken<List<LessonDTO>> typeToken = new TypeToken<List<LessonDTO>>(){};
         return mapper.map(lessonRepository.findAllBySection(section),typeToken.getType());
     }

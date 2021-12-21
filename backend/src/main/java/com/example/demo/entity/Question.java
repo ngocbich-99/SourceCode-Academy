@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -14,12 +15,12 @@ import java.util.Set;
 @Entity
 public class Question {
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int idQuestion;
+    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    private Long id;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="id_course")
+    @JoinColumn(name="course_id")
     private Course course;
 
     private String content;
@@ -37,6 +38,6 @@ public class Question {
     private long createdTime;
 
     @ManyToMany
-    private Set<Test> testSet;
+    private Collection<Test> tests;
 
 }

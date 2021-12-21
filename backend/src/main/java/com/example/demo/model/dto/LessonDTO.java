@@ -12,14 +12,13 @@ import java.util.Set;
 @Data
 public class LessonDTO {
 
-    private int idLesson;
+    private Long id;
 
-//    private Test test;
-    private String lessonName;
+    private String name;
 
     private String urlVideo;
 
-    private long createdTime;
+    private Long createdTime;
 
     private String type;
 
