@@ -1,6 +1,11 @@
 package com.example.demo.jwt;
 
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class JwtSubject {
@@ -16,6 +21,12 @@ public class JwtSubject {
     private String fullName;
 
     private String role;
+
+    public List<GrantedAuthority> getAuthority() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(this.role));
+        return authorities;
+    }
 
 
 }
