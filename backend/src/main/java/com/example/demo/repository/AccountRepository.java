@@ -16,4 +16,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(value = "Select * from account where is_activate = 0", nativeQuery = true)
     List<Account> getAccountLock();
+
+    Account findAccountByEmailOrUsernameOrPhone(String email,String username, String phone);
 }

@@ -30,4 +30,6 @@ public class CourseDTO {
 
     private List<SectionDTO> sections;
 
+    private Long subscriberNumber;
+
 }

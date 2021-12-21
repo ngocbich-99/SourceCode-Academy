@@ -2,12 +2,21 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Account;
 import com.example.demo.exception.NotFoundException;
+import com.example.demo.jwt.JwtProvider;
+import com.example.demo.jwt.JwtSubject;
 import com.example.demo.model.dto.AccountDTO;
 import com.example.demo.model.request.account.CreateAccountRequest;
 import com.example.demo.model.request.account.UpdateAccountRequest;
+import com.example.demo.model.request.auth.LoginRequest;
+import com.example.demo.model.request.auth.RegisterAccountRequest;
+import com.example.demo.model.response.user.LoginResponse;
 import com.example.demo.repository.AccountRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -18,6 +27,15 @@ import java.util.Optional;
 public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ModelMapper mapper;
+
+    @Autowired
+    private JwtProvider jwtProvider;
 
     @Override
     public List<AccountDTO> getListAccount() {
@@ -110,5 +128,42 @@ public class AccountServiceImpl implements AccountService {
 //            accountDtos.add(AccountMapper.toAccountDto(entity));
 //        }
         return null;
+    }
+
+    @Override
+    public AccountDTO reg(RegisterAccountRequest request) {
+        Account account = new Account();
+        BeanUtils.copyProperties(request,account);
+        if(!request.getPassword().equals(request.getReEnterPassword())){
+            throw new RuntimeException("Password not same ReEnterPassword");
+        }
+        account.setPassword(passwordEncoder.encode(request.getPassword()));
+        return this.convertToAccountDTO(accountRepository.save(account));
+    }
+
+    @Override
+    public LoginResponse login(LoginRequest request) throws JsonProcessingException {
+        Account account = accountRepository.findAccountByEmailOrUsernameOrPhone(request.getUsername(),request.getUsername(),request.getUsername());
+        if(account == null) {
+            throw new RuntimeException("Not found account");
+        }
+        if(!passwordEncoder.matches(request.getPassword(),account.getPassword())){
+            throw new RuntimeException("Username or password incorrect");
+        }
+        LoginResponse response = new LoginResponse();
+        JwtSubject jwtSubject = new JwtSubject();
+        BeanUtils.copyProperties(account,jwtSubject);
+        BeanUtils.copyProperties(account,response);
+        String accessToken = jwtProvider.generateJwtToken(jwtSubject);
+        response.setAccessToken(accessToken);
+        response.setTokenType("Bearer");
+
+        return response;
+    }
+
+    private AccountDTO convertToAccountDTO(Account account){
+        AccountDTO accountDTO = new AccountDTO();
+        mapper.map(account,accountDTO);
+        return accountDTO;
     }
 }

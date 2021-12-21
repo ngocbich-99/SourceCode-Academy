@@ -26,15 +26,13 @@ public class Account {
     @Column(unique = true)
     private String email;
 
-
     @NotEmpty
     private String fullName;
 
     @NotNull
     private String password;
 
-    @NotNull
-    private String userName;
+    private String username;
 
     private String phone;
 
@@ -43,7 +41,7 @@ public class Account {
     @Column(name="role", columnDefinition = "varchar(25) default 'HOC_VIEN'")
     private String role;
 
-    private long createdTime;
+    private Long createdTime;
 
     @OneToMany
     private List<Comment> comments;

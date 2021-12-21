@@ -15,6 +15,6 @@ public class CategoryDTO {
 
     private String description;
 
-    private Integer courseCount;
+    private Long courseCount;
 
 }

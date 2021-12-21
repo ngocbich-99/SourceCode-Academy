@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -50,7 +51,8 @@ public class Course {
     @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
     private List<Question> questions;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "course")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "course")
+    @Getter(AccessLevel.NONE)
     private List<Section> sections;
 
     @Column(name="subscriber_number", columnDefinition = "bigint default '0'")

@@ -87,7 +87,8 @@ public class CourseServiceImpl implements CourseService {
 //        return this.convertToListCourseDTO(courseRepository
 //                .findAllByCategories(request.getCategories())
 //        );
-        return null;
+        return this.convertToListCourseDTO(courseRepository
+                .findAllByCategories(request.getCategories()));
     }
 
     @Override
@@ -178,7 +179,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     private List<CourseDTO> convertToListCourseDTO(List<Course> courses) {
-        TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
+        TypeToken<List<CourseDTO>> typeToken = new TypeToken<List<CourseDTO>>() {
         };
         return mapper.map(courses, typeToken.getType());
     }
