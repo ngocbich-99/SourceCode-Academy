@@ -1,7 +1,9 @@
 package com.example.demo.config;
 
 import com.example.demo.constant.CommonConstant;
+import com.example.demo.constant.RoleConstant;
 import com.example.demo.jwt.JwtAuthenticationEntryPoint;
+import com.example.demo.jwt.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthenticationEntryPoint authenticationHandler;
 
+    @Autowired
+    private SecurityService securityService;
+
     @Bean
     public AuthFilter authFilter() {
         return new AuthFilter();
@@ -40,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         String[] pathsNoAuth = new String[CommonConstant.PATHS_NO_AUTHENTICATION.size()];
         CommonConstant.PATHS_NO_AUTHENTICATION.toArray(pathsNoAuth);
-
         http.authorizeRequests()
+                .antMatchers("/api/course/list").hasAuthority(RoleConstant.ADMIN)
                 .antMatchers(pathsNoAuth).permitAll()
                 .anyRequest().authenticated()
                 .and()

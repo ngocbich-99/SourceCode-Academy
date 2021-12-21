@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import com.sun.istack.internal.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -10,13 +11,15 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.beans.Transient;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import static com.example.demo.constant.RoleConstant.HOC_VIEN;
 
 @Getter
 @Setter
 @Entity
+@DynamicInsert
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +41,7 @@ public class Account {
 
     private Boolean isActivate;
 
-    @Column(name="role", columnDefinition = "varchar(25) default 'HOC_VIEN'")
-    private String role;
+    private String role = HOC_VIEN;
 
     private Long createdTime;
 
