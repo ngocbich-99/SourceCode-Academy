@@ -23,6 +23,7 @@
           placeholder="Mật khẩu" 
           formControlName="password">
           <mat-hint align="end">{{ loginForm.get('password')?.value.length }} / 6</mat-hint>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Nhập mật khẩu!</mat-error>
           <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
         </mat-form-field>
         <button (click)="onLogin()" mat-button class="codex-btn-primary btn-big">Đăng nhập</button>

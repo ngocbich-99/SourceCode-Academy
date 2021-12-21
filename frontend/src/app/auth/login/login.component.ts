@@ -24,9 +24,26 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    this.authService.login();
-    console.log(this.loginForm.value);
-    this.router.navigate(['/']);
+    if (!this.loginForm.invalid) {
+      this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(resData => {
+        console.log(resData);
+        // luu token vao localStorage
+        localStorage.setItem('codex-token', resData.data.accessToken)
+        // check quyen router link
+        if (resData.data.role === 'HOC_VIEN') {
+          this.router.navigate(['/home/dashboard-student']);
+        } else if (resData.data.role === 'GIANG_VIEN' || resData.data.role === 'ADMIN') {
+          this.router.navigate(['/home/courses']);
+        } else {
+          this.router.navigate(['/home/main-page-unregistered']);
+        }
+        // luu user info vao store state
+      }, error => {
+        console.log(error);
+      });
+    } else {
+      return;
+    }
   }
 
 }

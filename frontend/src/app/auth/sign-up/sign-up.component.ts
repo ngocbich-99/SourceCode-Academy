@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as moment from 'moment';
 import { Account } from 'src/app/home/accounts/account.model';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
+import { SignUpReq } from '../auth.model';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -29,23 +30,24 @@ export class SignUpComponent implements OnInit {
     })
   }
   OnSignUp() {
-    const accountReq: Account = {
-      userName: this.signUpForm.value.name,
-      email: this.signUpForm.value.email, 
-      phone: '',
-      role: 'HOC_VIEN',
-      isActivate: true,
-      createdTime: moment().valueOf(), //doi ve dang millisecond trong db
-      password: this.signUpForm.value.password,
+    if (this.signUpForm.invalid) {
+      return;
+    } else {
+      const signUpReq: SignUpReq = {
+        fullName: this.signUpForm.value.name,
+        email: this.signUpForm.value.email, 
+        password: this.signUpForm.value.password,
+        reEnterPassword: this.signUpForm.value.password
+      }
+      this.authService.signUp(signUpReq).subscribe(resData => {
+        console.log(resData);
+        this.toastService.showToast('Đăng ký tài khoản thành công!', StatusToast.SUCCESS);
+        this.router.navigate(['/login']);
+      }, error => {
+        console.log(error);
+        this.toastService.showToast('Đăng ký tài khoản thất bại!', StatusToast.ERROR)
+      })
     }
-    this.authService.signUp(accountReq).subscribe(resData => {
-      console.log(resData);
-      this.toastService.showToast('Đăng ký tài khoản thành công!', StatusToast.SUCCESS);
-      this.router.navigate(['/login']);
-    }, error => {
-      console.log(error);
-      this.toastService.showToast('Đăng ký tài khoản thất bại!', StatusToast.ERROR)
-    })
   }
 
 }
