@@ -36,7 +36,6 @@ public class UpdateCourseRequest {
 
     private String description;
 
-
-    private List<CreateSectionRequest> sections;
+    private List<UpdateSectionRequest> sections;
 
 }

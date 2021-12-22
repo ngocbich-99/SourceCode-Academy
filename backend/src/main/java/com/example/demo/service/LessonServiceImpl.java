@@ -42,10 +42,22 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public List<LessonDTO> addLessons(List<CreateLessonRequest> requests, Long sectionId) {
+    public List<LessonDTO> addLessons(List<CreateLessonRequest> request, Long sectionId) {
         Section section = this.findSectionById(sectionId);
         TypeToken<List<Lesson>> typeToken = new TypeToken<List<Lesson>>(){};
-        List<Lesson> lessonList = mapper.map(requests,typeToken.getType());
+        List<Lesson> lessonList = mapper.map(request,typeToken.getType());
+        for(Lesson lesson : lessonList){
+            lesson.setSection(section);
+        }
+        TypeToken<List<LessonDTO>> typeTokenDTO = new TypeToken<List<LessonDTO>>(){};
+        return mapper.map(lessonRepository.saveAll(lessonList),typeTokenDTO.getType());
+    }
+
+    @Override
+    public List<LessonDTO> updateLessons(List<UpdateLessonRequest> request, Long sectionId) {
+        Section section = this.findSectionById(sectionId);
+        TypeToken<List<Lesson>> typeToken = new TypeToken<List<Lesson>>(){};
+        List<Lesson> lessonList = mapper.map(request,typeToken.getType());
         for(Lesson lesson : lessonList){
             lesson.setSection(section);
         }

@@ -14,6 +14,8 @@ public interface SectionService {
 
     public SectionDTO addSection(CreateSectionRequest request, Course course);
 
+    public SectionDTO updateSection(UpdateSectionRequest request, Course course);
+
     public void deleteByCourse(Course course);
 
     public List<SectionDTO> findAllByCourse(Course course);

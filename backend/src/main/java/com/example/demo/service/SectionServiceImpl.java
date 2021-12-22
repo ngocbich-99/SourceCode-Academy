@@ -63,6 +63,17 @@ public class SectionServiceImpl implements SectionService{
     }
 
     @Override
+    public SectionDTO updateSection(UpdateSectionRequest request, Course course) {
+        Section section = new Section();
+        BeanUtils.copyProperties(request,section);
+        section.setCourse(course);
+        Section sectionSaved = sectionRepository.save(section);
+        SectionDTO sectionDTO = new SectionDTO();
+        mapper.map(sectionSaved,sectionDTO);
+        return sectionDTO;
+    }
+
+    @Override
     public void deleteByCourse(Course course) {
         List<Section> allByCourse = sectionRepository.findAllByCourse(course);
         allByCourse.stream().forEach(section -> lessonRepository.deleteAll(section.getLessons()));

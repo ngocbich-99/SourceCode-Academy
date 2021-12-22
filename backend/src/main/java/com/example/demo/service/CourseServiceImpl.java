@@ -10,7 +10,9 @@ import com.example.demo.model.request.course.CreateCourseRequest;
 import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
 import com.example.demo.model.request.course.UpdateCourseRequest;
 import com.example.demo.model.request.lesson.CreateLessonRequest;
+import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.model.request.section.CreateSectionRequest;
+import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.LessonRepository;
@@ -18,6 +20,8 @@ import com.example.demo.repository.SectionRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -30,16 +34,11 @@ import java.util.Optional;
 
 @Service
 public class CourseServiceImpl implements CourseService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CourseServiceImpl.class);
+
     @Autowired
     private CourseRepository courseRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private SectionRepository sectionRepository;
-
-    @Autowired
-    private LessonRepository lessonRepository;
 
     @Autowired
     CategoryService categoryService;
@@ -69,6 +68,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDTO getCourseDTOById(Long id) {
+        LOGGER.info("getCourseDTOById : {}",id);
         CourseDTO courseDTO = new CourseDTO();
         Course course = this.getCourseById(id);
         mapper.map(course, courseDTO);
@@ -87,6 +87,7 @@ public class CourseServiceImpl implements CourseService {
 //        return this.convertToListCourseDTO(courseRepository
 //                .findAllByCategories(request.getCategories())
 //        );
+        LOGGER.info("findAllByCategoriesName : {}",request);
         return this.convertToListCourseDTO(courseRepository
                 .findAllByCategories(request.getCategories()));
     }
@@ -94,7 +95,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional
     public CourseDTO createCourse(CreateCourseRequest request) {
-
+        LOGGER.info("createCourse : {}",request);
         Course course = new Course();
         if (request.getCategoryIds() != null && !request.getCategoryIds().isEmpty()) {
             course.setCategories(this.getListCategory(request.getCategoryIds()));
@@ -110,13 +111,13 @@ public class CourseServiceImpl implements CourseService {
         if (!request.getSections().isEmpty() && request.getSections() != null) {
             courseDTO.setSections(this.saveSectionList(request.getSections(), course));
         }
-
         return courseDTO;
 
     }
 
     @Override
     public CourseDTO updateCourse(UpdateCourseRequest request) {
+        LOGGER.info("updateCourse : {}",request);
         Course course = courseRepository.findById(request.getId()).get();
 
         mapper.map(request, course);
@@ -129,7 +130,7 @@ public class CourseServiceImpl implements CourseService {
         BeanUtils.copyProperties(course, courseDTO);
 
         if (!request.getSections().isEmpty() && request.getSections() != null) {
-            courseDTO.setSections(this.saveSectionList(request.getSections(), course));
+            courseDTO.setSections(this.updateSectionList(request.getSections(), course));
         }
         course = courseRepository.save(course);
 
@@ -142,6 +143,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourse(Long id) {
+        LOGGER.info("deleteCourse : {}",id);
         try {
             Optional<Course> course = courseRepository.findById(id);
             if (course.isPresent()) {
@@ -156,6 +158,9 @@ public class CourseServiceImpl implements CourseService {
     private List<LessonDTO> saveLessonList(List<CreateLessonRequest> requests, Long sectionId) {
         return lessonService.addLessons(requests, sectionId);
     }
+    private List<LessonDTO> updateLessonList(List<UpdateLessonRequest> requests, Long sectionId) {
+        return lessonService.updateLessons(requests, sectionId);
+    }
 
     private List<SectionDTO> saveSectionList(List<CreateSectionRequest> requests, Course course) {
         List<SectionDTO> sectionDTOList = new ArrayList<>();
@@ -164,6 +169,19 @@ public class CourseServiceImpl implements CourseService {
             SectionDTO sectionDTO = sectionService.addSection(sectionReq, course);
             if (!sectionReq.getLessons().isEmpty() && sectionReq.getLessons() != null) {
                 sectionDTO.setLessons(this.saveLessonList(sectionReq.getLessons(), sectionDTO.getId()));
+            }
+            sectionDTOList.add(sectionDTO);
+        }
+        return sectionDTOList;
+    }
+
+    private List<SectionDTO> updateSectionList(List<UpdateSectionRequest> requests, Course course) {
+        List<SectionDTO> sectionDTOList = new ArrayList<>();
+
+        for (UpdateSectionRequest request : requests) {
+            SectionDTO sectionDTO = sectionService.updateSection(request, course);
+            if (!request.getLessons().isEmpty() && request.getLessons() != null) {
+                sectionDTO.setLessons(this.updateLessonList(request.getLessons(), sectionDTO.getId()));
             }
             sectionDTOList.add(sectionDTO);
         }

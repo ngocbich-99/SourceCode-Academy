@@ -23,7 +23,5 @@ public class UpdateSectionRequest {
     @NotEmpty(message = "Section name id is required")
     private String name;
 
-    private int level;
-
     private List<UpdateLessonRequest> lessons;
 }
