@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Question;
-import com.example.demo.model.request.question.CreateQuestionRequest;
-import com.example.demo.model.request.question.UpdateQuestionRequest;
+import com.example.demo.model.request.QuestionReq;
 import com.example.demo.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,28 +25,29 @@ public class QuestionController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<?> getQuestionById(@PathVariable Long id) {
+    public ResponseEntity<?> getQuestionById(@PathVariable int id) {
         Question question = questionService.getQuestionById(id);
         return ResponseEntity.ok(question);
     }
 
     @CrossOrigin
     @PostMapping("/create")
-    public ResponseEntity<?> createQuestion(@Valid @RequestBody CreateQuestionRequest createQuestionRequest) {
-        Question question = questionService.createQuestion(createQuestionRequest);
+    public ResponseEntity<?> createQuestion(@Valid @RequestBody QuestionReq questionReq) {
+        Question question = questionService.createQuestion(questionReq);
         return ResponseEntity.ok(question);
     }
 
     @CrossOrigin
     @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editQuestion(@Valid @RequestBody UpdateQuestionRequest body) {
-        return ResponseEntity.ok(questionService.updateQuestion(body));
+    public ResponseEntity<?> editQuestion(@Valid @RequestBody QuestionReq questionReq, @PathVariable int id) {
+        Question question = questionService.updateQuestion(questionReq, id);
+        return ResponseEntity.ok(question);
     }
 
-    //    chi duoc phep xoa cau hoi khi cau hoi do chua su dung trong bai kiem tra nao
+//    chi duoc phep xoa cau hoi khi cau hoi do chua su dung trong bai kiem tra nao
     @CrossOrigin
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteQuestion(@PathVariable Long id) {
+    public ResponseEntity<?> deleteQuestion(@PathVariable int id) {
         questionService.deleteQuestion(id);
         return ResponseEntity.ok("Delete category success");
     }

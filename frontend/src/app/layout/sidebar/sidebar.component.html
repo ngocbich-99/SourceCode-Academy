@@ -1,6 +1,6 @@
-<div class="logo" fxLayout fxLayoutAlign="center">
+<div class="logo" fxLayout fxLayoutAlign="left">
     <a>
-        <img src="assets/images/Logo-full.png" alt="">
+        <img src="assets/images/logo_full.svg" alt="">
     </a>
 </div>
 <mat-nav-list class="sidebar">
@@ -34,7 +34,7 @@
     </a>
     <!-- sidebar student -->
     <a mat-list-item 
-    *ngIf="role === 'HOC_VIEN'"
+    *ngIf="role === 'STUDENT'"
     [routerLink]= "['/home/dashboard-student']" 
     routerLinkActive="active" 
     (click)="onTabChange('dashboard')">
@@ -43,7 +43,7 @@
         <span class="nav-caption">Trang Chính</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'HOC_VIEN'"
+    *ngIf="role === 'STUDENT'"
     [routerLink]= "['/home/courses-student']" 
     routerLinkActive="active" 
     (click)="onTabChange('course-learn')">
@@ -52,7 +52,7 @@
         <span class="nav-caption">Khoá học của bạn</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'HOC_VIEN'"
+    *ngIf="role === 'STUDENT'"
     [routerLink]= "['/home/all-course-student']" 
     routerLinkActive="active" 
     (click)="onTabChange('courses')">
@@ -62,7 +62,7 @@
     </a>
     <!-- sidebar admin -->
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
     [routerLink]= "['/home/courses']" 
     routerLinkActive="active" 
     (click)="onTabChange('courses')">
@@ -71,7 +71,7 @@
         <span class="nav-caption">Khoá học</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
     routerLink="/home/category" 
     routerLinkActive="active" 
     (click)="onTabChange('category')">
@@ -79,8 +79,11 @@
         <mat-icon *ngIf="activeTab === 'category'" svgIcon="category-fill"></mat-icon>
         <span class="nav-caption">Danh mục</span>
     </a>
-    <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
+
+    <!-- Remove because of deadline -->
+
+    <!-- <a mat-list-item 
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
     routerLink="/home/tests" 
     routerLinkActive="active" 
     (click)="onTabChange('tests')">
@@ -89,14 +92,15 @@
         <span class="nav-caption">Bài kiểm tra</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
+    *ngIf="role === 'ADMIN' || role === 'TEACHER'"
     routerLink="/home/questions" 
     routerLinkActive="active" 
     (click)="onTabChange('questions')">
         <mat-icon *ngIf="activeTab !== 'questions'" svgIcon="question-outline"></mat-icon>
         <mat-icon *ngIf="activeTab === 'questions'" svgIcon="question-fill"></mat-icon>
         <span class="nav-caption">Ngân hàng câu hỏi</span>
-    </a>
+    </a> -->
+    
     <a mat-list-item 
     *ngIf="role === 'ADMIN'"
     routerLink="/home/accounts" 

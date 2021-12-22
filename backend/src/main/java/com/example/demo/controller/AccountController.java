@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.dto.AccountDTO;
-import com.example.demo.model.request.account.CreateAccountRequest;
-import com.example.demo.model.request.account.UpdateAccountRequest;
+import com.example.demo.model.dto.AccountDto;
+import com.example.demo.model.request.CreateAccountReq;
+import com.example.demo.model.request.UpdateAccountReq;
 import com.example.demo.service.AccountService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -20,50 +20,51 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @ApiOperation(value = "Get list account", response = AccountDTO.class, responseContainer = "List")
+    @ApiOperation(value = "Get list account", response = AccountDto.class, responseContainer = "List")
     @ApiResponses({
-            @ApiResponse(code = 500, message = "")
+            @ApiResponse(code=500,message = "")
     })
     @CrossOrigin
     @GetMapping("")
     public ResponseEntity<?> getListAccount() {
-        List<AccountDTO> accountDtos = accountService.getListAccount();
+        List<AccountDto> accountDtos = accountService.getListAccount();
         return ResponseEntity.ok(accountDtos);
     }
 
-    @ApiOperation(value = "Get account info by id", response = AccountDTO.class)
+    @ApiOperation(value = "Get account info by id", response = AccountDto.class)
     @ApiResponses({
-            @ApiResponse(code = 404, message = "No account found"),
-            @ApiResponse(code = 500, message = "")
+            @ApiResponse(code=404,message = "No account found"),
+            @ApiResponse(code=500,message = "")
     })
     @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAccountById(@PathVariable Long id) {
-        AccountDTO accountDto = accountService.getAccountById(id);
+    public ResponseEntity<?> getAccountById(@PathVariable int id) {
+        AccountDto accountDto = accountService.getAccountById(id);
         return ResponseEntity.ok(accountDto);
     }
 
-    @ApiOperation(value = "Create account", response = AccountDTO.class)
+    @ApiOperation(value = "Create account", response = AccountDto.class)
     @ApiResponses({
-            @ApiResponse(code = 400, message = "Email already exists in the system"),
-            @ApiResponse(code = 500, message = "")
+            @ApiResponse(code=400,message = "Email already exists in the system"),
+            @ApiResponse(code=500,message = "")
     })
     @CrossOrigin
     @PostMapping("")
-    public ResponseEntity<?> createAccount(@Valid @RequestBody CreateAccountRequest accountReq) {
-        AccountDTO accountDto = accountService.createAcc(accountReq);
+    public ResponseEntity<?> createAccount(@Valid @RequestBody CreateAccountReq accountReq) {
+        AccountDto accountDto = accountService.createAcc(accountReq);
         return ResponseEntity.ok(accountDto);
     }
 
     @CrossOrigin
     @PutMapping("/{id}")
-    public ResponseEntity<AccountDTO> updateAccount(@Valid @RequestBody UpdateAccountRequest body, @PathVariable int id) {
-        return ResponseEntity.ok(accountService.updateAcc(body));
+    public ResponseEntity<?> updateAccount(@Valid @RequestBody UpdateAccountReq accountReq, @PathVariable int id) {
+        AccountDto accountDto = accountService.updateAcc(accountReq, id);
+        return ResponseEntity.ok(accountDto);
     }
 
     @CrossOrigin
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAccount(@PathVariable Long id) {
+    public ResponseEntity<?> deleteAccount(@PathVariable int id) {
         accountService.deleteAcc(id);
         return ResponseEntity.ok("Delete success");
     }
@@ -71,14 +72,14 @@ public class AccountController {
     @CrossOrigin
     @GetMapping("/account-activate")
     public ResponseEntity<?> getAccActivate() {
-        List<AccountDTO> listAccDto = accountService.getAccountActivate();
+        List<AccountDto> listAccDto = accountService.getAccountActivate();
         return ResponseEntity.ok(listAccDto);
     }
 
     @CrossOrigin
     @GetMapping("/lock")
     public ResponseEntity<?> getAccLock() {
-        List<AccountDTO> listAcc = accountService.getAccountLock();
+        List<AccountDto> listAcc = accountService.getAccountLock();
         return ResponseEntity.ok(listAcc);
     }
 

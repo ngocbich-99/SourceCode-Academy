@@ -4,18 +4,31 @@ import lombok.Data;
 
 @Data
 public class LoginResponse {
-
     private String refreshToken;
-
     private String accessToken;
-
     private String tokenType = "Bearer";
 
-    private String email;
+    public String getRefreshToken() {
+        return refreshToken;
+    }
 
-    private String username;
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
+    }
 
-    private String phone;
+    public String getAccessToken() {
+        return accessToken;
+    }
 
-    private String role;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
 }

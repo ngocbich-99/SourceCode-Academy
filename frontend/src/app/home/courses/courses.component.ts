@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { CategoryService } from 'src/app/services/category.service';
-import { CourseService } from 'src/app/services/course.service';
-import { Category } from '../category/category.mode';
-import { Course } from './course.model';
 import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.component';
 
 @Component({
@@ -13,14 +9,10 @@ import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit {
-  listCategory: Category[] = [];
-  listCourseAll: Course[] = [];
 
   constructor(
     public dialog: MatDialog,
-    public route: ActivatedRoute,
-    public categoryService: CategoryService,
-    public courseService: CourseService
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +28,6 @@ export class CoursesComponent implements OnInit {
         });
       }
     })
-    // get list category
-    this.getListCategory();
-    this.getListCourse();
   }
   
   dialogAddCourse() {
@@ -50,26 +39,6 @@ export class CoursesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
     });
-  }
-
-  async getListCategory() {
-    this.listCategory = await this.categoryService.getListCategory().toPromise();
-  }
-
-  async getListCourse() {
-    this.listCourseAll = await this.courseService.getListCourse().toPromise();
-  }
-
-  getListCoursePublic(): Course[] {
-    return this.listCourseAll.filter(course => course.status === true);
-  }
-
-  getListCoursePrivate() {
-    return this.listCourseAll.filter(course => course.status === false);
-  }
-
-  getCategory() {
-
   }
 
 }

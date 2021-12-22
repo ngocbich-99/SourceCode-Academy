@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { CategoryService } from 'src/app/services/category.service';
-import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { DeleteDialogComponent } from 'src/app/shared/component/delete-dialog/delete-dialog.component';
 import { Category } from './category.mode';
 import { DialogAddCategoryComponent } from './dialog-add-category/dialog-add-category.component';
@@ -29,8 +28,7 @@ export class CategoryComponent implements OnInit {
     public dialog: MatDialog,
     public categoryService: CategoryService,
     public router: Router,
-    public route: ActivatedRoute,
-    private toastService: ToastServiceCodex
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -48,6 +46,7 @@ export class CategoryComponent implements OnInit {
               nameCategory: rs.nameCategory,
               description: rs.description,
               createdTime: moment().valueOf(),
+              courses: []
             }
             this.listCategory.push(category);
             this.listCategory.forEach((cat, index) => {
@@ -58,10 +57,8 @@ export class CategoryComponent implements OnInit {
             // add category to db
             this.categoryService.createCategory(category).subscribe(resData => {
               console.log('add category', resData);
-              this.toastService.showToast('Tạo mới danh mục thành công!', StatusToast.SUCCESS);
             }, error => {
               console.log('error when add category', error);
-              this.toastService.showToast('Tạo mới danh mục thất bại!', StatusToast.ERROR);
             })
           }
         })
@@ -93,6 +90,7 @@ export class CategoryComponent implements OnInit {
           nameCategory: rs.nameCategory,
           description: rs.description,
           createdTime: moment().valueOf(),
+          courses: []
         }
         this.listCategory.push(category);
         this.listCategory.forEach((cat, index) => {
@@ -103,10 +101,8 @@ export class CategoryComponent implements OnInit {
         // add category to db
         this.categoryService.createCategory(category).subscribe(resData => {
           console.log('add category', resData);
-          this.toastService.showToast('Tạo mới danh mục thành công!', StatusToast.SUCCESS);
         }, error => {
           console.log('error when add category', error);
-          this.toastService.showToast('Tạo mới danh mục thất bại!', StatusToast.ERROR);
         })
       }
     })
@@ -124,14 +120,13 @@ export class CategoryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
+        this.listCategory.splice(this.listCategory.indexOf(category), 1);
+        this.dataSource.data = this.listCategory;
+
         this.categoryService.deleteCategoryById(category.idCategory).subscribe(resData => {
           console.log('delete category', resData);
-          this.listCategory.splice(this.listCategory.indexOf(category), 1);
-          this.dataSource.data = this.listCategory;
-          this.toastService.showToast('Xoá danh mục thành công!', StatusToast.SUCCESS);
         }, error => {
           console.log('delete category error',error);
-          this.toastService.showToast('Xoá danh mục thất bại!', StatusToast.ERROR);
         });
       }
     });

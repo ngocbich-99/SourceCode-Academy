@@ -1,26 +1,22 @@
 package com.example.demo.service;
 
-import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.entity.Category;
-import com.example.demo.model.request.category.CreateCategoryRequest;
-import com.example.demo.model.request.category.UpdateCategoryRequest;
+import com.example.demo.model.request.CategoryReq;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface CategoryService {
-    public List<CategoryDTO> getListCategory();
+    public List<Category> getListCategory();
 
-    public CategoryDTO getCategoryById(Long id);
+    public Category getCategoryById(int id);
 
-    public List<Category> getCategoriesInIds(List<Long> id);
+    public Category createCategory(CategoryReq categoryReq);
 
-    public CategoryDTO createCategory(CreateCategoryRequest request);
+    public Category updateCategory(CategoryReq categoryReq, int id);
 
-    public CategoryDTO updateCategory(UpdateCategoryRequest request);
-
-    public void deleteCategory(Long id);
+    public void deleteCategory(int id);
 
 
 }

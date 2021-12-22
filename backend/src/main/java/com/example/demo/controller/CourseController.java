@@ -1,62 +1,45 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.request.course.CreateCourseRequest;
-import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
-import com.example.demo.model.request.course.UpdateCourseRequest;
-import com.example.demo.model.response.CloudResponse;
+import com.example.demo.entity.Category;
+import com.example.demo.entity.Course;
+import com.example.demo.model.dto.AccountDto;
+import com.example.demo.model.request.CreateAccountReq;
+import com.example.demo.model.request.CreateCourseReq;
 import com.example.demo.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
-import static com.example.demo.constant.CommonConstant.SUCCESS;
-
 @RestController
-@CrossOrigin
 @RequestMapping("/api/course")
 public class CourseController {
 
     @Autowired
     private CourseService courseService;
 
-
+    @CrossOrigin
     @GetMapping("/list")
-    public CloudResponse<List<CourseDTO>> getList() {
-        return CloudResponse.ok(courseService.getAll());
+    public ResponseEntity<?> getList() {
+        return ResponseEntity.ok(courseService.getAll());
     }
 
-
+    @CrossOrigin
     @GetMapping("/{id}")
-    public CloudResponse<CourseDTO> getCourseById(@PathVariable Long id) {
-        CourseDTO course = courseService.getCourseDTOById(id);
-        return CloudResponse.ok(course);
+    public ResponseEntity<?> getCourseById(@PathVariable int id) {
+        Course course = courseService.getCourseById(id);
+        return ResponseEntity.ok(course);
     }
 
+    @CrossOrigin
+    @PostMapping("")
+    public ResponseEntity<?> createCourse(@Valid @RequestBody CreateCourseReq courseReq) {
 
-    @PostMapping
-    public CloudResponse<CourseDTO> createCourse(@Valid @RequestBody CreateCourseRequest courseReq) {
-        return CloudResponse.ok(courseService.createCourse(courseReq));
+        Course course = courseService.createCourse(courseReq);
+        return ResponseEntity.ok(course);
     }
-
-    @PutMapping
-    public CloudResponse<CourseDTO> editCourse(@Valid @RequestBody UpdateCourseRequest body, @PathVariable int id) {
-        return CloudResponse.ok(courseService.updateCourse(body));
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public CloudResponse<String> deleteCourse(@PathVariable Long id) {
-        courseService.deleteCourse(id);
-        return CloudResponse.ok(SUCCESS,"Delete category success");
-    }
-
-    @PostMapping("/categories")
-    public CloudResponse<List<CourseDTO>> findCourseByCategories(@Valid @RequestBody FindCourseByCategoriesRequest body) {
-        return CloudResponse.ok(courseService.findAllByCategoriesName(body));
-    }
-
 
 }
