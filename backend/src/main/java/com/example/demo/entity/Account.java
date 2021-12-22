@@ -1,6 +1,5 @@
 package com.example.demo.entity;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -25,14 +24,12 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     @Column(unique = true)
     private String email;
 
     @NotEmpty
     private String fullName;
 
-    @NotNull
     private String password;
 
     private String username;

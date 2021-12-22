@@ -1,10 +1,8 @@
 package com.example.demo.model.request.auth;
 
-import com.sun.istack.internal.NotNull;
 import lombok.Data;
 import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotEmpty;
 
 @ToString(exclude = {"newPassword", "reEnterNewPassword"})
