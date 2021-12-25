@@ -17,8 +17,8 @@
                 <mat-option>-- Chọn --</mat-option>
                 <mat-optgroup *ngFor="let group of categoryGroups" [label]="group.nameCategory"
                             [disabled]="group.disabled">
-                    <mat-option *ngFor="let course of group.course" [value]="course.idCourse">
-                    {{course.nameCourse}}
+                    <mat-option *ngFor="let course of group.course" [value]="course.id">
+                    {{course.name}}
                     </mat-option>
                 </mat-optgroup>
             </mat-select>

@@ -45,8 +45,8 @@
                                     <mat-form-field  appearance="outline" fxFlex="66">
                                         <mat-label>Chọn danh mục</mat-label>
                                         <mat-select formControlName="idCategory">
-                                            <mat-option *ngFor="let category of listCategory" [value]="category.idCategory">
-                                                {{category.nameCategory}}
+                                            <mat-option *ngFor="let category of listCategory" [value]="category.id">
+                                                {{category.name}}
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>

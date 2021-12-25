@@ -45,7 +45,7 @@ export class CategoryComponent implements OnInit {
             // todo logic
             console.log(rs);
             const category: Category = {
-              nameCategory: rs.nameCategory,
+              name: rs.nameCategory,
               description: rs.description,
               createdTime: moment().valueOf(),
             }
@@ -90,7 +90,7 @@ export class CategoryComponent implements OnInit {
         // todo logic
         console.log(rs);
         const category: Category = {
-          nameCategory: rs.nameCategory,
+          name: rs.nameCategory,
           description: rs.description,
           createdTime: moment().valueOf(),
         }
@@ -102,7 +102,7 @@ export class CategoryComponent implements OnInit {
         this.dataSource.data = this.listCategory;
         // add category to db
         this.categoryService.createCategory(category).subscribe(resData => {
-          console.log('add category', resData);
+          category.id = resData.id;
           this.toastService.showToast('Tạo mới danh mục thành công!', StatusToast.SUCCESS);
         }, error => {
           console.log('error when add category', error);
@@ -113,7 +113,7 @@ export class CategoryComponent implements OnInit {
   }
 
   detailCategory(category: Category) {
-    this.router.navigate([`/home/category/${category.idCategory}`]);
+    this.router.navigate([`/home/category/${category.id}`]);
   }
 
   deleteCategory(category: Category) {
@@ -124,7 +124,7 @@ export class CategoryComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
-        this.categoryService.deleteCategoryById(category.idCategory).subscribe(resData => {
+        this.categoryService.deleteCategoryById(category.id).subscribe(resData => {
           console.log('delete category', resData);
           this.listCategory.splice(this.listCategory.indexOf(category), 1);
           this.dataSource.data = this.listCategory;

@@ -31,13 +31,13 @@
         <!-- Name account Column -->
         <ng-container matColumnDef="nameCategory">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Tên danh mục</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.nameCategory}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
         </ng-container>
     
         <!-- email Column -->
         <ng-container matColumnDef="numberCourse">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Số khoá học</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.courses?.length}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.courseCount == null ? 0 : element.courseCount}}</mat-cell>
         </ng-container>
     
         <!-- sdt Column -->

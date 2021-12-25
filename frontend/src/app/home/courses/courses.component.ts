@@ -53,17 +53,16 @@ export class CoursesComponent implements OnInit {
   }
 
   async getListCategory() {
-    this.listCategory = await this.categoryService.getListCategory().toPromise();
-    // this.categoryService.getListCategory().subscribe(
-    //   x=> console.log(x)
-    // );
+    // this.listCategory = await this.categoryService.getListCategory().toPromise();
+    this.categoryService.getListCategory().subscribe(resData => {
+      console.log('getListCategory', resData);
+      this.listCategory = resData;
+    })
   }
 
   async getListCourse() {
     this.listCourseAll = await this.courseService.getListCourse().toPromise();
-    // this.courseService.getListCourse().subscribe(
-    //   x=> console.log(x)
-    // );
+    console.log('list course', this.listCourseAll);
   }
 
   getListCoursePublic(): Course[] {

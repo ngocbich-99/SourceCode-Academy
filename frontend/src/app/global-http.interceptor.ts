@@ -15,7 +15,6 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    console.log('interceptor');
     if (localStorage.getItem('codex-token') != null) {
       const token = localStorage.getItem('codex-token')?.toString();
 

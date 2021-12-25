@@ -40,10 +40,6 @@ export class SidebarComponent implements OnInit {
     } else if (this.role === 'ADMIN' || this.role === 'GIANG_VIEN') {
       this.activeTab = 'courses';
     } 
-
-    console.log('sidebar', this.role, this.activeTab);
-    
-    
   }
 
   onTabChange(nameTab: string) {

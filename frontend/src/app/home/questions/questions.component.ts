@@ -35,33 +35,33 @@ export class QuestionsComponent implements OnInit {
     {
       nameCategory: 'Grass',
       course: [
-        {idCourse: 0, nameCourse: 'Bulbasaur'},
-        {idCourse: 1, nameCourse: 'Bulbasaur'},
-        {idCourse: 2, nameCourse: 'Bulbasaur'},
+        {id: 0, name: 'Bulbasaur'},
+        {id: 1, name: 'Bulbasaur'},
+        {id: 2, name: 'Bulbasaur'},
       ],
     },
     {
       nameCategory: 'Water',
       course: [
-        {idCourse: 0, nameCourse: 'Bulbasaur'},
-        {idCourse: 1, nameCourse: 'Bulbasaur'},
-        {idCourse: 2, nameCourse: 'Bulbasaur'},
+        {id: 0, name: 'Bulbasaur'},
+        {id: 1, name: 'Bulbasaur'},
+        {id: 2, name: 'Bulbasaur'},
       ],
     },
     {
       nameCategory: 'Fire',
       disabled: true,
       course: [
-        {idCourse: 0, nameCourse: 'Bulbasaur'},
-        {idCourse: 1, nameCourse: 'Bulbasaur'},
-        {idCourse: 2, nameCourse: 'Bulbasaur'},
+        {id: 0, name: 'Bulbasaur'},
+        {id: 1, name: 'Bulbasaur'},
+        {id: 2, name: 'Bulbasaur'},
       ],
     },
     {
       nameCategory: 'Psychic',
       course: [
-        {idCourse: 0, nameCourse: 'Bulbasaur'},
-        {idCourse: 1, nameCourse: 'Bulbasaur'},
+        {id: 0, name: 'Bulbasaur'},
+        {id: 1, name: 'Bulbasaur'},
       ],
     },
   ];
@@ -96,7 +96,7 @@ export class QuestionsComponent implements OnInit {
         // todo logic
         console.log('form create question value',rs);
         const questionReq: Question = {
-          idCourse: rs.idCourse,
+          id: rs.id,
           content: rs.content,
           ans1: rs.ans1,
           ans2: rs.ans2,
