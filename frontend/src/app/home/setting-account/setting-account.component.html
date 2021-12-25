@@ -9,48 +9,65 @@
     </button>
     <div class="setting-account">
         <h3>Cài đặt tài khoản</h3>
-        <form fxLayout="column">
+        <form fxLayout="column" [formGroup]="formUserInfo">
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <mat-form-field appearance="outline">
                     <mat-label>Họ tên</mat-label>
-                    <input type="text" matInput placeholder="Your name">
+                    <input 
+                    formControlName="name"
+                    type="text" 
+                    matInput 
+                    placeholder="Họ tên">
                 </mat-form-field>
     
                 <mat-form-field appearance="outline">
                     <mat-label>Email</mat-label>
-                    <input type="email" matInput placeholder="Your Email">
+                    <input 
+                    formControlName="email"
+                    type="email" 
+                    matInput 
+                    placeholder="Địa chỉ email">
                 </mat-form-field>
             </div>
 
             <mat-form-field appearance="outline">
                 <mat-label>Số điện thoại</mat-label>
-                <input type="text" matInput placeholder="Your phone">
+                <input 
+                formControlName="phone"
+                type="text" 
+                matInput 
+                placeholder="Số điện thoại">
             </mat-form-field>
-            
         </form>
-        <button [disabled]="" mat-button class="codex-btn-primary btn-big">Lưu thông tin</button>
+        <button (click)="saveInfoUser()" [disabled]="" mat-button class="codex-btn-primary btn-big">Lưu thông tin</button>
     </div>
     <div class="security">
         <h3>Bảo mật</h3>
-        <form fxLayout="column">
+        <form fxLayout="column" [formGroup]="formPassword">
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Mật khẩu cũ</mat-label>
-                    <input type="text" matInput placeholder="Mật khẩu cũ">
+                    <input formControlName="oldPass" type="text" matInput placeholder="Mật khẩu cũ">
+                    <mat-error *ngIf="formPassword.get('oldPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center">
                 <mat-form-field appearance="outline">
                     <mat-label>Mật khẩu mới</mat-label>
-                    <input type="email" matInput placeholder="Your Email">
+                    <input formControlName="newPass" type="email" matInput placeholder="Mật khẩu mới">
+                    <mat-error *ngIf="formPassword.get('newPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Nhập lại mật khẩu mới</mat-label>
-                    <input type="text" matInput placeholder="Your phone">
+                    <input formControlName="confirmPass" type="text" matInput placeholder="Xác nhận mật khẩu">
+                    <mat-error *ngIf="formPassword.get('confirmPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
+                    <mat-error *ngIf="formPassword.get('confirmPass')?.hasError('notMatch')">
+                        Xác nhận mật khẩu mới không đúng!
+                    </mat-error>
                 </mat-form-field>
             </div>
         </form>
-        <button [disabled]="" mat-button class="codex-btn-primary btn-big">Đổi mật khẩu</button>
+        <button (click)="changePassword()" [disabled]="" mat-button class="codex-btn-primary btn-big">Đổi mật khẩu</button>
     </div>
 </section>
