@@ -19,7 +19,6 @@ import java.util.List;
 import static com.example.demo.constant.CommonConstant.SUCCESS;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/course")
 public class CourseController {
 

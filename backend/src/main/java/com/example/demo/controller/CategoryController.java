@@ -17,7 +17,6 @@ import java.util.List;
 import static com.example.demo.constant.CommonConstant.SUCCESS;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api/category")
 public class CategoryController {
 
