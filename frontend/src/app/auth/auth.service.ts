@@ -4,6 +4,7 @@ import { Account } from '../home/accounts/account.model';
 import {environment as env} from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { LoginResponse, SignUpReq } from './auth.model';
+import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +35,12 @@ export class AuthService {
       username: email,
       password: pass
     }
-    return this.http.post<LoginResponse>(env.backendBaseUrl + '/api/auth/login', loginReq);
+    return this.http.post<LoginResponse>(env.backendBaseUrl + '/api/auth/login', loginReq)
+    .pipe(
+      tap(resData => {
+        localStorage.setItem('userInfo', JSON.stringify(resData.data));
+      })
+    );
   }
   logout() {
     this.loggedIn = false;

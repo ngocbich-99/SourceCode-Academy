@@ -3,14 +3,15 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Location } from '@angular/common';
+import { User } from 'src/app/auth/user.model';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  activeTab = 'dashboard';
-  role='HOC_VIEN'; 
+  activeTab: string = '';
+  role: string = ''; 
   closed$ = new Subject<any>();
 
   constructor(
@@ -26,6 +27,24 @@ export class SidebarComponent implements OnInit {
     //   this.activeTab = url.split('/')[2];
     //   console.log(this.activeTab);
     // })
+
+    let data: string = localStorage.getItem('userInfo') as string;
+    const user: User = JSON.parse(data);
+    if (!!user) {
+      this.role = user.role;
+    } else {
+      this.role = '';
+    }
+
+    if (this.role === 'HOC_VIEN' || this.role === '') {
+      this.activeTab = 'dashboard';
+    } else if (this.role === 'ADMIN' || this.role === 'GIANG_VIEN') {
+      this.activeTab = 'courses';
+    } 
+
+    console.log('sidebar', this.role, this.activeTab);
+    
+    
   }
 
   onTabChange(nameTab: string) {
