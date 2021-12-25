@@ -19,8 +19,8 @@ public class CommonConstant {
 
     public static final String NOT_LOGIN_MESSAGE = "Bạn chưa đăng nhập";
 
-    public static final List<String> PATHS_NO_AUTHENTICATION = Arrays.asList("/", "/swagger/**",
-            "/swagger-ui.html#/**", "/v2/api-docs/**", "/health",
+    public static final List<String> PATHS_NO_AUTHENTICATION = Arrays.asList("/**", "/swagger/**",
+            "/swagger-ui.html", "/v2/api-docs/**", "/health",
             "/api/auth/register",
             "/api/auth/login",
             "/swagger-ui/**",

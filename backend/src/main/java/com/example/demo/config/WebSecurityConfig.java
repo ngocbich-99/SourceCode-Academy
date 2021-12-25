@@ -16,7 +16,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 
 @Configuration
@@ -39,8 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf(AbstractHttpConfigurer::disable);
-        http.csrf().disable();
+        http.csrf(AbstractHttpConfigurer::disable);
         String[] pathsNoAuth = new String[CommonConstant.PATHS_NO_AUTHENTICATION.size()];
         CommonConstant.PATHS_NO_AUTHENTICATION.toArray(pathsNoAuth);
         http.authorizeRequests()
