@@ -25,7 +25,7 @@ export class DialogAddAccountComponent implements OnInit {
       'email': new FormControl('', [Validators.required, Validators.email]),
       'phone': new FormControl('', [Validators.required]),
       'password': new FormControl('', [Validators.required]),
-      'role': new FormControl('TEACHER'),
+      'role': new FormControl('GIANG_VIEN'),
       'isActivate': new FormControl(true),
     });
   }

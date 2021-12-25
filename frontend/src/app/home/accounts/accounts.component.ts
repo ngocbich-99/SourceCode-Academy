@@ -10,6 +10,7 @@ import { DialogAddAccountComponent } from './dialog-add-account/dialog-add-accou
 import { DialogInfoAccountComponent } from './dialog-info-account/dialog-info-account.component';
 import * as moment from 'moment';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-accounts',
@@ -43,7 +44,8 @@ export class AccountsComponent implements OnInit, AfterViewInit {
 
   constructor(
     public dialog: MatDialog,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private toastCodexService: ToastServiceCodex
   ) { }
   
   ngAfterViewInit(): void {
@@ -64,6 +66,8 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   getListAccount() {
     this.accountService.getListAccount().subscribe(resData => {
       // get all list account
+      console.log(resData);
+      
       this.listAccount = resData;
       this.listAccount.forEach((acc, index) => {
         acc.stt = index + 1;
@@ -81,18 +85,22 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   }
   async getAccountActivate() {
     const listAcc = await this.accountService.getAccountActivate().toPromise();
-    listAcc.forEach((acc, index) => {
-      acc.stt = index + 1;
-    });
-    this.dataSourceActivate.data = listAcc;
-    console.log(this.dataSourceActivate.data);
+    if (!!listAcc) {
+      listAcc?.forEach((acc, index) => {
+        acc.stt = index + 1;
+      });
+      this.dataSourceActivate.data = listAcc;
+      console.log(this.dataSourceActivate.data);
+    }
   }
   getAccountLock() {
     this.accountService.getAccountLock().subscribe(resData => {
-      resData.forEach((acc, index) => {
-        acc.stt = index + 1;
-      });
-      this.dataSourceLock.data = resData;
+      if (!!resData) {
+        this.dataSourceLock.data = resData;
+        resData?.forEach((acc, index) => {
+          acc.stt = index + 1;
+        });
+      }
     })
   }
   async toggleStatusAccount(toggle: MatSlideToggle, account: Account) {
@@ -115,7 +123,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(async rs => {
       if (!!rs) {
         const account: Account = {
-          userName: rs.username,
+          username: rs.username,
           email: rs.email,
           phone: rs.phone,
           role: rs.role,
@@ -123,18 +131,23 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           createdTime: moment().valueOf(),
           password: rs.password,
         }
-        this.listAccount.push(account);
         
-        this.listAccount.forEach((acc, index) => {
-          acc.stt = index + 1;
-        })
-
-        const accountRes = await this.accountService.createAccount(account).toPromise();
-        this.listAccount[this.listAccount.indexOf(account)].idAccount = accountRes.idAccount;
+        this.accountService.createAccount(account).subscribe(accountRes => {
+          this.toastCodexService.showToast('Tạo mới giảng viên thành công!', StatusToast.SUCCESS);
+          this.listAccount[this.listAccount.indexOf(account)].id = accountRes.id;
+          
+        }, error => {
+          console.log('error add gv', error);
+          this.toastCodexService.showToast('Tạo mới giảng viên thất bại!', StatusToast.ERROR);
+        });
 
         // all list account
         this.dataSource.data = this.listAccount;
-
+        this.listAccount.push(account);
+        this.listAccount.forEach((acc, index) => {
+          acc.stt = index + 1;
+        })
+        
         // get list account activate
         this.getAccountActivate();
 
@@ -153,7 +166,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     });
     dialogRef.afterClosed().subscribe(async (rs: Account) => {
       if (!!rs) {
-        const index = this.listAccount.findIndex(acc => acc.idAccount === rs.idAccount);
+        const index = this.listAccount.findIndex(acc => acc.id === rs.id);
         this.listAccount[index] = rs;
         this.listAccount.forEach((acc, index) => {
           acc.stt = index + 1;
@@ -190,7 +203,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         this.listAccount.splice(this.listAccount.indexOf(account), 1);
         this.dataSource.data = this.listAccount;
         
-        const res = await this.accountService.deleteAccById(account.idAccount).toPromise();
+        const res = await this.accountService.deleteAccById(account.id).toPromise();
         console.log(res);
 
         // get list account activate
@@ -203,11 +216,14 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   }
 
   convertLabelDisplay(role: string): string {
-    if (role === 'TEACHER') {
+    if (role === 'GIANG_VIEN') {
       return 'Giảng viên';
-    } else if (role === 'STUDENT'){
+    } else if (role === 'HOC_VIEN'){
       return 'Học viên';
-    } else {
+    } else if (role === 'ADMIN') {
+      return 'Quản trị viên';
+    }
+    else {
       return 'Chưa có'
     }
   }

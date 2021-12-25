@@ -25,7 +25,7 @@
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -71,7 +71,7 @@
                                 <mat-icon svgIcon="3-dot-activate"></mat-icon>
                             </button>
                             <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
-                                <button mat-menu-item (click)="updateAccount(element.idAccount)">
+                                <button mat-menu-item (click)="updateAccount(element.id)">
                                     <mat-icon svgIcon="edit"></mat-icon>
                                     <span>Chi tiết</span> 
                                 </button>
@@ -108,7 +108,7 @@
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -151,7 +151,7 @@
                                 <mat-icon svgIcon="3-dot-activate"></mat-icon>
                             </button>
                             <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
-                                <button mat-menu-item (click)="updateAccount(element.idAccount)">
+                                <button mat-menu-item (click)="updateAccount(element.id)">
                                     <mat-icon svgIcon="edit"></mat-icon>
                                     <span>Chi tiết</span> 
                                 </button>
@@ -187,7 +187,7 @@
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.userName}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -230,7 +230,7 @@
                                 <mat-icon svgIcon="3-dot-activate"></mat-icon>
                             </button>
                             <mat-menu class="menu-option" #beforeMenu="matMenu" xPosition="before">
-                                <button mat-menu-item (click)="updateAccount(element.idAccount)">
+                                <button mat-menu-item (click)="updateAccount(element.id)">
                                     <mat-icon svgIcon="edit"></mat-icon>
                                     <span>Chỉnh sửa</span> 
                                 </button>
