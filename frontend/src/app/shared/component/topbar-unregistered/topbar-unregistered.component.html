@@ -1,6 +1,6 @@
 <section class="topbar" fxLayout="row" fxLayoutAlign="space-between center">
     <!-- search bar -->
-    <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
+    <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="start center">
         <mat-icon svgIcon="search"></mat-icon>
         <mat-form-field >
             <input type="text" matInput placeholder="Tìm kiếm khoá học, danh mục,…">
@@ -9,11 +9,11 @@
     <!-- singup/login -->
     <div class="signup-login">
         <button mat-button class="codex-btn-ghost btn-big btn-signup" (click)="onSignup()">
-            <span>Đăng ký</span>
+            <span class="button">Đăng ký</span>
         </button>
         <button mat-button class="codex-btn-primary btn-big btn-login">
             <mat-icon svgIcon="login-outline"></mat-icon>
-            <span>Đăng nhập</span>
+            <span class="button">Đăng nhập</span>
         </button>
     </div>
 </section>

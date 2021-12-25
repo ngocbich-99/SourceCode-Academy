@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface AccountRepository extends JpaRepository<Account, Integer> {
 
     public Account findByEmail(String email);
 
@@ -16,6 +16,4 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     @Query(value = "Select * from account where is_activate = 0", nativeQuery = true)
     List<Account> getAccountLock();
-
-    Account findAccountByEmailOrUsernameOrPhone(String email,String username, String phone);
 }

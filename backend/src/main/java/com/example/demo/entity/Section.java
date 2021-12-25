@@ -13,17 +13,17 @@ import java.util.List;
 @Table(name="section")
 public class Section {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
-
-    private long createdTime;
-
-    private String name;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private int idSection;
 
     @ManyToOne
     private Course course;
 
+    private long createdTime;
+
+    private String nameSection;
+
     @OneToMany(mappedBy = "section")
-    private List<Lesson> lessons;
+    private List<Lesson> listLesson;
 
 }

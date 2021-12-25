@@ -35,8 +35,6 @@ import { DetailCategoryComponent } from "./category/detail-category/detail-categ
 import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DialogAddQuestionComponent } from './questions/dialog-add-question/dialog-add-question.component';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { GlobalHttpInterceptor } from "../global-http.interceptor";
 
 @NgModule({
     imports: [

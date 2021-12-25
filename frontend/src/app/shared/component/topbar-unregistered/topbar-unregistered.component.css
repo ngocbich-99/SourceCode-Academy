@@ -1,6 +1,6 @@
 /* section topbar */
 .search-bar mat-form-field {
-  width: 100%;
+  width: 480px;
 }
 .search-bar mat-icon {
   width: 20px;
@@ -11,10 +11,26 @@
   width: 116px;
 }
 .btn-login {
+  margin-left: 8px;
   width: 173px;
 }
 .btn-login mat-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   margin-right: 12px;
+}
+.topbar{
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 16px 40px 16px 281px;
+  height: 80px;
+}
+
+.search-bar {
+  margin-left: 40px;
 }

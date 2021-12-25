@@ -5,7 +5,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
 import { Category } from '../category.mode';
 import { ToastrService } from 'ngx-toastr';
-import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-detail-category',
@@ -21,8 +20,7 @@ export class DetailCategoryComponent implements OnInit {
     private _location: Location,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
-    private toastService: ToastServiceCodex,
-
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -63,10 +61,11 @@ export class DetailCategoryComponent implements OnInit {
 
       this.categoryService.updateCategory(this.category).subscribe(resData => {
         console.log(resData);
-        this.toastService.showToast('Cập nhật danh mục thành công!', StatusToast.SUCCESS);
-      }, error => {
-        console.log(error);
-        this.toastService.showToast('Cập nhật danh mục thất bại!', StatusToast.ERROR);
+        this.toastr.success('Cập nhật danh mục thành công!','Thành công', {
+          closeButton: true,
+          timeOut: 1000,
+          extendedTimeOut: 2000
+        });
       })
     }
   }
