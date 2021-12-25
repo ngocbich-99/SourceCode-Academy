@@ -1,8 +1,11 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.constant.CommonConstant;
 import com.example.demo.model.dto.SectionDTO;
 import com.example.demo.model.request.section.UpdateSectionRequest;
+import com.example.demo.model.response.CloudResponse;
+import com.example.demo.service.LessonService;
 import com.example.demo.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +17,13 @@ import javax.validation.Valid;
 @RequestMapping("/api/lesson")
 public class LessonController {
 
+    @Autowired
+    LessonService lessonService;
 
     @PostMapping
-    public ResponseEntity<SectionDTO> addSection(@Valid @RequestBody UpdateSectionRequest request){
-        return ResponseEntity.ok(null);
+    public CloudResponse<String> markAsPass(@Valid Long lessonId){
+        lessonService.markAsPass(lessonId);
+        return CloudResponse.ok(CommonConstant.SUCCESS,"Mark as read");
     }
 
 }

@@ -1,6 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Account;
+import com.example.demo.enums.ResponseEnum;
+import com.example.demo.exception.BizException;
 import com.example.demo.jwt.JwtProvider;
 import com.example.demo.jwt.JwtSubject;
 import com.example.demo.model.dto.AccountDTO;
@@ -133,7 +135,7 @@ public class AccountServiceImpl implements AccountService {
         Account account = new Account();
         BeanUtils.copyProperties(request,account);
         if(!request.getPassword().equals(request.getReEnterPassword())){
-            throw new RuntimeException("Password not same ReEnterPassword");
+            throw new BizException(ResponseEnum.PASSWORD_INVALID,"Password not same ReEnterPassword");
         }
         account.setPassword(passwordEncoder.encode(request.getPassword()));
         return this.convertToAccountDTO(accountRepository.save(account));
@@ -143,10 +145,10 @@ public class AccountServiceImpl implements AccountService {
     public LoginResponse login(LoginRequest request) throws JsonProcessingException {
         Account account = accountRepository.findAccountByEmailOrUsernameOrPhone(request.getUsername(),request.getUsername(),request.getUsername());
         if(account == null) {
-            throw new RuntimeException("Not found account");
+            throw new BizException(ResponseEnum.NOT_FOUND,"Not found account");
         }
         if(!passwordEncoder.matches(request.getPassword(),account.getPassword())){
-            throw new RuntimeException("Username or password incorrect");
+            throw new BizException(ResponseEnum.NOT_FOUND,"Username or password incorrect");
         }
         LoginResponse response = new LoginResponse();
         JwtSubject jwtSubject = new JwtSubject();
