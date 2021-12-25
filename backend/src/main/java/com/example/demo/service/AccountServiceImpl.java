@@ -5,7 +5,10 @@ import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
 import com.example.demo.jwt.JwtProvider;
 import com.example.demo.jwt.JwtSubject;
+import com.example.demo.jwt.SecurityService;
 import com.example.demo.model.dto.AccountDTO;
+import com.example.demo.model.request.account.ChangePasswordRequest;
+import com.example.demo.model.request.account.ChangeUserInfoRequest;
 import com.example.demo.model.request.account.CreateAccountRequest;
 import com.example.demo.model.request.account.UpdateAccountRequest;
 import com.example.demo.model.request.auth.LoginRequest;
@@ -18,12 +21,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Service
 public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountRepository accountRepository;
@@ -36,6 +40,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private JwtProvider jwtProvider;
+
+    @Autowired
+    private SecurityService securityService;
 
     @Override
     public List<AccountDTO> getListAccount() {
@@ -50,12 +57,11 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO getAccountById(Long id) {
-//        Optional<Account> account = accountRepository.findById(id);
-//        if (!account.isPresent()) {
-//            throw new NotFoundException("Not found account");
-//        }
-//        return AccountMapper.toAccountDto(account.get());
-        return  null;
+        Optional<Account> account = accountRepository.findById(id);
+        if (!account.isPresent()) {
+            throw new BizException(ResponseEnum.NOT_FOUND,"Not found account");
+        }
+        return convertToAccountDTO(account.get());
     }
 
     @Override
@@ -161,9 +167,42 @@ public class AccountServiceImpl implements AccountService {
         return response;
     }
 
+    @Override
+    public AccountDTO getCurrentUser() {
+        return this.getAccountById(securityService.getCurrentUser().getId());
+    }
+
+    @Override
+    public void changePassword(ChangePasswordRequest request) {
+       Account account = this.findAccountById(securityService.getCurrentUser().getId());
+        if(!request.getNewPassword().equals(request.getReNewPassword())){
+            throw new BizException(ResponseEnum.PASSWORD_INVALID,"Mật khẩu mới và nhập lại mật khẩu mới phải giống nhau");
+        }
+        if(!passwordEncoder.matches(request.getOldPassword(), account.getPassword())){
+            throw new BizException(ResponseEnum.OLD_PASSWORD_INCORRECT,"Old password incorrect");
+        }
+        account.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        accountRepository.save(account);
+    }
+
+    @Override
+    public AccountDTO changeUserInfo(ChangeUserInfoRequest request) {
+        Account account = findAccountById(securityService.getCurrentUser().getId());
+        BeanUtils.copyProperties(request,account);
+        return convertToAccountDTO(accountRepository.save(account));
+    }
+
     private AccountDTO convertToAccountDTO(Account account){
         AccountDTO accountDTO = new AccountDTO();
         mapper.map(account,accountDTO);
         return accountDTO;
+    }
+
+    private Account findAccountById(Long id){
+        Optional<Account> account = accountRepository.findById(securityService.getCurrentUser().getId());
+        if(!account.isPresent()){
+            throw new BizException(ResponseEnum.NOT_FOUND,"User not found");
+        }
+        return account.get();
     }
 }
