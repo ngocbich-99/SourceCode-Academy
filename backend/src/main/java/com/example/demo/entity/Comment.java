@@ -4,24 +4,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
+
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int idComment;
 
-    private Long cmtParentId;
+    private int idCmtParent;
 
-    @NotNull(message = "account id is required")
-    private Long accountId;
+    @ManyToOne
+    private Account account;
 
-    @NotEmpty
     private String content;
 
     private long createdTime;

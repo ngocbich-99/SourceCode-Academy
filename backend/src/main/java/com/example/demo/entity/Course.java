@@ -1,38 +1,37 @@
 package com.example.demo.entity;
 
-import lombok.AccessLevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
+
 @Table(name="course")
 public class Course {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private int idCourse;
 
     @NotNull
-    private Long teacherId;
+    private int idTeacher;
 
-
-    @ManyToMany
-    @JoinTable(
-            name = "course_category",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name="id_category")
+    private Category category;
 
     @NotNull
-    private String name;
+    private String nameCourse;
 
-    private Long createdTime;
+    private long createdTime;
 
     @NotNull
     private Boolean status;
@@ -40,23 +39,102 @@ public class Course {
     @NotNull
     private int level;
 
-    @NotNull
     private String imgCover;
 
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Account> students;
+    @ManyToMany
+    private Set<Student> studentSet;
 
-    @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
-    private List<Question> questions;
+    @OneToMany(mappedBy = "course")
+    private List<Question> questionList;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "course")
-    @Getter(AccessLevel.NONE)
-    private List<Section> sections;
+    @OneToMany
+    private Set<Section> sectionSet;
 
-    @Column(name="subscriber_number", columnDefinition = "bigint default '0'")
-    private Long subscriberNumber;
+    public int getIdTeacher() {
+        return idTeacher;
+    }
+
+    public void setIdTeacher(int idTeacher) {
+        this.idTeacher = idTeacher;
+    }
 
 
+
+    public void setIdCourse(int idCourse) {
+        this.idCourse = idCourse;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public String getNameCourse() {
+        return nameCourse;
+    }
+
+    public void setNameCourse(String nameCourse) {
+        this.nameCourse = nameCourse;
+    }
+
+
+
+    public long getCreatedTime() {
+        return createdTime;
+    }
+
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getImgCover() {
+        return imgCover;
+    }
+
+    public void setImgCover(String imgCover) {
+        this.imgCover = imgCover;
+    }
+
+
+    public Set<Student> getStudentSet() {
+        return studentSet;
+    }
+
+    public void setStudentSet(Set<Student> studentSet) {
+        this.studentSet = studentSet;
+    }
+
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
+    }
+
+    public Set<Section> getSectionSet() {
+        return sectionSet;
+    }
+
+    public void setSectionSet(Set<Section> sectionSet) {
+        this.sectionSet = sectionSet;
+    }
 }

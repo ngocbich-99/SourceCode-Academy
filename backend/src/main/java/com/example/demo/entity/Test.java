@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -15,21 +14,21 @@ import java.util.Set;
 
 public class Test {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private int idTest;
 
-    private Long courseId;
+    private int idCourse;
 
-    private Long createdTime;
+    private long createdTime;
 
-    private String name;
+    private String nameTest;
 
-    private Integer level;
+    private int level;
 
-    private Long timeTest;
+    private long timeTest;
 
-    private Integer totalOfQues;
+    private int totalOfQues;
 
     @ManyToMany
-    private Collection<Question> questions;
+    private Set<Question> questionSet;
 }

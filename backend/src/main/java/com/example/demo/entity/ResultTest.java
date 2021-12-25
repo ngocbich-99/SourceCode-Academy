@@ -8,17 +8,18 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+
 public class ResultTest {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private int idRsTest;
 
     @ManyToOne
-    private Account account;
+    private Student student;
 
-    private Long idTest;
+    private int idTest;
 
-    private Integer point;
+    private int point;
 
-    private Integer totalCorrectQues;
+    private int totalCorrectQues;
 }

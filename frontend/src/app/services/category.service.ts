@@ -34,7 +34,7 @@ export class CategoryService {
 
     // delete category by id
     deleteCategoryById(id?: number) {
-        return this.http.delete(env.backendBaseUrl + `/api/category/delete/${id}`, {responseType: 'text'});
+        return this.http.delete(env.backendBaseUrl + `/api/category/delete/${id}`);
     }
 
 }

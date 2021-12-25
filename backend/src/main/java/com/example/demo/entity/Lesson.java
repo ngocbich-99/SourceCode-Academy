@@ -11,20 +11,23 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+
 public class Lesson {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy =  GenerationType.AUTO)
+    private int idLesson;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="section_id")
+    @JoinColumn(name="id_section")
     private Section section;
 
-    private String name;
+    @OneToOne
+    private Test test;
 
     private String urlVideo;
 
-    private Long createdTime;
+    private long createdTime;
 
     private String type; //video or test
 

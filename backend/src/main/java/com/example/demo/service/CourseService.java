@@ -2,26 +2,14 @@ package com.example.demo.service;
 
 
 import com.example.demo.entity.Course;
-import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.request.course.CreateCourseRequest;
-import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
-import com.example.demo.model.request.course.UpdateCourseRequest;
+import com.example.demo.model.request.CreateCourseReq;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface CourseService {
-    List<CourseDTO> getAll();
-
-    Course getCourseById(Long id);
-
-    CourseDTO getCourseDTOById(Long id);
-
-    List<CourseDTO> findAllByCategoriesName(FindCourseByCategoriesRequest request);
-
-    CourseDTO createCourse(CreateCourseRequest request);
-
-    CourseDTO updateCourse(UpdateCourseRequest request);
-
-    void deleteCourse(Long id);
+    List<Course> getAll();
+    Course getCourseById(int id);
+    Course createCourse(CreateCourseReq courseReq);
 }
