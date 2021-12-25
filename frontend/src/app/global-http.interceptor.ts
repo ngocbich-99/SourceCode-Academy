@@ -25,6 +25,10 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
 
       request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
 
+      request = request.clone({ headers: request.headers.set('Access-Control-Allow-Origin', '*')})
+
+      request = request.clone({ headers: request.headers.set('Access-Control-Allow-Headers', 'Content-Type') })
+
       return next.handle(request);
     } else {
       return next.handle(request);

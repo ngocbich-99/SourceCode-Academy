@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
 
 @Component({
   selector: 'app-personal-info',
@@ -7,12 +9,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
+  userInfo: User = {};
 
   constructor(
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.authService.currentUser.subscribe(user => {
+      this.userInfo = user;
+    })
   }
 
   settingAcc() {

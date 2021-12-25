@@ -17,5 +17,8 @@ export class TopbarUnregisteredComponent implements OnInit {
   onSignup() {
     this.router.navigate(['/signup'])
   }
+  onLogin() {
+    this.router.navigate(['/login'])
+  }
 
 }
