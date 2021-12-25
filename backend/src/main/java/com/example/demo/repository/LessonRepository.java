@@ -11,4 +11,5 @@ import java.util.List;
 public interface LessonRepository extends JpaRepository<Lesson,Long> {
 
     public List<Lesson> findAllBySection(Section section);
+
 }

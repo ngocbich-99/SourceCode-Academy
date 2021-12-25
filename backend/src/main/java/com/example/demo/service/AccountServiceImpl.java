@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Account;
-import com.example.demo.exception.NotFoundException;
 import com.example.demo.jwt.JwtProvider;
 import com.example.demo.jwt.JwtSubject;
 import com.example.demo.model.dto.AccountDTO;
@@ -12,7 +11,6 @@ import com.example.demo.model.request.auth.RegisterAccountRequest;
 import com.example.demo.model.response.user.LoginResponse;
 import com.example.demo.repository.AccountRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

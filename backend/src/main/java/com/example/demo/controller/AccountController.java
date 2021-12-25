@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.dto.AccountDTO;
 import com.example.demo.model.request.account.CreateAccountRequest;
 import com.example.demo.model.request.account.UpdateAccountRequest;
+import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.AccountService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.example.demo.constant.CommonConstant.SUCCESS;
+
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
@@ -21,50 +24,54 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @ApiOperation(value = "Get list account", response = AccountDTO.class, responseContainer = "List")
+    @ApiOperation(value = "Get list account", response = CloudResponse.class, responseContainer = "List")
     @GetMapping
-    public ResponseEntity<List<AccountDTO>> getListAccount() {
+    public CloudResponse<List<AccountDTO>> getListAccount() {
         List<AccountDTO> accountDtos = accountService.getListAccount();
-        return ResponseEntity.ok(accountDtos);
+        return CloudResponse.ok(accountDtos);
     }
 
     @ApiOperation(value = "Get account info by id", response = AccountDTO.class)
     @GetMapping("/{id}")
-    public ResponseEntity<AccountDTO> getAccountById(@PathVariable Long id) {
+    public CloudResponse<AccountDTO> getAccountById(@PathVariable Long id) {
         AccountDTO accountDto = accountService.getAccountById(id);
-        return ResponseEntity.ok(accountDto);
+        return CloudResponse.ok(accountDto);
     }
 
     @ApiOperation(value = "Create account", response = AccountDTO.class)
     @PostMapping
-    public ResponseEntity<AccountDTO> createAccount(@Valid @RequestBody CreateAccountRequest accountReq) {
+    public CloudResponse<AccountDTO> createAccount(@Valid @RequestBody CreateAccountRequest accountReq) {
         AccountDTO accountDto = accountService.createAcc(accountReq);
-        return ResponseEntity.ok(accountDto);
+        return CloudResponse.ok(accountDto,"Create account success");
     }
 
 
+    @ApiOperation(value = "update account")
     @PutMapping("/{id}")
-    public ResponseEntity<AccountDTO> updateAccount(@Valid @RequestBody UpdateAccountRequest body, @PathVariable int id) {
-        return ResponseEntity.ok(accountService.updateAcc(body));
+    public CloudResponse<AccountDTO> updateAccount(@Valid @RequestBody UpdateAccountRequest body, @PathVariable int id) {
+        return CloudResponse.ok(accountService.updateAcc(body),"Update account success");
     }
 
 
+    @ApiOperation(value = "delete account")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAccount(@PathVariable Long id) {
+    public CloudResponse<?> deleteAccount(@PathVariable Long id) {
         accountService.deleteAcc(id);
-        return ResponseEntity.ok("Delete success");
+        return CloudResponse.ok(SUCCESS,"Delete account success");
     }
 
-    @GetMapping("/account-activate")
-    public ResponseEntity<?> getAccActivate() {
+    @ApiOperation(value = "get list active account")
+    @GetMapping("/activate")
+    public CloudResponse<List<AccountDTO>> getAccActivate() {
         List<AccountDTO> listAccDto = accountService.getAccountActivate();
-        return ResponseEntity.ok(listAccDto);
+        return CloudResponse.ok(listAccDto);
     }
 
+    @ApiOperation(value = "get list lock account")
     @GetMapping("/lock")
-    public ResponseEntity<?> getAccLock() {
+    public CloudResponse<List<AccountDTO>> getAccLock() {
         List<AccountDTO> listAcc = accountService.getAccountLock();
-        return ResponseEntity.ok(listAcc);
+        return CloudResponse.ok(listAcc);
     }
 
 }

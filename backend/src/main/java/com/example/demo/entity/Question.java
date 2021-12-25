@@ -37,7 +37,7 @@ public class Question {
 
     private long createdTime;
 
-    @ManyToMany
-    private Collection<Test> tests;
+//    @ManyToMany
+//    private Collection<Test> tests;
 
 }

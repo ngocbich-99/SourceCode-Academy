@@ -42,8 +42,8 @@ public class Account {
 
     private Long createdTime;
 
-    @OneToMany
-    private List<Comment> comments;
+//    @OneToMany
+//    private List<Comment> comments;
 
     @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
     Set<LessonPass> lessonPasses;

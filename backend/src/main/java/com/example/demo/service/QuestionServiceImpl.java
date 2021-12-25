@@ -2,7 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Course;
 import com.example.demo.entity.Question;
-import com.example.demo.exception.NotFoundException;
+import com.example.demo.enums.ResponseEnum;
+import com.example.demo.exception.BizException;
 import com.example.demo.model.request.question.CreateQuestionRequest;
 import com.example.demo.model.request.question.UpdateQuestionRequest;
 import com.example.demo.repository.CourseRepository;
@@ -32,7 +33,7 @@ public class QuestionServiceImpl implements QuestionService{
     public Question getQuestionById(Long id) {
         Optional<Question> question = questionRepository.findById(id);
         if (!question.isPresent()) {
-            throw new NotFoundException("Not found question");
+            throw new BizException(ResponseEnum.NOT_FOUND,"Not found question");
         }
         return question.get();
     }
@@ -48,26 +49,26 @@ public class QuestionServiceImpl implements QuestionService{
 //        Question question = new Question();
 
 //        convert questionReq => question
-        Question question = new Question();
-        question.setContent(createQuestionRequest.getContent());
-        question.setAns1(createQuestionRequest.getAns1());
-        question.setAns2(createQuestionRequest.getAns2());
-        question.setAns3(createQuestionRequest.getAns3());
-        question.setAns4(createQuestionRequest.getAns4());
-        question.setCorrectAns(createQuestionRequest.getCorrectAns());
-        question.setCreatedTime(createQuestionRequest.getCreatedTime());
+//        Question question = new Question();
+//        question.setContent(createQuestionRequest.getContent());
+//        question.setAns1(createQuestionRequest.getAns1());
+//        question.setAns2(createQuestionRequest.getAns2());
+//        question.setAns3(createQuestionRequest.getAns3());
+//        question.setAns4(createQuestionRequest.getAns4());
+//        question.setCorrectAns(createQuestionRequest.getCorrectAns());
+//        question.setCreatedTime(createQuestionRequest.getCreatedTime());
+//
+//        Optional<Course> course = courseRepository.findById(createQuestionRequest.getCourseId());
+//
+//        if (!course.isPresent()) {
+//            throw new NotFoundException("Course not found");
+//        } else {
+//            question.setCourse(course.get());
+//        }
+//
+//        questionRepository.save(question);
 
-        Optional<Course> course = courseRepository.findById(createQuestionRequest.getCourseId());
-
-        if (!course.isPresent()) {
-            throw new NotFoundException("Course not found");
-        } else {
-            question.setCourse(course.get());
-        }
-
-        questionRepository.save(question);
-
-        return question;
+        return null;
     }
 
     @Override
@@ -81,7 +82,7 @@ public class QuestionServiceImpl implements QuestionService{
 
         Optional<Question> question = questionRepository.findById(id);
         if (!question.isPresent()) {
-            throw new NotFoundException("Not found question");
+            throw new BizException(ResponseEnum.NOT_FOUND,"Not found question");
         }
         try {
             questionRepository.deleteById(id);

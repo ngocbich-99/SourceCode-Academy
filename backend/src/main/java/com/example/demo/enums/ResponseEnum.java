@@ -26,7 +26,7 @@ public enum ResponseEnum {
     ACCOUNT_BD_NUM_NOT_EXIST("20007", "Business Partner number does not exist"),
     ACCOUNT_USERNAME_EXISTED("20008", "Username already exists"),
     ACCOUNT_USERNAME_WRONG_FORMAT("20009", "Username wrong format"),
-    COLLECTION_NOT_FOUND("20010", "Collection not found"),
+    NOT_FOUND("20010", "Not found"),
     POLICY_NOT_EXIST("20011", "Policy does not exist"),
     ACCOUNT_ALREADY_USERNAME("20012", "Account already has username"),
     OTP_REQUEST_FAIL("20013", "Request OTP fail"),

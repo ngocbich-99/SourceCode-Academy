@@ -15,4 +15,6 @@ public interface LessonService {
     public List<LessonDTO> updateLessons(List<UpdateLessonRequest> request, Long sectionId);
 
     public List<LessonDTO> getLessons(Section section);
+
+    public void markAsPass(Long lessonId);
 }

@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Category;
-import com.example.demo.exception.NotFoundException;
+import com.example.demo.enums.ResponseEnum;
+import com.example.demo.exception.BizException;
 import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.model.request.category.CreateCategoryRequest;
 import com.example.demo.model.request.category.UpdateCategoryRequest;
@@ -42,7 +43,7 @@ public class CategoryServiceImpl implements CategoryService {
     public CategoryDTO getCategoryById(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
         if (!category.isPresent()) {
-            throw new NotFoundException("Not found category");
+//            throw new NotFoundException("Not found category");
         }
         return this.convertToCategoryDTO(category.get());
     }
@@ -76,7 +77,7 @@ public class CategoryServiceImpl implements CategoryService {
     public void deleteCategory(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
         if (!category.isPresent()) {
-            throw new NotFoundException("Not found category");
+            throw new BizException(ResponseEnum.NOT_FOUND,"Not found Category");
         }
         try {
             categoryRepository.deleteById(id);
