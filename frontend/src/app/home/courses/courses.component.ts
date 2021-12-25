@@ -54,10 +54,16 @@ export class CoursesComponent implements OnInit {
 
   async getListCategory() {
     this.listCategory = await this.categoryService.getListCategory().toPromise();
+    // this.categoryService.getListCategory().subscribe(
+    //   x=> console.log(x)
+    // );
   }
 
   async getListCourse() {
     this.listCourseAll = await this.courseService.getListCourse().toPromise();
+    // this.courseService.getListCourse().subscribe(
+    //   x=> console.log(x)
+    // );
   }
 
   getListCoursePublic(): Course[] {

@@ -40,6 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
         http.csrf().disable();
+        http.cors();
         String[] pathsNoAuth = new String[CommonConstant.PATHS_NO_AUTHENTICATION.size()];
         CommonConstant.PATHS_NO_AUTHENTICATION.toArray(pathsNoAuth);
         http.authorizeRequests()

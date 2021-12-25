@@ -17,6 +17,7 @@ import java.util.List;
 import static com.example.demo.constant.CommonConstant.SUCCESS;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/category")
 public class CategoryController {
 
