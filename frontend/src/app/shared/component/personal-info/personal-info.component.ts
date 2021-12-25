@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/auth/user.model';
 
 @Component({
   selector: 'app-personal-info',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
+  userInfo: User = {};
 
   constructor(
     private router: Router,
@@ -16,12 +18,10 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   settingAcc() {
-    console.log('setting acc');
     this.router.navigate(['/home/setting-account']);
   }
 
   logout() {
-    console.log('logout');
     this.router.navigate(['/login']);
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
 import { Location } from '@angular/common';
 import { User } from 'src/app/auth/user.model';
 @Component({
@@ -11,7 +10,7 @@ import { User } from 'src/app/auth/user.model';
 })
 export class SidebarComponent implements OnInit {
   activeTab: string = '';
-  role: string = ''; 
+  role: string | undefined = ''; 
   closed$ = new Subject<any>();
 
   constructor(
