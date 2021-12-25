@@ -17,7 +17,7 @@
                     <mat-icon svgIcon="edit"></mat-icon>
                     <span>Chi tiết</span> 
                 </button>
-                <button mat-menu-item (click)="deleteCourse(course.id)">
+                <button mat-menu-item (click)="deleteCourse(course)">
                     <mat-icon svgIcon="trash"></mat-icon>
                     <span>Xoá</span> 
                 </button>
@@ -32,7 +32,7 @@
                 <!-- public -->
                 <mat-icon *ngIf="course.status" svgIcon="public-status"></mat-icon>
                 <!-- private -->
-                <mat-icon *ngIf="!course.status" svgIcon="private-status"></mat-icon>
+                <mat-icon class="private-icon" *ngIf="!course.status" svgIcon="private-status"></mat-icon>
                 <h3>{{course.name}}</h3>
             </div>
             

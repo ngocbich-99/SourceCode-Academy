@@ -48,7 +48,8 @@ export class CoursesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      console.log('res dialog add course', result);
+      this.listCourseAll.push(result.data)
     });
   }
 

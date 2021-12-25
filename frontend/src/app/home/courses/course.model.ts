@@ -17,7 +17,6 @@ export interface Course {
     categories?: Category[]; 
     sections?: Section[];
 }
-
 export interface CourseRequest {
     categoryIds?: number[];
     createdTime?: number;
@@ -31,18 +30,6 @@ export interface CourseRequest {
     status?: boolean; // public or private
 }
 
-export interface CourseResponse {
-    idCourse?: number;
-    idTeacher?: number;
-    category?: Category[]; 
-    nameCourse?: string;
-    createdTime?: number;
-    status?: boolean; // public or private
-    level?: number;
-    imgCover?: string;
-    description?: string;
-    sectionList?: Section[];
-}
 export interface Section {
     courseId?: number;
     id?: number;

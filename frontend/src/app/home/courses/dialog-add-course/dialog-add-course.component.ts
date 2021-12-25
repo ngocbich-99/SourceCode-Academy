@@ -170,8 +170,6 @@ export class DialogAddCourseComponent implements OnInit {
   }
 
   createCourse() {
-    this.dialogRef.close();
-
     // truyen info course o form vao
     const courseReq: CourseRequest = {
       categoryIds: [this.formInforCourse.value.idCategory],
@@ -216,6 +214,9 @@ export class DialogAddCourseComponent implements OnInit {
     
     this.courseService.createCourse(courseReq).subscribe(resData => {
       console.log('response add course', resData);
+      this.dialogRef.close(
+        {data: courseReq}
+      );
       this.toastCodexService.showToast('Tạo mới khoá học thành công!', StatusToast.SUCCESS);
     }, error => {
       console.log('error add course', error);
@@ -231,7 +232,6 @@ export class DialogAddCourseComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
         this.urlImg = event.target.result;
-        console.log(this.urlImg);
       }
     }
   }

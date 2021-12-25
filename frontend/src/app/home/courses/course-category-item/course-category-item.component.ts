@@ -26,7 +26,7 @@ export class CourseCategoryItemComponent implements OnInit {
   updateCourse() {
     
   }
-  deleteCourse(id?: number) {
+  deleteCourse(course: Course) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '520px',
       height: '252px',
@@ -35,8 +35,9 @@ export class CourseCategoryItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
       if (result) {
-        this.courseService.deleteCourse(id).subscribe(resData => {
-          console.log(resData);
+        this.courseService.deleteCourse(course.id).subscribe(resData => {
+          this.courses.splice(this.courses.indexOf(course), 1);
+
           this.toastServiceCodex.showToast('Xoá khoá học thành công!', StatusToast.SUCCESS);
         }, error => {
           console.log(error);
