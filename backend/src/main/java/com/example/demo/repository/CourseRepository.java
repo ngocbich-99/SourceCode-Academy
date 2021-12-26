@@ -28,6 +28,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     public void enrollCourse(Long studentId, Long courseId);
 
     @Query("SELECT c FROM Course c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%',:searchText, '%'))")
-    Page<CourseDTO> findCourse(@Param("searchText") String searchText,
+    Page<Course> findCourse(@Param("searchText") String searchText,
                                Pageable pageable);
 }
