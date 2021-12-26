@@ -19,7 +19,7 @@ export class DialogInfoAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateAccForm = new FormGroup({
-      'username': new FormControl(this.data.account.username, Validators.required),
+      'fullName': new FormControl(this.data.account.fullName, Validators.required),
       'email': new FormControl(this.data.account.email, [Validators.required, Validators.email]),
       'phone': new FormControl(this.data.account.phone, [Validators.required]),
       'role': new FormControl({value: this.convertLabelDisplay(this.data.account.role), disabled: true}),
@@ -28,7 +28,7 @@ export class DialogInfoAccountComponent implements OnInit {
   }
 
   updateAccount() {
-    this.data.account.username = this.updateAccForm.value.username;
+    this.data.account.fullName = this.updateAccForm.value.fullName;
     this.data.account.email = this.updateAccForm.value.email;
     this.data.account.phone = this.updateAccForm.value.phone;
     this.data.account.isActivate = this.updateAccForm.value.isActivate;
@@ -37,12 +37,14 @@ export class DialogInfoAccountComponent implements OnInit {
     this.dialogRef.close();
   }
   convertLabelDisplay(role?: string): string {
-    if (role === 'TEACHER') {
+    if (role === 'GIANG_VIEN') {
       return 'Giảng viên';
-    } else if (role === 'STUDENT'){
+    } else if (role === 'HOC_VIEN'){
       return 'Học viên';
+    } else if (role === 'ADMIN') {
+      return 'Quản trị viên';
     } else {
-      return 'Chưa có'
+      return 'Chưa có';
     }
   }
 

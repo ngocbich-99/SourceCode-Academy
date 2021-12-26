@@ -6,6 +6,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { ToastrService } from 'ngx-toastr';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { Category } from '../category.model';
+import { Course } from '../../courses/course.model';
 
 @Component({
   selector: 'app-detail-category',
@@ -16,6 +17,7 @@ export class DetailCategoryComponent implements OnInit {
   editCategoryForm: FormGroup = new FormGroup({});
   categoryId: number = 0;
   category: Category = {};
+  listCourse: Course[] = [];
 
   constructor(
     private _location: Location,
@@ -54,13 +56,21 @@ export class DetailCategoryComponent implements OnInit {
     this.editCategoryForm.get('description')?.setValue(this.category?.description);
 
     // get list course by category
-    this.getCourseByCategory();
+    this.getCoursesByCategory();
   }
 
-  getCourseByCategory() {
+  getCoursesByCategory() {
     this.categoryService.getCoursesByCategory([this.category?.name as string]).subscribe(resData => {
-      console.log('list courses by category', resData);
+      this.listCourse = resData.data;
     })
+  }
+
+  getCourseBasic(): Course[] {
+    return this.listCourse.filter(course => course.level === 1);
+  }
+
+  getCourseAdvance(): Course[] {
+    return this.listCourse.filter(course => course.level === 2);
   }
 
   editCategory() {

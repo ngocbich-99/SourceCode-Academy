@@ -41,13 +41,13 @@ export class AccountService {
     }
 
     // update account
-    updateAccount(accountReq: Account): Observable<Account> {
-        return this.http.put<Account>(env.backendBaseUrl + `/api/accounts/${accountReq.id?.toString()}`, accountReq);
+    updateAccount(accountReq: Account): Observable<ResponseAccount> {
+        return this.http.put<ResponseAccount>(env.backendBaseUrl + '/api/accounts', accountReq);
     }
 
     // delete account by id
-    deleteAccById(idAccount?: number) {
-        return this.http.delete(env.backendBaseUrl + `/api/accounts/${idAccount}`, {responseType: 'text'});
+    deleteAccById(idAccount?: number): Observable<any> {
+        return this.http.delete<any>(env.backendBaseUrl + `/api/accounts/${idAccount}`);
     }
 
     // get account activate

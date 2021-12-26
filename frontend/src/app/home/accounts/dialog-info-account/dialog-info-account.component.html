@@ -14,11 +14,11 @@
             <h3>Họ tên</h3>
             <mat-form-field fxFlex="80" appearance="outline">
                 <input 
-                formControlName="username"
+                formControlName="fullName"
                 type="text" 
                 matInput 
                 placeholder="Tên người dùng">
-                <mat-error *ngIf="updateAccForm.get('username')?.hasError('required') && updateAccForm.get('username')?.touched">Đây là trường bắt buộc</mat-error>
+                <mat-error *ngIf="updateAccForm.get('fullName')?.hasError('required') && updateAccForm.get('fullName')?.touched">Đây là trường bắt buộc</mat-error>
             </mat-form-field>
         </div>
         <div class="row-email" fxLayout="row" fxLayoutAlign="space-between center">

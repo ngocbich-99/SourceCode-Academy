@@ -49,12 +49,18 @@
 
     <div class="row-basic-course">
         <h3>Khoá học cơ bản</h3>
-        <app-course-category-item></app-course-category-item>
+        <p *ngIf="getCourseBasic().length === 0">Chưa có khoá học nào!</p>
+        <app-course-category-item
+        [courses]="getCourseBasic()"
+        ></app-course-category-item>
     </div>
 
     <div class="row-advance-course">
         <h3>Khoá học nâng cao</h3>
-
+        <p *ngIf="getCourseAdvance().length === 0">Chưa có khoá học nào!</p>
+        <app-course-category-item
+        [courses]="getCourseAdvance()"
+        ></app-course-category-item>
     </div>
     
 </section>

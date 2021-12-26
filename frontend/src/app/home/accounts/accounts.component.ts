@@ -178,7 +178,18 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         });
 
         // goi api de update account trong csdl
-        await this.accountService.updateAccount(rs).toPromise();
+        const accountReq: Account = {
+          email: rs.email,
+          fullName: rs.fullName,
+          id: rs.id,
+          isActivate: rs.isActivate,
+          phone: rs.phone,
+          role: rs.role,
+          username: rs.email
+        }
+        this.accountService.updateAccount(accountReq).subscribe(resData => {
+          console.log('update account', resData);
+        });
         
         this.dataSource.data = this.listAccount;
 
@@ -205,11 +216,16 @@ export class AccountsComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(async result => {
       if (result === true) {
-        this.listAccount.splice(this.listAccount.indexOf(account), 1);
-        this.dataSource.data = this.listAccount;
-        
-        const res = await this.accountService.deleteAccById(account.id).toPromise();
-        console.log(res);
+        this.accountService.deleteAccById(account.id).subscribe(resData => {
+          console.log(resData);
+          this.toastCodexService.showToast('Xoá giảng viên thành công!', StatusToast.SUCCESS);
+
+          this.listAccount.splice(this.listAccount.indexOf(account), 1);
+          this.dataSource.data = this.listAccount;
+        }, error => {
+          console.log(error);
+          this.toastCodexService.showToast('Xoá giảng viên thất bại!', StatusToast.ERROR);
+        });
 
         // get list account activate
         this.getAccountActivate();
