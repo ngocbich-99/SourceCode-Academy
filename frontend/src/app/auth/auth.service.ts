@@ -46,6 +46,7 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('codex-token');
   }
 
   getUserInfo(): Observable<UserInfo> {

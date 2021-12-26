@@ -24,11 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
+    // delete data old
+    this.authService.logout();
+    
     if (!this.loginForm.invalid) {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(resData => {
         console.log(resData);
         // luu token vao localStorage
-        localStorage.setItem('codex-token', resData.data.accessToken)
+        localStorage.setItem('codex-token', resData.data.accessToken);
+
         // check quyen router link
         if (resData.data.role === 'HOC_VIEN') {
           this.router.navigate(['/home/dashboard-student']);

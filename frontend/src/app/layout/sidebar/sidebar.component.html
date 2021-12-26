@@ -6,16 +6,16 @@
 <mat-nav-list class="sidebar">
     <!-- sidebar unregistered -->
     <a mat-list-item 
-    *ngIf="role === ''"
+    *ngIf="role === undefined"
     [routerLink]= "['/home/main-page-unregistered']" 
     routerLinkActive="active" 
-    (click)="onTabChange('dashboard')">
-        <mat-icon *ngIf="activeTab === 'dashboard'" svgIcon="dashboard-fill" routerLinkActive="active"></mat-icon>
-        <mat-icon *ngIf="activeTab !== 'dashboard'" svgIcon="dashboard-outline" routerLinkActive="active"></mat-icon>
+    (click)="onTabChange('dashboard-unregistered')">
+        <mat-icon *ngIf="activeTab === 'dashboard-unregistered'" svgIcon="dashboard-fill" routerLinkActive="active"></mat-icon>
+        <mat-icon *ngIf="activeTab !== 'dashboard-unregistered'" svgIcon="dashboard-outline" routerLinkActive="active"></mat-icon>
         <span class="nav-caption">Trang Chính</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === ''"
+    *ngIf="role === undefined"
     [routerLink]= "['/home/courses-unregistered']" 
     routerLinkActive="active" 
     (click)="onTabChange('courses-unregis')">
@@ -24,7 +24,7 @@
         <span class="nav-caption">Khoá học</span>
     </a>
     <a mat-list-item 
-    *ngIf="role === ''"
+    *ngIf="role === undefined"
     [routerLink]= "['/home/about-us']" 
     routerLinkActive="active" 
     (click)="onTabChange('about-us')">

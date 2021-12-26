@@ -8,12 +8,11 @@ import { AuthService } from './auth/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'codex-academy';
   constructor(
     private matIconRegistry: MatIconRegistry,
     private domSanitizer: DomSanitizer,
-    private authService: AuthService
     ){
     this.matIconRegistry.addSvgIcon(
       `course-fill`,
@@ -167,9 +166,5 @@ export class AppComponent implements OnInit{
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/expand-collapse.svg")
     );
   }
-  ngOnInit(): void {
-    this.authService.getUserInfo().subscribe((userInfo) => {
-      console.log('ngOnInit app component', userInfo);
-    });
-  }
+  
 }
