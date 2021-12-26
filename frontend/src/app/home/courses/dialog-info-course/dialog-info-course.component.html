@@ -7,7 +7,7 @@
     </mat-dialog-actions>
     <!-- tab bar -->
     <div class="content-container">
-        <h2>Tạo khoá học</h2>
+        <h2>Cập nhật khoá học</h2>
         <tabset class="tabset-parent">
             <tab heading="Thông tin chung">
                 <!-- tab infomation of course -->
@@ -44,8 +44,8 @@
                                 <mat-form-field  appearance="outline" fxFlex="66">
                                     <mat-label>Chọn danh mục</mat-label>
                                     <mat-select formControlName="idCategory">
-                                        <mat-option *ngFor="let category of listCategory" [value]="category.idCategory">
-                                            {{category.nameCategory}}
+                                        <mat-option *ngFor="let category of listCategory" [value]="category.id">
+                                            {{category.name}}
                                         </mat-option>
                                     </mat-select>
                                 </mat-form-field>
@@ -163,11 +163,11 @@
                                                         style="margin-right: 8px;">
                                                         Video
                                                     </label>
-                                                    <label 
+                                                    <!-- <label 
                                                         class="btn codex-btn-radio" 
                                                         btnRadio="Test">
                                                         Bài kiểm tra
-                                                    </label>
+                                                    </label> -->
                                                 </div>
                                                 <!-- content video -->
                                                 <div class="container-content-video" *ngIf="radioModel === 'Video'" fxLayout="column">
@@ -223,7 +223,7 @@
                         type="submit" 
                         mat-button 
                         class="codex-btn-primary btn-big btn-add-course">
-                            <span>Tạo khoá học</span>
+                            <span>Lưu</span>
                         </button>
                     </div>
                 </div>

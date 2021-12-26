@@ -106,14 +106,14 @@ export class DialogInfoCourseComponent implements OnInit {
   createForm() {
     this.formInforCourse = new FormGroup({
       'imgCover': new FormControl('', Validators.required),
-      'nameCourse': new FormControl(this.data.courseSelected.nameCourse, Validators.required),
+      'nameCourse': new FormControl(this.data.courseSelected.name, Validators.required),
       'idCategory': new FormControl('', Validators.required),
       'level': new FormControl(this.data.courseSelected.level, Validators.required),
       'description': new FormControl(this.data.courseSelected.description),
       'status': new FormControl(this.data.courseSelected.status === true ? 'public' : 'private', Validators.required)
     })
-    if (!!this.data.courseSelected.category) {
-      this.formInforCourse.get('idCategory')?.patchValue(this.data.courseSelected.category[0].idCategory);
+    if (!!this.data.courseSelected.categories) {
+      this.formInforCourse.get('idCategory')?.patchValue(this.data.courseSelected.categories[0].id);
     }
   }
 
