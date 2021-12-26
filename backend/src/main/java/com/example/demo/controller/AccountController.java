@@ -6,10 +6,7 @@ import com.example.demo.model.request.account.UpdateAccountRequest;
 import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.AccountService;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,8 +24,8 @@ public class AccountController {
     @ApiOperation(value = "Get list account", response = CloudResponse.class, responseContainer = "List")
     @GetMapping
     public CloudResponse<List<AccountDTO>> getListAccount() {
-        List<AccountDTO> accountDtos = accountService.getListAccount();
-        return CloudResponse.ok(accountDtos);
+        List<AccountDTO> accountDTOS = accountService.getListAccount();
+        return CloudResponse.ok(accountDTOS);
     }
 
     @ApiOperation(value = "Get account info by id", response = AccountDTO.class)
@@ -42,22 +39,22 @@ public class AccountController {
     @PostMapping
     public CloudResponse<AccountDTO> createAccount(@Valid @RequestBody CreateAccountRequest accountReq) {
         AccountDTO accountDto = accountService.createAcc(accountReq);
-        return CloudResponse.ok(accountDto,"Create account success");
+        return CloudResponse.ok(accountDto, "Create account success");
     }
 
 
     @ApiOperation(value = "update account")
-    @PutMapping("/{id}")
-    public CloudResponse<AccountDTO> updateAccount(@Valid @RequestBody UpdateAccountRequest body, @PathVariable int id) {
-        return CloudResponse.ok(accountService.updateAcc(body),"Update account success");
+    @PutMapping("")
+    public CloudResponse<AccountDTO> updateAccount(@Valid @RequestBody UpdateAccountRequest body) {
+        return CloudResponse.ok(accountService.updateAcc(body), "Update account success");
     }
 
 
     @ApiOperation(value = "delete account")
     @DeleteMapping("/{id}")
-    public CloudResponse<?> deleteAccount(@PathVariable Long id) {
+    public CloudResponse<String> deleteAccount(@PathVariable Long id) {
         accountService.deleteAcc(id);
-        return CloudResponse.ok(SUCCESS,"Delete account success");
+        return CloudResponse.ok(SUCCESS, "Delete account success");
     }
 
     @ApiOperation(value = "get list active account")

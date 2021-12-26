@@ -7,6 +7,8 @@ import com.example.demo.model.request.course.CreateCourseRequest;
 import com.example.demo.model.request.course.EnrollRequest;
 import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
 import com.example.demo.model.request.course.UpdateCourseRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,4 +31,6 @@ public interface CourseService {
     void enrollCourse(EnrollRequest request);
 
     void deleteCourse(Long id);
+
+    Page<CourseDTO> findCourse(String textSearch, Pageable pageable);
 }

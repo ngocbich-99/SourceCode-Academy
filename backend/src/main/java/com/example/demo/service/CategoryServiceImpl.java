@@ -86,6 +86,11 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    @Override
+    public List<Category> saveAll(List<Category> categories) {
+        return categoryRepository.saveAll(categories);
+    }
+
     private CategoryDTO convertToCategoryDTO(Category category) {
         CategoryDTO categoryDTO = new CategoryDTO();
         BeanUtils.copyProperties(category, categoryDTO);

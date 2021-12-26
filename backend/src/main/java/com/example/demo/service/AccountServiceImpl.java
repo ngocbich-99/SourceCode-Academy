@@ -163,7 +163,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private Account findAccountById(Long id) {
-        Optional<Account> account = accountRepository.findById(securityService.getCurrentUser().getId());
+        Optional<Account> account = accountRepository.findById(id);
         if (!account.isPresent()) {
             throw new BizException(ResponseEnum.NOT_FOUND, "User not found");
         }

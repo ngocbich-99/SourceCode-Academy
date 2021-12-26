@@ -1,7 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
+import com.example.demo.model.dto.CourseDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +15,7 @@ import java.util.List;
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
 
-//    @Query(name = "SELECT u FROM Course u WHERE u.status = true")
+    //    @Query(name = "SELECT u FROM Course u WHERE u.status = true")
     public List<Course> findAll();
 
     //SELECT cs FROM Course cs LEFT JOIN cs. c WHERE cs.id = a.user
@@ -22,6 +24,10 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     public List<Course> findAllByStatus(Boolean status);
 
-    @Query(value = "insert into course_students(course_id,students_id) values(?1,?2)",nativeQuery = true)
-    public void enrollCourse(Long studentId,Long courseId);
+    @Query(value = "insert into course_students(course_id,students_id) values(?1,?2)", nativeQuery = true)
+    public void enrollCourse(Long studentId, Long courseId);
+
+    @Query("SELECT c FROM Course c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%',:searchText, '%'))")
+    Page<CourseDTO> findCourse(@Param("searchText") String searchText,
+                               Pageable pageable);
 }

@@ -37,7 +37,7 @@ public class Account {
 
     private String phone;
 
-    private Boolean isActivate;
+    private Boolean isActivate = Boolean.TRUE;
 
     private String role = HOC_VIEN;
 

@@ -11,10 +11,10 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
 
     public Account findByEmail(String email);
 
-    @Query(value = "Select * from account where is_activate = 1", nativeQuery = true)
+    @Query(value = "Select * from account where is_activate = true", nativeQuery = true)
     List<Account> getAccountActivate();
 
-    @Query(value = "Select * from account where is_activate = 0", nativeQuery = true)
+    @Query(value = "Select * from account where is_activate = false ", nativeQuery = true)
     List<Account> getAccountLock();
 
     Account findAccountByEmailOrUsernameOrPhone(String email,String username, String phone);

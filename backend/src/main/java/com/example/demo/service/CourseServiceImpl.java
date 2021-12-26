@@ -26,6 +26,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -184,6 +186,11 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    @Override
+    public Page<CourseDTO> findCourse(String textSearch, Pageable pageable) {
+        return courseRepository.findCourse(textSearch, pageable);
+    }
+
     private List<LessonDTO> saveLessonList(List<CreateLessonRequest> requests, Long sectionId) {
         return lessonService.addLessons(requests, sectionId);
     }
@@ -218,11 +225,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     private List<Category> getListCategory(List<Long> ids) {
-//        List<Category> categoryList = new ArrayList<>();
-//        for (Long id : ids) {
-//            categoryList.add(categoryService.getCategoryById(id));
-//        }
-        return categoryService.getCategoriesInIds(ids).stream().map(x->new Category(x.getId(),x.getName(),x.getDescription(), x.getCourseCount()+1,x.getCourses())).collect(Collectors.toList());
+        List<Category> categories = categoryService.getCategoriesInIds(ids);
+        for (Category category : categories){
+            category.setCourseCount(category.getCourseCount()+1);
+        }
+        return categoryService.saveAll(categories);
     }
 
     private List<CourseDTO> convertToListCourseDTO(List<Course> courses) {

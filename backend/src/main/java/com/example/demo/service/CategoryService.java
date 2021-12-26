@@ -8,19 +8,18 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface CategoryService {
-    public List<CategoryDTO> getListCategory();
+     List<CategoryDTO> getListCategory();
 
-    public CategoryDTO getCategoryById(Long id);
+     CategoryDTO getCategoryById(Long id);
 
-    public List<Category> getCategoriesInIds(List<Long> id);
+     List<Category> getCategoriesInIds(List<Long> id);
 
-    public CategoryDTO createCategory(CreateCategoryRequest request);
+     CategoryDTO createCategory(CreateCategoryRequest request);
 
-    public CategoryDTO updateCategory(UpdateCategoryRequest request);
+     CategoryDTO updateCategory(UpdateCategoryRequest request);
 
-    public void deleteCategory(Long id);
+     void deleteCategory(Long id);
 
-
+    List<Category> saveAll(List<Category> categories);
 }

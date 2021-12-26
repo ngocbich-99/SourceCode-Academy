@@ -26,6 +26,9 @@ public class UpdateAccountRequest {
             notes = "User name cannot be empty",
             required = true
     )
+
+    private String fullName;
+
     private String username;
 
     private String phone;

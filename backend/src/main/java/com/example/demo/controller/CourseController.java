@@ -11,7 +11,12 @@ import com.example.demo.service.CourseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -44,10 +49,9 @@ public class CourseController {
     }
 
 
-
     @GetMapping("/{id}")
     public CloudResponse<CourseDTO> getCourseById(@PathVariable Long id) {
-        LOGGER.info("GET /api/course/{id} - > {}",id);
+        LOGGER.info("GET /api/course/{id} - > {}", id);
         CourseDTO course = courseService.getCourseDTOById(id);
         return CloudResponse.ok(course);
     }
@@ -55,7 +59,7 @@ public class CourseController {
 
     @PostMapping
     public CloudResponse<CourseDTO> createCourse(@Valid @RequestBody CreateCourseRequest courseReq) {
-        LOGGER.info("POST /api/course- > {}",courseReq);
+        LOGGER.info("POST /api/course- > {}", courseReq);
         return CloudResponse.ok(courseService.createCourse(courseReq));
     }
 
@@ -66,22 +70,35 @@ public class CourseController {
 
     @DeleteMapping("/delete/{id}")
     public CloudResponse<String> deleteCourse(@PathVariable Long id) {
-        LOGGER.info("DEL /api/course/delete/{id} - > {}",id);
+        LOGGER.info("DEL /api/course/delete/{id} - > {}", id);
         courseService.deleteCourse(id);
-        return CloudResponse.ok(SUCCESS,"Delete category success");
+        return CloudResponse.ok(SUCCESS, "Delete category success");
     }
 
     @PostMapping("/categories")
     public CloudResponse<List<CourseDTO>> findCourseByCategories(@Valid @RequestBody FindCourseByCategoriesRequest body) {
-        LOGGER.info("POST /api/course/categories - > {}",body);
+        LOGGER.info("POST /api/course/categories - > {}", body);
         return CloudResponse.ok(courseService.findAllByCategoriesName(body));
     }
 
     @PostMapping("/enroll")
     public CloudResponse<String> enroll(@Valid @RequestBody EnrollRequest body) {
-        LOGGER.info("POST /api/course/enroll - > {}",body);
+        LOGGER.info("POST /api/course/enroll - > {}", body);
         courseService.enrollCourse(body);
-        return CloudResponse.ok(SUCCESS,"Enroll course success");
+        return CloudResponse.ok(SUCCESS, "Enroll course success");
+    }
+
+    @GetMapping
+    public CloudResponse<Page<CourseDTO>> getCourse(
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "") String textSearch,
+            @RequestParam(required = false, defaultValue = "name") String sortProperty,
+            @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
+        Pageable pageable = PageRequest
+                .of(page, pageSize, Sort.Direction.fromString(sortOrder), sortProperty);
+
+        return CloudResponse.ok(courseService.findCourse(textSearch.trim(), pageable));
     }
 
 

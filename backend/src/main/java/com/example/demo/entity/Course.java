@@ -53,7 +53,6 @@ public class Course {
     private List<Account> accounts;
 
     public void setAccounts(Account account) {
-//        if(this.accounts == null) this.accounts = new ArrayList<>();
         this.accounts.add(account);
     }
 
@@ -68,8 +67,8 @@ public class Course {
     @Getter(AccessLevel.NONE)
     private List<Section> sections;
 
-    @Column(name="subscriber_number", columnDefinition = "bigint default '0'")
-    private Long subscriberNumber;
+    @Column(name="subscriber_number")
+    private Long subscriberNumber = 0L;
 
 
 }
