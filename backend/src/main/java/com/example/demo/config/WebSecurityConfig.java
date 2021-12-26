@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String[] pathsNoAuth = new String[CommonConstant.PATHS_NO_AUTHENTICATION.size()];
         CommonConstant.PATHS_NO_AUTHENTICATION.toArray(pathsNoAuth);
         http.authorizeRequests()
-                .antMatchers("/api/accounts/**").hasAnyAuthority(RoleConstant.ADMIN)
+//                .antMatchers("/api/accounts/**").hasAnyAuthority(RoleConstant.ADMIN)
                 .antMatchers(pathsNoAuth).permitAll()
                 .anyRequest().authenticated()
                 .and()

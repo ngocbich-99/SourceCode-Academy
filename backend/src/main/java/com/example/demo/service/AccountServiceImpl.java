@@ -46,13 +46,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountDTO> getListAccount() {
-        List<Account> accounts = accountRepository.findAll();
-//        convert to accountDto
-        List<AccountDTO> accountDtos = new ArrayList<AccountDTO>();
-        for (Account acc : accounts) {
-//            accountDtos.add(AccountMapper.toAccountDto(acc));
-        }
-        return accountDtos;
+        return convertToListAccountDTO(accountRepository.findAll());
     }
 
     @Override

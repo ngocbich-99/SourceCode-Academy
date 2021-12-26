@@ -32,6 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -221,7 +222,7 @@ public class CourseServiceImpl implements CourseService {
 //        for (Long id : ids) {
 //            categoryList.add(categoryService.getCategoryById(id));
 //        }
-        return categoryService.getCategoriesInIds(ids);
+        return categoryService.getCategoriesInIds(ids).stream().map(x->new Category(x.getId(),x.getName(),x.getDescription(), x.getCourseCount()+1,x.getCourses())).collect(Collectors.toList());
     }
 
     private List<CourseDTO> convertToListCourseDTO(List<Course> courses) {
