@@ -39,7 +39,11 @@
                 placeholder="Số điện thoại">
             </mat-form-field>
         </form>
-        <button (click)="saveInfoUser()" [disabled]="" mat-button class="codex-btn-primary btn-big">Lưu thông tin</button>
+        <button 
+        (click)="saveInfoUser()" 
+        [disabled]="formUserInfo.invalid || !formUserInfo.dirty" 
+        mat-button 
+        class="codex-btn-primary btn-big">Lưu thông tin</button>
     </div>
     <div class="security">
         <h3>Bảo mật</h3>
@@ -47,11 +51,17 @@
             <div>
                 <mat-form-field appearance="outline">
                     <mat-label>Mật khẩu cũ</mat-label>
-                    <input formControlName="oldPass" type="text" matInput placeholder="Mật khẩu cũ">
+                    <input 
+                    (keypress)="onChangeOldPass()"
+                    formControlName="oldPass" 
+                    type="text" 
+                    matInput 
+                    placeholder="Mật khẩu cũ">
                     <mat-error *ngIf="formPassword.get('oldPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
+                    <mat-error *ngIf="formPassword.get('oldPass')?.hasError('incorrect')">{{incorrectOldPass}}</mat-error>
                 </mat-form-field>
             </div>
-            <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="form-reset-pass">
                 <mat-form-field appearance="outline">
                     <mat-label>Mật khẩu mới</mat-label>
                     <input formControlName="newPass" type="email" matInput placeholder="Mật khẩu mới">
@@ -68,6 +78,10 @@
                 </mat-form-field>
             </div>
         </form>
-        <button (click)="changePassword()" [disabled]="" mat-button class="codex-btn-primary btn-big">Đổi mật khẩu</button>
+        <button 
+        (click)="changePassword()" 
+        [disabled]="formPassword.invalid"
+        mat-button 
+        class="codex-btn-primary btn-big">Đổi mật khẩu</button>
     </div>
 </section>

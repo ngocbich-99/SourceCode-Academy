@@ -8,3 +8,14 @@ export interface User {
     phone?: string;
     role?: string;
 }
+
+export interface UserInfo {
+    id?: number;
+    email?: string,
+    username?: string,
+    fullName?: string,
+    phone?: null,
+    role?: string,
+    createdTime?: number,
+    isActivate?: boolean
+}

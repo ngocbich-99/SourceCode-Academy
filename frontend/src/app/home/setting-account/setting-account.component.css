@@ -32,3 +32,6 @@
 .content mat-form-field {
   width: 344px;
 }
+.form-reset-pass {
+  margin-top: 8px;
+}
