@@ -18,7 +18,8 @@ import com.example.demo.model.request.lesson.CreateLessonRequest;
 import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.model.request.section.CreateSectionRequest;
 import com.example.demo.model.request.section.UpdateSectionRequest;
-import com.example.demo.repository.*;
+import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.CourseRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -27,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +36,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -77,7 +78,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDTO getCourseDTOById(Long id) {
-        LOGGER.info("getCourseDTOById : {}",id);
+        LOGGER.info("getCourseDTOById : {}", id);
         CourseDTO courseDTO = new CourseDTO();
         Course course = this.getCourseById(id);
         mapper.map(course, courseDTO);
@@ -96,7 +97,7 @@ public class CourseServiceImpl implements CourseService {
 //        return this.convertToListCourseDTO(courseRepository
 //                .findAllByCategories(request.getCategories())
 //        );
-        LOGGER.info("findAllByCategoriesName : {}",request);
+        LOGGER.info("findAllByCategoriesName : {}", request);
         return this.convertToListCourseDTO(courseRepository
                 .findAllByCategories(request.getCategories()));
     }
@@ -104,7 +105,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     @Transactional
     public CourseDTO createCourse(CreateCourseRequest request) {
-        LOGGER.info("createCourse : {}",request);
+        LOGGER.info("createCourse : {}", request);
         Course course = new Course();
         if (request.getCategoryIds() != null && !request.getCategoryIds().isEmpty()) {
             course.setCategories(this.getListCategory(request.getCategoryIds()));
@@ -126,7 +127,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public CourseDTO updateCourse(UpdateCourseRequest request) {
-        LOGGER.info("updateCourse : {}",request);
+        LOGGER.info("updateCourse : {}", request);
         Course course = courseRepository.findById(request.getId()).get();
 
         mapper.map(request, course);
@@ -153,28 +154,27 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void enrollCourse(EnrollRequest request) {
         Account account = accountRepository.findByEmail(securityService.getCurrentUser().getEmail());
-        if(account == null) {
-            throw new BizException(ResponseEnum.USERNAME_NOT_EXIST,"Account not found");
+        if (account == null) {
+            throw new BizException(ResponseEnum.USERNAME_NOT_EXIST, "Account not found");
         }
         Course course = this.findById(request.getCourseId());
         course.setAccounts(account);
-        if(course.checkValidRegister(account)){
-            throw new BizException(ResponseEnum.COURSE_ALREADY_IN_ACCOUNT,"Tài khoản đã đăng ký khóa học");
+        if (course.checkValidRegister(account)) {
+            throw new BizException(ResponseEnum.COURSE_ALREADY_IN_ACCOUNT, "Tài khoản đã đăng ký khóa học");
         }
-        if(course.getSubscriberNumber()!=null){
-            course.setSubscriberNumber(course.getSubscriberNumber()+1);
+        if (course.getSubscriberNumber() != null) {
+            course.setSubscriberNumber(course.getSubscriberNumber() + 1);
         } else {
             course.setSubscriberNumber(1L);
         }
         courseRepository.save(course);
 
 
-
     }
 
     @Override
     public void deleteCourse(Long id) {
-        LOGGER.info("deleteCourse : {}",id);
+        LOGGER.info("deleteCourse : {}", id);
         try {
             Optional<Course> course = courseRepository.findById(id);
             if (course.isPresent()) {
@@ -188,12 +188,13 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Page<CourseDTO> findCourse(String textSearch, Pageable pageable) {
-        return courseRepository.findCourse(textSearch, pageable);
+        return this.convertToPageCourseDTO(courseRepository.findCourse(textSearch, pageable),pageable);
     }
 
     private List<LessonDTO> saveLessonList(List<CreateLessonRequest> requests, Long sectionId) {
         return lessonService.addLessons(requests, sectionId);
     }
+
     private List<LessonDTO> updateLessonList(List<UpdateLessonRequest> requests, Long sectionId) {
         return lessonService.updateLessons(requests, sectionId);
     }
@@ -226,8 +227,8 @@ public class CourseServiceImpl implements CourseService {
 
     private List<Category> getListCategory(List<Long> ids) {
         List<Category> categories = categoryService.getCategoriesInIds(ids);
-        for (Category category : categories){
-            category.setCourseCount(category.getCourseCount()+1);
+        for (Category category : categories) {
+            category.setCourseCount(category.getCourseCount() + 1);
         }
         return categoryService.saveAll(categories);
     }
@@ -238,11 +239,18 @@ public class CourseServiceImpl implements CourseService {
         return mapper.map(courses, typeToken.getType());
     }
 
-    private Course findById(Long id){
+    private Course findById(Long id) {
         Optional<Course> course = courseRepository.findById(id);
-        if(!course.isPresent()){
-            throw new BizException(ResponseEnum.NOT_FOUND,"Course not found");
+        if (!course.isPresent()) {
+            throw new BizException(ResponseEnum.NOT_FOUND, "Course not found");
         }
         return course.get();
+    }
+
+    private Page<CourseDTO> convertToPageCourseDTO(Page<Course> page, Pageable pageable) {
+        return new PageImpl<CourseDTO>(
+                this.convertToListCourseDTO(page.getContent()),
+                pageable, page.getTotalElements()
+        );
     }
 }

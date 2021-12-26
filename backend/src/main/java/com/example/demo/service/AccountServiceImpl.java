@@ -76,8 +76,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO updateAcc(UpdateAccountRequest request) {
         Account account = findAccountById(request.getId());
-        BeanUtils.copyProperties(account, request);
-        return convertToAccountDTO( accountRepository.save(account));
+        BeanUtils.copyProperties(request, account);
+        return convertToAccountDTO(accountRepository.save(account));
     }
 
     @Override
