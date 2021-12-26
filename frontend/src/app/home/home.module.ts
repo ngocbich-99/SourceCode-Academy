@@ -36,6 +36,8 @@ import { ToastrModule } from "ngx-toastr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { DialogAddQuestionComponent } from './questions/dialog-add-question/dialog-add-question.component';
 import { DialogInfoCourseComponent } from './courses/dialog-info-course/dialog-info-course.component';
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { GlobalHttpInterceptor } from "../global-http.interceptor";
 
 @NgModule({
     imports: [

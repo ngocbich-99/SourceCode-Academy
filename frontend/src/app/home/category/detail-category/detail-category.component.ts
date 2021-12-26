@@ -51,14 +51,14 @@ export class DetailCategoryComponent implements OnInit {
     this.category = await this.categoryService.getCategoryById(this.categoryId).toPromise();
     console.log(this.category);
 
-    this.editCategoryForm.get('nameCategory')?.setValue(this.category?.nameCategory);
+    this.editCategoryForm.get('nameCategory')?.setValue(this.category?.name);
     this.editCategoryForm.get('description')?.setValue(this.category?.description);
   }
 
   editCategory() {
-    if (this.category.nameCategory !== this.editCategoryForm.value.nameCategory 
+    if (this.category.name !== this.editCategoryForm.value.nameCategory 
       || this.category.description !== this.editCategoryForm.value.description) {
-      this.category.nameCategory = this.editCategoryForm.value.nameCategory;
+      this.category.name = this.editCategoryForm.value.nameCategory;
       this.category.description = this.editCategoryForm.value.description;
 
       this.categoryService.updateCategory(this.category).subscribe(resData => {

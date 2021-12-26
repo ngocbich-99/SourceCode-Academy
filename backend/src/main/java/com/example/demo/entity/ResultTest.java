@@ -4,22 +4,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
-@Getter
-@Setter
-@Entity
-
+//
+//@Getter
+//@Setter
+//@Entity
 public class ResultTest {
-    @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
-    private int idRsTest;
-
-    @ManyToOne
-    private Student student;
-
-    private int idTest;
-
-    private int point;
-
-    private int totalCorrectQues;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//
+//    @ManyToOne
+//    private Account account;
+//
+//    private Long idTest;
+//
+//    private Integer point;
+//
+//    private Integer totalCorrectQues;
 }

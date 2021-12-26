@@ -170,16 +170,15 @@ export class DialogAddCourseComponent implements OnInit {
   }
 
   createCourse() {
-    this.dialogRef.close();
-
     // truyen info course o form vao
     const courseReq: CourseRequest = {
       categoryIds: [this.formInforCourse.value.idCategory],
       createdTime: moment().valueOf(),
       description: this.formInforCourse.value.description,
-      imgCover: this.urlImg,
+      imgCover: this.formInforCourse.value.imgCover,
       level: this.formInforCourse.value.level,
-      nameCourse: this.formInforCourse.value.nameCourse,
+      name: this.formInforCourse.value.nameCourse,
+      teacherId: 1
     }
     // doi type cua status cho phu hop voi body request api
     if (this.formInforCourse.value.status === 'public') {
@@ -193,7 +192,7 @@ export class DialogAddCourseComponent implements OnInit {
 
     this.tabSections.forEach(section => {
       const sectionReq: Section = {
-        sectionName: section.nameSection,
+        name: section.nameSection,
         createdTime: moment().valueOf(),
         lessons: section.lessons.map(lesson => {
           return {
@@ -206,17 +205,18 @@ export class DialogAddCourseComponent implements OnInit {
         })
       };
       if (section.nameSection !== '') {
-        sectionReq.lessons = sectionReq.lessons?.filter(lesson => lesson.lessonName !== '');
+        sectionReq.lessons = sectionReq.lessons?.filter(lesson => lesson.name !== '');
         sectionList.push(sectionReq);
       }
     });
 
     courseReq.sections = sectionList;
-
-    console.log(courseReq);
     
     this.courseService.createCourse(courseReq).subscribe(resData => {
-      console.log(resData);
+      console.log('response add course', resData);
+      this.dialogRef.close(
+        {data: courseReq}
+      );
       this.toastCodexService.showToast('Tạo mới khoá học thành công!', StatusToast.SUCCESS);
     }, error => {
       console.log('error add course', error);
@@ -225,7 +225,6 @@ export class DialogAddCourseComponent implements OnInit {
     // toast tao khoa hoc thanh cong
   }
 
-
   // function upload image cover
   onSelectImg(event: any) {
     if (event.target.files) {
@@ -233,7 +232,6 @@ export class DialogAddCourseComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
         this.urlImg = event.target.result;
-        console.log(this.urlImg);
       }
     }
   }

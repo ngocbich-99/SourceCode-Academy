@@ -19,7 +19,7 @@ export class DialogInfoAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.updateAccForm = new FormGroup({
-      'username': new FormControl(this.data.account.userName, Validators.required),
+      'username': new FormControl(this.data.account.username, Validators.required),
       'email': new FormControl(this.data.account.email, [Validators.required, Validators.email]),
       'phone': new FormControl(this.data.account.phone, [Validators.required]),
       'role': new FormControl({value: this.convertLabelDisplay(this.data.account.role), disabled: true}),
@@ -28,7 +28,7 @@ export class DialogInfoAccountComponent implements OnInit {
   }
 
   updateAccount() {
-    this.data.account.userName = this.updateAccForm.value.username;
+    this.data.account.username = this.updateAccForm.value.username;
     this.data.account.email = this.updateAccForm.value.email;
     this.data.account.phone = this.updateAccForm.value.phone;
     this.data.account.isActivate = this.updateAccForm.value.isActivate;

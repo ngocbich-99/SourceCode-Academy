@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.dto.AccountDto;
-import com.example.demo.model.request.CreateAccountReq;
-import com.example.demo.model.request.UpdateAccountReq;
+import com.example.demo.model.dto.AccountDTO;
+import com.example.demo.model.request.account.CreateAccountRequest;
+import com.example.demo.model.request.account.UpdateAccountRequest;
+import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.AccountService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,73 +15,63 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.example.demo.constant.CommonConstant.SUCCESS;
+
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
+
     @Autowired
     private AccountService accountService;
 
-    @ApiOperation(value = "Get list account", response = AccountDto.class, responseContainer = "List")
-    @ApiResponses({
-            @ApiResponse(code=500,message = "")
-    })
-    @CrossOrigin
-    @GetMapping("")
-    public ResponseEntity<?> getListAccount() {
-        List<AccountDto> accountDtos = accountService.getListAccount();
-        return ResponseEntity.ok(accountDtos);
+    @ApiOperation(value = "Get list account", response = CloudResponse.class, responseContainer = "List")
+    @GetMapping
+    public CloudResponse<List<AccountDTO>> getListAccount() {
+        List<AccountDTO> accountDtos = accountService.getListAccount();
+        return CloudResponse.ok(accountDtos);
     }
 
-    @ApiOperation(value = "Get account info by id", response = AccountDto.class)
-    @ApiResponses({
-            @ApiResponse(code=404,message = "No account found"),
-            @ApiResponse(code=500,message = "")
-    })
-    @CrossOrigin
+    @ApiOperation(value = "Get account info by id", response = AccountDTO.class)
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAccountById(@PathVariable int id) {
-        AccountDto accountDto = accountService.getAccountById(id);
-        return ResponseEntity.ok(accountDto);
+    public CloudResponse<AccountDTO> getAccountById(@PathVariable Long id) {
+        AccountDTO accountDto = accountService.getAccountById(id);
+        return CloudResponse.ok(accountDto);
     }
 
-    @ApiOperation(value = "Create account", response = AccountDto.class)
-    @ApiResponses({
-            @ApiResponse(code=400,message = "Email already exists in the system"),
-            @ApiResponse(code=500,message = "")
-    })
-    @CrossOrigin
-    @PostMapping("")
-    public ResponseEntity<?> createAccount(@Valid @RequestBody CreateAccountReq accountReq) {
-        AccountDto accountDto = accountService.createAcc(accountReq);
-        return ResponseEntity.ok(accountDto);
+    @ApiOperation(value = "Create account", response = AccountDTO.class)
+    @PostMapping
+    public CloudResponse<AccountDTO> createAccount(@Valid @RequestBody CreateAccountRequest accountReq) {
+        AccountDTO accountDto = accountService.createAcc(accountReq);
+        return CloudResponse.ok(accountDto,"Create account success");
     }
 
-    @CrossOrigin
+
+    @ApiOperation(value = "update account")
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAccount(@Valid @RequestBody UpdateAccountReq accountReq, @PathVariable int id) {
-        AccountDto accountDto = accountService.updateAcc(accountReq, id);
-        return ResponseEntity.ok(accountDto);
+    public CloudResponse<AccountDTO> updateAccount(@Valid @RequestBody UpdateAccountRequest body, @PathVariable int id) {
+        return CloudResponse.ok(accountService.updateAcc(body),"Update account success");
     }
 
-    @CrossOrigin
+
+    @ApiOperation(value = "delete account")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteAccount(@PathVariable int id) {
+    public CloudResponse<?> deleteAccount(@PathVariable Long id) {
         accountService.deleteAcc(id);
-        return ResponseEntity.ok("Delete success");
+        return CloudResponse.ok(SUCCESS,"Delete account success");
     }
 
-    @CrossOrigin
-    @GetMapping("/account-activate")
-    public ResponseEntity<?> getAccActivate() {
-        List<AccountDto> listAccDto = accountService.getAccountActivate();
-        return ResponseEntity.ok(listAccDto);
+    @ApiOperation(value = "get list active account")
+    @GetMapping("/activate")
+    public CloudResponse<List<AccountDTO>> getAccActivate() {
+        List<AccountDTO> listAccDto = accountService.getAccountActivate();
+        return CloudResponse.ok(listAccDto);
     }
 
-    @CrossOrigin
+    @ApiOperation(value = "get list lock account")
     @GetMapping("/lock")
-    public ResponseEntity<?> getAccLock() {
-        List<AccountDto> listAcc = accountService.getAccountLock();
-        return ResponseEntity.ok(listAcc);
+    public CloudResponse<List<AccountDTO>> getAccLock() {
+        List<AccountDTO> listAcc = accountService.getAccountLock();
+        return CloudResponse.ok(listAcc);
     }
 
 }

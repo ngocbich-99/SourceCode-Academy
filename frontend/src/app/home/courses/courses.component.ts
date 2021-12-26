@@ -48,16 +48,23 @@ export class CoursesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      console.log('res dialog add course', result);
+      if (!!result) {
+        this.listCourseAll.push(result.data)
+      }
     });
   }
 
   async getListCategory() {
-    this.listCategory = await this.categoryService.getListCategory().toPromise();
+    // this.listCategory = await this.categoryService.getListCategory().toPromise();
+    this.categoryService.getListCategory().subscribe(resData => {
+      this.listCategory = resData;
+    })
   }
 
   async getListCourse() {
     this.listCourseAll = await this.courseService.getListCourse().toPromise();
+    console.log('list course', this.listCourseAll);
   }
 
   getListCoursePublic(): Course[] {

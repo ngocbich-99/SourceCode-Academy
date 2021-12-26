@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.dto.CategoryDTO;
-import com.example.demo.entity.Category;
-import com.example.demo.model.request.CategoryReq;
+import com.example.demo.model.request.category.CreateCategoryRequest;
+import com.example.demo.model.request.category.UpdateCategoryRequest;
+import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.example.demo.constant.CommonConstant.SUCCESS;
+
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/category")
 public class CategoryController {
 
@@ -22,37 +25,29 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-
     @GetMapping("/list")
-    public ResponseEntity<List<CategoryDTO>> getList() {
-        return ResponseEntity.ok(categoryService.getListCategory());
+    public CloudResponse<List<CategoryDTO>> getList() {
+        return CloudResponse.ok(categoryService.getListCategory());
     }
 
-//    @CrossOrigin
     @GetMapping("/{id}")
-    public ResponseEntity<?> getCategoryById(@PathVariable int id) {
-        Category category = categoryService.getCategoryById(id);
-        return ResponseEntity.ok(category);
+    public CloudResponse<CategoryDTO> getCategoryById(@PathVariable Long id) {
+        return CloudResponse.ok(categoryService.getCategoryById(id));
     }
 
-//    @CrossOrigin
-    @PostMapping("/create")
-    public ResponseEntity<?> createCategory(@Valid @RequestBody CategoryReq categoryReq) {
-        Category category = categoryService.createCategory(categoryReq);
-        return ResponseEntity.ok(category);
+    @PostMapping
+    public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CreateCategoryRequest body) {
+        return ResponseEntity.ok(categoryService.createCategory(body));
     }
 
-//    @CrossOrigin
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<?> editCategory(@Valid @RequestBody CategoryReq req, @PathVariable int id) {
-        Category category = categoryService.updateCategory(req, id);
-        return ResponseEntity.ok(category);
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> editCategory(@Valid @RequestBody UpdateCategoryRequest body) {
+        return ResponseEntity.ok(categoryService.updateCategory(body));
     }
 
-//    @CrossOrigin
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteCategory(@PathVariable int id) {
+    @DeleteMapping("/{id}")
+    public CloudResponse<String> deleteCategory(@PathVariable Long id) {
         categoryService.deleteCategory(id);
-        return ResponseEntity.ok("Delete category success");
+        return CloudResponse.ok(SUCCESS,"Delete category success");
     }
 }

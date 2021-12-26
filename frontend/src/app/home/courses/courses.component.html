@@ -23,10 +23,10 @@
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
-                            [routerLink]="['/home', 'courses', category.idCategory]" 
+                            [routerLink]="['/home', 'courses', category.id]" 
                             routerLinkActive="active">
                             <span class="nav-caption">
-                                {{category.nameCategory}}
+                                {{category.name}}
                             </span>
                         </a>
                     </mat-nav-list>
