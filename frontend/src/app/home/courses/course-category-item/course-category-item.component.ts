@@ -24,19 +24,26 @@ export class CourseCategoryItemComponent implements OnInit {
     console.log('ngOnInit', this.courses);
   }
 
-  updateCourse(course: Course) {
-    // get course detail
+  async updateCourse(course: Course) {
+    // goi api get course by id
+    const infoCourse = await this.courseService.getCourse(course.id).toPromise();
+
+    // truyen course detail cho dialog info course
     const dialogRef = this.dialog.open(DialogInfoCourseComponent, {
       width: '1041px',
       height: '646px',
-      data: {courseSelected: course}
+      data: {courseSelected: infoCourse}
     });
-    console.log(course);
     
+    // data dialog info course tra ve
     dialogRef.afterClosed().subscribe(rs => {
-      console.log(rs);
+      // update course trong list course
+      course.name = rs.courseUpdate.name;
+      course.level = rs.courseUpdate.level;
+      course.status = rs.courseUpdate.status;
+      course.imgCover = rs.courseUpdate.imgCover;
+      course.subscriberNumber = rs.courseUpdate.subscriberNumber;
     })
-    // update course
   }
   deleteCourse(course: Course) {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {

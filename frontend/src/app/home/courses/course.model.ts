@@ -16,12 +16,13 @@ export interface Course {
     // get list course ve se chua list category
     categories?: Category[]; 
     sections?: Section[];
+    questions?: [];
 }
 export interface CourseRequest {
     categoryIds?: number[];
     createdTime?: number;
     description?: string;
-    idCourse?: number;
+    id?: number;
     teacherId?: number;
     imgCover?: string;
     level?: number;
@@ -39,12 +40,14 @@ export interface Section {
 }
 
 export interface Lesson {
-    idLesson?: number;
     name?: string;
     id?: number;
-    createdTime?: number;
+    sectionId?: number;
+    createTime?: number;
     type?: string; // video or test
     urlVideo?: string;
-    idTest?: number;
     description?: string;
+
+    // option test
+    idTest?: number;
 }

@@ -2,8 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CategoryService } from 'src/app/services/category.service';
+import { CourseService } from 'src/app/services/course.service';
+import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { Category } from '../../category/category.model';
-import { Course } from '../course.model';
+import { Course, CourseRequest, Section } from '../course.model';
 import { TabLesson, TabSection } from '../dialog-add-course/dialog-add-course.component';
 
 @Component({
@@ -38,64 +40,14 @@ export class DialogInfoCourseComponent implements OnInit {
     },
   ];
   radioModel = 'Video';
-  tabSections: TabSection[] = [
-    { 
-      title: 'Phần 1',
-      removable: false, 
-      disabled: false,
-      active: true,
-      nameSection: '',
-      lessons: [
-        { 
-          title: 'Bài 1',
-          removable: false, 
-          disabled: false,
-          active: true,
-          nameLesson: '',
-          urlVideo: '',
-          description: ''
-        },
-        { 
-          title: 'Bài 2',
-          removable: true, 
-          disabled: false,
-          nameLesson: '',
-          urlVideo: '',
-          description: ''
-        },
-      ]
-    },
-    { 
-      title: 'Phần 2',
-      removable: true, 
-      disabled: false,
-      nameSection: '', 
-      lessons: [
-        { 
-          title: 'Bài 1',
-          removable: false, 
-          disabled: false,
-          active: true,
-          nameLesson: '',
-          urlVideo: '',
-          description: ''
-        },
-        { 
-          title: 'Bài 2',
-          removable: true, 
-          disabled: false,
-          nameLesson: '',
-          urlVideo: '',
-          description: ''
-        },
-      ]
-    },
-  ];
+  tabSections: TabSection[] = [];
 
   constructor(
     private dialogRef: MatDialogRef<DialogInfoCourseComponent>,
     @Inject(MAT_DIALOG_DATA) public data: {courseSelected: Course},
     private categoryService: CategoryService,
+    private courseService: CourseService,
+    private toastService: ToastServiceCodex
   ) { }
 
   ngOnInit(): void {
@@ -104,8 +56,9 @@ export class DialogInfoCourseComponent implements OnInit {
   }
 
   createForm() {
+    // create form info
     this.formInforCourse = new FormGroup({
-      'imgCover': new FormControl('', Validators.required),
+      'imgCover': new FormControl(this.data.courseSelected.imgCover, Validators.required),
       'nameCourse': new FormControl(this.data.courseSelected.name, Validators.required),
       'idCategory': new FormControl('', Validators.required),
       'level': new FormControl(this.data.courseSelected.level, Validators.required),
@@ -115,6 +68,34 @@ export class DialogInfoCourseComponent implements OnInit {
     if (!!this.data.courseSelected.categories) {
       this.formInforCourse.get('idCategory')?.patchValue(this.data.courseSelected.categories[0].id);
     }
+    // create content tab section + lesson
+    this.data.courseSelected.sections?.forEach((section, index) => {
+      const tabSection: TabSection = {
+        title: `Phần ${index + 1}`,
+        removable: index === 0 ? false : true,
+        disabled: false,
+        active: index === 0 ? true : false,
+        nameSection: section.name, 
+        lessons: [],
+        idSec: section.id
+      }
+
+      section.lessons?.forEach((lesson, index) => {
+        const tabLesson: TabLesson = {
+          title: `Bài ${index + 1}`,
+          removable: index === 0 ? false : true,
+          disabled: false,
+          active: index === 0 ? true : false,
+          nameLesson: lesson.name, 
+          urlVideo: lesson.urlVideo,
+          description: lesson.description,
+          idLess: lesson.id
+        }
+        tabSection.lessons.push(tabLesson);
+      })
+
+      this.tabSections.push(tabSection);
+    })
   }
 
   async getListCategory() {
@@ -122,7 +103,59 @@ export class DialogInfoCourseComponent implements OnInit {
   }
 
   updateCourse() {
+    const courseReq: CourseRequest = {
+      categoryIds: [this.formInforCourse.value.idCategory],
+      description: this.formInforCourse.value.description,
+      id: this.data.courseSelected.id,
+      imgCover: this.formInforCourse.value.imgCover,
+      level: this.formInforCourse.value.level,
+      name: this.formInforCourse.value.nameCourse,
+      teacherId: 1
+    }
+    // doi type status: true = public, false = private
+    if (this.formInforCourse.value.status === 'public') {
+      courseReq.status = true;
+    } else {
+      courseReq.status = false;
+    }
 
+    // update sections + lessons
+    const sections: Section[] = [];
+
+    this.tabSections.forEach(tabSec => {
+      const sectionReq: Section = {
+        courseId: this.data.courseSelected.id,
+        id: tabSec.idSec,
+        name: tabSec.nameSection,
+        lessons: tabSec.lessons.map(tabLess => {
+          return {
+            name: tabLess.nameLesson,
+            id: tabLess.idLess,
+            sectionId: tabSec.idSec,
+            type: this.radioModel, 
+            urlVideo: tabLess.urlVideo,
+            description: tabLess.description,
+          }
+        }),
+      };
+
+      if (tabSec.nameSection !== '') {
+        sectionReq.lessons = sectionReq.lessons?.filter(less => less.name !== '');
+        sections.push(sectionReq);
+      }
+    })
+
+    courseReq.sections = sections;
+
+    this.courseService.updateCourse(courseReq).subscribe(resData => {
+      this.dialogRef.close(
+        {courseUpdate: courseReq}
+      );
+      this.toastService.showToast('Cập nhật khoá học thành công!', StatusToast.SUCCESS);
+    }, error => {
+      console.log('error update course', error);
+      this.toastService.showToast('Cập nhật khoá học thất bại!', StatusToast.ERROR);
+    })
   }
 
   addTabSection(): void {

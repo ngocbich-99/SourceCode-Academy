@@ -16,6 +16,7 @@ export interface TabSection {
   customClass?: string;
   nameSection?: string; 
   lessons: TabLesson[];
+  idSec?: number;
 }
 export interface TabLesson {
   title: string;
@@ -26,6 +27,7 @@ export interface TabLesson {
   nameLesson?: string; 
   urlVideo?: string;
   description?: string;
+  idLess?: number;
 }
 @Component({
   selector: 'app-dialog-add-course',
@@ -196,11 +198,10 @@ export class DialogAddCourseComponent implements OnInit {
         createdTime: moment().valueOf(),
         lessons: section.lessons.map(lesson => {
           return {
-            lessonName: lesson.nameLesson,
-            // type: this.radioModel,
-            description: lesson.description,
+            name: lesson.nameLesson,
+            type: this.radioModel,
             urlVideo: lesson.urlVideo,
-            createdTime: moment().valueOf(),
+            createTime: moment().valueOf(),
           }
         })
       };
@@ -222,7 +223,6 @@ export class DialogAddCourseComponent implements OnInit {
       console.log('error add course', error);
       this.toastCodexService.showToast('Tạo mới khoá học thất bại!', StatusToast.ERROR);
     });
-    // toast tao khoa hoc thanh cong
   }
 
   // function upload image cover

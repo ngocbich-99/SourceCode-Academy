@@ -28,11 +28,13 @@ export class CourseService {
 
     // get course by id
     getCourse(id?: number): Observable<Course> {
-        return this.http.get<Course>(env.backendBaseUrl + `/api/course/${id}`);
+        return this.http.get<{[key: string]: Course}>(env.backendBaseUrl + `/api/course/${id}`)
+        .pipe(
+            map(resData => {
+                return resData.data;
+            })
+        );
     }
-
-    // get info course
-
     // get course public
 
     // get course private
@@ -47,7 +49,16 @@ export class CourseService {
         );
     }
 
-    // edit course
+    // update course
+    updateCourse(courseReq: CourseRequest): Observable<Course> {
+        return this.http.put<{[key: string]: Course}>(env.backendBaseUrl + '/api/course', courseReq)
+        .pipe(
+            map(resData => {
+                return resData.data;
+            })
+        );
+    }
+
 
     // delete course
     deleteCourse(id?: number) {
