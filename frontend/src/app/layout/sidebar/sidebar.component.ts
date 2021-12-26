@@ -33,15 +33,15 @@ export class SidebarComponent implements OnInit {
     this.userSub = this.authService.userInfoSubject.subscribe((userInfo) => {
       this.role = userInfo.role;
       console.log(this.role);
-    })
 
-    if (this.role === 'HOC_VIEN') {
-      this.activeTab = 'dashboard';
-    } else if (this.role === 'ADMIN' || this.role === 'GIANG_VIEN') {
-      this.activeTab = 'courses';
-    } else if (this.role == undefined) {
-      this.activeTab = 'dashboard-unregistered';
-    }
+      if (this.role === 'HOC_VIEN') {
+        this.activeTab = 'dashboard';
+      } else if (this.role === 'ADMIN' || this.role === 'GIANG_VIEN') {
+        this.activeTab = 'courses';
+      } else if (this.role == undefined) {
+        this.activeTab = 'dashboard-unregistered';
+      }
+    })
     
   }
 

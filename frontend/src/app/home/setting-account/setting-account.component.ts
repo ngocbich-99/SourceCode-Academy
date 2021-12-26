@@ -91,7 +91,7 @@ export class SettingAccountComponent implements OnInit {
   changePassword() {
     if (this.formPassword.valid) {
       this.authService.changePassword(this.formPassword.value.oldPass, this.formPassword.value.newPass).subscribe(resData => {
-        if (resData.message === 'changePassword Successful') {
+        if (resData.message === 'Change password success') {
           this.toastService.showToast('Đổi mật khẩu thành công!', StatusToast.SUCCESS);
         } else if (resData.message === 'Old password incorrect') {
           this.incorrectOldPass = 'Mật khẩu cũ không đúng!';
