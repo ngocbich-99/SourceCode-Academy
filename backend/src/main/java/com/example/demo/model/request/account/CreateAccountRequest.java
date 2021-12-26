@@ -33,6 +33,8 @@ public class CreateAccountRequest {
     )
     private String username;
 
+    private String fullName;
+
     private String phone;
 
     private String role;

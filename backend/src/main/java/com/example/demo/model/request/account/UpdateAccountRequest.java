@@ -20,14 +20,6 @@ public class UpdateAccountRequest {
     )
     private String email;
 
-    @NotEmpty(message = "Password is required")
-    @ApiModelProperty(
-            example = "123abc",
-            notes = "Password can't be empty",
-            required = true
-    )
-    private String password;
-
     @NotNull(message = "User name is required")
     @ApiModelProperty(
             example = "Nguyen Thi Ngoc Bich",

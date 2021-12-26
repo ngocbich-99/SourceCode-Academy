@@ -27,7 +27,7 @@ public enum ResponseEnum {
     ACCOUNT_USERNAME_EXISTED("20008", "Username already exists"),
     ACCOUNT_USERNAME_WRONG_FORMAT("20009", "Username wrong format"),
     NOT_FOUND("20010", "Not found"),
-    POLICY_NOT_EXIST("20011", "Policy does not exist"),
+    COURSE_ALREADY_IN_ACCOUNT("20011", "Course already in account"),
     ACCOUNT_ALREADY_USERNAME("20012", "Account already has username"),
     OTP_REQUEST_FAIL("20013", "Request OTP fail"),
     OTP_REQUEST_TEMP_BLOCK("20014", "Xác thực OTP tạm khóa trong 24 giờ. Vui lòng thử lại sau"),
@@ -44,6 +44,7 @@ public enum ResponseEnum {
     ACCOUNT_DOES_NOT_EXISTED("20022", "Account does not exist"),
     VERIFY_CAPTCHA_FAILED("20023","Verify captcha failed"),
     NEED_CHANGE_PASSWORD_FIRST_LOGIN("2024","Need change password first login"),
+    PERMISSIONS_DENY("2025","PERMISSIONS DENY"),
 
     //Error SAP
     INTERACTION_TO_SAP_FAILED("30000", "Call API from SAP failed"),

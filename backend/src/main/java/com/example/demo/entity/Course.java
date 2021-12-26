@@ -3,9 +3,11 @@ package com.example.demo.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name="course")
+@DynamicInsert
 public class Course {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
@@ -45,8 +48,18 @@ public class Course {
 
     private String description;
 
+    @Getter(AccessLevel.NONE)
     @ManyToMany(fetch = FetchType.LAZY)
-    private List<Account> students;
+    private List<Account> accounts;
+
+    public void setAccounts(Account account) {
+//        if(this.accounts == null) this.accounts = new ArrayList<>();
+        this.accounts.add(account);
+    }
+
+    public Boolean checkValidRegister(Account account){
+        return this.accounts.contains(account);
+    }
 
     @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
     private List<Question> questions;
