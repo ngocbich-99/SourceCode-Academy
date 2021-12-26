@@ -15,6 +15,8 @@ import { DialogAddCourseComponent } from './dialog-add-course/dialog-add-course.
 export class CoursesComponent implements OnInit {
   listCategory: Category[] = [];
   listCourseAll: Course[] = [];
+  listCoursePublic: Course[] = [];
+  listCoursePrivate: Course[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -39,6 +41,8 @@ export class CoursesComponent implements OnInit {
     // get list category
     this.getListCategory();
     this.getListCourse();
+    this.getListCoursePublic();
+    this.getListCoursePrivate();
   }
   
   dialogAddCourse() {
@@ -67,12 +71,17 @@ export class CoursesComponent implements OnInit {
     console.log('list course', this.listCourseAll);
   }
 
-  getListCoursePublic(): Course[] {
-    return this.listCourseAll.filter(course => course.status === true);
+  getListCoursePublic() {
+    this.courseService.getCoursesPublic().subscribe(resData => {
+      this.listCoursePublic = resData.data;
+    })
   }
 
   getListCoursePrivate() {
-    return this.listCourseAll.filter(course => course.status === false);
+    this.courseService.getCoursesPrivate().subscribe(resData => {
+      console.log('list courses private', resData);
+      this.listCoursePrivate = resData.data;
+    })
   }
 
   getCategory() {

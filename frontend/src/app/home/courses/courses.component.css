@@ -50,6 +50,7 @@ mat-drawer-container {
 mat-drawer-content {
   background: #fff;
   margin-left: 160px;
+  min-height: 500px;
 }
 mat-drawer {
   border: unset;

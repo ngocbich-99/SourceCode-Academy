@@ -51,3 +51,10 @@ export interface Lesson {
     // option test
     idTest?: number;
 }
+
+export interface ResCourseApi {
+    data: Course[];
+    message: string;
+    responseCode: string;
+    timestamp: string;
+}

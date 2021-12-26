@@ -1,7 +1,7 @@
 import { environment as env } from 'src/environments/environment';
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Course, CourseRequest } from '../home/courses/course.model';
+import { Course, CourseRequest, ResCourseApi } from '../home/courses/course.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -36,8 +36,14 @@ export class CourseService {
         );
     }
     // get course public
+    getCoursesPublic(): Observable<ResCourseApi> {
+        return this.http.get<ResCourseApi>(env.backendBaseUrl + '/api/course/public');
+    }
 
     // get course private
+    getCoursesPrivate(): Observable<ResCourseApi> {
+        return this.http.get<ResCourseApi>(env.backendBaseUrl + '/api/course/private');
+    }
 
     // create course
     createCourse(courseReq: CourseRequest): Observable<Course> {
