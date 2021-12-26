@@ -171,12 +171,6 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     });
     dialogRef.afterClosed().subscribe(async (rs: Account) => {
       if (!!rs) {
-        const index = this.listAccount.findIndex(acc => acc.id === rs.id);
-        this.listAccount[index] = rs;
-        this.listAccount.forEach((acc, index) => {
-          acc.stt = index + 1;
-        });
-
         // goi api de update account trong csdl
         const accountReq: Account = {
           email: rs.email,
@@ -189,9 +183,16 @@ export class AccountsComponent implements OnInit, AfterViewInit {
         }
         this.accountService.updateAccount(accountReq).subscribe(resData => {
           console.log('update account', resData);
+          if (resData.message === 'Update account success') {
+            const index = this.listAccount.findIndex(acc => acc.id === rs.id);
+            this.listAccount[index] = rs;
+            this.listAccount.forEach((acc, index) => {
+              acc.stt = index + 1;
+            });
+            this.dataSource.data = this.listAccount;
+            this.toastCodexService.showToast('Cập nhật giảng viên thành công!', StatusToast.SUCCESS);
+          }
         });
-        
-        this.dataSource.data = this.listAccount;
 
         // get list account activate
         this.getAccountActivate();
