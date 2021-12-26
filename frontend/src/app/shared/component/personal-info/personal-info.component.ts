@@ -19,7 +19,6 @@ export class PersonalInfoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit personal-info');
     this.getUserInfo();
   }
 

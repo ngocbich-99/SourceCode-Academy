@@ -32,7 +32,6 @@ export class SidebarComponent implements OnInit {
 
     this.userSub = this.authService.userInfoSubject.subscribe((userInfo) => {
       this.role = userInfo.role;
-      console.log(this.role);
 
       if (this.role === 'HOC_VIEN') {
         this.activeTab = 'dashboard';

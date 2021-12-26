@@ -28,9 +28,6 @@ export class SettingAccountComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-
-    console.log(this.formUserInfo.touched, this.formUserInfo.invalid);
-    
   }
 
   getUserInfo() {
@@ -97,7 +94,6 @@ export class SettingAccountComponent implements OnInit {
           this.incorrectOldPass = 'Mật khẩu cũ không đúng!';
           this.formPassword.get('oldPass')?.setErrors({'incorrect': true});
         }
-        console.log('changePassword', resData, !!this.incorrectOldPass);
       }, error => {
         console.log(error);
         this.toastService.showToast('Đổi mật khẩu thất bại!', StatusToast.ERROR);

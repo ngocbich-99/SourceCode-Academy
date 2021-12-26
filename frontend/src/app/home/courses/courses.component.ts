@@ -49,14 +49,15 @@ export class CoursesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('res dialog add course', result);
-      this.listCourseAll.push(result.data)
+      if (!!result) {
+        this.listCourseAll.push(result.data)
+      }
     });
   }
 
   async getListCategory() {
     // this.listCategory = await this.categoryService.getListCategory().toPromise();
     this.categoryService.getListCategory().subscribe(resData => {
-      console.log('getListCategory', resData);
       this.listCategory = resData;
     })
   }
