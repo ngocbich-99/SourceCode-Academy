@@ -9,3 +9,11 @@ export interface Category {
     courseCount?: number;
     courses?: Course[];
 }
+
+// respose tra ve khi get courses by category
+export interface ResCourses {
+    data: Course[];
+    responseCode: string;
+    message: string;
+    timestamp: string;
+}

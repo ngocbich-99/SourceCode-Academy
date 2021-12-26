@@ -113,7 +113,7 @@ export class CategoryComponent implements OnInit {
   }
 
   detailCategory(category: Category) {
-    this.router.navigate([`/home/category/${category.id}`]);
+    this.router.navigate([`/home/category/${category.id}`]);    
   }
 
   deleteCategory(category: Category) {

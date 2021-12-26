@@ -3,9 +3,9 @@ import {Location} from '@angular/common';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CategoryService } from 'src/app/services/category.service';
-import { Category } from '../category.model';
 import { ToastrService } from 'ngx-toastr';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
+import { Category } from '../category.model';
 
 @Component({
   selector: 'app-detail-category',
@@ -49,10 +49,18 @@ export class DetailCategoryComponent implements OnInit {
     //   this.category = resData;
     // });
     this.category = await this.categoryService.getCategoryById(this.categoryId).toPromise();
-    console.log(this.category);
 
     this.editCategoryForm.get('nameCategory')?.setValue(this.category?.name);
     this.editCategoryForm.get('description')?.setValue(this.category?.description);
+
+    // get list course by category
+    this.getCourseByCategory();
+  }
+
+  getCourseByCategory() {
+    this.categoryService.getCoursesByCategory([this.category?.name as string]).subscribe(resData => {
+      console.log('list courses by category', resData);
+    })
   }
 
   editCategory() {

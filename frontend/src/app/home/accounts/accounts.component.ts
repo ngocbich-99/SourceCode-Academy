@@ -66,8 +66,6 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   getListAccount() {
     this.accountService.getListAccount().subscribe(resData => {
       // get all list account
-      console.log('get list account', resData);
-      
       this.listAccount = resData;
       this.listAccount.forEach((acc, index) => {
         acc.stt = index + 1;
@@ -95,6 +93,8 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   }
   getAccountLock() {
     this.accountService.getAccountLock().subscribe(resData => {
+      console.log(resData);
+      
       if (!!resData) {
         this.dataSourceLock.data = resData;
         resData?.forEach((acc, index) => {

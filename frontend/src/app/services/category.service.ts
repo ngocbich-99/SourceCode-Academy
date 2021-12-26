@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { environment as env } from 'src/environments/environment';
-import { Category } from "../home/category/category.model";
+import { Category, ResCourses } from "../home/category/category.model";
 
 @Injectable({
     providedIn: 'root',
@@ -46,6 +46,10 @@ export class CategoryService {
     // delete category by id
     deleteCategoryById(id?: number) {
         return this.http.delete(env.backendBaseUrl + `/api/category/${id}`, {responseType: 'text'});
+    }
+
+    getCoursesByCategory(nameCategorys?: string[]): Observable<ResCourses> {
+        return this.http.post<ResCourses>(env.backendBaseUrl + '/api/course/categories', {categories: nameCategorys});
     }
 
 }

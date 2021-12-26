@@ -24,8 +24,8 @@
             
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên giảng viên</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.fullName}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -37,7 +37,7 @@
                 <!-- sdt Column -->
                 <ng-container matColumnDef="phoneNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.phone == null ? 'Chưa có' : element.phone}}</mat-cell>
                 </ng-container>
 
                 <!-- chuc vu Column -->
@@ -107,8 +107,8 @@
             
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên giảng viên</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.fullName}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -120,7 +120,7 @@
                 <!-- sdt Column -->
                 <ng-container matColumnDef="phoneNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.phone == null ? 'Chưa có' : element.phone}}</mat-cell>
                 </ng-container>
 
                 <!-- chuc vu Column -->
@@ -186,8 +186,8 @@
             
                 <!-- Name account Column -->
                 <ng-container matColumnDef="nameUser">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên tài khoản</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.username}}</mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Tên giảng viên</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.fullName}}</mat-cell>
                 </ng-container>
             
                 <!-- email Column -->
@@ -199,7 +199,7 @@
                 <!-- sdt Column -->
                 <ng-container matColumnDef="phoneNumber">
                   <mat-header-cell *matHeaderCellDef mat-sort-header>Số điện thoại</mat-header-cell>
-                  <mat-cell *matCellDef="let element">{{element.phone}}</mat-cell>
+                  <mat-cell *matCellDef="let element">{{element.phone == null ? 'Chưa có' : element.phone}}</mat-cell>
                 </ng-container>
 
                 <!-- chuc vu Column -->
