@@ -2,14 +2,18 @@ import { environment as env } from 'src/environments/environment';
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
-import { Account } from '../home/accounts/account.model';
+import { Account, ResponseAccount } from '../home/accounts/account.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { StatusToast, ToastServiceCodex } from './toast.service';
 @Injectable({
     providedIn: 'root',
 })
 export class AccountService {
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient,
+        private toastService: ToastServiceCodex
+        ) { }
 
     // get list account
     getListAccount(): Observable<Account[]> {
@@ -32,8 +36,8 @@ export class AccountService {
     }
 
     // add account
-    createAccount(accountReq: Account): Observable<Account> {
-        return this.http.post<Account>(env.backendBaseUrl + '/api/accounts', accountReq);
+    createAccount(accountReq: Account): Observable<ResponseAccount> {
+        return this.http.post<ResponseAccount>(env.backendBaseUrl + '/api/accounts', accountReq);
     }
 
     // update account

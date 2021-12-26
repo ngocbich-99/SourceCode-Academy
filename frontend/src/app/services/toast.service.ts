@@ -21,14 +21,14 @@ export class ToastServiceCodex {
         if (status === StatusToast.SUCCESS) {
             this.toastr.success(mess,'Thành công', {
                 closeButton: true,
-                timeOut: 2000,
-                extendedTimeOut: 2000
+                timeOut: 3000,
+                extendedTimeOut: 3000
             });
         } else if (status === StatusToast.ERROR) {
             this.toastr.error(mess, 'Thất bại', {
                 closeButton: true,
-                timeOut: 2000,
-                extendedTimeOut: 2000
+                timeOut: 3000,
+                extendedTimeOut: 3000
             })
         }
     }

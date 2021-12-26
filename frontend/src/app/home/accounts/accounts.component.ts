@@ -66,7 +66,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
   getListAccount() {
     this.accountService.getListAccount().subscribe(resData => {
       // get all list account
-      console.log(resData);
+      console.log('get list account', resData);
       
       this.listAccount = resData;
       this.listAccount.forEach((acc, index) => {
@@ -123,7 +123,8 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(async rs => {
       if (!!rs) {
         const account: Account = {
-          username: rs.username,
+          fullName: rs.username,
+          username: rs.email,
           email: rs.email,
           phone: rs.phone,
           role: rs.role,
@@ -131,22 +132,26 @@ export class AccountsComponent implements OnInit, AfterViewInit {
           createdTime: moment().valueOf(),
           password: rs.password,
         }
-        
-        this.accountService.createAccount(account).subscribe(accountRes => {
-          this.toastCodexService.showToast('Tạo mới giảng viên thành công!', StatusToast.SUCCESS);
-          this.listAccount[this.listAccount.indexOf(account)].id = accountRes.id;
-          
+        this.accountService.createAccount(account).subscribe(resData => {
+          if (resData.message === 'Email đã được sử dụng') {
+            this.toastCodexService.showToast('Email đã được sử dụng!', StatusToast.ERROR);
+          } else if (resData.message === 'Create account success') {
+            this.toastCodexService.showToast('Tạo mới giảng viên thành công!', StatusToast.SUCCESS);
+            // all list account
+            this.listAccount.push(account);
+            this.listAccount.forEach((acc, index) => {
+              acc.stt = index + 1;
+            })
+            this.listAccount[this.listAccount.indexOf(account)].id = resData.data.id;
+            this.dataSource.data = this.listAccount;
+
+            console.log('list account', this.listAccount[this.listAccount.indexOf(account)]);
+            
+          }
         }, error => {
           console.log('error add gv', error);
           this.toastCodexService.showToast('Tạo mới giảng viên thất bại!', StatusToast.ERROR);
         });
-
-        // all list account
-        this.dataSource.data = this.listAccount;
-        this.listAccount.push(account);
-        this.listAccount.forEach((acc, index) => {
-          acc.stt = index + 1;
-        })
         
         // get list account activate
         this.getAccountActivate();
