@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.common.PageData;
 import com.example.demo.constant.CommonConstant;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.request.course.CreateCourseRequest;
@@ -89,7 +90,7 @@ public class CourseController {
     }
 
     @GetMapping
-    public CloudResponse<Page<CourseDTO>> getCourse(
+    public CloudResponse<PageData<CourseDTO>> getCourse(
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "") String textSearch,

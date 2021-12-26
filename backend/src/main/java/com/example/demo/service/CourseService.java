@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 
+import com.example.demo.common.PageData;
 import com.example.demo.entity.Course;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.request.course.CreateCourseRequest;
@@ -32,5 +33,5 @@ public interface CourseService {
 
     void deleteCourse(Long id);
 
-    Page<CourseDTO> findCourse(String textSearch, Pageable pageable);
+    PageData<CourseDTO> findCourse(String textSearch, Pageable pageable);
 }

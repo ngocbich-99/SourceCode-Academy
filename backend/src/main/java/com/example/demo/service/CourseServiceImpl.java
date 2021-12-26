@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.common.PageData;
 import com.example.demo.entity.Account;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
@@ -187,7 +188,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Page<CourseDTO> findCourse(String textSearch, Pageable pageable) {
+    public PageData<CourseDTO> findCourse(String textSearch, Pageable pageable) {
         return this.convertToPageCourseDTO(courseRepository.findCourse(textSearch, pageable),pageable);
     }
 
@@ -247,10 +248,12 @@ public class CourseServiceImpl implements CourseService {
         return course.get();
     }
 
-    private Page<CourseDTO> convertToPageCourseDTO(Page<Course> page, Pageable pageable) {
-        return new PageImpl<CourseDTO>(
+    private PageData<CourseDTO> convertToPageCourseDTO(Page<Course> page, Pageable pageable) {
+        return new PageData<CourseDTO>(
                 this.convertToListCourseDTO(page.getContent()),
-                pageable, page.getTotalElements()
+                page.getTotalPages(),
+                page.getTotalElements(),
+                page.hasNext()
         );
     }
 }
