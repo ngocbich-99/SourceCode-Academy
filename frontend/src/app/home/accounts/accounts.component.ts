@@ -214,8 +214,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       height: '252px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe(async result => {
       if (result === true) {
         this.accountService.deleteAccById(account.id).subscribe(resData => {
           console.log(resData);
