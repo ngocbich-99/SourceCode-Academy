@@ -55,7 +55,7 @@ mat-drawer {
   border: unset;
 }
 mat-drawer h3 {
-  margin-bottom: 16px;
+  margin: 24px 0 16px;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;

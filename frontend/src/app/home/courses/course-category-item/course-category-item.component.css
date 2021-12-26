@@ -18,6 +18,9 @@
 .menu-option .cdk-overlay-pane {
   padding: 0;
 }
+.card-course-title {
+  margin-top: 8px;
+}
 .card-course-title .name-course h3 {
   margin: 0 8px;
   font-style: normal;
