@@ -9,6 +9,10 @@ public class CommonConstant {
 
     }
 
+    public static final Boolean PUBLIC_COURSE = Boolean.TRUE;
+
+    public static final Boolean PRIVATE_COURSE = Boolean.FALSE;
+
     public static final String SUCCESS = "Successful";
 
     public static final String AUTH_ERROR_TYPE = "AuthErrorType";

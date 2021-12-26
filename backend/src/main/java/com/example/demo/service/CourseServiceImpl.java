@@ -1,22 +1,24 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Account;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
+import com.example.demo.enums.ResponseEnum;
+import com.example.demo.exception.BizException;
+import com.example.demo.jwt.SecurityService;
 import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.dto.SectionDTO;
 import com.example.demo.model.request.course.CreateCourseRequest;
+import com.example.demo.model.request.course.EnrollRequest;
 import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
 import com.example.demo.model.request.course.UpdateCourseRequest;
 import com.example.demo.model.request.lesson.CreateLessonRequest;
 import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.model.request.section.CreateSectionRequest;
 import com.example.demo.model.request.section.UpdateSectionRequest;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.CourseRepository;
-import com.example.demo.repository.LessonRepository;
-import com.example.demo.repository.SectionRepository;
+import com.example.demo.repository.*;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -24,7 +26,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,16 +42,21 @@ public class CourseServiceImpl implements CourseService {
     private CourseRepository courseRepository;
 
     @Autowired
-    CategoryService categoryService;
+    private CategoryService categoryService;
 
     @Autowired
-    SectionService sectionService;
+    private SectionService sectionService;
 
     @Autowired
-    LessonService lessonService;
+    private LessonService lessonService;
 
+    @Autowired
+    AccountRepository accountRepository;
     @Autowired
     ModelMapper mapper;
+
+    @Autowired
+    private SecurityService securityService;
 
     @Override
     public List<CourseDTO> getAll() {
@@ -132,13 +138,35 @@ public class CourseServiceImpl implements CourseService {
         if (!request.getSections().isEmpty() && request.getSections() != null) {
             courseDTO.setSections(this.updateSectionList(request.getSections(), course));
         }
-        course = courseRepository.save(course);
-
+        courseRepository.save(course);
         return courseDTO;
-        /**
-         * must be throw exception
-         */
-//        return null;
+    }
+
+    @Override
+    public List<CourseDTO> findAllCourseByStatus(Boolean status) {
+        return convertToListCourseDTO(courseRepository.findAllByStatus(status));
+    }
+
+    @Override
+    public void enrollCourse(EnrollRequest request) {
+        Account account = accountRepository.findByEmail(securityService.getCurrentUser().getEmail());
+        if(account == null) {
+            throw new BizException(ResponseEnum.USERNAME_NOT_EXIST,"Account not found");
+        }
+        Course course = this.findById(request.getCourseId());
+        course.setAccounts(account);
+        if(course.checkValidRegister(account)){
+            throw new BizException(ResponseEnum.COURSE_ALREADY_IN_ACCOUNT,"Tài khoản đã đăng ký khóa học");
+        }
+        if(course.getSubscriberNumber()!=null){
+            course.setSubscriberNumber(course.getSubscriberNumber()+1);
+        } else {
+            course.setSubscriberNumber(1L);
+        }
+        courseRepository.save(course);
+
+
+
     }
 
     @Override
@@ -200,5 +228,13 @@ public class CourseServiceImpl implements CourseService {
         TypeToken<List<CourseDTO>> typeToken = new TypeToken<List<CourseDTO>>() {
         };
         return mapper.map(courses, typeToken.getType());
+    }
+
+    private Course findById(Long id){
+        Optional<Course> course = courseRepository.findById(id);
+        if(!course.isPresent()){
+            throw new BizException(ResponseEnum.NOT_FOUND,"Course not found");
+        }
+        return course.get();
     }
 }

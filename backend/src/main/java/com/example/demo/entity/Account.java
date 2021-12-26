@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -44,6 +45,15 @@ public class Account {
 
 //    @OneToMany
 //    private List<Comment> comments;
+
+    @Getter(AccessLevel.NONE)
+    @ManyToMany(mappedBy = "accounts")
+    private List<Course> courses;
+
+
+    public void setCourse(Course course){
+        this.courses.add(course);
+    }
 
     @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
     Set<LessonPass> lessonPasses;

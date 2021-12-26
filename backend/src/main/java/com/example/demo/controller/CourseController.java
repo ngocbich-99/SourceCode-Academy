@@ -1,18 +1,17 @@
 package com.example.demo.controller;
 
+import com.example.demo.constant.CommonConstant;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.request.course.CreateCourseRequest;
+import com.example.demo.model.request.course.EnrollRequest;
 import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
 import com.example.demo.model.request.course.UpdateCourseRequest;
 import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.CourseService;
-import lombok.extern.log4j.Log4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -33,6 +32,17 @@ public class CourseController {
     public CloudResponse<List<CourseDTO>> getList() {
         return CloudResponse.ok(courseService.getAll());
     }
+
+    @GetMapping("/private")
+    public CloudResponse<List<CourseDTO>> getPrivateCourse() {
+        return CloudResponse.ok(courseService.findAllCourseByStatus(CommonConstant.PRIVATE_COURSE));
+    }
+
+    @GetMapping("/public")
+    public CloudResponse<List<CourseDTO>> getPublicCourse() {
+        return CloudResponse.ok(courseService.findAllCourseByStatus(CommonConstant.PUBLIC_COURSE));
+    }
+
 
 
     @GetMapping("/{id}")
@@ -65,6 +75,13 @@ public class CourseController {
     public CloudResponse<List<CourseDTO>> findCourseByCategories(@Valid @RequestBody FindCourseByCategoriesRequest body) {
         LOGGER.info("POST /api/course/categories - > {}",body);
         return CloudResponse.ok(courseService.findAllByCategoriesName(body));
+    }
+
+    @PostMapping("/enroll")
+    public CloudResponse<String> enroll(@Valid @RequestBody EnrollRequest body) {
+        LOGGER.info("POST /api/course/enroll - > {}",body);
+        courseService.enrollCourse(body);
+        return CloudResponse.ok(SUCCESS,"Enroll course success");
     }
 
 

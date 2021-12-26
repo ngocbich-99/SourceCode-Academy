@@ -4,6 +4,7 @@ package com.example.demo.service;
 import com.example.demo.entity.Course;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.request.course.CreateCourseRequest;
+import com.example.demo.model.request.course.EnrollRequest;
 import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
 import com.example.demo.model.request.course.UpdateCourseRequest;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,10 @@ public interface CourseService {
     CourseDTO createCourse(CreateCourseRequest request);
 
     CourseDTO updateCourse(UpdateCourseRequest request);
+
+    List<CourseDTO> findAllCourseByStatus(Boolean status);
+
+    void enrollCourse(EnrollRequest request);
 
     void deleteCourse(Long id);
 }
