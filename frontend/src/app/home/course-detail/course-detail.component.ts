@@ -4,6 +4,8 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from '../courses/course.model';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -13,13 +15,15 @@ import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 export class CourseDetailComponent implements OnInit {
   isCollapsed = false;
   courseSelected: Course = {};
+  userSub: Subscription = new Subscription;
 
   constructor(
     private _location: Location,
     private router: Router,
     private route: ActivatedRoute,
     private courseService: CourseService,
-    private toastService: ToastServiceCodex
+    private toastService: ToastServiceCodex,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -47,13 +51,20 @@ export class CourseDetailComponent implements OnInit {
   }
 
   enrollmentCourse() {
-    this.courseService.enrollCourse(this.courseSelected.id).subscribe(resData => {
-      console.log('enroll course', resData);
-      if (resData.message === 'Tài khoản đã đăng ký khóa học') {
-        this.toastService.showToast('Đăng ký khoá học thành công!', StatusToast.SUCCESS);
-        this.router.navigate(['/home/learning-course']);
+    this.userSub = this.authService.userInfoSubject.subscribe((userInfo) => {
+      if (userInfo.role === 'HOC_VIEN') {
+        this.courseService.enrollCourse(this.courseSelected.id).subscribe(resData => {
+          console.log('enroll course', resData);
+          if (resData.message === 'Tài khoản đã đăng ký khóa học') {
+            this.toastService.showToast('Đăng ký khoá học thành công!', StatusToast.SUCCESS);
+            this.router.navigate(['/home/learning-course']);
+          }
+        })
+      } else if (userInfo.role == undefined) {
+        this.router.navigate(['/signup']);
       }
     })
+    
   }
 
 }
