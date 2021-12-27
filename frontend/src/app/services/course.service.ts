@@ -71,4 +71,8 @@ export class CourseService {
         return this.http.delete(env.backendBaseUrl + `/api/course/delete/${id}`);
     }
 
+    enrollCourse(id?: number): Observable<any> {
+        return this.http.post<any>(env.backendBaseUrl + '/api/course/enroll', {courseId: id});
+    }
+
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Course } from 'src/app/home/courses/course.model';
 
 @Component({
   selector: 'app-course-item-student',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./course-item-student.component.css']
 })
 export class CourseItemStudentComponent implements OnInit {
+  @Input() courses: Course[] = [];
 
   constructor(
     private router: Router,
@@ -15,8 +17,8 @@ export class CourseItemStudentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  routerCourseDetail() {
-    this.router.navigate(['home', 'course-detail']);
+  routerCourseDetail(id?: number) {
+    this.router.navigate(['home', 'course-detail', id]);
   }
 
 }

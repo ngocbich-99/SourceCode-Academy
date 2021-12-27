@@ -1,5 +1,5 @@
-<button mat-button class="btn-course" (click)="routerCourseDetail()">
-    <div class="row-course" fxLayout="row wrap" fxLayoutAlign="start center">
+<div class="row-course" fxLayout="row wrap" fxLayoutAlign="start center">
+    <button *ngFor="let course of courses" mat-button class="btn-course" (click)="routerCourseDetail(course.id)">
         <div class="card-course">
             <div class="codex-tag codex-tag-new">
                 <span>Mới</span> 
@@ -10,30 +10,33 @@
             <div class="div-img">
                 <img src="/assets/images/img-cover-course.png" alt="">
                 <!-- process tag -->
-                <div class="div-tag-process codex-progress-learning">
+                <!-- <div class="div-tag-process codex-progress-learning">
                     <span>Đang học - Bài 9/24</span>
-                </div>
+                </div> -->
                 <!-- <div class="div-tag-finished codex-progess-completed">
                     <span>Đã hoàn thành</span>
                 </div> -->
             </div>
             <div class="card-course-title" fxLayout="row" fxLayoutAlign="space-between center">
                 <div fxLayout="row" class="name-course" fxLayoutAlign="space-between center">
-                    <h3>name course</h3>
+                    <h3>{{course?.name}}</h3>
                 </div>
                 <div fxLayout="row" class="subs-course" fxLayoutAlign="space-between center">
-                    <p>265</p>
+                    <p>{{course?.subscriberNumber == null ? 0 : course?.subscriberNumber}}</p>
                     <mat-icon svgIcon="subscribe"></mat-icon>
                 </div>
             </div>
             <div class="card-course-level" fxLayout="row" fxLayoutAlign="start center">
                 <!-- basic -->
-                <mat-icon svgIcon="level-basic"></mat-icon>
+                <mat-icon *ngIf="course?.level === 1" svgIcon="level-basic"></mat-icon>
+                <h3 *ngIf="course?.level === 1">Cơ bản</h3>
                 <!-- advanced -->
-                <!-- <mat-icon svgIcon="level-advanced"></mat-icon> -->
-                <h3>Cơ bản</h3>
+                <mat-icon *ngIf="course?.level === 2" svgIcon="level-advanced"></mat-icon>
+                <h3 *ngIf="course?.level === 2">Nâng cao</h3>
+                <!-- Chưa xác định level -->
+                <h3 *ngIf="course?.level !== 2 && course?.level !== 1">Chưa xác định</h3>
             </div>
             
         </div>
-    </div>
-</button>
+    </button>
+</div>

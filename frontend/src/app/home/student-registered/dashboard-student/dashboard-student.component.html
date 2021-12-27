@@ -41,5 +41,9 @@
 </section>
 <section class="course-new">
     <h3>Khoá học mới</h3>
-    <app-course-item-student></app-course-item-student>
+    <p *ngIf="listCourseNew.length === 0">Chưa có khoá học nào!</p>
+    <app-course-item-student
+    *ngIf="listCourseNew.length > 0"
+    [courses]="listCourseNew"
+    ></app-course-item-student>
 </section>

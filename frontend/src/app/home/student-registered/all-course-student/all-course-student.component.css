@@ -21,6 +21,7 @@
 }
 .section-category mat-drawer-content {
   background: #ffffff;
+  min-height: 500px;
 }
 .section-category .sidebar {
   width: 160px;

@@ -32,9 +32,6 @@ const routes: Routes = [
                     { path: ':id', component: CourseCategoryItemComponent },
                 ]
             },
-            { 
-                path: 'course-detail', component: CourseDetailComponent,
-            },
             {
                 path: 'learning-course', component: LearningCourseComponent
             },
@@ -64,6 +61,9 @@ const routes: Routes = [
             { path: 'about-us', component: AboutUsComponent},
 
             { path: 'dashboard-student', component: DashboardStudentComponent},
+            { 
+                path: 'course-detail/:id', component: CourseDetailComponent,
+            },
             { path: 'courses-student', component: CoursesStudentComponent},
             { 
                 path: 'all-course-student', 

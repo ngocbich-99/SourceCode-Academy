@@ -36,7 +36,7 @@ export interface Section {
     id?: number;
     name?: string;
     createdTime?: number;
-    lessons?: Lesson[];
+    lessons: Lesson[];
 }
 
 export interface Lesson {

@@ -106,10 +106,14 @@
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 8px;
 }
-.sidebar-left .content-info p {
+.sidebar-left .content-info p,
+.sidebar-left .content-info h3 {
   font-weight: bold;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 8px;
+}
+.sidebar-left .content-info div {
+  display: flex;
 }
 /* ======== end sidebar left ======== */

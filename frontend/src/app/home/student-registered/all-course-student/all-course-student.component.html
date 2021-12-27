@@ -18,11 +18,13 @@
                 <a mat-list-item routerLink="/home/all-course-student/all" routerLinkActive="active">
                     <span class="nav-caption">Tất cả</span>
                 </a>
-                <a mat-list-item routerLink="/home/all-course-student/1" routerLinkActive="active">
-                    <span class="nav-caption">HTML & CSS</span>
-                </a>
-                <a mat-list-item routerLink="/home/all-course-student/2" routerLinkActive="active">
-                    <span class="nav-caption">JavaScript</span>
+                <a *ngFor="let category of listCategory" 
+                    mat-list-item 
+                    [routerLink]="['/home', 'all-course-student', category.id]" 
+                    routerLinkActive="active">
+                    <span class="nav-caption">
+                        {{category.name}}
+                    </span>
                 </a>
             </mat-nav-list>
         </mat-drawer>
