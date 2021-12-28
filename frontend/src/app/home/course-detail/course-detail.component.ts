@@ -19,6 +19,7 @@ export class CourseDetailComponent implements OnInit {
   courseSelected: Course = {};
   teacher: Account = {};
   userSub: Subscription = new Subscription;
+  isProgressEnroll = false;
 
   constructor(
     private _location: Location,
@@ -68,8 +69,14 @@ export class CourseDetailComponent implements OnInit {
         this.courseService.enrollCourse(this.courseSelected.id).subscribe(resData => {
           console.log('enroll course', resData);
           if (resData.message === 'Tài khoản đã đăng ký khóa học') {
-            this.toastService.showToast('Đăng ký khoá học thành công!', StatusToast.SUCCESS);
-            this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
+            this.toastService.showToast('Tài khoản đã đăng ký khóa học!', StatusToast.ERROR);
+          } else if (resData.message === 'Enroll course success') {
+            this.isProgressEnroll = true;
+            setTimeout(() => {
+              this.isProgressEnroll = false;
+              this.toastService.showToast('Đăng ký khoá học thành công!', StatusToast.SUCCESS);
+              this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
+            }, 5000)
           }
         })
       } else if (userInfo.role == undefined) {

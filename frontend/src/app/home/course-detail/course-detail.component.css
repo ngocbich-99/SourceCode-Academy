@@ -93,6 +93,9 @@
   margin-bottom: 8px;
 }
 /* button entrollment course */
+mat-progress-bar {
+  margin-bottom: 24px;
+}
 .sidebar-left .btn-enrollment {
   width: 100%;
 }

@@ -58,3 +58,15 @@ export interface ResCourseApi {
     responseCode: string;
     timestamp: string;
 }
+
+export interface ResPaginatorCourses {
+    data: {
+        contents: Course[],
+        hasNext: boolean,
+        totalElements: number,
+        totalPages: number
+    };
+    message: string;
+    responseCode: string;
+    timestamp: string;
+}

@@ -10,6 +10,8 @@ import { Course } from '../../courses/course.model';
 })
 export class DashboardStudentComponent implements OnInit {
   listCourseNew: Course[] = [];
+  pageSize: number = 10;
+  page: number = 0;
 
   constructor(
     private courseService: CourseService
@@ -17,6 +19,7 @@ export class DashboardStudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getListCourseNew();
+    this.getCoursesLearning(this.pageSize, this.page, '', 'createdTime', 'desc');
   }
 
   getListCourseNew() {
@@ -24,6 +27,17 @@ export class DashboardStudentComponent implements OnInit {
       if (!!resData.data) {
         this.listCourseNew = resData.data;
       }
+    })
+  }
+
+  getCoursesLearning(
+    pageSize: number, 
+    page: number, 
+    textSearch: string, 
+    sortProperty: string, 
+    sortOrder: string){
+    this.courseService.getCoursesLearning(pageSize, page, textSearch, sortProperty, sortOrder).subscribe(resData => {
+      console.log('courses learning', resData);
     })
   }
 

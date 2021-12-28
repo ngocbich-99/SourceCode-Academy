@@ -1,7 +1,7 @@
 import { environment as env } from 'src/environments/environment';
 import { Injectable } from "@angular/core";
-import { HttpClient } from '@angular/common/http';
-import { Course, CourseRequest, ResCourseApi } from '../home/courses/course.model';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Course, CourseRequest, ResCourseApi, ResPaginatorCourses } from '../home/courses/course.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -45,6 +45,31 @@ export class CourseService {
         return this.http.get<ResCourseApi>(env.backendBaseUrl + '/api/course/private');
     }
 
+    // get list course dang hoc cua current user
+    getCoursesLearning(
+        pageSize: number, 
+        page: number, 
+        textSearch: string, 
+        sortProperty: string, 
+        sortOrder: string
+    ): Observable<ResPaginatorCourses> {
+        if (!!textSearch) {
+            const params = new HttpParams()
+            .set('pageSize', pageSize.toString())
+            .set('page', page.toString())
+            .set('textSearch', textSearch)
+            .set('sortProperty', sortProperty)
+            .set('sortOrder', sortOrder)
+            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl +   '/api/course/current-user', {params})
+        } else {
+            const params = new HttpParams()
+            .set('pageSize', pageSize.toString())
+            .set('page', page.toString())
+            .set('sortProperty', sortProperty)
+            .set('sortOrder', sortOrder)
+            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl +   '/api/course/current-user', {params})
+        }
+    }
     // create course
     createCourse(courseReq: CourseRequest): Observable<Course> {
         return this.http.post<{[key: string]: Course}>(env.backendBaseUrl + '/api/course', courseReq)

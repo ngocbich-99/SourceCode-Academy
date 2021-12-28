@@ -15,7 +15,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatRadioModule} from '@angular/material/radio';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 @NgModule({
     imports: [
         MatButtonModule,
@@ -33,7 +33,8 @@ import {MatRadioModule} from '@angular/material/radio';
         MatSlideToggleModule, 
         MatSortModule,
         MatPaginatorModule,
-        MatRadioModule
+        MatRadioModule,
+        MatProgressBarModule
     ],
     exports: [
         MatButtonModule,
@@ -51,7 +52,8 @@ import {MatRadioModule} from '@angular/material/radio';
         MatSlideToggleModule,
         MatSortModule,
         MatPaginatorModule,
-        MatRadioModule
+        MatRadioModule,
+        MatProgressBarModule
     ]
 })
 export class MaterialModule {}

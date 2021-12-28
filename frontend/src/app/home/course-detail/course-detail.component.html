@@ -80,6 +80,8 @@
                 <p>{{getTotalLesson()}}</p>
             </div>
         </div>
+        <mat-progress-bar *ngIf="isProgressEnroll" mode="indeterminate"></mat-progress-bar>
+        
         <button (click)="enrollmentCourse()" mat-button class="codex-btn-primary btn-big btn-enrollment">
             Tham gia học
         </button>
