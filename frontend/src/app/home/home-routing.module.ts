@@ -32,9 +32,6 @@ const routes: Routes = [
                     { path: ':id', component: CourseCategoryItemComponent },
                 ]
             },
-            {
-                path: 'learning-course', component: LearningCourseComponent
-            },
             { 
                 path: 'category', component: CategoryComponent,
                 // children: [
@@ -70,8 +67,10 @@ const routes: Routes = [
                 component: AllCourseStudentComponent,
                 children: [
                     { path: ':name', component: CourseCategoryItemComponent },
-                    { path: 'all', component: CourseCategoryItemComponent}
                 ]
+            },
+            {
+                path: 'learning-course', component: LearningCourseComponent
             },
             {
                 path: '',

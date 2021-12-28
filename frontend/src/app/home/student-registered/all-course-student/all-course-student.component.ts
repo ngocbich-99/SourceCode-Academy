@@ -18,15 +18,23 @@ export class AllCourseStudentComponent implements OnInit {
   constructor(
     public categoryService: CategoryService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
     console.log('ngOnInit all-course-student');
     
     this.getListCategory();
-    this.route.params.subscribe((params: Params) => {
-      this.getCourseByNameCategory(params['name']);
+    
+    this.route.queryParams.subscribe((params: Params) => {
+      if (params['category'] === 'all') {
+        this.courseService.getCoursesPublic().subscribe(resData => {
+          this.listCourse = resData.data;
+        })
+      } else {
+        this.getCourseByNameCategory(params['category']);
+      }
     })
   }
   async getListCategory() {
@@ -39,7 +47,6 @@ export class AllCourseStudentComponent implements OnInit {
     // this.router.navigate(['home', 'all-course-student', name]);
     this.getCourseByNameCategory(category?.name);
     this.categorySelected = category;
-    
   }
   getCourseByNameCategory(name?: string) {
     this.categoryService.getCoursesByCategory([name as string]).subscribe(resData => {

@@ -15,13 +15,16 @@
             <!-- side bar category -->
             <h3>Danh mục</h3>
             <mat-nav-list class="sidebar">
-                <a mat-list-item routerLink="/home/all-course-student/all" routerLinkActive="active">
+                <a mat-list-item 
+                routerLink="/home/all-course-student" 
+                [queryParams]="{category: 'all'}"
+                routerLinkActive="active">
                     <span class="nav-caption">Tất cả</span>
                 </a>
                 <a *ngFor="let category of listCategory" 
                     mat-list-item 
-                    [routerLink]="['/home', 'all-course-student', category.name]" 
-                    (click)="changeCategory(category)"
+                    [routerLink]="['/home', 'all-course-student']" 
+                    [queryParams]="{category: category.name}"
                     routerLinkActive="active">
                     <span class="nav-caption">
                         {{category.name}}

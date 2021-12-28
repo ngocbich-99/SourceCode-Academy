@@ -53,7 +53,8 @@
     </a>
     <a mat-list-item 
     *ngIf="role === 'HOC_VIEN'"
-    [routerLink]= "['/home/all-course-student/all']" 
+    [routerLink]= "['/home/all-course-student']"
+    [queryParams]="{category: 'all'}" 
     routerLinkActive="active" 
     (click)="onTabChange('courses')">
         <mat-icon *ngIf="activeTab === 'courses'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>

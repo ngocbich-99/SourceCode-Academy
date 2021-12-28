@@ -69,7 +69,7 @@ export class CourseDetailComponent implements OnInit {
           console.log('enroll course', resData);
           if (resData.message === 'Tài khoản đã đăng ký khóa học') {
             this.toastService.showToast('Đăng ký khoá học thành công!', StatusToast.SUCCESS);
-            this.router.navigate(['/home/learning-course']);
+            this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
           }
         })
       } else if (userInfo.role == undefined) {

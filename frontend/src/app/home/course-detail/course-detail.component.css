@@ -66,7 +66,6 @@
   font-weight: 500;
   font-size: 14px;
 }
-/* end button collapse section */
 .container-structure-course .container-content-section {
   margin-left: 48px;
 }
@@ -83,6 +82,8 @@
 .container-content-section p {
   margin-bottom: 16px;
 }
+/* end button collapse section */
+
 /* ======== sidebar left ======== */
 .sidebar-left {
   margin-left: 24px;
