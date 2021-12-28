@@ -43,7 +43,7 @@
                             <div fxFlex="80" fxLayout="row" fxLayoutAlign="space-between start">
                                 <mat-form-field  appearance="outline" fxFlex="66">
                                     <mat-label>Chọn danh mục</mat-label>
-                                    <mat-select formControlName="idCategory">
+                                    <mat-select formControlName="idCategory" (click)="getListCategory()">
                                         <mat-option *ngFor="let category of listCategory" [value]="category.id">
                                             {{category.name}}
                                         </mat-option>

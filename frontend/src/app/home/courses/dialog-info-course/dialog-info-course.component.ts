@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { CourseService } from 'src/app/services/course.service';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
@@ -47,7 +48,8 @@ export class DialogInfoCourseComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: {courseSelected: Course},
     private categoryService: CategoryService,
     private courseService: CourseService,
-    private toastService: ToastServiceCodex
+    private toastService: ToastServiceCodex,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -110,8 +112,11 @@ export class DialogInfoCourseComponent implements OnInit {
       imgCover: this.formInforCourse.value.imgCover,
       level: this.formInforCourse.value.level,
       name: this.formInforCourse.value.nameCourse,
-      teacherId: 1
     }
+    // get teacher id
+    this.authService.userInfoSubject.subscribe(resData => {
+      courseReq.teacherId = resData.id;
+    })
     // doi type status: true = public, false = private
     if (this.formInforCourse.value.status === 'public') {
       courseReq.status = true;

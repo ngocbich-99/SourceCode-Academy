@@ -66,15 +66,15 @@
             </div>
             <div class="content-info">
                 <p>{{courseSelected?.categories![0].name}}</p>
-                <div style="height:20px">
+                <div>
                     <!-- basic -->
                     <mat-icon *ngIf="courseSelected?.level === 1" svgIcon="level-basic"></mat-icon>
-                    <h3 *ngIf="courseSelected?.level === 1">Cơ bản</h3>
+                    <p *ngIf="courseSelected?.level === 1">Cơ bản</p>
                     <!-- advanced -->
                     <mat-icon *ngIf="courseSelected?.level === 2" svgIcon="level-advanced"></mat-icon>
-                    <h3 *ngIf="courseSelected?.level === 2">Nâng cao</h3>
+                    <p *ngIf="courseSelected?.level === 2">Nâng cao</p>
                 </div>
-                <p>Nguyễn thị ngọc bích</p>
+                <p>{{teacher.fullName}}</p>
                 <p>{{courseSelected?.subscriberNumber === null ? 0 : courseSelected?.subscriberNumber}}</p>
                 <p>{{courseSelected.sections?.length}}</p>
                 <p>{{getTotalLesson()}}</p>

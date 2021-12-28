@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { CourseService } from 'src/app/services/course.service';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
@@ -126,7 +127,8 @@ export class DialogAddCourseComponent implements OnInit {
     public dialogRef: MatDialogRef<DialogAddCourseComponent>,
     private categoryService: CategoryService,
     private courseService: CourseService,
-    private toastCodexService: ToastServiceCodex
+    private toastCodexService: ToastServiceCodex,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -180,8 +182,11 @@ export class DialogAddCourseComponent implements OnInit {
       imgCover: this.formInforCourse.value.imgCover,
       level: this.formInforCourse.value.level,
       name: this.formInforCourse.value.nameCourse,
-      teacherId: 1
     }
+    // get teacher id
+    this.authService.userInfoSubject.subscribe(resData => {
+      courseReq.teacherId = resData.id;
+    })
     // doi type cua status cho phu hop voi body request api
     if (this.formInforCourse.value.status === 'public') {
       courseReq.status = true;

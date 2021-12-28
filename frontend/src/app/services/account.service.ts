@@ -26,7 +26,7 @@ export class AccountService {
     }
 
     // get account by id 
-    getAccountById(idAcc: number): Observable<Account> {
+    getAccountById(idAcc?: number): Observable<Account> {
         return this.http.get<{[key: string]: Account}>(env.backendBaseUrl + `/api/accounts/${idAcc}`)
         .pipe(
             map(resData => {

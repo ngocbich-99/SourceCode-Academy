@@ -6,6 +6,8 @@ import { Course } from '../courses/course.model';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AccountService } from 'src/app/services/account.service';
+import { Account } from '../accounts/account.model';
 
 @Component({
   selector: 'app-course-detail',
@@ -15,6 +17,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class CourseDetailComponent implements OnInit {
   isCollapsed = false;
   courseSelected: Course = {};
+  teacher: Account = {};
   userSub: Subscription = new Subscription;
 
   constructor(
@@ -23,7 +26,8 @@ export class CourseDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private courseService: CourseService,
     private toastService: ToastServiceCodex,
-    private authService: AuthService
+    private authService: AuthService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit(): void {
@@ -35,7 +39,15 @@ export class CourseDetailComponent implements OnInit {
   getCourseById(id: number) {
     this.courseService.getCourse(id).subscribe(resData => {
       this.courseSelected = resData;
+      this.getTeacher(this.courseSelected.teacherId);
       console.log('course by id', resData);
+    })
+  }
+
+  getTeacher(id?: number) {
+    this.accountService.getAccountById(id).subscribe(resData => {
+      this.teacher = resData;
+      console.log('get teacher', resData);
     })
   }
 

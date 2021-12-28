@@ -23,7 +23,7 @@
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
-                            [routerLink]="['/home', 'courses', category.id]" 
+                            [routerLink]="['/home', 'courses', category.name]" 
                             routerLinkActive="active">
                             <span class="nav-caption">
                                 {{category.name}}
@@ -50,7 +50,7 @@
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
-                            [routerLink]="['/home', 'courses', category.id]" 
+                            [routerLink]="['/home', 'courses', category.name]" 
                             routerLinkActive="active">
                             <span class="nav-caption">
                                 {{category.name}}
@@ -76,7 +76,7 @@
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
-                            [routerLink]="['/home', 'courses', category.id]" 
+                            [routerLink]="['/home', 'courses', category.name]" 
                             routerLinkActive="active">
                             <span class="nav-caption">
                                 {{category.name}}

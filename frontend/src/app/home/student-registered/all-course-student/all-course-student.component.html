@@ -20,7 +20,8 @@
                 </a>
                 <a *ngFor="let category of listCategory" 
                     mat-list-item 
-                    [routerLink]="['/home', 'all-course-student', category.id]" 
+                    [routerLink]="['/home', 'all-course-student', category.name]" 
+                    (click)="changeCategory(category)"
                     routerLinkActive="active">
                     <span class="nav-caption">
                         {{category.name}}
@@ -31,10 +32,14 @@
         <mat-drawer-content>
             <div class="description-category">
                 <p>
-                    HTML là nền tảng của tất cả các trang web. Nó xác định cấu trúc của một trang, trong khi CSS xác định phong cách của nó. HTML và CSS là sự khởi đầu của mọi thứ bạn cần biết để tạo trang web đầu tiên của mình! Tìm hiểu cả hai và bắt đầu tạo các trang web tuyệt vời.
+                    {{categorySelected?.description}}
                 </p>
             </div>
-            <app-course-item-student></app-course-item-student>
+            <p *ngIf="listCourse.length === 0">Chưa có khoá học nào!</p>
+            <app-course-item-student
+            *ngIf="listCourse.length > 0"
+            [courses]="listCourse"
+            ></app-course-item-student>
         </mat-drawer-content>
     </mat-drawer-container>
 </section>

@@ -115,5 +115,11 @@
 }
 .sidebar-left .content-info div {
   display: flex;
+  align-items: center;
+}
+.content-info mat-icon {
+  height: 20px;
+  margin-bottom: 8px;
+  margin-right: 8px;
 }
 /* ======== end sidebar left ======== */
