@@ -33,8 +33,9 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   logout() {
-    this.router.navigate(['/login']);
     this.authService.logout();
+    this.authService.userInfoSubject.next({});
+    this.router.navigate(['/home/main-page-unregistered']);
   }
 
   ngOnDestroy() {

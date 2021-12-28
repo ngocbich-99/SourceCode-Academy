@@ -29,7 +29,7 @@
         <button (click)="onLogin()" mat-button class="codex-btn-primary btn-big">Đăng nhập</button>
       </form>
       <p class="dang-nhap">
-          Bạn chưa có tài khoản? <a mat-button routerLink="/signup">Đăng ký</a>
+          Bạn chưa có tài khoản? <a mat-button (click)="openDialogSignup()">Đăng ký</a>
       </p>
     </div>
 </section>

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import * as moment from 'moment';
-import { Account } from 'src/app/home/accounts/account.model';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { SignUpReq } from '../auth.model';
 import { AuthService } from '../auth.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,7 +18,9 @@ export class SignUpComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private toastService: ToastServiceCodex
+    private toastService: ToastServiceCodex,
+    public dialogRef: MatDialogRef<SignUpComponent>,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -42,12 +44,30 @@ export class SignUpComponent implements OnInit {
       this.authService.signUp(signUpReq).subscribe(resData => {
         console.log(resData);
         this.toastService.showToast('Đăng ký tài khoản thành công!', StatusToast.SUCCESS);
-        this.router.navigate(['/login']);
+        this.dialogRef.close();
+        
+        // this.router.navigate(['/login']);
+        // open dialog login
+        const dialogRef = this.dialog.open(LoginComponent, {
+          width: '688px',
+          height: '553px',
+          panelClass: 'dialogSignup'
+        });
       }, error => {
         console.log(error);
         this.toastService.showToast('Đăng ký tài khoản thất bại!', StatusToast.ERROR)
       })
     }
+  }
+
+  openDialogLogin() {
+    this.dialogRef.close();
+
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '688px',
+      height: '553px',
+      panelClass: 'dialogSignup'
+    });
   }
 
 }

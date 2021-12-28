@@ -11,7 +11,7 @@ import { UserInfo } from './user.model';
 })
 export class AuthService {
   loggedIn = false;
-  userInfoSubject = new BehaviorSubject<UserInfo>({});
+  userInfoSubject = new BehaviorSubject<any>({});
 
   constructor(
     private http: HttpClient
@@ -40,7 +40,8 @@ export class AuthService {
     return this.http.post<LoginResponse>(env.backendBaseUrl + '/api/auth/login', loginReq)
     .pipe(
       tap(resData => {
-        // localStorage.setItem('userInfo', JSON.stringify(resData.data));
+        localStorage.setItem('userInfo', JSON.stringify(resData.data));
+        this.userInfoSubject.next(resData.data);
       })
     );
   }

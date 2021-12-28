@@ -1,16 +1,17 @@
 .container-signup {
   height: 100%;
+  justify-content: space-between !important;
   /* background: url("/assets/images/bg.png") top center / cover no-repeat; */
-  background-color: #605eff;
+  /* background-color: #605eff; */
 }
 .side-bar {
   width: 150px;
-  height: 65%;
+  height: 100%;
   background: url("/assets/images/Sidebar.png") top center / cover no-repeat;
   border-radius: 10px 0 0 10px;
 }
 .card-login {
-  height: 65%;
+  height: 100%;
   width: 528px;
   background: #ffffff;
   border-radius: 0 10px 10px 0;
@@ -45,4 +46,10 @@ button {
 .dang-nhap a {
   color: #605eff;
   padding: 0;
+}
+
+/* css open dialog  login */
+::ng-deep .dialogSignup > mat-dialog-container {
+  padding: 0;
+  border-radius: 10px;
 }

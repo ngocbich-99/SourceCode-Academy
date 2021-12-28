@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { AuthService } from '../auth.service';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private toastService: ToastServiceCodex
+    private toastService: ToastServiceCodex,
+    public dialogRef: MatDialogRef<LoginComponent>,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -27,7 +31,7 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     // delete data old
-    this.authService.logout();
+    // this.authService.logout();
     
     if (!this.loginForm.invalid) {
       this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe(resData => {
@@ -45,6 +49,7 @@ export class LoginComponent implements OnInit {
             } else {
               this.router.navigate(['/home/main-page-unregistered']);
             }
+            this.dialogRef.close();
             // luu user info vao store ngrx
         }
         
@@ -55,6 +60,15 @@ export class LoginComponent implements OnInit {
     } else {
       return;
     }
+  }
+
+  openDialogSignup() {
+    this.dialogRef.close();
+    const dialogRef = this.dialog.open(SignUpComponent, {
+      width: '688px',
+      height: '553px',
+      panelClass: 'dialogSignup'
+    });
   }
 
 }

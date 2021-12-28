@@ -74,7 +74,7 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: '/login',
+                redirectTo: '/main-page-unregistered',
                 pathMatch: 'full'
             }
         ]

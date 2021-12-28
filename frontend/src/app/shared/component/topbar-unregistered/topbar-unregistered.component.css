@@ -18,3 +18,8 @@
   height: 20px;
   margin-right: 12px;
 }
+
+::ng-deep .dialogSignup > mat-dialog-container {
+  padding: 0;
+  border-radius: 10px;
+}

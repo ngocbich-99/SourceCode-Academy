@@ -11,12 +11,12 @@ const routes: Routes = [
   },
   {
     path: "",
-    redirectTo: "home",
+    redirectTo: "home/main-page-unregistered",
     pathMatch: "full",
   },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: '**', redirectTo: 'home'}
+  { path: '**', redirectTo: 'home/main-page-unregistered'}
 ];
 
 @NgModule({
