@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -159,7 +158,6 @@ public class CourseServiceImpl implements CourseService {
             throw new BizException(ResponseEnum.USERNAME_NOT_EXIST, "Account not found");
         }
         Course course = this.findById(request.getCourseId());
-        course.setAccounts(account);
         if (course.checkValidRegister(account)) {
             throw new BizException(ResponseEnum.COURSE_ALREADY_IN_ACCOUNT, "Tài khoản đã đăng ký khóa học");
         }
@@ -189,7 +187,15 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public PageData<CourseDTO> findCourse(String textSearch, Pageable pageable) {
-        return this.convertToPageCourseDTO(courseRepository.findCourse(textSearch, pageable),pageable);
+        return this.convertToPageCourseDTO(courseRepository.findCourse(textSearch, pageable), pageable);
+    }
+
+    @Override
+    public PageData<CourseDTO> findCourseOfCurrentUser(String textSearch, Pageable pageable) {
+        return this.convertToPageCourseDTO(
+                courseRepository.findCourseOfCurrentUser(textSearch,
+                        securityService.getCurrentUser().getId(),
+                        pageable), pageable);
     }
 
     private List<LessonDTO> saveLessonList(List<CreateLessonRequest> requests, Long sectionId) {

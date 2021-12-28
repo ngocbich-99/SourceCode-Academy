@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Course;
-import com.example.demo.model.dto.CourseDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -29,5 +28,10 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query("SELECT c FROM Course c WHERE LOWER(c.name) LIKE LOWER(CONCAT('%',:searchText, '%'))")
     Page<Course> findCourse(@Param("searchText") String searchText,
-                               Pageable pageable);
+                            Pageable pageable);
+
+    @Query("SELECT c FROM Course c LEFT OUTER JOIN c.accounts g WHERE g.id = :accountId and LOWER(c.name) LIKE LOWER(CONCAT('%',:searchText, '%'))")
+    Page<Course> findCourseOfCurrentUser(@Param("searchText") String searchText,
+                                         @Param("accountId") Long accountId,
+                                         Pageable pageable);
 }

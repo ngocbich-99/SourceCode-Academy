@@ -34,4 +34,6 @@ public interface CourseService {
     void deleteCourse(Long id);
 
     PageData<CourseDTO> findCourse(String textSearch, Pageable pageable);
+
+    PageData<CourseDTO> findCourseOfCurrentUser(String textSearch,Pageable pageable);
 }

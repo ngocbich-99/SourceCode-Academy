@@ -23,7 +23,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -116,6 +115,9 @@ public class AccountServiceImpl implements AccountService {
         if (!passwordEncoder.matches(request.getPassword(), account.getPassword())) {
             throw new BizException(ResponseEnum.NOT_FOUND, "Username or password incorrect");
         }
+        if(!account.getIsActivate()){
+            throw new BizException(ResponseEnum.ACCOUNT_BLOCKED, "Your account has been blocked. Please contact Xcademy hotline for assistance");
+        }
         LoginResponse response = new LoginResponse();
         JwtSubject jwtSubject = new JwtSubject();
         BeanUtils.copyProperties(account, jwtSubject);
@@ -123,7 +125,6 @@ public class AccountServiceImpl implements AccountService {
         String accessToken = jwtProvider.generateJwtToken(jwtSubject);
         response.setAccessToken(accessToken);
         response.setTokenType("Bearer");
-
         return response;
     }
 

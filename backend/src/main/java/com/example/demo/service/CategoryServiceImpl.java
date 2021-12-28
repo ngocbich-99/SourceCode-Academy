@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Component
@@ -56,6 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDTO createCategory(CreateCategoryRequest request) {
 ////        kiem tra name danh muc da ton tai chua
+        request.setName(request.getName().trim().toLowerCase(Locale.ROOT));
         Category rs = categoryRepository.findByName(request.getName());
         if (rs != null) {
             throw new InternalException("Category is already in db");
