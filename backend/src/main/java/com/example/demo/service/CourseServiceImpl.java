@@ -166,6 +166,7 @@ public class CourseServiceImpl implements CourseService {
         } else {
             course.setSubscriberNumber(1L);
         }
+        course.addAccounts(account);
         courseRepository.save(course);
 
 

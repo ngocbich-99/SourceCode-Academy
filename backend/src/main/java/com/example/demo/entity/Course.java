@@ -52,7 +52,7 @@ public class Course {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Account> accounts;
 
-    public void setAccounts(Account account) {
+    public void addAccounts(Account account) {
         this.accounts.add(account);
     }
 
