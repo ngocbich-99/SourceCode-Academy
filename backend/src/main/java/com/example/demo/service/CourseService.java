@@ -4,10 +4,7 @@ package com.example.demo.service;
 import com.example.demo.common.PageData;
 import com.example.demo.entity.Course;
 import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.request.course.CreateCourseRequest;
-import com.example.demo.model.request.course.EnrollRequest;
-import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
-import com.example.demo.model.request.course.UpdateCourseRequest;
+import com.example.demo.model.request.course.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,6 +27,8 @@ public interface CourseService {
     List<CourseDTO> findAllCourseByStatus(Boolean status);
 
     void enrollCourse(EnrollRequest request);
+
+    void markCoursePass(MarkCoursePassRequest request);
 
     void deleteCourse(Long id);
 

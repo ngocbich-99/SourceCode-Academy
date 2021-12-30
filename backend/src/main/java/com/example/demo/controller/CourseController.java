@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.common.PageData;
 import com.example.demo.constant.CommonConstant;
 import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.request.course.CreateCourseRequest;
-import com.example.demo.model.request.course.EnrollRequest;
-import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
-import com.example.demo.model.request.course.UpdateCourseRequest;
+import com.example.demo.model.request.course.*;
 import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.CourseService;
 import io.swagger.annotations.ApiOperation;
@@ -125,6 +122,14 @@ public class CourseController {
         Pageable pageable = PageRequest
                 .of(page, pageSize, Sort.Direction.fromString(sortOrder), sortProperty);
         return CloudResponse.ok(courseService.findCourseOfCurrentUser(textSearch.trim(),pageable));
+    }
+
+    @ApiOperation(value = "Api đăng ký khóa học")
+    @PostMapping("/mark-pass")
+    public CloudResponse<String> markAssPass(@Valid @RequestBody MarkCoursePassRequest body) {
+        LOGGER.info("POST /api/course/mark-pass - > {}", body);
+        courseService.markCoursePass(body);
+        return CloudResponse.ok(SUCCESS, "Enroll course success");
     }
 
 

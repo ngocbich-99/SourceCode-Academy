@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Course {
     private Long teacherId;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "course_category",
             joinColumns = @JoinColumn(name = "course_id"),

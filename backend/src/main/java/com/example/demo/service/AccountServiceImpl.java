@@ -97,6 +97,10 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO reg(RegisterAccountRequest request) {
+        Account accountExist = accountRepository.findByEmail(request.getEmail());
+        if (accountExist != null) {
+            throw new BizException(ResponseEnum.ACCOUNT_USERNAME_EXISTED, "Email đã được sử dụng");
+        }
         Account account = new Account();
         BeanUtils.copyProperties(request, account);
         if (!request.getPassword().equals(request.getReEnterPassword())) {
@@ -146,6 +150,11 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.save(account);
     }
 
+    /**
+     *  change User Info
+     * @param request User info change
+     * @return AccountDTO
+     */
     @Override
     public AccountDTO changeUserInfo(ChangeUserInfoRequest request) {
         Account account = findAccountById(securityService.getCurrentUser().getId());
@@ -153,11 +162,21 @@ public class AccountServiceImpl implements AccountService {
         return convertToAccountDTO(accountRepository.save(account));
     }
 
+    /**
+     *  Convert Account entity to AccountDTO
+     * @param account entity
+     * @return AccountDTO
+     */
     private AccountDTO convertToAccountDTO(Account account) {
         AccountDTO accountDTO = new AccountDTO();
         mapper.map(account, accountDTO);
         return accountDTO;
     }
+    /**
+     *  Convert List Account entity to AccountDTO
+     * @param accounts List of entity Account
+     * @return AccountDTO
+     */
     private List<AccountDTO> convertToListAccountDTO(List<Account> accounts){
         TypeToken<List<AccountDTO>> typeToken = new TypeToken<List<AccountDTO>>(){};
         return mapper.map(accounts,typeToken.getType());
