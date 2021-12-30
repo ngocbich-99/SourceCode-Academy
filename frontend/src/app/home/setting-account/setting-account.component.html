@@ -54,7 +54,7 @@
                     <input 
                     (keypress)="onChangeOldPass()"
                     formControlName="oldPass" 
-                    type="text" 
+                    type="password" 
                     matInput 
                     placeholder="Mật khẩu cũ">
                     <mat-error *ngIf="formPassword.get('oldPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
@@ -64,13 +64,13 @@
             <div fxLayout="row" fxLayoutAlign="space-between center" class="form-reset-pass">
                 <mat-form-field appearance="outline">
                     <mat-label>Mật khẩu mới</mat-label>
-                    <input formControlName="newPass" type="email" matInput placeholder="Mật khẩu mới">
+                    <input formControlName="newPass" type="password" matInput placeholder="Mật khẩu mới">
                     <mat-error *ngIf="formPassword.get('newPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
                     <mat-label>Nhập lại mật khẩu mới</mat-label>
-                    <input formControlName="confirmPass" type="text" matInput placeholder="Xác nhận mật khẩu">
+                    <input formControlName="confirmPass" type="password" matInput placeholder="Xác nhận mật khẩu">
                     <mat-error *ngIf="formPassword.get('confirmPass')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
                     <mat-error *ngIf="formPassword.get('confirmPass')?.hasError('notMatch')">
                         Xác nhận mật khẩu mới không đúng!

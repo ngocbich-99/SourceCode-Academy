@@ -78,10 +78,10 @@ export class SettingAccountComponent implements OnInit {
 
     this.authService.changeUserInfo(this.userInfo).subscribe(resData => {
       this.userInfo = resData;
-      this.toastService.showToast('Sửa thông tin cá nhân thành công!', StatusToast.SUCCESS);
+      this.toastService.showToast('Cập nhật thông tin cá nhân thành công!', StatusToast.SUCCESS);
     }, error => {
       console.log('error update user info', error);
-      this.toastService.showToast('Sửa thông tin cá nhân thất bại!', StatusToast.ERROR);
+      this.toastService.showToast('Cập nhật thông tin cá nhân thất bại!', StatusToast.ERROR);
     })
   }
 
