@@ -10,7 +10,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -18,8 +18,6 @@ import java.util.List;
 @Table(name = "category")
 @NoArgsConstructor
 @AllArgsConstructor
-@DynamicInsert
-@DynamicUpdate
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +32,6 @@ public class Category {
 
     private Long courseCount = 0L;
 
-    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<Course> courses;
+    @ManyToMany(mappedBy = "categories", fetch = FetchType.LAZY)
+    private Collection<Course> courses;
 }

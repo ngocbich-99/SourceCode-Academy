@@ -2,18 +2,21 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    public Category findByName(String nameCategory);
-    public Category existsByName(String nameCategory);
+    Category findByName(String nameCategory);
 
-    @Query(value = "delete from course_category where category_id = ?1", nativeQuery = true)
-    public boolean deleteIntermediateByCategoryId(@Param("categoriesId") Long id);
+    Category existsByName(String nameCategory);
+
+    @Transactional
+    @Modifying
+    @Query(value = "Delete from course_category where category_id = :categoriesId",nativeQuery = true)
+    void deleteById(@Param("categoriesId") Long id);
 
 }

@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -81,12 +82,13 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void deleteCategory(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
         if (!category.isPresent()) {
             throw new BizException(ResponseEnum.NOT_FOUND,"Not found Category");
         }
-        categoryRepository.deleteIntermediateByCategoryId(id);
+        categoryRepository.deleteById(id);
         categoryRepository.delete(category.get());
     }
 
