@@ -43,6 +43,12 @@ public class Account {
 
     private Long createdTime;
 
+    /**
+     * Json Object
+     * {@Link List String}
+     */
+    private String coursePass;
+
 //    @OneToMany
 //    private List<Comment> comments;
 

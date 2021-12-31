@@ -11,16 +11,14 @@ import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.model.dto.CourseDTO;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.dto.SectionDTO;
-import com.example.demo.model.request.course.CreateCourseRequest;
-import com.example.demo.model.request.course.EnrollRequest;
-import com.example.demo.model.request.course.FindCourseByCategoriesRequest;
-import com.example.demo.model.request.course.UpdateCourseRequest;
+import com.example.demo.model.request.course.*;
 import com.example.demo.model.request.lesson.CreateLessonRequest;
 import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.model.request.section.CreateSectionRequest;
 import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.CourseRepository;
+import com.google.gson.Gson;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -55,9 +53,12 @@ public class CourseServiceImpl implements CourseService {
     private LessonService lessonService;
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
     @Autowired
-    ModelMapper mapper;
+    private ModelMapper mapper;
+
+    @Autowired
+    private Gson gson;
 
     @Autowired
     private SecurityService securityService;
@@ -173,6 +174,25 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public void markCoursePass(MarkCoursePassRequest request) {
+        LOGGER.info("markCoursePass : {}", request);
+        List<Long> coursePass;
+        Account currentAccount = this.getCurrentAccount();
+        if(currentAccount.getCoursePass()!= null) {
+            TypeToken<List<Long>>  typeToken = new TypeToken<List<Long>>(){};
+            coursePass = gson.fromJson(currentAccount.getCoursePass(),typeToken.getType());
+            coursePass.add(request.getCourseId());
+        }else {
+            coursePass = new ArrayList<>();
+            coursePass.add(request.getCourseId());
+        }
+        currentAccount.setCoursePass(gson.toJson(coursePass));
+        accountRepository.save(currentAccount);
+
+
+    }
+
+    @Override
     public void deleteCourse(Long id) {
         LOGGER.info("deleteCourse : {}", id);
         try {
@@ -256,11 +276,19 @@ public class CourseServiceImpl implements CourseService {
     }
 
     private PageData<CourseDTO> convertToPageCourseDTO(Page<Course> page, Pageable pageable) {
-        return new PageData<CourseDTO>(
+        return new PageData<>(
                 this.convertToListCourseDTO(page.getContent()),
                 page.getTotalPages(),
                 page.getTotalElements(),
                 page.hasNext()
         );
+    }
+
+    private Account getCurrentAccount(){
+        Optional<Account> account = accountRepository.findById(securityService.getCurrentUser().getId());
+        if(account.isPresent()){
+            return account.get();
+        }
+        throw new BizException(ResponseEnum.USERNAME_NOT_EXIST,"Username not exist");
     }
 }

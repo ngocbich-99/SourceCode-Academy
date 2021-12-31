@@ -1,12 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Category;
+import com.example.demo.entity.Course;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
 import com.example.demo.model.dto.CategoryDTO;
 import com.example.demo.model.request.category.CreateCategoryRequest;
 import com.example.demo.model.request.category.UpdateCategoryRequest;
 import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.CourseRepository;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -16,6 +18,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -27,6 +30,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+
 
     @Autowired
     ModelMapper mapper;
@@ -81,11 +86,8 @@ public class CategoryServiceImpl implements CategoryService {
         if (!category.isPresent()) {
             throw new BizException(ResponseEnum.NOT_FOUND,"Not found Category");
         }
-        try {
-            categoryRepository.deleteById(id);
-        } catch (Exception ex) {
-            throw new InternalException("Db error. Can't delete category");
-        }
+        categoryRepository.deleteIntermediateByCategoryId(id);
+        categoryRepository.delete(category.get());
     }
 
     @Override
