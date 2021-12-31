@@ -39,7 +39,7 @@ const routes: Routes = [
                 // ]
             },
             {
-                path: 'category/:name', component: DetailCategoryComponent
+                path: 'category/:id', component: DetailCategoryComponent
             },
             { path: 'tests', component: TestsComponent},
             { path: 'questions', component: QuestionsComponent},

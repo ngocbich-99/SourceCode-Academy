@@ -190,7 +190,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
               acc.stt = index + 1;
             });
             this.dataSource.data = this.listAccount;
-            this.toastCodexService.showToast('Cập nhật giảng viên thành công!', StatusToast.SUCCESS);
+            this.toastCodexService.showToast('Cập nhật tài khoản thành công!', StatusToast.SUCCESS);
           }
         });
 
