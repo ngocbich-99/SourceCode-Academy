@@ -10,6 +10,8 @@ import { Course } from '../../courses/course.model';
 })
 export class DashboardStudentComponent implements OnInit {
   listCourseNew: Course[] = [];
+  listCourseLearning: Course[] = [];
+
   pageSize: number = 10;
   page: number = 0;
 
@@ -37,7 +39,11 @@ export class DashboardStudentComponent implements OnInit {
     sortProperty: string, 
     sortOrder: string){
     this.courseService.getCoursesLearning(pageSize, page, textSearch, sortProperty, sortOrder).subscribe(resData => {
-      console.log('courses learning', resData);
+      if (this.listCourseLearning.length === 0) {
+        this.listCourseLearning  = resData.data.contents;
+      } else {
+        this.listCourseLearning = this.listCourseLearning.concat(resData.data.contents);
+      }
     })
   }
 

@@ -186,7 +186,9 @@ export class DialogAddCourseComponent implements OnInit {
     // get teacher id
     this.authService.userInfoSubject.subscribe(resData => {
       courseReq.teacherId = resData.id;
+      console.log(resData);
     })
+    
     // doi type cua status cho phu hop voi body request api
     if (this.formInforCourse.value.status === 'public') {
       courseReq.status = true;
@@ -238,6 +240,8 @@ export class DialogAddCourseComponent implements OnInit {
       reader.onload = (event: any) => {
         this.urlImg = event.target.result;
       }
+      console.log(event.target.files[0].name, this.formInforCourse);
+      this.formInforCourse.controls['imgCover']?.setValue(event.target.files[0].name);
     }
   }
 

@@ -99,6 +99,10 @@ mat-progress-bar {
 .sidebar-left .btn-enrollment {
   width: 100%;
 }
+.mess-progress {
+  text-align: center;
+  color: var(--color-primary);
+}
 /* end button entrollment course */
 .sidebar-left .container-info-course {
   margin-bottom: 16px;

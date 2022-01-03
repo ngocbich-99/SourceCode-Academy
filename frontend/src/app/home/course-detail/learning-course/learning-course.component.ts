@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-import { Course } from '../../courses/course.model';
+import { Course, Lesson } from '../../courses/course.model';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from 'src/app/services/course.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Account } from '../../accounts/account.model';
+import { LearningCourseService } from 'src/app/services/learning-course.service';
 
 @Component({
   selector: 'app-learning-course',
@@ -20,7 +21,8 @@ export class LearningCourseComponent implements OnInit {
     private _location: Location,
     private route: ActivatedRoute,
     private courseService: CourseService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private learningService: LearningCourseService
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +47,13 @@ export class LearningCourseComponent implements OnInit {
     return this.courseSelected.sections?.reduce((accumulator, sectionCurrent) => {
       return accumulator + sectionCurrent?.lessons?.length;
     }, 0)
+  }
+
+  markLessonPass(lesson?: Lesson) {
+    this.learningService.markLessonLearned(lesson?.id).subscribe(resData => {
+      console.log('mark lesson learned', resData);
+      
+    })
   }
 
   backPrevious() {

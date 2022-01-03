@@ -70,6 +70,7 @@ export class CourseDetailComponent implements OnInit {
           console.log('enroll course', resData);
           if (resData.message === 'Tài khoản đã đăng ký khóa học') {
             this.toastService.showToast('Tài khoản đã đăng ký khóa học!', StatusToast.ERROR);
+            this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
           } else if (resData.message === 'Enroll course success') {
             this.isProgressEnroll = true;
             setTimeout(() => {

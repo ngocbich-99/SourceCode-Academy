@@ -32,7 +32,6 @@ export class SidebarComponent implements OnInit {
 
     this.userSub = this.authService.userInfoSubject.subscribe((userInfo) => {
       this.role = userInfo.role;
-
       if (this.role === 'HOC_VIEN') {
         this.activeTab = 'dashboard';
       } else if (this.role === 'ADMIN' || this.role === 'GIANG_VIEN') {
@@ -41,7 +40,8 @@ export class SidebarComponent implements OnInit {
         this.activeTab = 'dashboard-unregistered';
       }
     })
-    
+
+    console.log(this.userSub, this.role);
   }
 
   onTabChange(nameTab: string) {
