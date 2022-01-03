@@ -29,9 +29,9 @@ public class FileController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getFile() {
+    public ResponseEntity<?> getFile(@RequestParam("filePath") String filePath) {
         try {
-            Resource file = fileService.download(fileName);
+            Resource file = fileService.download(filePath);
             Path path = file.getFile().toPath();
 
             return ResponseEntity.ok()

@@ -41,9 +41,9 @@ public class FileServiceImpl implements FileService {
     @Override
     public Resource download(String filesPath) {
         try {
-            Path file = Paths.get("var/1635410_1641220729486.jpg");
+            Path file = Paths.get(filesPath);
             Resource resource = new UrlResource(file.toUri());
-
+            System.out.println(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
