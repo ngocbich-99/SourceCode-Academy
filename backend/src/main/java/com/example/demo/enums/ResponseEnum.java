@@ -46,8 +46,8 @@ public enum ResponseEnum {
     NEED_CHANGE_PASSWORD_FIRST_LOGIN("2024","Need change password first login"),
     PERMISSIONS_DENY("2025","PERMISSIONS DENY"),
 
-    //Error SAP
-    INTERACTION_TO_SAP_FAILED("30000", "Call API from SAP failed"),
+    //Error IO
+    IO("30000", "Call API from SAP failed"),
     SAP_PAYMENT_CALC_ERROR("30001", "Error get payment calculator from SAP"),
 
 
