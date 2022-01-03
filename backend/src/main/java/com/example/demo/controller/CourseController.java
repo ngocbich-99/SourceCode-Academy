@@ -31,7 +31,7 @@ public class CourseController {
     private static final Logger LOGGER = LoggerFactory.getLogger(CourseController.class);
 
 
-    @ApiOperation(value = "Api get all khóa học private ")
+    @ApiOperation(value = "Api get all khóa học ")
     @GetMapping("/list")
     public CloudResponse<List<CourseDTO>> getList() {
         return CloudResponse.ok(courseService.getAll());
@@ -110,7 +110,7 @@ public class CourseController {
     }
 
 
-    @ApiOperation(value = "Api get khóa của user đang đăng nhập")
+    @ApiOperation(value = "Api get khóa học của user đang đăng nhập")
     @GetMapping("/current-user")
     public CloudResponse<PageData<CourseDTO>> getCourseOfCurrentUser(
             @RequestParam(defaultValue = "10") int pageSize,
@@ -124,12 +124,26 @@ public class CourseController {
         return CloudResponse.ok(courseService.findCourseOfCurrentUser(textSearch.trim(),pageable));
     }
 
-    @ApiOperation(value = "Api đăng ký khóa học")
+    @ApiOperation(value = "Api đánh dấu hoàn thành khóa học")
     @PostMapping("/mark-pass")
-    public CloudResponse<String> markAssPass(@Valid @RequestBody MarkCoursePassRequest body) {
+    public CloudResponse<String> markAsPassed(@Valid @RequestBody MarkCoursePassRequest body) {
         LOGGER.info("POST /api/course/mark-pass - > {}", body);
         courseService.markCoursePass(body);
-        return CloudResponse.ok(SUCCESS, "Enroll course success");
+        return CloudResponse.ok(SUCCESS, "Pass course success");
+    }
+
+    @ApiOperation(value = "Api get khóa học đã hoàn thành của user đang đăng nhập")
+    @GetMapping("/passed/current-user")
+    public CloudResponse<PageData<CourseDTO>> getCoursePassedOfCurrentUser(
+            @RequestParam(defaultValue = "10") int pageSize,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(required = false, defaultValue = "") String textSearch,
+            @RequestParam(required = false, defaultValue = "name") String sortProperty,
+            @RequestParam(required = false, defaultValue = "asc") String sortOrder) {
+        LOGGER.info("GET /api/course/passed/current-user");
+        Pageable pageable = PageRequest
+                .of(page, pageSize, Sort.Direction.fromString(sortOrder), sortProperty);
+        return CloudResponse.ok(courseService.findCoursePassedOfCurrentUser(textSearch.trim(),pageable));
     }
 
 

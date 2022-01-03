@@ -35,4 +35,6 @@ public interface CourseService {
     PageData<CourseDTO> findCourse(String textSearch, Pageable pageable);
 
     PageData<CourseDTO> findCourseOfCurrentUser(String textSearch,Pageable pageable);
+
+    PageData<CourseDTO> findCoursePassedOfCurrentUser(String textSearch,Pageable pageable);
 }

@@ -31,6 +31,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,6 +48,9 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CategoryService categoryService;
 
+//    @Autowired
+//    private CourseConverter courseConverter;
+
     @Autowired
     private SectionService sectionService;
 
@@ -54,6 +59,7 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     private AccountRepository accountRepository;
+
     @Autowired
     private ModelMapper mapper;
 
@@ -63,11 +69,15 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private SecurityService securityService;
 
+    private Type listCourseDTOType;
+
     @Override
     public List<CourseDTO> getAll() {
         List<Course> all = courseRepository.findAll();
         TypeToken<List<CourseDTO>> typeToken = new TypeToken<List<CourseDTO>>() {
         };
+        LOGGER.info("Type {}", CourseDTO.class);
+        LOGGER.info("typeToken.getType() : {} , typeToken{}", typeToken.getType(), typeToken.getType());
         return mapper.map(all, typeToken.getType());
     }
 
@@ -95,9 +105,6 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<CourseDTO> findAllByCategoriesName(FindCourseByCategoriesRequest request) {
-//        return this.convertToListCourseDTO(courseRepository
-//                .findAllByCategories(request.getCategories())
-//        );
         LOGGER.info("findAllByCategoriesName : {}", request);
         return this.convertToListCourseDTO(courseRepository
                 .findAllByCategories(request.getCategories()));
@@ -178,11 +185,12 @@ public class CourseServiceImpl implements CourseService {
         LOGGER.info("markCoursePass : {}", request);
         List<Long> coursePass;
         Account currentAccount = this.getCurrentAccount();
-        if(currentAccount.getCoursePass()!= null) {
-            TypeToken<List<Long>>  typeToken = new TypeToken<List<Long>>(){};
-            coursePass = gson.fromJson(currentAccount.getCoursePass(),typeToken.getType());
+        if (currentAccount.getCoursePass() != null) {
+            TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>() {
+            };
+            coursePass = gson.fromJson(currentAccount.getCoursePass(), typeToken.getType());
             coursePass.add(request.getCourseId());
-        }else {
+        } else {
             coursePass = new ArrayList<>();
             coursePass.add(request.getCourseId());
         }
@@ -216,6 +224,15 @@ public class CourseServiceImpl implements CourseService {
         return this.convertToPageCourseDTO(
                 courseRepository.findCourseOfCurrentUser(textSearch,
                         securityService.getCurrentUser().getId(),
+                        pageable), pageable);
+    }
+
+    @Override
+    public PageData<CourseDTO> findCoursePassedOfCurrentUser(String textSearch, Pageable pageable) {
+        List<Long> coursePassedId = this.getListCoursePassed();
+        return this.convertToPageCourseDTO(
+                courseRepository.findCoursePassedInIds(textSearch,
+                        coursePassedId,
                         pageable), pageable);
     }
 
@@ -284,11 +301,17 @@ public class CourseServiceImpl implements CourseService {
         );
     }
 
-    private Account getCurrentAccount(){
+    private Account getCurrentAccount() {
         Optional<Account> account = accountRepository.findById(securityService.getCurrentUser().getId());
-        if(account.isPresent()){
+        if (account.isPresent()) {
             return account.get();
         }
-        throw new BizException(ResponseEnum.USERNAME_NOT_EXIST,"Username not exist");
+        throw new BizException(ResponseEnum.USERNAME_NOT_EXIST, "Username not exist");
+    }
+
+    private List<Long> getListCoursePassed() {
+        TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>() {
+        };
+        return gson.fromJson(securityService.getCurrentUser().getCoursePass(), typeToken.getType());
     }
 }

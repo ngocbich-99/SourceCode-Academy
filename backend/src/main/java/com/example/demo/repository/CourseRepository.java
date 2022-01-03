@@ -37,4 +37,10 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     Page<Course> findCourseOfCurrentUser(@Param("searchText") String searchText,
                                          @Param("accountId") Long accountId,
                                          Pageable pageable);
+
+
+    @Query("SELECT c FROM Course c WHERE c.id in :courseIds and LOWER(c.name) LIKE LOWER(CONCAT('%',:searchText, '%'))")
+    Page<Course> findCoursePassedInIds(@Param("searchText") String searchText,
+                                         @Param("courseIds") List<Long> courseIds,
+                                         Pageable pageable);
 }

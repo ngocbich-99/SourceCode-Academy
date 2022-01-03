@@ -22,6 +22,8 @@ public class JwtSubject {
 
     private String role;
 
+    private String coursePass;
+
     public List<GrantedAuthority> getAuthority() {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(this.role));

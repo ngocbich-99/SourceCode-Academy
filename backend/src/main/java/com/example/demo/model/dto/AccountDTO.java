@@ -25,6 +25,8 @@ public class AccountDTO {
 
     private String role;
 
+    private String coursePass;
+
     private Long createdTime;
 
     private Boolean isActivate;
