@@ -27,6 +27,8 @@ public class UserPrinciple implements UserDetails {
 
     private String role;
 
+    private String coursePass;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
