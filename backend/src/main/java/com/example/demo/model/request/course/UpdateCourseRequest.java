@@ -3,6 +3,7 @@ package com.example.demo.model.request.course;
 import com.example.demo.model.request.section.CreateSectionRequest;
 import com.example.demo.model.request.section.UpdateSectionRequest;
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -33,6 +34,8 @@ public class UpdateCourseRequest {
 
     @NotEmpty(message = "Image cover is required")
     private String imgCover;
+
+    private MultipartFile img;
 
     private String description;
 
