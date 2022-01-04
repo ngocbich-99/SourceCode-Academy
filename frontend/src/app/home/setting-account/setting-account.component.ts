@@ -18,6 +18,8 @@ export class SettingAccountComponent implements OnInit {
   userSub: Subscription = new Subscription;
 
   incorrectOldPass = '';
+  showPassword = false;
+
 
   constructor(
     private _location: Location,
@@ -114,6 +116,11 @@ export class SettingAccountComponent implements OnInit {
     if (this.userSub) {
       this.userSub.unsubscribe();
     }
+  }
+
+  toggleShowPass(event: any) {
+    console.log(event.checked);
+    this.showPassword = event.checked;
   }
 
 }

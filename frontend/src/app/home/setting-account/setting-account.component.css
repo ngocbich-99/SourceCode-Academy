@@ -35,3 +35,6 @@
 .form-reset-pass {
   margin-top: 8px;
 }
+mat-checkbox {
+  line-height: 52px;
+}
