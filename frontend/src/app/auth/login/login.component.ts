@@ -13,7 +13,9 @@ import { SignUpComponent } from '../sign-up/sign-up.component';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
-
+  showPassword = false;
+  passwordToggleIcon = 'eye-off';
+  
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -70,5 +72,14 @@ export class LoginComponent implements OnInit {
       panelClass: 'dialogSignup'
     });
   }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+    if (this.passwordToggleIcon === 'eye-off') {
+        this.passwordToggleIcon = 'eye';
+    } else {
+        this.passwordToggleIcon = 'eye-off';
+    }
+}
 
 }

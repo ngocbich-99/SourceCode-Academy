@@ -165,6 +165,14 @@ export class AppComponent {
       `expand-collapse`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/expand-collapse.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      `eye`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/eye.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `eye-off`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/eye-off.svg")
+    );
   }
   
 }
