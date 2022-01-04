@@ -18,7 +18,7 @@ public class UpdateLessonRequest {
 
     private String urlVideo;
 
-    private MultipartFile file;
+//    private MultipartFile file;
 
     private String type;
 

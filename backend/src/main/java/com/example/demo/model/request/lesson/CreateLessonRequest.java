@@ -15,7 +15,7 @@ public class CreateLessonRequest {
 
     private String urlVideo;
 
-    private MultipartFile file;
+//    private MultipartFile file;
 
     @NotNull(message = "Section id is required")
     private Long sectionId;

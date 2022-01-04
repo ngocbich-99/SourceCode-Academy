@@ -33,7 +33,7 @@ public class CreateCourseRequest {
     @NotEmpty(message = "Image cover is required")
     private String imgCover;
 
-    private MultipartFile img;
+//    private MultipartFile img;
 
     private String description;
 
