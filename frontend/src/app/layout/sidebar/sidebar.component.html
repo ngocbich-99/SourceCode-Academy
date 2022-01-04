@@ -64,7 +64,8 @@
     <!-- sidebar admin -->
     <a mat-list-item 
     *ngIf="role === 'ADMIN' || role === 'GIANG_VIEN'"
-    [routerLink]= "['/home/courses/all']" 
+    [routerLink]= "['/home/courses']" 
+    [queryParams]="{category: 'all'}" 
     routerLinkActive="active" 
     (click)="onTabChange('courses')">
         <mat-icon *ngIf="activeTab === 'courses'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>

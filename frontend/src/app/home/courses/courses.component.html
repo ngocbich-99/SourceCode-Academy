@@ -18,12 +18,17 @@
                     <!-- side bar category -->
                     <h3>Danh mục</h3>
                     <mat-nav-list class="sidebar">
-                        <a mat-list-item [routerLink]= "['/home/courses/all']" routerLinkActive="active">
+                        <a 
+                        mat-list-item 
+                        [routerLink]= "['/home/courses']" 
+                        [queryParams]="{category: 'all'}"
+                        routerLinkActive="active">
                             <span class="nav-caption">Tất cả</span>
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
                             [routerLink]="['/home', 'courses', category.name]" 
+                            [queryParams]="{category: category.name}"
                             routerLinkActive="active">
                             <span class="nav-caption">
                                 {{category.name}}
@@ -32,6 +37,7 @@
                     </mat-nav-list>
                 </mat-drawer>
                 <mat-drawer-content>
+                    <p class="no-data" *ngIf="listCourseAll.length === 0">Chưa có khoá học nào!</p>
                     <app-course-category-item
                     *ngIf="listCourseAll.length > 0"
                     [courses]="listCourseAll"
@@ -45,12 +51,17 @@
                     <!-- side bar category -->
                     <h3>Danh mục</h3>
                     <mat-nav-list class="sidebar">
-                        <a mat-list-item [routerLink]= "['/home/courses/all']" routerLinkActive="active">
+                        <a 
+                        mat-list-item 
+                        [routerLink]= "['/home/courses']" 
+                        [queryParams]="{category: 'all'}"
+                        routerLinkActive="active">
                             <span class="nav-caption">Tất cả</span>
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
                             [routerLink]="['/home', 'courses', category.name]" 
+                            [queryParams]="{category: category.name}"
                             routerLinkActive="active">
                             <span class="nav-caption">
                                 {{category.name}}
@@ -59,7 +70,9 @@
                     </mat-nav-list>
                 </mat-drawer>
                 <mat-drawer-content>
+                    <p class="no-data" *ngIf="listCoursePublic.length === 0">Chưa có khoá học nào!</p>
                     <app-course-category-item
+                    *ngIf="listCoursePublic.length > 0"
                     [courses]="listCoursePublic"
                     ></app-course-category-item>
                 </mat-drawer-content>
@@ -71,12 +84,17 @@
                     <!-- side bar category -->
                     <h3>Danh mục</h3>
                     <mat-nav-list class="sidebar">
-                        <a mat-list-item [routerLink]= "['/home/courses/all']" routerLinkActive="active">
+                        <a 
+                        mat-list-item 
+                        [routerLink]= "['/home/courses']" 
+                        [queryParams]="{category: 'all'}"
+                        routerLinkActive="active">
                             <span class="nav-caption">Tất cả</span>
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
                             [routerLink]="['/home', 'courses', category.name]" 
+                            [queryParams]="{category: category.name}"
                             routerLinkActive="active">
                             <span class="nav-caption">
                                 {{category.name}}
@@ -85,7 +103,9 @@
                     </mat-nav-list>
                 </mat-drawer>
                 <mat-drawer-content>
+                    <p class="no-data" *ngIf="listCoursePrivate.length === 0">Chưa có khoá học nào!</p>
                     <app-course-category-item
+                    *ngIf="listCoursePrivate.length > 0"
                     [courses]="listCoursePrivate"
                     ></app-course-category-item>
                 </mat-drawer-content>

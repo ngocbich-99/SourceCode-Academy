@@ -37,12 +37,24 @@ export class CoursesComponent implements OnInit {
           console.log(result);
         });
       }
+      if (params['category'] === 'all') {
+        this.getListCourse();
+        this.getListCoursePublic();
+        this.getListCoursePrivate();
+      } else {
+        this.getCourseByNameCategory(params['category']);
+      }
     })
     // get list category
     this.getListCategory();
-    this.getListCourse();
-    this.getListCoursePublic();
-    this.getListCoursePrivate();
+  }
+
+  getCourseByNameCategory(name?: string) {
+    this.categoryService.getCoursesByCategory([name as string]).subscribe(resData => {
+      this.listCourseAll = resData.data;
+      this.listCoursePrivate = resData.data.filter(course => course.status === false);
+      this.listCoursePublic = resData.data.filter(course => course.status === true);
+    })
   }
   
   dialogAddCourse() {

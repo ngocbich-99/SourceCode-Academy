@@ -28,7 +28,6 @@ const routes: Routes = [
             { 
                 path: 'courses', component: CoursesComponent,
                 children: [
-                    { path: 'all', component: CourseCategoryItemComponent },
                     { path: ':id', component: CourseCategoryItemComponent },
                 ]
             },
