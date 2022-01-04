@@ -14,6 +14,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class SignUpComponent implements OnInit {
   signUpForm: FormGroup = new FormGroup({});
+  showPassword = false;
 
   constructor(
     private authService: AuthService,
@@ -68,6 +69,10 @@ export class SignUpComponent implements OnInit {
       height: '553px',
       panelClass: 'dialogSignup'
     });
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
 }

@@ -31,8 +31,16 @@
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
 }
-mat-form-field {
+.form-field-email,
+.form-field-name,
+.row-password {
   width: 80%;
+}
+.row-password mat-form-field {
+  width: 90%;
+}
+.row-password mat-icon {
+  margin: 16px 0;
 }
 button {
   width: 80%;

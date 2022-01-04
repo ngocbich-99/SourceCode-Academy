@@ -5,7 +5,7 @@
         <div class="form-login">
             <h2>Bắt đầu miễn phí ngay!</h2>
             <form [formGroup]="signUpForm" fxLayout="column" fxLayoutAlign="center center">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="form-field-name">
                     <mat-label>Họ tên</mat-label>
                     <input 
                     type="text" 
@@ -14,7 +14,7 @@
                     formControlName="name">
                     <mat-error *ngIf="signUpForm.get('name')?.hasError('required')">Nhập họ tên của bạn!</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" class="form-field-email">
                     <mat-label>Email</mat-label>
                     <input 
                     type="email"
@@ -24,17 +24,29 @@
                     <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">Nhập email của bạn!</mat-error>
                     <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">Email không hợp lệ!</mat-error>
                 </mat-form-field>
-                <mat-form-field appearance="outline" hintLabel="Dài hơn 6 ký tự">
-                    <mat-label>Mật khẩu</mat-label>
-                    <input 
-                    type="password" 
-                    matInput 
-                    placeholder="Mật khẩu" 
-                    formControlName="password">
-                    <mat-hint align="end">{{ signUpForm.get('password')?.value?.length }} / 6</mat-hint>
-                    <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">Nhập mật khẩu của bạn!</mat-error>
-                    <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
-                </mat-form-field>
+                <div class="row-password" fxLayout="row" fxLayoutAlign="space-between start">
+                    <mat-form-field appearance="outline" hintLabel="Dài hơn 6 ký tự">
+                        <mat-label>Mật khẩu</mat-label>
+                        <input 
+                        [type]="showPassword ? 'text':'password'"
+                        matInput 
+                        placeholder="Mật khẩu" 
+                        formControlName="password">
+                        <mat-hint align="end">{{ signUpForm.get('password')?.value?.length }} / 6</mat-hint>
+                        <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">Nhập mật khẩu của bạn!</mat-error>
+                        <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
+                    </mat-form-field>
+                    <mat-icon *ngIf="!showPassword; else openEye"
+                        svgIcon="eye-off"
+                        (click)="togglePassword()">
+                    </mat-icon>
+                    <ng-template #openEye>
+                        <mat-icon
+                        svgIcon="eye"
+                        (click)="togglePassword()">
+                        </mat-icon>
+                    </ng-template>
+                </div>
                 <button (click)="OnSignUp()" class="codex-btn-primary btn-big" mat-button>Đăng ký</button>
             </form>
             <p class="dang-nhap">

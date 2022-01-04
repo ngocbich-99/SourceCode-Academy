@@ -27,7 +27,7 @@
             <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Nhập mật khẩu!</mat-error>
             <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Mật khẩu chứa tối thiểu 6 ký tự!</mat-error>
           </mat-form-field>
-          <mat-icon *ngIf="passwordToggleIcon === 'eye-off'; else openEye"
+          <mat-icon *ngIf="!showPassword; else openEye"
             svgIcon="eye-off"
             (click)="togglePassword()">
           </mat-icon>
