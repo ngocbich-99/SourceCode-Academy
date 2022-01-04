@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,6 +28,9 @@ public class Lesson {
     private Long createdTime;
 
     private String type; //video or test
+
+    @Transient
+    private MultipartFile file;
 
     private String description;
 

@@ -3,6 +3,7 @@ package com.example.demo.model.response;
 import com.example.demo.enums.ResponseEnum;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data

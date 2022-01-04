@@ -43,6 +43,9 @@ public class LessonServiceImpl implements LessonService {
     private LessonPassRepository lessonPassRepository;
 
     @Autowired
+    private FileService fileService;
+
+    @Autowired
     private ModelMapper mapper;
 
     @Override
@@ -65,6 +68,7 @@ public class LessonServiceImpl implements LessonService {
         List<Lesson> lessonList = mapper.map(request,typeToken.getType());
         for(Lesson lesson : lessonList){
             lesson.setSection(section);
+            lesson.setUrlVideo(fileService.save(lesson.getFile()));
         }
         TypeToken<List<LessonDTO>> typeTokenDTO = new TypeToken<List<LessonDTO>>(){};
         return mapper.map(lessonRepository.saveAll(lessonList),typeTokenDTO.getType());

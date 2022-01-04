@@ -5,5 +5,5 @@ public class CustomerConstant {
 
     }
 
-    public static final String CUSTOMER_PATH = "var/";
+    public static final String CUSTOMER_PATH = "/var/";
 }
