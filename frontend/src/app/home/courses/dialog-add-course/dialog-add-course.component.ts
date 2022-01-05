@@ -251,7 +251,8 @@ export class DialogAddCourseComponent implements OnInit {
 
   onUploadImg() {
     const formData = new FormData();
-    formData.append('image', this.selectedFile, this.selectedFile.name);
+    formData.append('name',this.selectedFile.name);
+    formData.append('file', this.selectedFile,this.selectedFile.name);
     console.log('formData', formData, this.selectedFile);
     
     this.courseService.uploadFile(formData).subscribe(resData => {
