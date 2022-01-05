@@ -2,7 +2,9 @@ package com.example.demo.service;
 
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
+import com.example.demo.util.EnvUtil;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class FileServiceImpl implements FileService {
 
     private final Path root = Paths.get(CUSTOMER_PATH);
 
+    @Autowired
+    private EnvUtil envUtil;
+
 
     @PostConstruct
     public void init() throws IOException {
@@ -40,7 +45,8 @@ public class FileServiceImpl implements FileService {
             Files.copy(file.getInputStream(), root.resolve(fileName));
             System.out.println(CUSTOMER_PATH.concat(fileName));
             System.out.println(Paths.get(CUSTOMER_PATH.concat(fileName)).toUri());
-            return Paths.get(CUSTOMER_PATH.concat(fileName)).toUri().toString();
+//            return Paths.get(CUSTOMER_PATH.concat(fileName)).toUri().toString();
+            return ("http://localhost:8080/images/").concat(fileName);
         } catch (Exception e) {
             throw new BizException(ResponseEnum.IO,"Could not store the file. Error: " + e.getMessage());
         }

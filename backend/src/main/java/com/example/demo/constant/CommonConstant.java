@@ -1,5 +1,9 @@
 package com.example.demo.constant;
 
+import com.example.demo.util.EnvUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.List;
 
@@ -8,6 +12,7 @@ public class CommonConstant {
     private CommonConstant() {
 
     }
+
 
     public static final Boolean PUBLIC_COURSE = Boolean.TRUE;
 
