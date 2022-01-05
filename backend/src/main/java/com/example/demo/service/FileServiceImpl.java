@@ -25,7 +25,7 @@ public class FileServiceImpl implements FileService {
 
 
     @PostConstruct
-    private void init() throws IOException {
+    public void init() throws IOException {
         if (!Files.exists(root)) {
             Files.createDirectories(root);
         }
