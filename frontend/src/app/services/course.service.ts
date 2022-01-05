@@ -100,4 +100,8 @@ export class CourseService {
         return this.http.post<any>(env.backendBaseUrl + '/api/course/enroll', {courseId: id});
     }
 
+    uploadFile(file: any) {
+        return this.http.post(env.backendBaseUrl + `/file`, file); 
+    }
+
 }

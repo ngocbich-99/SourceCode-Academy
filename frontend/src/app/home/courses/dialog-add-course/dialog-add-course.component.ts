@@ -122,6 +122,8 @@ export class DialogAddCourseComponent implements OnInit {
   formInforCourse: FormGroup = new FormGroup({});
   formContentCourse: FormGroup = new FormGroup({});
   urlImg = '';
+  pathImg = '';
+  selectedFile!: File;
   
   constructor(
     public dialogRef: MatDialogRef<DialogAddCourseComponent>,
@@ -240,9 +242,21 @@ export class DialogAddCourseComponent implements OnInit {
       reader.onload = (event: any) => {
         this.urlImg = event.target.result;
       }
-      console.log(event.target.files[0].name, this.formInforCourse);
-      this.formInforCourse.controls['imgCover']?.setValue(event.target.files[0].name);
+      this.selectedFile = <File>event.target.files[0];
+
+      // luu file tren server 
+      this.onUploadImg();
     }
+  }
+
+  onUploadImg() {
+    const formData = new FormData();
+    formData.append('image', this.selectedFile, this.selectedFile.name);
+    console.log('formData', formData, this.selectedFile);
+    
+    this.courseService.uploadFile(formData).subscribe(resData => {
+      console.log('onUploadImg', formData, resData);
+    })
   }
 
   addTabSection(): void {
