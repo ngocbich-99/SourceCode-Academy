@@ -9,6 +9,7 @@ import { Course } from '../../courses/course.model';
 })
 export class CoursesStudentComponent implements OnInit {
   listCourseLearning: Course[] = [];
+  listCourseLearned: Course[] = [];
 
   pageSize: number = 10;
   page: number = 0;
@@ -19,6 +20,7 @@ export class CoursesStudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCoursesLearning(this.pageSize, this.page, '', 'createdTime', 'desc');
+    this.getCoursesLearned(this.pageSize, this.page, '', 'createdTime', 'desc');
   }
 
   getCoursesLearning(
@@ -32,6 +34,23 @@ export class CoursesStudentComponent implements OnInit {
         this.listCourseLearning  = resData.data.contents;
       } else {
         this.listCourseLearning = this.listCourseLearning.concat(resData.data.contents);
+      }
+    })
+  }
+
+  getCoursesLearned(
+    pageSize: number, 
+    page: number, 
+    textSearch: string, 
+    sortProperty: string, 
+    sortOrder: string
+  ) {
+    this.courseService.getCoursesLearned(pageSize, page, textSearch, sortProperty, sortOrder).subscribe(resData => {
+      console.log('courses learned', resData);
+      if (this.listCourseLearned.length === 0) {
+        this.listCourseLearned = resData.data.contents;
+      } else {
+        this.listCourseLearned = this.listCourseLearned.concat(resData.data.contents);
       }
     })
   }

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RoleGuard } from './auth/role.guard';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { LearningCourseComponent } from './home/course-detail/learning-course/learning-course.component';
 
 const routes: Routes = [
   { 
@@ -14,6 +15,9 @@ const routes: Routes = [
     redirectTo: "home/main-page-unregistered",
     pathMatch: "full",
   },
+  // {
+  //   path: 'learning-course', component: LearningCourseComponent
+  // },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: '**', redirectTo: 'home/main-page-unregistered'}

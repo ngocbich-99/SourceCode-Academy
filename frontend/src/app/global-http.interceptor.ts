@@ -7,7 +7,6 @@ import {
   HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { isBuffer } from 'util';
 import { environment as env } from 'src/environments/environment';
 
 @Injectable()
@@ -20,12 +19,12 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
     if (localStorage.getItem('codex-token') != null) {
       const token = localStorage.getItem('codex-token')?.toString();
     
-      console.log("url:"+request.url);
+      // console.log("url:"+request.url);
       env.backendBaseUrl+"/file"
-      console.log("url:"+ env.backendBaseUrl+"/file");
-      console.log((request.url == (env.backendBaseUrl+"/file")));
+      // console.log("url:"+ env.backendBaseUrl+"/file");
+      // console.log((request.url == (env.backendBaseUrl+"/file")));
       if(request.url == (env.backendBaseUrl+"/file")){
-        console.log("url no handle"+request.url);
+        // console.log("url no handle"+request.url);
         
         return next.handle(request);
       }

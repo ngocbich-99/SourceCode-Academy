@@ -181,7 +181,7 @@ export class DialogAddCourseComponent implements OnInit {
       categoryIds: [this.formInforCourse.value.idCategory],
       createdTime: moment().valueOf(),
       description: this.formInforCourse.value.description,
-      imgCover: this.formInforCourse.value.imgCover,
+      imgCover: this.pathImg,
       level: this.formInforCourse.value.level,
       name: this.formInforCourse.value.nameCourse,
     }
@@ -253,10 +253,10 @@ export class DialogAddCourseComponent implements OnInit {
     const formData = new FormData();
     formData.append('name',this.selectedFile.name);
     formData.append('file', this.selectedFile,this.selectedFile.name);
-    console.log('formData', formData, this.selectedFile);
     
     this.courseService.uploadFile(formData).subscribe(resData => {
       console.log('onUploadImg', formData, resData);
+      this.pathImg = resData.data;
     })
   }
 

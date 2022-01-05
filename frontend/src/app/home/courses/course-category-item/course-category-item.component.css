@@ -4,9 +4,15 @@
   margin: 12px;
   position: relative;
 }
+.card-course .div-img,
+.div-img img {
+  width: 283px;
+  height: 158px;
+  border-radius: 10px;
+}
 .card-course .div-img {
-  min-width: 283px;
-  min-height: 158px;
+  position: relative;
+  z-index: -1;
 }
 .card-course .btn-more {
   position: absolute;

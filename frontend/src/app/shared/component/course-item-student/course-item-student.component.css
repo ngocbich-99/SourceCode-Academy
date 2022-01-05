@@ -14,9 +14,12 @@ button:hover {
   position: relative;
 }
 .card-course .div-img {
-  min-width: 283px;
-  min-height: 158px;
   position: relative;
+}
+.card-course .div-img img {
+  width: 283px;
+  height: 158px;
+  border-radius: 10px;
 }
 /* process tag */
 .div-tag-process,

@@ -1,3 +1,4 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
 import { Category } from "../category/category.model";
 import { Question } from "../questions/question.model";
 import { Student } from "../student-registered/student.model";
@@ -46,6 +47,7 @@ export interface Lesson {
     createTime?: number;
     type?: string; // video or test
     urlVideo?: string;
+    urlSafeResourse?: SafeResourceUrl;
     description?: string;
 
     // option test

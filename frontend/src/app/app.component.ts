@@ -173,6 +173,14 @@ export class AppComponent {
       `eye-off`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/eye-off.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      `circle`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/circle.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      `checked`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/checked.svg")
+    );
   }
   
 }

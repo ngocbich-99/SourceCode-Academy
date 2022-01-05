@@ -42,6 +42,8 @@ export class DialogInfoCourseComponent implements OnInit {
   ];
   radioModel = 'Video';
   tabSections: TabSection[] = [];
+  selectedFile!: File;
+  pathImg = '';
 
   constructor(
     private dialogRef: MatDialogRef<DialogInfoCourseComponent>,
@@ -59,6 +61,8 @@ export class DialogInfoCourseComponent implements OnInit {
 
   createForm() {
     // create form info
+    this.urlImg = this.data.courseSelected.imgCover as string;
+    this.pathImg = this.data.courseSelected.imgCover as string;
     this.formInforCourse = new FormGroup({
       'imgCover': new FormControl(this.data.courseSelected.imgCover, Validators.required),
       'nameCourse': new FormControl(this.data.courseSelected.name, Validators.required),
@@ -109,7 +113,7 @@ export class DialogInfoCourseComponent implements OnInit {
       categoryIds: [this.formInforCourse.value.idCategory],
       description: this.formInforCourse.value.description,
       id: this.data.courseSelected.id,
-      imgCover: this.formInforCourse.value.imgCover,
+      imgCover: this.pathImg,
       level: this.formInforCourse.value.level,
       name: this.formInforCourse.value.nameCourse,
     }
@@ -207,10 +211,25 @@ export class DialogInfoCourseComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event: any) => {
         this.urlImg = event.target.result;
-        console.log(this.urlImg);
       }
+      this.selectedFile = <File>event.target.files[0];
+
+      // luu file tren server 
+      this.onUploadImg();
     }
   }
+
+  onUploadImg() {
+    const formData = new FormData();
+    formData.append('name',this.selectedFile.name);
+    formData.append('file', this.selectedFile,this.selectedFile.name);
+    
+    this.courseService.uploadFile(formData).subscribe(resData => {
+      console.log('onUploadImg', formData, resData);
+      this.pathImg = resData.data;
+    })
+  }
+
   openCategory() {
     window.open('/home/category?openDialog=true', '_blank');
   }

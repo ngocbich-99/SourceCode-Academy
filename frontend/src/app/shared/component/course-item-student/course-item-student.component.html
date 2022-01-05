@@ -1,14 +1,14 @@
 <div class="row-course" fxLayout="row wrap" fxLayoutAlign="start center">
     <button *ngFor="let course of courses" mat-button class="btn-course" (click)="routerCourseDetail(course.id)">
         <div class="card-course">
-            <div class="codex-tag codex-tag-new">
-                <span>Mới</span> 
-            </div>
-            <div class="codex-tag codex-tag-hot">
-                <span>Hot</span> 
-            </div>
             <div class="div-img">
-                <img [src]="course.imgCover" alt="">
+                <div class="codex-tag codex-tag-new">
+                    <span>Mới</span> 
+                </div>
+                <div class="codex-tag codex-tag-hot">
+                    <span>Hot</span> 
+                </div>
+                <img [src]="course?.imgCover" alt="">
                 <!-- process tag -->
                 <!-- <div class="div-tag-process codex-progress-learning">
                     <span>Đang học - Bài 9/24</span>
