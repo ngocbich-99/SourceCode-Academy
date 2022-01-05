@@ -122,6 +122,7 @@ public class CourseServiceImpl implements CourseService {
             course.setCategories(this.getListCategory(request.getCategoryIds()));
         }
         BeanUtils.copyProperties(request, course);
+        course.setTeacherId(getCurrentAccount().getId());
 //        course.setImgCover(fileService.save(request.getImg()));
         course = courseRepository.save(course);
         TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {

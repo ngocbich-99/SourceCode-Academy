@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class LoginResponse {
 
+    private Long id;
+
     private String refreshToken;
 
     private String accessToken;
@@ -20,4 +22,5 @@ public class LoginResponse {
     private String phone;
 
     private String role;
+
 }

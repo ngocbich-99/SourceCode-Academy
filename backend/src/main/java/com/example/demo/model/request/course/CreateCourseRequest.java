@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 public class CreateCourseRequest {
 
-    @NotNull(message = "teacher Id is required")
     private Long teacherId;
 
     @NotEmpty(message = "categoryIds Id is required")
