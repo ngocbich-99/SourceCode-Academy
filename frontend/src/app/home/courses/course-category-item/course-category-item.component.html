@@ -1,5 +1,13 @@
 <div class="row-course" fxLayout="row wrap" fxLayoutAlign="start center">
     <div class="card-course" *ngFor="let course of courses">
+        <div class="codex-tag codex-tag-new">
+            <span>Mới</span> 
+        </div>
+
+        <div class="codex-tag codex-tag-hot">
+            <span>Hot</span> 
+        </div>
+        
         <div>
             <button mat-button class="btn-more" [matMenuTriggerFor]="beforeMenu">
                 <mat-icon svgIcon="3-dot-white"></mat-icon>
@@ -17,14 +25,7 @@
         </div>
 
         <div class="div-img">
-            <div class="codex-tag codex-tag-new">
-                <span>Mới</span> 
-            </div>
-    
-            <div class="codex-tag codex-tag-hot">
-                <span>Hot</span> 
-            </div>
-            <img [src]="course?.imgCover" alt="">
+            <img [src]="'/assets/images/img-cover-course.png'" alt="">
         </div>
         <div class="card-course-title" fxLayout="row" fxLayoutAlign="space-between center">
             <div fxLayout="row" class="name-course" fxLayoutAlign="space-between center">

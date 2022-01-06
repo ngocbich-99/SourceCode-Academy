@@ -6,12 +6,12 @@
 }
 .side-bar {
   width: 150px;
-  height: 100%;
+  height: 553px;
   background: url("/assets/images/Sidebar.png") top center / cover no-repeat;
   border-radius: 10px 0 0 10px;
 }
 .card-login {
-  height: 100%;
+  height: 553px;
   width: 528px;
   background: #ffffff;
   border-radius: 0 10px 10px 0;
@@ -44,12 +44,13 @@
 }
 button {
   width: 80%;
-  margin: 16px 0;
+  margin-top: 16px;
 }
 .dang-nhap {
   width: 80%;
   margin: auto;
   text-align: center;
+  color: var(--color-black3);
 }
 .dang-nhap a {
   color: #605eff;

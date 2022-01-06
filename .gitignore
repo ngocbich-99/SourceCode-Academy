@@ -15,3 +15,6 @@ backend/.idea/workspace.xml
 *.class
 backend/.idea/workspace.xml
 *.class
+frontend/src/assets/.DS_Store
+frontend/src/assets/icons/.DS_Store
+frontend/src/assets/images/.DS_Store

@@ -1,46 +1,30 @@
-.content h3 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  color: rgba(0, 0, 0, 0.87);
-  margin: 40px 0 16px 0;
+.content {
+  margin: 104px 40px 0px 40px;
 }
+
 .content img {
   width: 100%;
 }
 .text-intro {
   width: 700px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--color-black1);
+  margin-top: 16px;
+}
+
+.teacher,
+.student {
   margin: 16px 0;
+  color: var(--color-black2);
 }
-.div-teacher h4,
-.div-student h4 {
-  font-style: normal;
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0;
+
+.title {
+  margin:0;
 }
-.div-student p,
-.div-teacher p {
-  font-style: normal;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: bold;
-  margin: 0;
+.name {
+  margin:0;
+  font-weight: 700 !important;
 }
-.div-teacher,
-.div-student {
-  margin: 16px 0;
-}
+
 .copy-right {
-  font-style: normal;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  color: rgba(0, 0, 0, 0.38);
+  color: var(--color-black3);
 }

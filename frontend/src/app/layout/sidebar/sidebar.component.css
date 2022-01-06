@@ -2,10 +2,11 @@
   width: 280px;
 }
 .logo {
-  margin-top: 22px;
+  margin-top: 18px;
+  margin-left: 24px;
 }
 mat-nav-list {
-  padding-top: 60px;
+  padding-top: 42px;
 }
 mat-nav-list a {
   height: 64px;
@@ -16,12 +17,14 @@ mat-nav-list a mat-icon {
   margin: 0 28px 0 12px;
 }
 mat-nav-list a.active span {
+  color: var(--color-primary);
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
   line-height: 30px;
 }
 mat-nav-list a span {
+  color: var(--color-black2);
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
