@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Account;
 import com.example.demo.entity.Lesson;
-import com.example.demo.entity.LessonPass;
 import com.example.demo.entity.Section;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
@@ -10,13 +9,15 @@ import com.example.demo.jwt.SecurityService;
 import com.example.demo.jwt.UserPrinciple;
 import com.example.demo.model.dto.LessonDTO;
 import com.example.demo.model.request.lesson.CreateLessonRequest;
+import com.example.demo.model.request.lesson.LessonPassRequest;
 import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.repository.AccountRepository;
-import com.example.demo.repository.LessonPassRepository;
 import com.example.demo.repository.LessonRepository;
 import com.example.demo.repository.SectionRepository;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ import java.util.Optional;
 
 @Service
 public class LessonServiceImpl implements LessonService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LessonServiceImpl.class);
 
     @Autowired
     private LessonRepository lessonRepository;
@@ -38,9 +41,6 @@ public class LessonServiceImpl implements LessonService {
 
     @Autowired
     private SecurityService securityService;
-
-    @Autowired
-    private LessonPassRepository lessonPassRepository;
 
     @Autowired
     private FileService fileService;
@@ -93,15 +93,13 @@ public class LessonServiceImpl implements LessonService {
     }
 
     @Override
-    public void markAsPass(Long lessonId) {
+    public void markAsPass(LessonPassRequest request) {
+        LOGGER.info("markAsPass {}",request);
         UserPrinciple currentUser = securityService.getCurrentUser();
         Optional<Account> currentAccount = accountRepository.findById(currentUser.getId());
         if(currentAccount.isPresent()){
-            Lesson currentLesson = findLessonById(lessonId);
-            LessonPass lessonPass = new LessonPass();
-            lessonPass.setLesson(currentLesson);
-            lessonPass.setAccount(currentAccount.get());
-            lessonPassRepository.save(lessonPass);
+            Lesson currentLesson = findLessonById(request.getLessonId());
+            return;
         }
         throw new BizException(ResponseEnum.USERNAME_NOT_EXIST, "user không tồn tại");
 
@@ -121,6 +119,7 @@ public class LessonServiceImpl implements LessonService {
     }
 
     private Lesson findLessonById(Long id){
+        LOGGER.info("lessonId {}",id);
         Optional<Lesson> lesson = lessonRepository.findById(id);
         if(lesson.isPresent()){
             return lesson.get();

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,9 +25,9 @@ public class AccountDTO {
 
     private String role;
 
-    private String coursePass;
-
     private Long createdTime;
 
     private Boolean isActivate;
+
+    private List<CourseEnrollDTO> courseEnrolls;
 }

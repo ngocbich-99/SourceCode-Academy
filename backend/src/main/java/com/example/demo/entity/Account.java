@@ -12,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import static com.example.demo.constant.RoleConstant.HOC_VIEN;
 
@@ -47,22 +46,27 @@ public class Account {
      * Json Object
      * {@Link List String}
      */
-    private String coursePass;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<CourseEnroll> courseEnrolls;
 
-//    @OneToMany
-//    private List<Comment> comments;
+    public void addCourseEnrolls(CourseEnroll courseEnroll){
+        this.courseEnrolls.add(courseEnroll);
+    }
+    public List<CourseEnroll>  getCourseEnrolls(){
+        return this.courseEnrolls;
+    }
 
     @Getter(AccessLevel.NONE)
     @ManyToMany(mappedBy = "accounts")
     private List<Course> courses;
 
 
-    public void setCourse(Course course){
+    public void setCourse(Course course) {
         this.courses.add(course);
     }
 
-    @OneToMany(mappedBy = "account",fetch = FetchType.LAZY)
-    Set<LessonPass> lessonPasses;
 
     @Transient
     public List<GrantedAuthority> getAuthority() {

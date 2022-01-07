@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.constant.CommonConstant;
 import com.example.demo.model.dto.SectionDTO;
+import com.example.demo.model.request.lesson.LessonPassRequest;
 import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.LessonService;
@@ -23,8 +24,8 @@ public class LessonController {
 
     @ApiOperation(value = "Mask")
     @PostMapping
-    public CloudResponse<String> markAsPass(@Valid Long lessonId){
-        lessonService.markAsPass(lessonId);
+    public CloudResponse<String> markAsPass(@Valid @RequestBody LessonPassRequest body){
+        lessonService.markAsPass(body);
         return CloudResponse.ok(CommonConstant.SUCCESS,"Mark as read");
     }
 

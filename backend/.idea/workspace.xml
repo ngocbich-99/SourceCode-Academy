@@ -29,58 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="get course by id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/auth/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/auth/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/auth/sign-up/sign-up.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/auth/sign-up/sign-up.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/global-http.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/global-http.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/about-us/about-us.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/about-us/about-us.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/about-us/about-us.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/about-us/about-us.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/courses-unregistered/courses-unregistered.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/courses-unregistered/courses-unregistered.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/main-unregistered/main-unregistered.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/main-unregistered/main-unregistered.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/main-unregistered/main-unregistered.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/Unregistered/main-unregistered/main-unregistered.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/course-detail.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/course-detail.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/course-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/course-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/course-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/course-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/learning-course/learning-course.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/learning-course/learning-course.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/learning-course/learning-course.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/learning-course/learning-course.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/learning-course/learning-course.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/course-detail/learning-course/learning-course.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/course-category-item/course-category-item.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/course-category-item/course-category-item.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/course-category-item/course-category-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/course-category-item/course-category-item.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/course.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/course.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-add-course/dialog-add-course.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-add-course/dialog-add-course.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-add-course/dialog-add-course.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-add-course/dialog-add-course.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-info-course/dialog-info-course.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-info-course/dialog-info-course.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-info-course/dialog-info-course.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/courses/dialog-info-course/dialog-info-course.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/home.page.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/home.page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/dialog-add-question/dialog-add-question.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/dialog-add-question/dialog-add-question.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/questions/questions.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/home/student-registered/courses-student/courses-student.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/footer/footer.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/footer/footer.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/footer/footer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/layout/sidebar/sidebar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/services/course.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/services/course.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/shared/component/course-item-student/course-item-student.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/shared/component/course-item-student/course-item-student.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/shared/component/course-item-student/course-item-student.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/shared/component/course-item-student/course-item-student.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/shared/component/personal-info/personal-info.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/shared/component/personal-info/personal-info.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/shared/component/personal-info/personal-info.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/shared/component/personal-info/personal-info.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/shared/component/topbar-unregistered/topbar-unregistered.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/shared/component/topbar-unregistered/topbar-unregistered.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/shared/component/topbar-unregistered/topbar-unregistered.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/shared/component/topbar-unregistered/topbar-unregistered.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/Logo-icon-footer.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/icons/Logo-icon-footer.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/checked.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/circle.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/close-collapse.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/icons/close-collapse.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/icon-avatar.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/icons/icon-avatar.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/login-outline.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/icons/login-outline.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/icons/setting-account.svg" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/icons/setting-account.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/assets/images/banner-1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/assets/images/banner-1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -112,14 +60,14 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/request/course/CreateCourseRequest.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/request/course/UpdateCourseRequest.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/LessonDTO.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/CategoryDTO.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/CourseDTO.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/SectionDTO.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDTO.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/request/course/UpdateCourseRequest.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/request/category/CreateCategoryRequest.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/request/course/CreateCourseRequest.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/CourseDTO.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDTO.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -157,10 +105,6 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -193,20 +137,13 @@
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.example.demo.CodexApplication" />
-      <module name="demo" />
+      <module name="backend" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.demo.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CodexApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="demo" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.demo.CodexApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,11 +155,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Application.CodexApplication" />
-      <item itemvalue="Spring Boot.CodexApplication" />
-      <item itemvalue="Spring Boot.CodexApplication (1)" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CodexApplication" />
@@ -268,7 +200,12 @@
       <workItem from="1641208510146" duration="9665000" />
       <workItem from="1641285218581" duration="6892000" />
       <workItem from="1641368015282" duration="7402000" />
-      <workItem from="1641395643720" duration="1292000" />
+      <workItem from="1641395643720" duration="4750000" />
+      <workItem from="1641450839121" duration="7138000" />
+      <workItem from="1641483080435" duration="2137000" />
+      <workItem from="1641522506543" duration="2379000" />
+      <workItem from="1641525426528" duration="5332000" />
+      <workItem from="1641537097930" duration="877000" />
     </task>
     <task id="LOCAL-00001" summary="get course by id">
       <created>1639412401480</created>
@@ -307,6 +244,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="get course by id" />
@@ -326,6 +264,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/FileController.java</url>
           <line>36</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/LessonController.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

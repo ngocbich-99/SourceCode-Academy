@@ -21,10 +21,11 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     public void deleteIntermediateByCategoryId(@Param("categoriesId") Long id);
 
     //SELECT cs FROM Course cs LEFT JOIN cs. c WHERE cs.id = a.user
-    @Query("SELECT c FROM Course c LEFT OUTER JOIN c.categories g WHERE g.name in :categoriesName")
+    @Query("SELECT c FROM Course c INNER JOIN c.categories g WHERE g.name in :categoriesName")
     public List<Course> findAllByCategories(@Param("categoriesName") List<String> categories);
 
-    public List<Course> findAllByStatus(Boolean status);
+    @Query("SELECT c FROM Course c LEFT OUTER JOIN c.categories g WHERE c.status = :status")
+    public List<Course> findAllByStatus(@Param("status")Boolean status);
 
     @Query(value = "insert into course_students(course_id,students_id) values(?1,?2)", nativeQuery = true)
     public void enrollCourse(Long studentId, Long courseId);

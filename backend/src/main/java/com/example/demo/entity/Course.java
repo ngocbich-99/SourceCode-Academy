@@ -4,6 +4,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -29,6 +31,7 @@ public class Course {
             name = "course_category",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
+    @Fetch(FetchMode.SUBSELECT)
     private Collection<Category> categories;
 
     @NotNull
@@ -50,6 +53,10 @@ public class Course {
     @Getter(AccessLevel.NONE)
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Account> accounts;
+
+    public List<Account> getAccount() {
+        return accounts;
+    }
 
     public void addAccounts(Account account) {
         this.accounts.add(account);
