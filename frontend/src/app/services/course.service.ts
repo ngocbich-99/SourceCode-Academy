@@ -70,6 +70,31 @@ export class CourseService {
             return this.http.get<ResPaginatorCourses>(env.backendBaseUrl +   '/api/course/current-user', {params})
         }
     }
+    // get list course da hoan thanh cua current user
+    getCoursesLearned(
+        pageSize: number,
+        page: number,
+        textSearch: string,
+        sortProperty: string,
+        sortOrder: string
+    ) {
+        if (!!textSearch) {
+            const params = new HttpParams()
+                .set('pageSize', pageSize.toString())
+                .set('page', page.toString())
+                .set('textSearch', textSearch)
+                .set('sortProperty', sortProperty)
+                .set('sortOrder', sortOrder)
+            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/current-user', { params })
+        } else {
+            const params = new HttpParams()
+                .set('pageSize', pageSize.toString())
+                .set('page', page.toString())
+                .set('sortProperty', sortProperty)
+                .set('sortOrder', sortOrder)
+            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/current-user', { params })
+        }
+    }
     // create course
     createCourse(courseReq: CourseRequest): Observable<Course> {
         return this.http.post<{[key: string]: Course}>(env.backendBaseUrl + '/api/course', courseReq)
