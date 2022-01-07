@@ -39,6 +39,9 @@ carousel .btn-action-signup {
 .carousel2 {
   background-image: url(src/assets/images/banner-2.png);
 }
+.carousel3 {
+  background-image: url(src/assets/images/banner-3.png);
+}
 .carousel-bg {
   border-radius: 10px;
   width: 100%;
