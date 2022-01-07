@@ -7,6 +7,7 @@ import {
   HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment as env } from 'src/environments/environment';
 
 @Injectable()
 export class GlobalHttpInterceptor implements HttpInterceptor {
@@ -17,6 +18,16 @@ export class GlobalHttpInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if (localStorage.getItem('codex-token') != null) {
       const token = localStorage.getItem('codex-token')?.toString();
+    
+      // console.log("url:"+request.url);
+      env.backendBaseUrl+"/file"
+      // console.log("url:"+ env.backendBaseUrl+"/file");
+      // console.log((request.url == (env.backendBaseUrl+"/file")));
+      if(request.url == (env.backendBaseUrl+"/file")){
+        // console.log("url no handle"+request.url);
+        
+        return next.handle(request);
+      }
 
       request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token) });
 
