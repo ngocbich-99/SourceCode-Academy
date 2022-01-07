@@ -1,6 +1,9 @@
 package com.example.demo.model.response.user;
 
+import com.example.demo.model.dto.CourseEnrollDTO;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class LoginResponse {
@@ -22,5 +25,7 @@ public class LoginResponse {
     private String phone;
 
     private String role;
+
+    private List<CourseEnrollDTO> courseEnrolls;
 
 }

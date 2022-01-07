@@ -33,6 +33,15 @@ public class CommonConstant {
             "/api/auth/register",
             "/api/auth/login",
             "/swagger-ui/**",
-            "/swagger-ui**", "/v2/api-docs", "/configuration/ui", "/swagger-resources/**", "/configuration/**", "/swagger-ui.html", "/webjars/**"
+            "/swagger-ui**",
+            "/v2/api-docs",
+            "/configuration/ui",
+            "/swagger-resources/**",
+            "/configuration/**",
+            "/swagger-ui.html",
+            "/webjars/**",
+            "/api/course/public",
+            "/api/category/list"
+
     );
 }

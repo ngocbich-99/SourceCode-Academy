@@ -4,6 +4,7 @@ import com.example.demo.common.PageData;
 import com.example.demo.entity.Account;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Course;
+import com.example.demo.entity.CourseEnroll;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
 import com.example.demo.jwt.SecurityService;
@@ -17,6 +18,7 @@ import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.model.request.section.CreateSectionRequest;
 import com.example.demo.model.request.section.UpdateSectionRequest;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.CourseEnrollRepository;
 import com.example.demo.repository.CourseRepository;
 import com.google.gson.Gson;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.InternalException;
@@ -31,7 +33,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,8 @@ public class CourseServiceImpl implements CourseService {
     @Autowired
     private CategoryService categoryService;
 
-//    @Autowired
-//    private CourseConverter courseConverter;
+    @Autowired
+    private CourseEnrollRepository courseEnrollRepository;
 
     @Autowired
     private SectionService sectionService;
@@ -180,6 +181,11 @@ public class CourseServiceImpl implements CourseService {
             course.setSubscriberNumber(1L);
         }
         course.addAccounts(account);
+        CourseEnroll courseEnroll = new CourseEnroll();
+        courseEnroll.setAccount(account);
+        courseEnroll.setCoursePassed(false);
+        courseEnroll.setLessonPassed("[]");
+        account.addCourseEnrolls(courseEnroll);
         courseRepository.save(course);
 
 
@@ -188,21 +194,13 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void markCoursePass(MarkCoursePassRequest request) {
         LOGGER.info("markCoursePass : {}", request);
-        List<Long> coursePass;
-        Account currentAccount = this.getCurrentAccount();
-        if (currentAccount.getCoursePass() != null) {
-            TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>() {
-            };
-            coursePass = gson.fromJson(currentAccount.getCoursePass(), typeToken.getType());
-            coursePass.add(request.getCourseId());
-        } else {
-            coursePass = new ArrayList<>();
-            coursePass.add(request.getCourseId());
-        }
-        currentAccount.setCoursePass(gson.toJson(coursePass));
-        accountRepository.save(currentAccount);
+        CourseEnroll courseEnroll = this.getCourseEnroll(this.getCurrentAccount().getId(), request.getCourseId());
+        courseEnroll.setCoursePassed(true);
+        courseEnrollRepository.save(courseEnroll);
+    }
 
-
+    private CourseEnroll getCourseEnroll(Long accountId,Long courseId){
+        return courseEnrollRepository.findByAccountIdAndCourseId(accountId,courseId);
     }
 
     @Override
@@ -212,6 +210,9 @@ public class CourseServiceImpl implements CourseService {
             Optional<Course> course = courseRepository.findById(id);
             if (course.isPresent()) {
                 sectionService.deleteByCourse(course.get());
+                if(course.get().getAccount() != null){
+                    throw new BizException(ResponseEnum.PERMISSIONS_DENY,"Khóa học đã có học viên, không thể xóa");
+                }
                 courseRepository.delete(course.get());
             }
         } catch (Exception ex) {

@@ -34,6 +34,10 @@ public class Lesson {
 
     private String description;
 
-    @OneToMany(mappedBy = "lesson")
-    Set<LessonPass> lessonPasses;
+//    @OneToMany(mappedBy = "lesson")
+//    Set<LessonPass> lessonPasses;
+
+//    public void addLessonPass(LessonPass lessonPass){
+//        this.lessonPasses.add(lessonPass);
+//    }
 }
