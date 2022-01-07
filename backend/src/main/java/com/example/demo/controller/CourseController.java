@@ -146,5 +146,12 @@ public class CourseController {
         return CloudResponse.ok(courseService.findCoursePassedOfCurrentUser(textSearch.trim(),pageable));
     }
 
+    @ApiOperation(value = "Api get khóa học public với categories name ")
+    @PostMapping("/public/categories")
+    public CloudResponse<List<CourseDTO>> findCoursePublicByCategories(@Valid @RequestBody FindCourseByCategoriesRequest body) {
+        LOGGER.info("POST /api/course/public/categories - > {}", body);
+        return CloudResponse.ok(courseService.findAllByCategoriesNameAndStatus(body,Boolean.TRUE));
+    }
+
 
 }

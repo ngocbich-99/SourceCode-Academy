@@ -115,6 +115,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public List<CourseDTO> findAllByCategoriesNameAndStatus(FindCourseByCategoriesRequest request,Boolean status) {
+        LOGGER.info("findAllByCategoriesNameAndStatus : {}", request);
+        return this.convertToListCourseDTO(courseRepository
+                .findAllByCategoriesAndStatus(request.getCategories(),status));
+    }
+
+    @Override
     @Transactional
     public CourseDTO createCourse(CreateCourseRequest request) {
         LOGGER.info("createCourse : {}", request);

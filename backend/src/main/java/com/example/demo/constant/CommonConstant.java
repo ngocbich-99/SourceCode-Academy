@@ -41,7 +41,8 @@ public class CommonConstant {
             "/swagger-ui.html",
             "/webjars/**",
             "/api/course/public",
-            "/api/category/list"
+            "/api/category/list",
+            "/api/course/public/categories"
 
     );
 }

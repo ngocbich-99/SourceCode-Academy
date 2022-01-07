@@ -27,6 +27,9 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
     @Query("SELECT c FROM Course c LEFT OUTER JOIN c.categories g WHERE c.status = :status")
     public List<Course> findAllByStatus(@Param("status")Boolean status);
 
+    @Query("SELECT c FROM Course c INNER JOIN c.categories g WHERE g.name in :categoriesName and c.status = :status")
+    public List<Course> findAllByCategoriesAndStatus(@Param("categoriesName") List<String> categories,@Param("status")Boolean status);
+
     @Query(value = "insert into course_students(course_id,students_id) values(?1,?2)", nativeQuery = true)
     public void enrollCourse(Long studentId, Long courseId);
 

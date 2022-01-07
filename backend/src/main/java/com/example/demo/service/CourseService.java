@@ -20,6 +20,8 @@ public interface CourseService {
 
     List<CourseDTO> findAllByCategoriesName(FindCourseByCategoriesRequest request);
 
+    List<CourseDTO> findAllByCategoriesNameAndStatus(FindCourseByCategoriesRequest request,Boolean status);
+
     CourseDTO createCourse(CreateCourseRequest request);
 
     CourseDTO updateCourse(UpdateCourseRequest request);
