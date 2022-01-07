@@ -7,6 +7,11 @@
   color: rgba(0, 0, 0, 0.87);
   margin: 32px 0 12px 0;
 }
+
+.section-category {
+  margin: 104px 40px 0px 40px;
+}
+
 .section-category h3 {
   font-style: normal;
   font-weight: bold;
@@ -21,6 +26,7 @@
 .section-category mat-drawer-content {
   background: #ffffff;
   min-height: 500px;
+  margin-left: 224px;
 }
 .section-category .sidebar {
   width: 160px;

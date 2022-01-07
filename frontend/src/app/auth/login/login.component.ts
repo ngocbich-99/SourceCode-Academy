@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
             if (resData.data.role === 'HOC_VIEN') {
               this.router.navigate(['/home/dashboard-student']);
             } else if (resData.data.role === 'GIANG_VIEN' || resData.data.role === 'ADMIN') {
-              this.router.navigate(['/home/courses'], { queryParams: {category: 'all'} });
+              this.router.navigate(['/home/courses/all']);
             } else {
               this.router.navigate(['/home/main-page-unregistered']);
             }

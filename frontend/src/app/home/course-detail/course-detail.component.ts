@@ -37,31 +37,12 @@ export class CourseDetailComponent implements OnInit {
     })
   }
 
-  async getCourseById(id: number) {
-    // this.courseService.getCourse(id).subscribe(resData => {
-    //   this.courseSelected = resData;
-    //   this.getTeacher(this.courseSelected.teacherId);
-    //   console.log('course by id', resData);
-    // })
-    this.courseSelected = await this.courseService.getCourse(id).toPromise();
-
-    // get info teacher
-    this.getTeacher(this.courseSelected.teacherId);
-
-    // check xem khoa hoc da duoc dang ky hoc chua
-    // this.courseService.enrollCourse(this.courseSelected.id).subscribe(resData => {
-    //   console.log('enroll course', resData);
-    //   if (resData.message === 'Tài khoản đã đăng ký khóa học') {
-    //     this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
-    //   } else if (resData.message === 'Enroll course success') {
-    //     this.isProgressEnroll = true;
-    //     setTimeout(() => {
-    //       this.isProgressEnroll = false;
-    //       this.toastService.showToast('Đăng ký khoá học thành công!', StatusToast.SUCCESS);
-    //       this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
-    //     }, 5000)
-    //   }
-    // })
+  getCourseById(id: number) {
+    this.courseService.getCourse(id).subscribe(resData => {
+      this.courseSelected = resData;
+      this.getTeacher(this.courseSelected.teacherId);
+      console.log('course by id', resData);
+    })
   }
 
   getTeacher(id?: number) {
@@ -88,7 +69,7 @@ export class CourseDetailComponent implements OnInit {
         this.courseService.enrollCourse(this.courseSelected.id).subscribe(resData => {
           console.log('enroll course', resData);
           if (resData.message === 'Tài khoản đã đăng ký khóa học') {
-            // this.toastService.showToast('Tài khoản đã đăng ký khóa học!', StatusToast.ERROR);
+            this.toastService.showToast('Tài khoản đã đăng ký khóa học!', StatusToast.ERROR);
             this.router.navigate(['/home/learning-course'], {queryParams: {id: this.courseSelected.id}});
           } else if (resData.message === 'Enroll course success') {
             this.isProgressEnroll = true;

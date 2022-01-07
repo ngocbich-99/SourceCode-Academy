@@ -1,25 +1,22 @@
 .card-account .avatar {
-  width: 26px;
-  height: 45px;
-  margin-right: 10px;
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
 }
 .card-account .info h3,
 .card-account .info p {
   margin: 0;
 }
-.card-account .info h3 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
+.menu-setting-acc {
+  width: 220px;
 }
-.card-account .info p {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 21px;
-  color: rgba(0, 0, 0, 0.38);
+.name {
+  color: var(--color-black1);
 }
+.email {
+  color: var(--color-black3);
+}
+
 .card-account .arrow-down {
   width: 13px;
   height: 45px;

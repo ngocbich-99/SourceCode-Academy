@@ -4,15 +4,9 @@
   margin: 12px;
   position: relative;
 }
-.card-course .div-img,
-.div-img img {
-  width: 283px;
-  height: 158px;
-  border-radius: 10px;
-}
 .card-course .div-img {
-  position: relative;
-  z-index: -1;
+  min-width: 283px;
+  min-height: 158px;
 }
 .card-course .btn-more {
   position: absolute;
@@ -61,7 +55,4 @@
   color: rgba(0, 0, 0, 0.6);
   letter-spacing: 0.2px;
   text-transform: uppercase;
-}
-.card-course-level {
-  height: 24px;
 }

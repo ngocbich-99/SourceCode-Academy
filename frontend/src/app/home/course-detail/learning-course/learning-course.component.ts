@@ -6,7 +6,6 @@ import { CourseService } from 'src/app/services/course.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Account } from '../../accounts/account.model';
 import { LearningCourseService } from 'src/app/services/learning-course.service';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-learning-course',
@@ -17,7 +16,6 @@ export class LearningCourseComponent implements OnInit {
   courseSelected: Course = {};
   isCollapsed = false;
   teacher: Account = {};
-  urldemo: SafeResourceUrl = '';
 
   constructor(
     private _location: Location,
@@ -25,8 +23,7 @@ export class LearningCourseComponent implements OnInit {
     private courseService: CourseService,
     private accountService: AccountService,
     private learningService: LearningCourseService,
-    private sanitizer: DomSanitizer,
-    private router: Router,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,19 +31,11 @@ export class LearningCourseComponent implements OnInit {
       this.getCourseById(params['id']);
     })
   }
-  
+
   getCourseById(id: number) {
     this.courseService.getCourse(id).subscribe(resData => {
       this.courseSelected = resData;
       this.getTeacher(this.courseSelected.teacherId);
-
-      if (!!this.courseSelected) {
-        this.courseSelected.sections?.forEach(section => {
-          section.lessons.forEach(lesson => {
-            lesson.urlSafeResourse = this.sanitizer.bypassSecurityTrustResourceUrl(lesson.urlVideo as string);
-          })
-        })
-      }
     })
   }
   getTeacher(id?: number) {
