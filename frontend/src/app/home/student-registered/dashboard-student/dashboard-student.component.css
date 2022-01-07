@@ -13,7 +13,7 @@ carousel img {
   border-radius: 10px;
 }
 carousel .btn-action-signup {
-  width: 163px;
+  /* width: 163px; */
   position: absolute;
   bottom: 10%;
 }
@@ -61,7 +61,7 @@ carousel .btn-action-signup {
 }
 
 .page-conent {
-  margin: 104px 40px 0px 40px;
+  margin: 104px 0 0;
 }
 
 .topbar {
