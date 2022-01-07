@@ -52,4 +52,9 @@ export class CategoryService {
         return this.http.post<ResCourses>(env.backendBaseUrl + '/api/course/categories', {categories: nameCategorys});
     }
 
+    // get course public with category name
+    getCoursePublicByCategoryName(nameCategorys?: string[]): Observable<ResCourses> {
+        return this.http.post<ResCourses>(env.backendBaseUrl + '/api/course/public/categories', {categories: nameCategorys});
+    }
+
 }

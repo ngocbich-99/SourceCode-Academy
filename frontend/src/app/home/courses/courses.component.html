@@ -27,7 +27,7 @@
                         </a>
                         <a *ngFor="let category of listCategory" 
                             mat-list-item 
-                            [routerLink]="['/home', 'courses', category.name]" 
+                            [routerLink]="['/home', 'courses']" 
                             [queryParams]="{category: category.name}"
                             routerLinkActive="active">
                             <span class="nav-caption">

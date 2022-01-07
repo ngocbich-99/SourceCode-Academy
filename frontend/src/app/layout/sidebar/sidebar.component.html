@@ -17,6 +17,7 @@
     <a mat-list-item 
     *ngIf="role === undefined"
     [routerLink]= "['/home/courses-unregistered']" 
+    [queryParams]="{category: 'all'}" 
     routerLinkActive="active" 
     (click)="onTabChange('courses-unregis')">
         <mat-icon *ngIf="activeTab === 'courses-unregis'" svgIcon="course-fill" routerLinkActive="active"></mat-icon>

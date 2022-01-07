@@ -50,8 +50,7 @@ const routes: Routes = [
                 path: 'courses-unregistered', 
                 component: CoursesUnregisteredComponent, 
                 children: [
-                    { path: 'all', component: CourseCategoryItemComponent },
-                    { path: ':id', component: CourseCategoryItemComponent },
+                    { path: ':name', component: CourseCategoryItemComponent },
                 ]
             },
             { path: 'about-us', component: AboutUsComponent},
