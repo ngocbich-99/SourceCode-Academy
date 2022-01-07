@@ -185,9 +185,9 @@ public class CourseServiceImpl implements CourseService {
         courseEnroll.setAccount(account);
         courseEnroll.setCoursePassed(false);
         courseEnroll.setLessonPassed("[]");
-        account.addCourseEnrolls(courseEnroll);
-        courseRepository.save(course);
-
+        courseEnroll.setCourseId(request.getCourseId());
+//        courseRepository.save(course);
+        courseEnrollRepository.save(courseEnroll);
 
     }
 

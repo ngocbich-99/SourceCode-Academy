@@ -29,41 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="get course by id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/constant/CommonConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/constant/CommonConstant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/LessonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/LessonController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/Lesson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/LessonPass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/entity/LessonPassKey.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/AccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/LessonDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/LessonDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/response/user/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/response/user/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/LessonPassRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CourseServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CourseServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/LessonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/LessonController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Account.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Course.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Lesson.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/entity/Lesson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/LessonPass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/entity/LessonPassKey.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/AccountDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/LessonDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/dto/LessonDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/response/user/LoginResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/response/user/LoginResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CourseRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/repository/CourseRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/CourseServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/LessonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/LessonService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/LessonServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/LessonServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,6 +205,7 @@
       <workItem from="1641483080435" duration="2137000" />
       <workItem from="1641522506543" duration="2379000" />
       <workItem from="1641525426528" duration="5332000" />
+      <workItem from="1641537097930" duration="877000" />
     </task>
     <task id="LOCAL-00001" summary="get course by id">
       <created>1639412401480</created>
