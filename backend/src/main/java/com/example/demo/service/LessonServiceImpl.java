@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Account;
+import com.example.demo.entity.CourseEnroll;
 import com.example.demo.entity.Lesson;
 import com.example.demo.entity.Section;
 import com.example.demo.enums.ResponseEnum;
@@ -12,8 +13,10 @@ import com.example.demo.model.request.lesson.CreateLessonRequest;
 import com.example.demo.model.request.lesson.LessonPassRequest;
 import com.example.demo.model.request.lesson.UpdateLessonRequest;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.CourseEnrollRepository;
 import com.example.demo.repository.LessonRepository;
 import com.example.demo.repository.SectionRepository;
+import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
@@ -41,6 +44,12 @@ public class LessonServiceImpl implements LessonService {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private Gson gson;
+
+    @Autowired
+    CourseEnrollRepository courseEnrollRepository;
 
     @Autowired
     private FileService fileService;
@@ -99,6 +108,20 @@ public class LessonServiceImpl implements LessonService {
         Optional<Account> currentAccount = accountRepository.findById(currentUser.getId());
         if(currentAccount.isPresent()){
             Lesson currentLesson = findLessonById(request.getLessonId());
+            if(currentLesson == null){
+                throw new BizException(ResponseEnum.NOT_FOUND,"Không tìm thấy lession");
+            }
+            Section sectionById = findSectionById(currentLesson.getId());
+
+            CourseEnroll courseEnroll = courseEnrollRepository.findByAccountIdAndCourseId(currentAccount.get().getId(),sectionById.getCourse().getId());
+            if(courseEnroll == null) {
+                throw new BizException(ResponseEnum.NOT_FOUND,"Chưa đăng ký khóa học");
+            }
+            TypeToken<List<Long>> typeToken  = new TypeToken<List<Long>>(){};
+            List<Long> ids = gson.fromJson(courseEnroll.getLessonPassed(),typeToken.getType());
+            ids.add(request.getLessonId());
+            courseEnroll.setLessonPassed(gson.toJson(ids));
+            courseEnrollRepository.save(courseEnroll);
             return;
         }
         throw new BizException(ResponseEnum.USERNAME_NOT_EXIST, "user không tồn tại");
