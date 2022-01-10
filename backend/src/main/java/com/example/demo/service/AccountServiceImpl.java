@@ -7,6 +7,7 @@ import com.example.demo.jwt.JwtProvider;
 import com.example.demo.jwt.JwtSubject;
 import com.example.demo.jwt.SecurityService;
 import com.example.demo.model.dto.AccountDTO;
+import com.example.demo.model.dto.CourseEnrollDTO;
 import com.example.demo.model.request.account.ChangePasswordRequest;
 import com.example.demo.model.request.account.ChangeUserInfoRequest;
 import com.example.demo.model.request.account.CreateAccountRequest;
@@ -15,6 +16,7 @@ import com.example.demo.model.request.auth.LoginRequest;
 import com.example.demo.model.request.auth.RegisterAccountRequest;
 import com.example.demo.model.response.user.LoginResponse;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.CourseEnrollRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -42,6 +44,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private CourseEnrollRepository courseEnrollRepository;
 
     @Override
     public List<AccountDTO> getListAccount() {
@@ -119,7 +124,7 @@ public class AccountServiceImpl implements AccountService {
         if (!passwordEncoder.matches(request.getPassword(), account.getPassword())) {
             throw new BizException(ResponseEnum.NOT_FOUND, "Username or password incorrect");
         }
-        if(!account.getIsActivate()){
+        if (!account.getIsActivate()) {
             throw new BizException(ResponseEnum.ACCOUNT_BLOCKED, "Your account has been blocked. Please contact Xcademy hotline for assistance");
         }
         LoginResponse response = new LoginResponse();
@@ -129,6 +134,10 @@ public class AccountServiceImpl implements AccountService {
         String accessToken = jwtProvider.generateJwtToken(jwtSubject);
         response.setAccessToken(accessToken);
         response.setTokenType("Bearer");
+        TypeToken<List<CourseEnrollDTO>> typeToken = new TypeToken<List<CourseEnrollDTO>>(){};
+        response.setCourseEnrolls(mapper.
+                map(courseEnrollRepository.findByAccountId(response.getId()),
+                typeToken.getType()));
         return response;
     }
 
@@ -151,7 +160,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
-     *  change User Info
+     * change User Info
+     *
      * @param request User info change
      * @return AccountDTO
      */
@@ -163,7 +173,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
-     *  Convert Account entity to AccountDTO
+     * Convert Account entity to AccountDTO
+     *
      * @param account entity
      * @return AccountDTO
      */
@@ -172,14 +183,17 @@ public class AccountServiceImpl implements AccountService {
         mapper.map(account, accountDTO);
         return accountDTO;
     }
+
     /**
-     *  Convert List Account entity to AccountDTO
+     * Convert List Account entity to AccountDTO
+     *
      * @param accounts List of entity Account
      * @return AccountDTO
      */
-    private List<AccountDTO> convertToListAccountDTO(List<Account> accounts){
-        TypeToken<List<AccountDTO>> typeToken = new TypeToken<List<AccountDTO>>(){};
-        return mapper.map(accounts,typeToken.getType());
+    private List<AccountDTO> convertToListAccountDTO(List<Account> accounts) {
+        TypeToken<List<AccountDTO>> typeToken = new TypeToken<List<AccountDTO>>() {
+        };
+        return mapper.map(accounts, typeToken.getType());
     }
 
     private Account findAccountById(Long id) {
