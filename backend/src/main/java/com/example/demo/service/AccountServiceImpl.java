@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Account;
+import com.example.demo.entity.CourseEnroll;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
 import com.example.demo.jwt.JwtProvider;
@@ -18,6 +19,7 @@ import com.example.demo.model.response.user.LoginResponse;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.CourseEnrollRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
@@ -25,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +41,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private ModelMapper mapper;
+
+    @Autowired
+    private Gson gson;
 
     @Autowired
     private JwtProvider jwtProvider;
@@ -134,11 +140,22 @@ public class AccountServiceImpl implements AccountService {
         String accessToken = jwtProvider.generateJwtToken(jwtSubject);
         response.setAccessToken(accessToken);
         response.setTokenType("Bearer");
-        TypeToken<List<CourseEnrollDTO>> typeToken = new TypeToken<List<CourseEnrollDTO>>(){};
-        response.setCourseEnrolls(mapper.
-                map(courseEnrollRepository.findByAccountId(response.getId()),
-                typeToken.getType()));
+        response.setCourseEnrolls(convert(response.getId()));
+
         return response;
+    }
+
+    public List<CourseEnrollDTO> convert(Long accountId){
+        List<CourseEnrollDTO> courseEnrollDTOs = new ArrayList<>();
+        TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>(){};
+        List<CourseEnroll> courseEnrolls = courseEnrollRepository.findByAccountId(accountId);
+        for(CourseEnroll c : courseEnrolls){
+            CourseEnrollDTO courseEnrollDTO = new CourseEnrollDTO();
+            mapper.map(c,courseEnrollDTO);
+            courseEnrollDTO.setLessonPassed(gson.fromJson(c.getLessonPassed(),typeToken.getType()));
+            courseEnrollDTOs.add(courseEnrollDTO);
+        }
+        return courseEnrollDTOs;
     }
 
     @Override
