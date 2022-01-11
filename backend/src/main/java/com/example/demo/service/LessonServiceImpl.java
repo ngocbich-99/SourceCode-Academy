@@ -111,7 +111,7 @@ public class LessonServiceImpl implements LessonService {
             if(currentLesson == null){
                 throw new BizException(ResponseEnum.NOT_FOUND,"Không tìm thấy lession");
             }
-            Section sectionById = findSectionById(currentLesson.getId());
+            Section sectionById = findSectionById(currentLesson.getSection().getId());
 
             CourseEnroll courseEnroll = courseEnrollRepository.findByAccountIdAndCourseId(currentAccount.get().getId(),sectionById.getCourse().getId());
             if(courseEnroll == null) {
