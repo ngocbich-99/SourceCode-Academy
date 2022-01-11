@@ -12,7 +12,7 @@ public class CourseEnrollDTO {
     @NotNull
     private Long CourseId;
 
-    private List<Long> lessonPassed;
+    private List lessonPassed;
 
     private boolean coursePassed;
 }

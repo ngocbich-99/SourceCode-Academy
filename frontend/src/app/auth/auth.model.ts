@@ -9,9 +9,15 @@ export interface LoginResponse {
         username: string;
         phone: string;
         role: string;
+        courseEnrolls: CourseEnroll[];
     }
 }
-
+export interface CourseEnroll {
+    courseId: number;
+    id: number;
+    coursePassed: boolean;
+    lessonPassed: number[];
+}
 export interface SignUpReq {
     email: string;
     fullName: string;

@@ -40,6 +40,8 @@ export class AuthService {
     return this.http.post<LoginResponse>(env.backendBaseUrl + '/api/auth/login', loginReq)
     .pipe(
       tap(resData => {
+        console.log('auth login', resData);
+        
         localStorage.setItem('userInfo', JSON.stringify(resData.data));
         this.userInfoSubject.next(resData.data);
       })

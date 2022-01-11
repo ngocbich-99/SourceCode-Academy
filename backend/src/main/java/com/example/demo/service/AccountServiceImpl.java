@@ -1,12 +1,14 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Account;
+import com.example.demo.entity.CourseEnroll;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
 import com.example.demo.jwt.JwtProvider;
 import com.example.demo.jwt.JwtSubject;
 import com.example.demo.jwt.SecurityService;
 import com.example.demo.model.dto.AccountDTO;
+import com.example.demo.model.dto.CourseEnrollDTO;
 import com.example.demo.model.request.account.ChangePasswordRequest;
 import com.example.demo.model.request.account.ChangeUserInfoRequest;
 import com.example.demo.model.request.account.CreateAccountRequest;
@@ -15,7 +17,9 @@ import com.example.demo.model.request.auth.LoginRequest;
 import com.example.demo.model.request.auth.RegisterAccountRequest;
 import com.example.demo.model.response.user.LoginResponse;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.CourseEnrollRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.BeanUtils;
@@ -23,6 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,10 +43,16 @@ public class AccountServiceImpl implements AccountService {
     private ModelMapper mapper;
 
     @Autowired
+    private Gson gson;
+
+    @Autowired
     private JwtProvider jwtProvider;
 
     @Autowired
     private SecurityService securityService;
+
+    @Autowired
+    private CourseEnrollRepository courseEnrollRepository;
 
     @Override
     public List<AccountDTO> getListAccount() {
@@ -119,7 +130,7 @@ public class AccountServiceImpl implements AccountService {
         if (!passwordEncoder.matches(request.getPassword(), account.getPassword())) {
             throw new BizException(ResponseEnum.NOT_FOUND, "Username or password incorrect");
         }
-        if(!account.getIsActivate()){
+        if (!account.getIsActivate()) {
             throw new BizException(ResponseEnum.ACCOUNT_BLOCKED, "Your account has been blocked. Please contact Xcademy hotline for assistance");
         }
         LoginResponse response = new LoginResponse();
@@ -129,12 +140,29 @@ public class AccountServiceImpl implements AccountService {
         String accessToken = jwtProvider.generateJwtToken(jwtSubject);
         response.setAccessToken(accessToken);
         response.setTokenType("Bearer");
+        response.setCourseEnrolls(convert(response.getId()));
+
         return response;
+    }
+
+    public List<CourseEnrollDTO> convert(Long accountId){
+        List<CourseEnrollDTO> courseEnrollDTOs = new ArrayList<>();
+        TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>(){};
+        List<CourseEnroll> courseEnrolls = courseEnrollRepository.findByAccountId(accountId);
+        for(CourseEnroll c : courseEnrolls){
+            CourseEnrollDTO courseEnrollDTO = new CourseEnrollDTO();
+            mapper.map(c,courseEnrollDTO);
+            courseEnrollDTO.setLessonPassed(gson.fromJson(c.getLessonPassed(),typeToken.getType()));
+            courseEnrollDTOs.add(courseEnrollDTO);
+        }
+        return courseEnrollDTOs;
     }
 
     @Override
     public AccountDTO getCurrentUser() {
-        return this.getAccountById(securityService.getCurrentUser().getId());
+        AccountDTO accountById = this.getAccountById(securityService.getCurrentUser().getId());
+        accountById.setCourseEnrolls(this.convert(securityService.getCurrentUser().getId()));
+        return  accountById;
     }
 
     @Override
@@ -151,7 +179,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
-     *  change User Info
+     * change User Info
+     *
      * @param request User info change
      * @return AccountDTO
      */
@@ -163,7 +192,8 @@ public class AccountServiceImpl implements AccountService {
     }
 
     /**
-     *  Convert Account entity to AccountDTO
+     * Convert Account entity to AccountDTO
+     *
      * @param account entity
      * @return AccountDTO
      */
@@ -172,14 +202,17 @@ public class AccountServiceImpl implements AccountService {
         mapper.map(account, accountDTO);
         return accountDTO;
     }
+
     /**
-     *  Convert List Account entity to AccountDTO
+     * Convert List Account entity to AccountDTO
+     *
      * @param accounts List of entity Account
      * @return AccountDTO
      */
-    private List<AccountDTO> convertToListAccountDTO(List<Account> accounts){
-        TypeToken<List<AccountDTO>> typeToken = new TypeToken<List<AccountDTO>>(){};
-        return mapper.map(accounts,typeToken.getType());
+    private List<AccountDTO> convertToListAccountDTO(List<Account> accounts) {
+        TypeToken<List<AccountDTO>> typeToken = new TypeToken<List<AccountDTO>>() {
+        };
+        return mapper.map(accounts, typeToken.getType());
     }
 
     private Account findAccountById(Long id) {

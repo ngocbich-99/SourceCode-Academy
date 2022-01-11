@@ -48,6 +48,9 @@ export interface Lesson {
     urlVideo?: string;
     description?: string;
 
+    // attribute for lesson selected
+    isChecked?: boolean;
+
     // option test
     idTest?: number;
 }

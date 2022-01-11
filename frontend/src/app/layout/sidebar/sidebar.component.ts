@@ -41,7 +41,7 @@ export class SidebarComponent implements OnInit {
       }
     })
 
-    console.log(this.userSub, this.role);
+    console.log('role', this.role);
   }
 
   onTabChange(nameTab: string) {

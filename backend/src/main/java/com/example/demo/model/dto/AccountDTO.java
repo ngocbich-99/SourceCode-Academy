@@ -30,4 +30,5 @@ public class AccountDTO {
     private Boolean isActivate;
 
     private List<CourseEnrollDTO> courseEnrolls;
+
 }
