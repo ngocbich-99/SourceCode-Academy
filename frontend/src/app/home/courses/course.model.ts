@@ -40,7 +40,7 @@ export interface Section {
 }
 
 export interface Lesson {
-    urlSafeResourse: any;
+    urlSafeResourse?: any;
     name?: string;
     id?: number;
     sectionId?: number;

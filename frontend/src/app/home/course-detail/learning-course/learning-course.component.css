@@ -43,8 +43,6 @@
 }
 
 .content-video .video {
-  min-height: 630px;
-  background: red;
 }
 
 .content-video .info-lesson h2 {
@@ -130,7 +128,6 @@
   font-weight: 500;
   font-size: 14px;
 }
-
 .sidebar-section .container-content-section button {
   padding-left: 16px;
 }

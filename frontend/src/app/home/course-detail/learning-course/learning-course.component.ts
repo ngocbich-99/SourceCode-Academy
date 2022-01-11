@@ -23,7 +23,6 @@ export class LearningCourseComponent implements OnInit {
   teacher: Account = {};
   urldemo: SafeResourceUrl = '';
   lessonSelected?: Lesson = {};
-  sanitizer: any;
 
   constructor(
     private _location: Location,
@@ -31,7 +30,8 @@ export class LearningCourseComponent implements OnInit {
     private courseService: CourseService,
     private accountService: AccountService,
     private learningService: LearningCourseService,
-    private router: Router
+    private sanitizer: DomSanitizer,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -77,7 +77,7 @@ export class LearningCourseComponent implements OnInit {
     })
     return mark;
   }
-
+  
   getCourseById(id: number) {
     this.courseService.getCourse(id).subscribe(resData => {
       this.courseSelected = resData;
