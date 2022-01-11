@@ -126,8 +126,8 @@ export class LearningCourseComponent implements OnInit {
   }
 
   backPrevious() {
-    // this.router.navigate(['/home/course-detail', this.courseSelected.id]);
-    this._location.back();
+    this.router.navigate(['/home/course-detail', this.courseSelected.id]);
+    // this._location.back();
   }
 
 }
