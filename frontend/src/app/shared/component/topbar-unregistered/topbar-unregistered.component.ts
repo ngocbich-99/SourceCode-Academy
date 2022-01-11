@@ -27,7 +27,7 @@ export class TopbarUnregisteredComponent implements OnInit {
       panelClass: 'dialogSignup'
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
+      // console.log(data);
     })
   }
 
@@ -40,7 +40,7 @@ export class TopbarUnregisteredComponent implements OnInit {
       panelClass: 'dialogSignup'
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
+      // console.log(data);
     })
   }
 

@@ -26,7 +26,6 @@ export class PersonalInfoComponent implements OnInit {
     this.userSub = this.authService.userInfoSubject.subscribe(userInfo => {
       this.userInfo = userInfo;
       console.log('user info', this.userInfo, !!this.userInfo);
-      
     })
   }
 

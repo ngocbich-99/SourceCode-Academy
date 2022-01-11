@@ -50,6 +50,9 @@ export interface Lesson {
     urlSafeResourse?: SafeResourceUrl;
     description?: string;
 
+    // attribute for lesson selected
+    isChecked?: boolean;
+
     // option test
     idTest?: number;
 }

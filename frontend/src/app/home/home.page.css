@@ -5,3 +5,6 @@ mat-drawer-content {
   background: #fff;
   padding: 16px 40px;
 }
+.hidden-sidebar {
+  margin-left: 0;
+}

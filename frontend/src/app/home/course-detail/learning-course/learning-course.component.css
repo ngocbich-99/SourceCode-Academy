@@ -129,7 +129,16 @@
   font-size: 14px;
 }
 .sidebar-section .container-content-section button {
-  padding-left: 48px;
+  padding-left: 16px;
+}
+.btn-lesson-selected {
+  background: var(--color-secondary);
+}
+.container-content-section .btn-lesson-selected span {
+  color: var(--color-primary);
+}
+.btn-lesson-unchecked {
+  background: unset;
 }
 .sidebar-section .container-content-section button mat-icon {
   height: 38px;
@@ -153,3 +162,17 @@
   text-align: left;
 }
 /* end button collapse section */
+/* infor course */
+.info-lesson,
+.info-course-title,
+.info-course {
+  margin-left: 120px;
+}
+/* hidden sidebar */
+::ng-deep .hidden-sidebar {
+  display: none !important;
+}
+::ng-deep .margin-zero {
+  margin-left: 0 !important;
+  padding: 0 !important;
+}

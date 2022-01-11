@@ -6,8 +6,9 @@
     <h3>{{courseSelected?.name}}</h3>
 </section>
 <section class="content">
-    <div *ngFor="let section of courseSelected?.sections; index as i">
-        <div fxLayout="row" fxLayoutAlign="space-between start" *ngFor="let lesson of section?.lessons; index as i" class="container-lesson">
+    <div>
+        <div fxLayout="row" fxLayoutAlign="space-between start" 
+        class="container-lesson">
             <div class="content-video" fxFlex="80">
                 <div class="video">
                     <iframe 
@@ -16,12 +17,12 @@
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen
-                        [src]="lesson.urlSafeResourse">
+                        [src]="lessonSelected?.urlSafeResourse">
                     </iframe>
                 </div>
                 <div class="info-lesson">
-                    <h2>{{i+1}}.{{lesson?.name}}</h2>
-                    <p>{{lesson?.description}}</p>
+                    <h2>{{lessonSelected?.name}}</h2>
+                    <p>{{lessonSelected?.description}}</p>
                 </div>
                 <div class="info-course-title">
                     <h2>{{courseSelected?.name}}</h2>
@@ -52,7 +53,7 @@
                 </div>
             </div>
             <div class="sidebar-section" fxFlex="20">
-                <div  class="section-collapse">
+                <div class="section-collapse" *ngFor="let section of courseSelected?.sections; index as i">
                     <!-- collapse section  -->
                     <button type="button" class="btn btn-collapse-section" (click)="isCollapsed = !isCollapsed"
                     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
@@ -63,14 +64,25 @@
                         </span>
                     </button>
                     <div 
+                    *ngFor="let lesson of section?.lessons; index as i"
                     fxLayout="column" 
                     class="container-content-section" 
                     id="collapseBasic" 
                     [collapse]="isCollapsed" 
                     [isAnimated]="true">
-                        <button mat-button (click)="markLessonPass(lesson)">
-                            <mat-icon svgIcon="checked"></mat-icon>
-                            <mat-icon svgIcon="circle"></mat-icon>
+                        <button 
+                        mat-button 
+                        [ngClass]="{
+                                'btn-lesson-selected': lesson?.isChecked === true
+                            }"
+                        (click)="markLessonPass(lesson)">
+                            <mat-icon 
+                            svgIcon="checked"
+                            *ngIf="checkLessonPass(lesson)"
+                            ></mat-icon>
+                            <mat-icon 
+                            svgIcon="circle" 
+                            *ngIf="!checkLessonPass(lesson)"></mat-icon>
                             <span>{{i+1}}. {{lesson.name}}</span>
                         </button>
                     </div>
