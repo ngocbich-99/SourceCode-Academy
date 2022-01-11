@@ -59,7 +59,6 @@ export class LearningCourseComponent implements OnInit {
   getCourseEntroll() {
     const data = JSON.parse(localStorage.getItem('userInfo') as string);
     this.courseEntrolls = data.courseEnrolls;
-    console.log('data local storage', this.courseEntrolls);
   }
 
   checkLessonPass(lesson: Lesson): boolean {
@@ -67,7 +66,6 @@ export class LearningCourseComponent implements OnInit {
     this.courseEntrolls.forEach(courseEnroll => {
       if (courseEnroll.courseId === this.courseSelected.id) {
         // courseEnroll.idLessonPassed = [...new Set(courseEnroll.idLessonPassed)];
-        console.log('54 ====', !!courseEnroll.lessonPassed.find(id => id === lesson.id));
         if (!!courseEnroll.lessonPassed.find(id => id === lesson.id)) {
           mark = true;
         } else {
@@ -112,16 +110,13 @@ export class LearningCourseComponent implements OnInit {
     this.courseSelected.sections?.forEach(section => {
       section.lessons.forEach(less => {
         if (less.id !== lesson?.id) {
-          console.log('unchecked lesson');
           less.isChecked = false;
         }
       })
     })
-    console.log(this.courseSelected);
     
     this.lessonSelected = lesson;
     this.learningService.markLessonLearned(lesson?.id).subscribe(resData => {
-      console.log('mark lesson learned', resData);
     })
   }
 
