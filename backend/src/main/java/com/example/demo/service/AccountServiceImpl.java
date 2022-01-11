@@ -160,7 +160,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO getCurrentUser() {
-        return this.getAccountById(securityService.getCurrentUser().getId());
+        AccountDTO accountById = this.getAccountById(securityService.getCurrentUser().getId());
+        accountById.setCourseEnrolls(this.convert(securityService.getCurrentUser().getId()));
+        return  accountById;
     }
 
     @Override

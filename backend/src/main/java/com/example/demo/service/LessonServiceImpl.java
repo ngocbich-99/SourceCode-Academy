@@ -119,7 +119,9 @@ public class LessonServiceImpl implements LessonService {
             }
             TypeToken<List<Long>> typeToken  = new TypeToken<List<Long>>(){};
             List<Long> ids = gson.fromJson(courseEnroll.getLessonPassed(),typeToken.getType());
-            ids.add(request.getLessonId());
+            if(!ids.contains(request.getLessonId())){
+                ids.add(request.getLessonId());
+            }
             courseEnroll.setLessonPassed(gson.toJson(ids));
             courseEnrollRepository.save(courseEnroll);
             return;

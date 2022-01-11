@@ -28,11 +28,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db9ff7fe-6ea5-49b8-86de-808205a44fc6" name="Changes" comment="get course by id">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/CourseEnrollDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/dto/CourseEnrollDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/AccountServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/service/LessonServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/service/LessonServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/environments/environment.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -216,7 +214,7 @@
       <workItem from="1641649527993" duration="589000" />
       <workItem from="1641699085841" duration="588000" />
       <workItem from="1641820022118" duration="7567000" />
-      <workItem from="1641879907459" duration="4445000" />
+      <workItem from="1641879907459" duration="5529000" />
     </task>
     <task id="LOCAL-00001" summary="get course by id">
       <created>1639412401480</created>
@@ -280,11 +278,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/LessonController.java</url>
           <line>27</line>
           <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonServiceImpl.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/demo/service/LessonServiceImpl.java</url>
