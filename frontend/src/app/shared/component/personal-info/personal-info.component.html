@@ -1,4 +1,4 @@
-<div class="card-account">
+<div class="card-account" *ngIf="!!userInfo.fullName">
     <button mat-button [matMenuTriggerFor]="beforeMenu">
         <div fxLayout="row" fxLayoutAlign="start center">
             <mat-icon class="avatar" svgIcon="avatar"></mat-icon>

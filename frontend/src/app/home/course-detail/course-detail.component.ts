@@ -8,6 +8,8 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AccountService } from 'src/app/services/account.service';
 import { Account } from '../accounts/account.model';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from 'src/app/auth/login/login.component';
 
 @Component({
   selector: 'app-course-detail',
@@ -28,7 +30,8 @@ export class CourseDetailComponent implements OnInit {
     private courseService: CourseService,
     private toastService: ToastServiceCodex,
     private authService: AuthService,
-    private accountService: AccountService
+    private accountService: AccountService,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -100,7 +103,14 @@ export class CourseDetailComponent implements OnInit {
           }
         })
       } else if (userInfo.role == undefined) {
-        this.router.navigate(['/signup']);
+        const dialogRef = this.dialog.open(LoginComponent, {
+          width: '688px',
+          height: '553px',
+          panelClass: 'dialogSignup'
+        });
+        dialogRef.afterClosed().subscribe(data => {
+          console.log(data);
+        })
       }
     })
     
