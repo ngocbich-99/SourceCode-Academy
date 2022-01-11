@@ -13,7 +13,7 @@ carousel img {
   border-radius: 10px;
 }
 carousel .btn-action-signup {
-  width: 163px;
+  /* width: 163px; */
   position: absolute;
   bottom: 10%;
 }
@@ -42,4 +42,40 @@ carousel .btn-action-signup {
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
   margin: 24px 0 12px 0;
+}
+
+.carousel1 {
+  background-image: url(src/assets/images/banner-1.png);
+}
+.carousel2 {
+  background-image: url(src/assets/images/banner-2.png);
+}
+.carousel3 {
+  background-image: url(src/assets/images/banner-3.png);
+}
+.carousel-bg {
+  border-radius: 10px;
+  width: 100%;
+  height: 280px;
+  background-repeat: no-repeat;
+}
+
+.page-conent {
+  margin: 104px 0 0;
+}
+
+.topbar {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 16px 40px 16px 281px;
+  height: 80px;
+}
+
+.search-bar {
+  margin-left: 40px;
 }

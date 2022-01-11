@@ -22,11 +22,7 @@
                                 <!-- <button mat-button class="btn-add-image">
                                     <mat-icon svgIcon="add-primary"></mat-icon>
                                 </button> -->
-                                <input 
-                                formControlName="imgCover" 
-                                type="file" 
-                                title=" " 
-                                (change)="onSelectImg($event)">
+                                <input formControlName="imgCover" type="file" title=" " (change)="onSelectImg($event)">
                                 <div class="container-img">
                                     <mat-icon svgIcon="add-primary"></mat-icon>
                                     <img mat-card-image [src]="urlImg">

@@ -3,19 +3,20 @@
         <div fxLayout="row" fxLayoutAlign="start center">
             <mat-icon class="avatar" svgIcon="avatar"></mat-icon>
             <div class="info" fxLayout="column">
-                <h3>{{userInfo.fullName}}</h3>
-                <p>{{userInfo.email}}</p>
+                <h3 class="name title">{{userInfo.fullName}}</h3>
+                <p class="email subtitle">{{userInfo.email}}</p>
             </div>
             <!-- icon arrow down -->
             <mat-icon class="arrow-down" svgIcon="arrow-down"></mat-icon>
         </div>
     </button>
+    
     <mat-menu class="menu-setting-acc" #beforeMenu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="settingAcc()">
+        <button mat-menu-item (click)="settingAcc()" class="body">
             <mat-icon svgIcon="setting-account"></mat-icon>
             Cài đặt tài khoản
         </button>
-        <button mat-menu-item (click)="logout()">
+        <button mat-menu-item (click)="logout()" class="body">
             <mat-icon svgIcon="logout"></mat-icon>
             Đăng xuất
         </button>

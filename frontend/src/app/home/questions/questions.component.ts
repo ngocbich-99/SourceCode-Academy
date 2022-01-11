@@ -4,12 +4,19 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSelect } from '@angular/material/select';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 import { QuestionService } from 'src/app/services/question.service';
-import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 import { Course } from '../courses/course.model';
 import { DialogAddQuestionComponent } from './dialog-add-question/dialog-add-question.component';
 import { Question } from './question.model';
 
+
+enum StatusToast {
+  SUCCESS = 'success',
+  ERROR = 'error',
+  INFO = 'info',
+  WARNING = 'warning',
+}
 interface CategoryGroup {
   disabled?: boolean;
   nameCategory: string;
@@ -71,12 +78,11 @@ export class QuestionsComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private questionService: QuestionService,
-    private toastService: ToastServiceCodex,
-
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
-    //this.getListQuestion();
+    this.getListQuestion();
   }
 
   getListQuestion() {
@@ -106,10 +112,10 @@ export class QuestionsComponent implements OnInit {
           createdTime: moment().valueOf()
         }
         this.questionService.createQuestion(questionReq).subscribe(resData => {
-          this.toastService.showToast('Thêm câu hỏi thành công!', StatusToast.SUCCESS);
+          this.showToast('Thêm câu hỏi thành công!', StatusToast.SUCCESS);
         }, error => {
           console.log(error);
-          this.toastService.showToast('Thêm câu hỏi thất bại!', StatusToast.ERROR);
+          this.showToast('Thêm câu hỏi thất bại!', StatusToast.ERROR);
         })
       }
     })
@@ -119,6 +125,22 @@ export class QuestionsComponent implements OnInit {
   }
   deleteQuestion(ques: Question) {
 
+  }
+
+  showToast(mess: string, status: string) {
+    if (status === StatusToast.SUCCESS) {
+      this.toastr.success(mess,'Thành công', {
+        closeButton: true,
+        timeOut: 2000,
+        extendedTimeOut: 2000
+      });
+    } else if (status === StatusToast.ERROR) {
+      this.toastr.error(mess, 'Thất bại', {
+        closeButton: true,
+        timeOut: 2000,
+        extendedTimeOut: 2000
+      })
+    }
   }
   filterCourse(event: any) {
     // value is id of course
