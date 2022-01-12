@@ -30,16 +30,16 @@
         </h3>
         <div *ngFor="let section of courseSelected.sections; index as i" class="section-collapse">
             <!-- collapse section  -->
-            <button type="button" class="btn btn-collapse-section" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+            <button type="button" class="btn btn-collapse-section" (click)="section.isCollapsed = !section.isCollapsed"
+            [attr.aria-expanded]="!section.isCollapsed" aria-controls="collapseBasic">
                 <span class="name-section">
-                    <mat-icon *ngIf="!isCollapsed" svgIcon="close-collapse"></mat-icon>
-                    <mat-icon *ngIf="isCollapsed" svgIcon="expand-collapse"></mat-icon>
+                    <mat-icon *ngIf="!section.isCollapsed" svgIcon="close-collapse"></mat-icon>
+                    <mat-icon *ngIf="section.isCollapsed" svgIcon="expand-collapse"></mat-icon>
                     Phần {{i+1}}: {{section.name}}
                 </span>
                 <span class="number-lesson">{{section.lessons?.length}} bài học</span>
             </button>
-            <div class="container-content-section" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+            <div class="container-content-section" id="collapseBasic" [collapse]="section.isCollapsed!" [isAnimated]="true">
                 <p *ngFor="let lesson of section.lessons; index as i">
                     <mat-icon svgIcon="lesson-video"></mat-icon>
                     <span>{{i+1}}. {{lesson.name}}</span>

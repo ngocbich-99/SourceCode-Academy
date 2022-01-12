@@ -83,8 +83,12 @@ export class LearningCourseComponent implements OnInit {
 
       if (!!this.courseSelected) {
         this.courseSelected.sections?.forEach(section => {
+          // init section collapsed false
+          section.isCollapsed = false;
           section.lessons.forEach(lesson => {
+            // convert link embeded to display video
             lesson.urlSafeResourse = this.sanitizer.bypassSecurityTrustResourceUrl(lesson.urlVideo as string);
+            // init lesson checked false
             lesson.isChecked = false;
           })
         });
@@ -117,6 +121,9 @@ export class LearningCourseComponent implements OnInit {
     
     this.lessonSelected = lesson;
     this.learningService.markLessonLearned(lesson?.id).subscribe(resData => {
+      console.log('mark lesson', resData);
+      if (resData.message === 'Mark as read') {
+      }
     })
   }
 

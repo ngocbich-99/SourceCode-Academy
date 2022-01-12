@@ -1,5 +1,9 @@
 .header {
   background: var(--color-secondary);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 }
 .header h3 {
   margin: 0;
@@ -35,6 +39,7 @@
 }
 /* end button back */
 .content {
+  padding-top: 48px;
 }
 .content .content-video {
 }

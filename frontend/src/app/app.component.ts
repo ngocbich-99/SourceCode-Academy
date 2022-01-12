@@ -181,6 +181,10 @@ export class AppComponent {
       `checked`,
       this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/checked.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      `progress-lesson`,
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../assets/icons/Progress-status-lesson.svg")
+    );
   }
   
 }

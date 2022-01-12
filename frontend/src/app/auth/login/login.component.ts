@@ -46,13 +46,16 @@ export class LoginComponent implements OnInit {
             localStorage.setItem('codex-token', resData.data.accessToken);
             // check quyen router link
             if (resData.data.role === 'HOC_VIEN') {
+              this.dialogRef.close();
               this.router.navigate(['/home/dashboard-student']);
             } else if (resData.data.role === 'GIANG_VIEN' || resData.data.role === 'ADMIN') {
+              this.dialogRef.close();
               this.router.navigate(['/home/courses'], { queryParams: {category: 'all'} });
             } else {
+              this.dialogRef.close();
               this.router.navigate(['/home/main-page-unregistered']);
             }
-            this.dialogRef.close();
+            
             // luu user info vao store ngrx
         }
         

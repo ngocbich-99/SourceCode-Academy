@@ -12,6 +12,6 @@ export class LearningCourseService {
     ) {}
 
     markLessonLearned(lessonId?: number) {
-        return this.http.post(env.backendBaseUrl + '/api/lesson', {lessonId: lessonId});
+        return this.http.post<any>(env.backendBaseUrl + '/api/lesson', {lessonId: lessonId});
     }
 }

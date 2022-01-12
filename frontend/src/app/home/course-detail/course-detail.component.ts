@@ -41,12 +41,11 @@ export class CourseDetailComponent implements OnInit {
   }
 
   async getCourseById(id: number) {
-    // this.courseService.getCourse(id).subscribe(resData => {
-    //   this.courseSelected = resData;
-    //   this.getTeacher(this.courseSelected.teacherId);
-    //   console.log('course by id', resData);
-    // })
     this.courseSelected = await this.courseService.getCourse(id).toPromise();
+
+    this.courseSelected?.sections?.forEach(sec => {
+      sec.isCollapsed = false;
+    })
 
     // get info teacher
     this.getTeacher(this.courseSelected.teacherId);
@@ -81,8 +80,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   backPrevious() {
-    // this.router.navigate([".."]);
-    this._location.back();
+    this.router.navigate(["/home/dashboard-student"]);
+    // this._location.back();
   }
 
   enrollmentCourse() {

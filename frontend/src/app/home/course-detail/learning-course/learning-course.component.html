@@ -55,11 +55,11 @@
             <div class="sidebar-section" fxFlex="20">
                 <div class="section-collapse" *ngFor="let section of courseSelected?.sections; index as i">
                     <!-- collapse section  -->
-                    <button type="button" class="btn btn-collapse-section" (click)="isCollapsed = !isCollapsed"
-                    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+                    <button type="button" class="btn btn-collapse-section" (click)="section.isCollapsed = !section.isCollapsed"
+                    [attr.aria-expanded]="!section.isCollapsed" aria-controls="collapseBasic">
                         <span class="name-section">
-                            <mat-icon *ngIf="!isCollapsed" svgIcon="close-collapse"></mat-icon>
-                            <mat-icon *ngIf="isCollapsed" svgIcon="expand-collapse"></mat-icon>
+                            <mat-icon *ngIf="!section.isCollapsed" svgIcon="close-collapse"></mat-icon>
+                            <mat-icon *ngIf="section.isCollapsed" svgIcon="expand-collapse"></mat-icon>
                             Phần {{i+1}}: {{section.name}}
                         </span>
                     </button>
@@ -68,7 +68,7 @@
                     fxLayout="column" 
                     class="container-content-section" 
                     id="collapseBasic" 
-                    [collapse]="isCollapsed" 
+                    [collapse]="section.isCollapsed!" 
                     [isAnimated]="true">
                         <button 
                         mat-button 
@@ -78,11 +78,14 @@
                         (click)="markLessonPass(lesson)">
                             <mat-icon 
                             svgIcon="checked"
-                            *ngIf="checkLessonPass(lesson)"
+                            *ngIf="checkLessonPass(lesson) && !lesson.isChecked"
                             ></mat-icon>
                             <mat-icon 
                             svgIcon="circle" 
-                            *ngIf="!checkLessonPass(lesson)"></mat-icon>
+                            *ngIf="!checkLessonPass(lesson) && !lesson.isChecked"></mat-icon>
+                            <mat-icon 
+                            svgIcon="progress-lesson" 
+                            *ngIf="lesson?.isChecked === true"></mat-icon>
                             <span>{{i+1}}. {{lesson.name}}</span>
                         </button>
                     </div>

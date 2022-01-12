@@ -38,6 +38,9 @@ export interface Section {
     name?: string;
     createdTime?: number;
     lessons: Lesson[];
+
+    // attribute for collapse
+    isCollapsed?: boolean;
 }
 
 export interface Lesson {
