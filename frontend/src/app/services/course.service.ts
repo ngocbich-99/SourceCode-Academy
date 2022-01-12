@@ -87,14 +87,14 @@ export class CourseService {
                 .set('textSearch', textSearch)
                 .set('sortProperty', sortProperty)
                 .set('sortOrder', sortOrder)
-            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/current-user', { params })
+            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/passed/current-user', { params })
         } else {
             const params = new HttpParams()
                 .set('pageSize', pageSize.toString())
                 .set('page', page.toString())
                 .set('sortProperty', sortProperty)
                 .set('sortOrder', sortOrder)
-            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/current-user', { params })
+            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/passed/current-user', { params })
         }
     }
     // create course
@@ -158,4 +158,8 @@ export class CourseService {
       request = request.clone({ headers: request.headers.set('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With') });
      */
 
+    // mark course pass
+    markCoursePass(id?: number) {
+        return this.http.post<any>(env.backendBaseUrl + '/api/course/mark-pass', {courseId: id});
+    }
 }

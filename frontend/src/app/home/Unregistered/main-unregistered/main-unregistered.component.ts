@@ -29,14 +29,30 @@ export class MainUnregisteredComponent implements OnInit {
   }
 
   getCourseNew(): Course[] {
-    return this.listCourse.filter(course => moment().valueOf() - Number(course.createdTime) > 1.728e+8);
+    let coursesNew = this.listCourse.filter(course => moment().valueOf() - Number(course.createdTime) > 1.728e+8);
+    coursesNew.forEach(course => {
+      course.isNew = true;
+      course.isHot = false;
+    })
+    console.log('getCourseNew', coursesNew);
+    
+    return coursesNew;
   }
 
   getCoursePopular(): Course[] {
+    let coursesHot: Course[] = [];
     this.listCourse.sort((a, b) => {
       return Number(b.subscriberNumber) - Number(a.subscriberNumber)
     })
-    return this.listCourse.slice(0, 5);
+    coursesHot = this.listCourse.slice(0, 5);
+    coursesHot.forEach(course => {
+      course.isHot = true;
+      course.isNew = false;
+    })
+
+    console.log('getCoursePopular', coursesHot);
+
+    return coursesHot;
   }
 
   openSignup() {
