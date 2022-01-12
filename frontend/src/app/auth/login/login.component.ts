@@ -39,6 +39,8 @@ export class LoginComponent implements OnInit {
         console.log(resData);
         if (resData.message === 'Not found account' || resData.message === 'Username or password incorrect') {
           this.toastService.showToast('Email hoặc mật khẩu không đúng!', StatusToast.ERROR);
+        } else if (resData.message === 'Your account has been blocked. Please contact Xcademy hotline for assistance') {
+          this.toastService.showToast('Tài khoản đã bị khoá!', StatusToast.ERROR);
         } else {
             // luu token vao localStorage
             localStorage.setItem('codex-token', resData.data.accessToken);

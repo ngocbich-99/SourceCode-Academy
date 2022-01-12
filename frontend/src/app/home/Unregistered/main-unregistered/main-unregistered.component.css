@@ -2,11 +2,9 @@ app-topbar-unregistered {
   display: block;
   margin-bottom: 32px;
 }
-carousel img {
-  border-radius: 10px;
-}
+
 carousel .btn-action-signup {
-  width: 163px;
+  /* width: 163px; */
   position: absolute;
   bottom: 10%;
 }
@@ -16,7 +14,7 @@ carousel .btn-action-signup {
   left: 6%;
 }
 .carousel-caption h3 {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 ::ng-deep .carousel-caption {
   text-align: left;
@@ -28,10 +26,29 @@ carousel .btn-action-signup {
 }
 .course-new h3,
 .course-popular h3 {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
-  line-height: 28px;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--color-black1);
   margin: 32px 0 12px 0;
+}
+.carousel-body {
+  width: 620px;
+}
+
+.carousel1 {
+  background-image: url(src/assets/images/banner-1.png);
+}
+.carousel2 {
+  background-image: url(src/assets/images/banner-2.png);
+}
+.carousel3 {
+  background-image: url(src/assets/images/banner-3.png);
+}
+.carousel-bg {
+  border-radius: 10px;
+  width: 100%;
+  height: 280px;
+  background-repeat: no-repeat;
+}
+
+.page-conent {
+  margin: 40px 0 0;
 }

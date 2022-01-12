@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { LoginResponse, SignUpReq } from './auth.model';
 import { map, tap } from 'rxjs/operators';
 import { UserInfo } from './user.model';
+import { ToastServiceCodex, StatusToast } from '../services/toast.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +15,8 @@ export class AuthService {
   userInfoSubject = new BehaviorSubject<any>({});
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private toastService: ToastServiceCodex,
   ) { }
 
   isAuthenticated() {
@@ -40,10 +42,14 @@ export class AuthService {
     return this.http.post<LoginResponse>(env.backendBaseUrl + '/api/auth/login', loginReq)
     .pipe(
       tap(resData => {
-        console.log('auth login', resData);
-        
-        localStorage.setItem('userInfo', JSON.stringify(resData.data));
-        this.userInfoSubject.next(resData.data);
+        if (resData.message === 'Your account has been blocked. Please contact Xcademy hotline for assistance') {
+          return
+        } else if (resData.message === 'Not found account' || resData.message === 'Username or password incorrect') {
+          return
+        } else {
+          localStorage.setItem('userInfo', JSON.stringify(resData.data));
+          this.userInfoSubject.next(resData.data);
+        }
       })
     );
   }
