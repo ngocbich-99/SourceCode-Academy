@@ -4,6 +4,7 @@ package com.example.demo.service;
 import com.example.demo.common.PageData;
 import com.example.demo.entity.Course;
 import com.example.demo.model.dto.CourseDTO;
+import com.example.demo.model.dto.CourseEnrollDTO;
 import com.example.demo.model.request.course.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,5 +39,5 @@ public interface CourseService {
 
     PageData<CourseDTO> findCourseOfCurrentUser(String textSearch,Pageable pageable);
 
-    PageData<CourseDTO> findCoursePassedOfCurrentUser(String textSearch,Pageable pageable);
+    PageData<CourseEnrollDTO> findCoursePassedOfCurrentUser(String textSearch, Pageable pageable);
 }

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.common.PageData;
 import com.example.demo.constant.CommonConstant;
 import com.example.demo.model.dto.CourseDTO;
+import com.example.demo.model.dto.CourseEnrollDTO;
 import com.example.demo.model.request.course.*;
 import com.example.demo.model.response.CloudResponse;
 import com.example.demo.service.CourseService;
@@ -134,7 +135,7 @@ public class CourseController {
 
     @ApiOperation(value = "Api get khóa học đã hoàn thành của user đang đăng nhập")
     @GetMapping("/passed/current-user")
-    public CloudResponse<PageData<CourseDTO>> getCoursePassedOfCurrentUser(
+    public CloudResponse<PageData<CourseEnrollDTO>> getCoursePassedOfCurrentUser(
             @RequestParam(defaultValue = "10") int pageSize,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(required = false, defaultValue = "") String textSearch,

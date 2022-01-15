@@ -8,10 +8,7 @@ import com.example.demo.entity.CourseEnroll;
 import com.example.demo.enums.ResponseEnum;
 import com.example.demo.exception.BizException;
 import com.example.demo.jwt.SecurityService;
-import com.example.demo.model.dto.CategoryDTO;
-import com.example.demo.model.dto.CourseDTO;
-import com.example.demo.model.dto.LessonDTO;
-import com.example.demo.model.dto.SectionDTO;
+import com.example.demo.model.dto.*;
 import com.example.demo.model.request.course.*;
 import com.example.demo.model.request.lesson.CreateLessonRequest;
 import com.example.demo.model.request.lesson.UpdateLessonRequest;
@@ -241,12 +238,32 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public PageData<CourseDTO> findCoursePassedOfCurrentUser(String textSearch, Pageable pageable) {
-        List<Long> coursePassedId = this.getListCoursePassed();
-        return this.convertToPageCourseDTO(
-                courseRepository.findCoursePassedInIds(textSearch,
-                        coursePassedId,
-                        pageable), pageable);
+    public PageData<CourseEnrollDTO> findCoursePassedOfCurrentUser(String textSearch, Pageable pageable) {
+//        List<Long> coursePassedId = this.getListCoursePassed();
+//        securityService.getCurrentUser().getCoursePass()
+//        return this.convertToPageCourseDTO(
+//                courseRepository.findCoursePassedInIds(textSearch,
+//                        coursePassedId,
+//                        pageable), pageable);
+        return new PageData<CourseEnrollDTO>(
+                this.convert(securityService.getCurrentUser().getId()),
+                0,
+                0,
+                false
+        );
+
+    }
+    public List<CourseEnrollDTO> convert(Long accountId){
+        List<CourseEnrollDTO> courseEnrollDTOs = new ArrayList<>();
+        TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>(){};
+        List<CourseEnroll> courseEnrolls = courseEnrollRepository.findByAccountId(accountId);
+        for(CourseEnroll c : courseEnrolls){
+            CourseEnrollDTO courseEnrollDTO = new CourseEnrollDTO();
+            mapper.map(c,courseEnrollDTO);
+            courseEnrollDTO.setLessonPassed(gson.fromJson(c.getLessonPassed(),typeToken.getType()));
+            courseEnrollDTOs.add(courseEnrollDTO);
+        }
+        return courseEnrollDTOs;
     }
 
     private List<LessonDTO> saveLessonList(List<CreateLessonRequest> requests, Long sectionId) {
