@@ -35,6 +35,9 @@ export class CoursesStudentComponent implements OnInit {
       } else {
         this.listCourseLearning = this.listCourseLearning.concat(resData.data.contents);
       }
+      this.listCourseLearning.forEach(course => {
+        course.isCompleted = false;
+      })
     })
   }
 
@@ -52,6 +55,9 @@ export class CoursesStudentComponent implements OnInit {
       } else {
         this.listCourseLearned = this.listCourseLearned.concat(resData.data.contents);
       }
+      this.listCourseLearned.forEach(course => {
+        course.isCompleted = true;
+      })
     })
   }
 

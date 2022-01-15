@@ -18,6 +18,13 @@ export interface Course {
     categories?: Category[]; 
     sections?: Section[];
     questions?: [];
+
+    // mark course is new or hot
+    isNew?: boolean;
+    isHot?: boolean;
+
+    // mark dang hoc or da hoan thanh
+    isCompleted?: boolean;
 }
 export interface CourseRequest {
     categoryIds?: number[];

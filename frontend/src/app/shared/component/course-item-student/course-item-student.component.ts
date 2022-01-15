@@ -9,12 +9,17 @@ import { Course } from 'src/app/home/courses/course.model';
 })
 export class CourseItemStudentComponent implements OnInit {
   @Input() courses: Course[] = [];
-
+  @Input() isCourseStudent: boolean | undefined;
+  
   constructor(
     private router: Router,
   ) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges() {
+    console.log('course item ', this.courses);
   }
 
   routerCourseDetail(id?: number) {

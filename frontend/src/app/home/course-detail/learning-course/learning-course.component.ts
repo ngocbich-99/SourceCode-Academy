@@ -9,6 +9,7 @@ import { LearningCourseService } from 'src/app/services/learning-course.service'
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { CourseEnroll } from 'src/app/auth/auth.model';
 import { UserInfo } from 'src/app/auth/user.model';
+import { StatusToast, ToastServiceCodex } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-learning-course',
@@ -32,6 +33,7 @@ export class LearningCourseComponent implements OnInit {
     private learningService: LearningCourseService,
     private sanitizer: DomSanitizer,
     private router: Router,
+    private toastService: ToastServiceCodex
   ) { }
 
   ngOnInit(): void {
@@ -119,12 +121,38 @@ export class LearningCourseComponent implements OnInit {
       })
     })
     
+    // check lesson pass
     this.lessonSelected = lesson;
     this.learningService.markLessonLearned(lesson?.id).subscribe(resData => {
       console.log('mark lesson', resData);
       if (resData.message === 'Mark as read') {
+        // to do
       }
     })
+
+    // check khoa hoc pass chua
+    const totalLesson = this.courseSelected.sections?.reduce((accumulator, sectionCurrent) => {
+      return accumulator + sectionCurrent?.lessons?.length;
+    }, 0)
+    let totalLessonPass = 0;
+    this.courseEntrolls.forEach(course => {
+      if (this.courseSelected.id === course.courseId) {
+        totalLessonPass = course.lessonPassed.length;
+      }
+    })
+    console.log('totalLesson', totalLesson, 'totalLessonPass', totalLessonPass);
+
+    if (totalLesson === totalLessonPass) {
+      console.log('mark course passed');
+      // goi api mark course passed
+      this.courseService.markCoursePass(this.courseSelected.id).subscribe(resData => {
+        console.log('mark course passed', resData);
+        if (resData.responseCode === "00000") {
+          console.log('finish course');
+          this.toastService.showToast('Chúc mừng bạn đã hoàn thành khoá học!', StatusToast.SUCCESS);
+        }
+      })
+    }    
   }
 
   backPrevious() {
