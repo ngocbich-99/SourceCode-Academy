@@ -22,6 +22,8 @@ public class CourseDTO {
 
     private int level;
 
+    private int passed;
+
     private String imgCover;
 
     private String description;

@@ -231,10 +231,23 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public PageData<CourseDTO> findCourseOfCurrentUser(String textSearch, Pageable pageable) {
-        return this.convertToPageCourseDTO(
-                courseRepository.findCourseOfCurrentUser(textSearch,
-                        securityService.getCurrentUser().getId(),
-                        pageable), pageable);
+        Page<Course> courseOfCurrentUser = courseRepository.findCourseOfCurrentUser(textSearch,
+                securityService.getCurrentUser().getId(),
+                pageable);
+        Account account = accountRepository.findById(securityService.getCurrentUser().getId()).get();
+        List<CourseEnrollDTO> dt = this.convertX(account.getId());
+        PageData<CourseDTO> courseDTOPageData = this.convertToPageCourseDTO(courseOfCurrentUser
+                , pageable);
+        for(CourseDTO c : courseDTOPageData.getContents()){
+
+            for(CourseEnrollDTO ce : dt){
+                if(c.getId().equals(ce.getCourseId())){
+                    c.setPassed(ce.getLessonPassed().size());
+                }
+            }
+        }
+        return courseDTOPageData;
+
     }
 
     @Override
@@ -313,7 +326,21 @@ public class CourseServiceImpl implements CourseService {
     private List<CourseDTO> convertToListCourseDTO(List<Course> courses) {
         TypeToken<List<CourseDTO>> typeToken = new TypeToken<List<CourseDTO>>() {
         };
+
         return mapper.map(courses, typeToken.getType());
+    }
+
+    public List<CourseEnrollDTO> convertX(Long accountId){
+        List<CourseEnrollDTO> courseEnrollDTOs = new ArrayList<>();
+        TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>(){};
+        List<CourseEnroll> courseEnrolls = courseEnrollRepository.findByAccountId(accountId);
+        for(CourseEnroll c : courseEnrolls){
+                CourseEnrollDTO courseEnrollDTO = new CourseEnrollDTO();
+                mapper.map(c,courseEnrollDTO);
+                courseEnrollDTO.setLessonPassed(gson.fromJson(c.getLessonPassed(),typeToken.getType()));
+                courseEnrollDTOs.add(courseEnrollDTO);
+        }
+        return courseEnrollDTOs;
     }
 
     private Course findById(Long id) {
