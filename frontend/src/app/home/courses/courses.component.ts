@@ -30,7 +30,7 @@ export class CoursesComponent implements OnInit {
       if (params['openDialog']) {
         const dialogRef = this.dialog.open(DialogAddCourseComponent, {
           width: '1041px',
-          height: '646px',
+          height: '665px',
         });
     
         dialogRef.afterClosed().subscribe(result => {
@@ -60,7 +60,7 @@ export class CoursesComponent implements OnInit {
   dialogAddCourse() {
     const dialogRef = this.dialog.open(DialogAddCourseComponent, {
       width: '1041px',
-      height: '646px',
+      height: '665px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

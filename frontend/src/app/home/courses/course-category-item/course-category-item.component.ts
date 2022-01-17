@@ -31,7 +31,7 @@ export class CourseCategoryItemComponent implements OnInit {
     // truyen course detail cho dialog info course
     const dialogRef = this.dialog.open(DialogInfoCourseComponent, {
       width: '1041px',
-      height: '646px',
+      height: '665px',
       data: {courseSelected: infoCourse}
     });
     

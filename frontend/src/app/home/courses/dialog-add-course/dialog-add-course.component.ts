@@ -120,7 +120,6 @@ export class DialogAddCourseComponent implements OnInit {
 
   radioModel = 'Video';
   formInforCourse: FormGroup = new FormGroup({});
-  formContentCourse: FormGroup = new FormGroup({});
   urlImg = '';
   pathImg = '';
   selectedFile!: File;
@@ -153,10 +152,6 @@ export class DialogAddCourseComponent implements OnInit {
       'level': new FormControl('', Validators.required),
       'description': new FormControl(''),
       'status': new FormControl('', Validators.required)
-    })
-    this.formContentCourse = new FormGroup({
-      'nameSection': new FormControl('', Validators.required),
-      'nameLesson': new FormControl('', Validators.required)
     })
   }
 
@@ -224,6 +219,7 @@ export class DialogAddCourseComponent implements OnInit {
     
     this.courseService.createCourse(courseReq).subscribe(resData => {
       console.log('response add course', resData);
+      courseReq.id = resData.id;
       this.dialogRef.close(
         {data: courseReq}
       );

@@ -38,7 +38,7 @@
                             <mat-form-field fxFlex="80" appearance="outline">
                                 <input type="text" matInput formControlName="nameCourse" placeholder="Tên khoá học">
                                 <mat-error *ngIf="formInforCourse.get('nameCourse')?.hasError('required')">
-                                    Tên is <strong>required</strong>
+                                    Đây là trường <strong>bắt buộc</strong>
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -117,13 +117,15 @@
                                     <mat-form-field fxFlex="80" appearance="outline">
                                         <input 
                                         [(ngModel)]="tabSection.nameSection" 
+                                        name="nameSection"
+                                        #nameSecInput="ngModel"
                                         required
                                         type="text" 
                                         matInput 
                                         placeholder="Tên phần">
-                                        <!-- <mat-error *ngIf="nameCourseFormControl.hasError('required')">
-                                            Tên is <strong>required</strong>
-                                        </mat-error> -->
+                                        <mat-error *ngIf="nameSecInput.hasError('required')">
+                                            Đây là trường <strong>bắt buộc</strong>
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="content-section">
@@ -149,10 +151,15 @@
                                                     <mat-label>Tên bài</mat-label>
                                                     <input 
                                                     [(ngModel)]="tabLesson.nameLesson" 
+                                                    name="nameLesson"
+                                                    #nameLessInput="ngModel"
                                                     required
                                                     type="text" 
                                                     matInput 
                                                     placeholder="Tên bài">
+                                                    <mat-error *ngIf="nameLessInput.hasError('required')">
+                                                        Đây là trường <strong>bắt buộc</strong>
+                                                    </mat-error>
                                                 </mat-form-field>
                                             </div>
                                             
@@ -224,6 +231,7 @@
                         </button>
                         <button 
                         (click)="updateCourse()"
+                        [disabled]="formInforCourse.invalid"
                         type="submit" 
                         mat-button 
                         class="codex-btn-primary btn-big btn-add-course">

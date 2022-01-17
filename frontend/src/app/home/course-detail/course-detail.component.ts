@@ -80,8 +80,8 @@ export class CourseDetailComponent implements OnInit {
   }
 
   backPrevious() {
-    this.router.navigate(["/home/dashboard-student"]);
-    // this._location.back();
+    // this.router.navigate(["/home/dashboard-student"]);
+    this._location.back();
   }
 
   enrollmentCourse() {

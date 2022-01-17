@@ -202,14 +202,14 @@ h2 {
   color: rgba(0, 0, 0, 0.87);
 }
 ::ng-deep .name-section .mat-form-field-wrapper {
-  padding: 0;
+  padding: 0 0 16px;
   margin: 0 0 16px 0;
 }
 /* end tab section */
 
 /* ====== tab lesson of course ====== */
 ::ng-deep .tabset-lesson .name-lesson .mat-form-field-wrapper {
-  padding: 0;
+  padding: 0 0 16px;
   margin: 0 0 16px 0;
 }
 .tabset-lesson .name-lesson h4,
