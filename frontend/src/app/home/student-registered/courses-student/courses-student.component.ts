@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/services/course.service';
-import { Course } from '../../courses/course.model';
+import { Course, CoursePass } from '../../courses/course.model';
 
 @Component({
   selector: 'app-courses-student',
@@ -10,6 +10,7 @@ import { Course } from '../../courses/course.model';
 export class CoursesStudentComponent implements OnInit {
   listCourseLearning: Course[] = [];
   listCourseLearned: Course[] = [];
+  listCoursePass: CoursePass[] = [];
 
   pageSize: number = 10;
   page: number = 0;
@@ -50,11 +51,16 @@ export class CoursesStudentComponent implements OnInit {
   ) {
     this.courseService.getCoursesLearned(pageSize, page, textSearch, sortProperty, sortOrder).subscribe(resData => {
       console.log('courses learned', resData);
-      if (this.listCourseLearned.length === 0) {
-        this.listCourseLearned = resData.data.contents;
+      if (this.listCoursePass.length === 0) {
+        this.listCoursePass = resData.data.contents;
       } else {
-        this.listCourseLearned = this.listCourseLearned.concat(resData.data.contents);
+        this.listCoursePass = this.listCoursePass.concat(resData.data.contents);
       }
+      this.listCoursePass.forEach(course => {
+        this.courseService.getCourse(course.courseId).subscribe(resData => {
+          this.listCourseLearned.push(resData);
+        })
+      })
       this.listCourseLearned.forEach(course => {
         course.isCompleted = true;
       })

@@ -80,8 +80,11 @@ export class CourseDetailComponent implements OnInit {
   }
 
   backPrevious() {
-    // this.router.navigate(["/home/dashboard-student"]);
-    this._location.back();
+    this.router.navigate(["/home/dashboard-student"]);
+    // this.router.navigate(["/home/courses-student"]);
+    // this.router.navigate(["home/all-course-student"], {queryParams: {category: 'all'}});
+
+    // this._location.back();
   }
 
   enrollmentCourse() {

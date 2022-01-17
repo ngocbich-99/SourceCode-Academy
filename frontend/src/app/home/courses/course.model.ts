@@ -76,7 +76,7 @@ export interface ResCourseApi {
 
 export interface ResPaginatorCourses {
     data: {
-        contents: Course[],
+        contents: CoursePass[],
         hasNext: boolean,
         totalElements: number,
         totalPages: number
@@ -84,4 +84,11 @@ export interface ResPaginatorCourses {
     message: string;
     responseCode: string;
     timestamp: string;
+}
+
+export interface CoursePass {
+    courseId: number;
+    coursePassed: boolean;
+    id: number;
+    lessonPassed: number[];
 }
