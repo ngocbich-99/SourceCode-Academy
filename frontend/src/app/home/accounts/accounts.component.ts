@@ -213,6 +213,7 @@ export class AccountsComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '520px',
       height: '252px',
+      data: {name: account.fullName}
     });
 
     dialogRef.afterClosed().subscribe(async result => {

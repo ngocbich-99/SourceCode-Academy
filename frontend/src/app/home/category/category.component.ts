@@ -120,6 +120,7 @@ export class CategoryComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       width: '520px',
       height: '252px',
+      data: {name: category.name}
     });
 
     dialogRef.afterClosed().subscribe(result => {
