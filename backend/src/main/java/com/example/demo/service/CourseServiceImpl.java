@@ -258,10 +258,12 @@ public class CourseServiceImpl implements CourseService {
         TypeToken<List<Long>> typeToken = new TypeToken<List<Long>>(){};
         List<CourseEnroll> courseEnrolls = courseEnrollRepository.findByAccountId(accountId);
         for(CourseEnroll c : courseEnrolls){
-            CourseEnrollDTO courseEnrollDTO = new CourseEnrollDTO();
-            mapper.map(c,courseEnrollDTO);
-            courseEnrollDTO.setLessonPassed(gson.fromJson(c.getLessonPassed(),typeToken.getType()));
-            courseEnrollDTOs.add(courseEnrollDTO);
+           if(c.isCoursePassed()){
+               CourseEnrollDTO courseEnrollDTO = new CourseEnrollDTO();
+               mapper.map(c,courseEnrollDTO);
+               courseEnrollDTO.setLessonPassed(gson.fromJson(c.getLessonPassed(),typeToken.getType()));
+               courseEnrollDTOs.add(courseEnrollDTO);
+           }
         }
         return courseEnrollDTOs;
     }
