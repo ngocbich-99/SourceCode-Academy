@@ -14,6 +14,7 @@
     <p *ngIf="listCourseLearning.length === 0">Chưa có khoá học nào</p>
     <app-course-item-student
     [isCourseStudent]="true"
+    *ngIf="listCourseLearning.length > 0"
     [courses]="listCourseLearning"
     ></app-course-item-student>
 </section>
@@ -21,6 +22,7 @@
     <h3>Đã hoàn thành</h3>
     <p *ngIf="listCourseLearned.length === 0">Chưa có khoá học nào</p>
     <app-course-item-student
+    *ngIf="listCourseLearned.length > 0"
     [courses]="listCourseLearned"
     ></app-course-item-student>
 </section>

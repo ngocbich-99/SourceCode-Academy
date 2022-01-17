@@ -11,7 +11,7 @@
                 <img [src]="course?.imgCover" alt="">
                 <!-- process tag -->
                 <div *ngIf="!course.isCompleted && isCourseStudent" class="div-tag-process codex-progress-learning">
-                    <span>Đang học</span>
+                    <span>Tổng số bài đã học: {{course.passed }}</span>
                 </div>
                 <div *ngIf="course.isCompleted" class="div-tag-finished codex-progess-completed">
                     <span>Đã hoàn thành</span>

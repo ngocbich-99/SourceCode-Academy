@@ -32,7 +32,8 @@ button:hover {
   left: 8px;
 }
 .div-tag-process {
-  width: 146px;
+  /* width: 146px; */
+  padding: 0 8px;
 }
 .div-tag-finished {
   width: 118px;

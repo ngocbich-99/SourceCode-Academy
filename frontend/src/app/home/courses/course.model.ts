@@ -25,6 +25,9 @@ export interface Course {
 
     // mark dang hoc or da hoan thanh
     isCompleted?: boolean;
+
+    // so bai hoc da hoc
+    passed?: number;
 }
 export interface CourseRequest {
     categoryIds?: number[];
@@ -74,7 +77,18 @@ export interface ResCourseApi {
     timestamp: string;
 }
 
-export interface ResPaginatorCourses {
+export interface ResPaginatorCoursesLearning {
+    data: {
+        contents: Course[],
+        hasNext: boolean,
+        totalElements: number,
+        totalPages: number
+    };
+    message: string;
+    responseCode: string;
+    timestamp: string;
+}
+export interface ResPaginatorCoursesLeared {
     data: {
         contents: CoursePass[],
         hasNext: boolean,

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from 'src/app/home/courses/course.model';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-course-item-student',
@@ -13,6 +14,7 @@ export class CourseItemStudentComponent implements OnInit {
   
   constructor(
     private router: Router,
+    private courseService: CourseService
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +23,13 @@ export class CourseItemStudentComponent implements OnInit {
   ngOnChanges() {
     console.log('course item ', this.courses);
   }
+
+  // async getTotalLesson(course: Course) {
+  //   const dataCourse: Course = await this.courseService.getCourse(course.id).toPromise();
+  //   return dataCourse.sections?.reduce((accumulator, sectionCurrent) => {
+  //     return accumulator + sectionCurrent?.lessons?.length;
+  //   }, 0)
+  // }
 
   routerCourseDetail(id?: number) {
     this.router.navigate(['home', 'course-detail', id]);

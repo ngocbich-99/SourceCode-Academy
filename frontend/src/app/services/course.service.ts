@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment as env } from 'src/environments/environment';
 
-import { Course, CourseRequest, ResCourseApi, ResPaginatorCourses } from '../home/courses/course.model';
+import { Course, CourseRequest, ResCourseApi, ResPaginatorCoursesLeared, ResPaginatorCoursesLearning } from '../home/courses/course.model';
 
 @Injectable({
     providedIn: 'root',
@@ -53,7 +53,7 @@ export class CourseService {
         textSearch: string,
         sortProperty: string,
         sortOrder: string
-    ): Observable<ResPaginatorCourses> {
+    ): Observable<ResPaginatorCoursesLearning> {
         if (!!textSearch) {
             const params = new HttpParams()
                 .set('pageSize', pageSize.toString())
@@ -61,14 +61,14 @@ export class CourseService {
                 .set('textSearch', textSearch)
                 .set('sortProperty', sortProperty)
                 .set('sortOrder', sortOrder)
-            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/current-user', { params })
+            return this.http.get<ResPaginatorCoursesLearning>(env.backendBaseUrl + '/api/course/current-user', { params })
         } else {
             const params = new HttpParams()
                 .set('pageSize', pageSize.toString())
                 .set('page', page.toString())
                 .set('sortProperty', sortProperty)
                 .set('sortOrder', sortOrder)
-            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/current-user', { params })
+            return this.http.get<ResPaginatorCoursesLearning>(env.backendBaseUrl + '/api/course/current-user', { params })
         }
     }
 
@@ -87,14 +87,14 @@ export class CourseService {
                 .set('textSearch', textSearch)
                 .set('sortProperty', sortProperty)
                 .set('sortOrder', sortOrder)
-            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/passed/current-user', { params })
+            return this.http.get<ResPaginatorCoursesLeared>(env.backendBaseUrl + '/api/course/passed/current-user', { params })
         } else {
             const params = new HttpParams()
                 .set('pageSize', pageSize.toString())
                 .set('page', page.toString())
                 .set('sortProperty', sortProperty)
                 .set('sortOrder', sortOrder)
-            return this.http.get<ResPaginatorCourses>(env.backendBaseUrl + '/api/course/passed/current-user', { params })
+            return this.http.get<ResPaginatorCoursesLeared>(env.backendBaseUrl + '/api/course/passed/current-user', { params })
         }
     }
     // create course
