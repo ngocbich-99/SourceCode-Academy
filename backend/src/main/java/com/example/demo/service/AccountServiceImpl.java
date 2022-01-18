@@ -80,6 +80,7 @@ public class AccountServiceImpl implements AccountService {
 //        }
         Account account = new Account();
         BeanUtils.copyProperties(accountReq, account);
+        account.setPassword(passwordEncoder.encode(accountReq.getPassword()));
         return convertToAccountDTO(accountRepository.save(account));
     }
 

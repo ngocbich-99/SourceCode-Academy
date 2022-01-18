@@ -16,7 +16,6 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "course")
-@DynamicInsert
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class Course {
     private Long teacherId;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinTable(
             name = "course_category",
             joinColumns = @JoinColumn(name = "course_id"),

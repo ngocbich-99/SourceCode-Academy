@@ -210,18 +210,16 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void deleteCourse(Long id) {
         LOGGER.info("deleteCourse : {}", id);
-        try {
             Optional<Course> course = courseRepository.findById(id);
+            course.get().setCategories(new ArrayList<>());
+            courseRepository.save(course.get());
             if (course.isPresent()) {
-                sectionService.deleteByCourse(course.get());
-                if(course.get().getAccount() != null){
+                if(course.get().getAccount().size() > 0){
                     throw new BizException(ResponseEnum.PERMISSIONS_DENY,"Khóa học đã có học viên, không thể xóa");
                 }
+                sectionService.deleteByCourse(course.get());
                 courseRepository.delete(course.get());
             }
-        } catch (Exception ex) {
-            throw new InternalException("Db error. Can't delete course");
-        }
     }
 
     @Override
