@@ -43,7 +43,8 @@ public class CommonConstant {
             "/webjars/**",
             "/api/course/public",
             "/api/category/list",
-            "/api/course/public/categories"
+            "/api/course/public/categories",
+            "/images/**"
 
     );
 }

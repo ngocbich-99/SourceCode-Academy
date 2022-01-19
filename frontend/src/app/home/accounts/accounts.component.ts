@@ -220,20 +220,20 @@ export class AccountsComponent implements OnInit, AfterViewInit {
       if (result === true) {
         this.accountService.deleteAccById(account.id).subscribe(resData => {
           console.log(resData);
-          this.toastCodexService.showToast('Xoá giảng viên thành công!', StatusToast.SUCCESS);
+          this.toastCodexService.showToast('Xoá tài khoản thành công!', StatusToast.SUCCESS);
 
           this.listAccount.splice(this.listAccount.indexOf(account), 1);
           this.dataSource.data = this.listAccount;
+
+          // get list account activate
+          this.getAccountActivate();
+
+          // get list account is locked
+          this.getAccountLock();
         }, error => {
           console.log(error);
-          this.toastCodexService.showToast('Xoá giảng viên thất bại!', StatusToast.ERROR);
+          this.toastCodexService.showToast('Xoá tài khoản thất bại!', StatusToast.ERROR);
         });
-
-        // get list account activate
-        this.getAccountActivate();
-
-        // get list account is locked
-        this.getAccountLock();
       }
     });
   }
