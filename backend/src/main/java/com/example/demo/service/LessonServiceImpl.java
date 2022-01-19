@@ -103,7 +103,7 @@ public class LessonServiceImpl implements LessonService {
 
     @Override
     public void markAsPass(LessonPassRequest request) {
-        LOGGER.info("markAsPass {}",request);
+        LOGGER.info("markAsPass {}", request);
         UserPrinciple currentUser = securityService.getCurrentUser();
         Optional<Account> currentAccount = accountRepository.findById(currentUser.getId());
         if(currentAccount.isPresent()){

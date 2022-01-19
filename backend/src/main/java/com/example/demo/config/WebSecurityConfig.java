@@ -44,11 +44,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String[] pathsNoAuth = new String[CommonConstant.PATHS_NO_AUTHENTICATION.size()];
         CommonConstant.PATHS_NO_AUTHENTICATION.toArray(pathsNoAuth);
         http.authorizeRequests()
-//                .antMatchers("/api/accounts/**").hasAnyAuthority(RoleConstant.ADMIN)
-                .antMatchers(pathsNoAuth).permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/api/accounts/**").hasAnyAuthority(RoleConstant.ADMIN) // tat ca api account deu phai can co quyen admin
+                .antMatchers(pathsNoAuth).permitAll() // ko can token
+                .anyRequest().authenticated() // nhung request con lai khong thuoc 2 cai tren deu can token
                 .and()
-                .exceptionHandling().authenticationEntryPoint(authenticationHandler)
+                .exceptionHandling().authenticationEntryPoint(authenticationHandler)// xu ly exception khi co authenticated
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(authFilter(),

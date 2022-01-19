@@ -119,6 +119,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+//    phien giao dich
     @Transactional
     public CourseDTO createCourse(CreateCourseRequest request) {
         LOGGER.info("createCourse : {}", request);
@@ -130,6 +131,7 @@ public class CourseServiceImpl implements CourseService {
         course.setTeacherId(getCurrentAccount().getId());
 //        course.setImgCover(fileService.save(request.getImg()));
         course = courseRepository.save(course);
+//        convert list entity sang list dto
         TypeToken<List<CategoryDTO>> typeToken = new TypeToken<List<CategoryDTO>>() {
         };
         CourseDTO courseDTO = new CourseDTO();
@@ -140,7 +142,6 @@ public class CourseServiceImpl implements CourseService {
             courseDTO.setSections(this.saveSectionList(request.getSections(), course));
         }
         return courseDTO;
-
     }
 
     @Override

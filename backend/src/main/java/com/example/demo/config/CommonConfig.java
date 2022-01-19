@@ -23,11 +23,13 @@ public class CommonConfig {
         return new BCryptPasswordEncoder();
     }
 
+//    convert json sang object
     @Bean
     public Gson createGsonInstance() {
         return new Gson();
     }
 
+//    cho phep cong 4200 gui request den server
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurerAdapter() {

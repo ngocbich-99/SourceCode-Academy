@@ -79,6 +79,7 @@ public class AccountServiceImpl implements AccountService {
 //            throw new BizException(ResponseEnum.PERMISSIONS_DENY,"Bạn không có quyền tạo tài khoản");
 //        }
         Account account = new Account();
+        //
         BeanUtils.copyProperties(accountReq, account);
         account.setPassword(passwordEncoder.encode(accountReq.getPassword()));
         return convertToAccountDTO(accountRepository.save(account));
