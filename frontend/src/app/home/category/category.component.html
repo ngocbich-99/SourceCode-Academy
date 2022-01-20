@@ -3,7 +3,7 @@
     <div class="search-bar" fxFlex="60" fxLayout="row" fxLayoutAlign="center center">
         <mat-icon svgIcon="search"></mat-icon>
         <mat-form-field >
-            <input type="text" matInput placeholder="Tìm kiếm danh mục,…">
+            <input type="text" matInput (keyup)="doFilter($event.target)" placeholder="Tìm kiếm danh mục,…">
         </mat-form-field>
     </div>
     <!-- info personal -->
@@ -73,11 +73,11 @@
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
 
-    <!-- <mat-paginator 
+    <mat-paginator 
         #paginatorAll
         [pageSize]="10"
         [pageSizeOptions]="[1, 5, 10, 20]">
-    </mat-paginator> -->
+    </mat-paginator>
 
 </section>
 <!-- <router-outlet></router-outlet> -->

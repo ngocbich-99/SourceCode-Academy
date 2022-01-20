@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
@@ -24,6 +25,7 @@ export class CategoryComponent implements OnInit {
     'action'
   ];
   listCategory: Category[] = [];
+  @ViewChild('paginatorAll', { static: true }) paginatorAll!: MatPaginator;
 
   constructor(
     public dialog: MatDialog,
@@ -68,6 +70,9 @@ export class CategoryComponent implements OnInit {
       }
     })
     this.getListCategory();
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginatorAll;
   }
   getListCategory() {
     this.categoryService.getListCategory().subscribe(resData => {
@@ -136,5 +141,8 @@ export class CategoryComponent implements OnInit {
         });
       }
     });
+  }
+  doFilter(filterValue: any) {
+    this.dataSource.filter = filterValue.value.trim().toLowerCase();
   }
 }

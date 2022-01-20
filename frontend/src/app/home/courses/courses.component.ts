@@ -103,4 +103,13 @@ export class CoursesComponent implements OnInit {
 
   }
 
+  doFilter(filterValue: any) {
+    let filterCourses = this.listCourseAll;
+    if (filterValue.value.trim().toLowerCase() === '') {
+      this.listCourseAll = filterCourses;
+    } else {
+      this.listCourseAll = this.listCourseAll.filter(course => course.name?.includes(filterValue.value.trim().toLowerCase()))
+    }
+  }
+
 }

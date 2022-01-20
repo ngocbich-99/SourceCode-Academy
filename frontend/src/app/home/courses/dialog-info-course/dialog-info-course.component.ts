@@ -72,7 +72,8 @@ export class DialogInfoCourseComponent implements OnInit {
       'status': new FormControl(this.data.courseSelected.status === true ? 'public' : 'private', Validators.required)
     })
     if (!!this.data.courseSelected.categories) {
-      this.formInforCourse.get('idCategory')?.patchValue(this.data.courseSelected.categories[0].id);
+      this.formInforCourse.get('idCategory')?.patchValue(this.data.courseSelected.categories[0]?.id);
+      console.log(this.data.courseSelected.categories);
     }
     // create content tab section + lesson
     this.data.courseSelected.sections?.forEach((section, index) => {
