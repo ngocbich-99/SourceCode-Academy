@@ -17,6 +17,7 @@ export class CoursesComponent implements OnInit {
   listCourseAll: Course[] = [];
   listCoursePublic: Course[] = [];
   listCoursePrivate: Course[] = [];
+  userId: number = 0;
 
   constructor(
     public dialog: MatDialog,
@@ -26,6 +27,8 @@ export class CoursesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.userId = JSON.parse((localStorage.getItem('userInfo') as string)).id;
+
     this.route.queryParams.subscribe(params => {
       if (params['openDialog']) {
         const dialogRef = this.dialog.open(DialogAddCourseComponent, {
@@ -51,9 +54,9 @@ export class CoursesComponent implements OnInit {
 
   getCourseByNameCategory(name?: string) {
     this.categoryService.getCoursesByCategory([name as string]).subscribe(resData => {
-      this.listCourseAll = resData.data;
-      this.listCoursePrivate = resData.data.filter(course => course.status === false);
-      this.listCoursePublic = resData.data.filter(course => course.status === true);
+      this.listCourseAll = resData.data.filter(course => course.teacherId === this.userId);
+      this.listCoursePrivate = this.listCourseAll.filter(course => course.status === false);
+      this.listCoursePublic = this.listCourseAll.filter(course => course.status === true);
     })
   }
   
@@ -80,19 +83,19 @@ export class CoursesComponent implements OnInit {
 
   async getListCourse() {
     this.listCourseAll = await this.courseService.getListCourse().toPromise();
+    this.listCourseAll = this.listCourseAll.filter(course => course.teacherId === this.userId);
     console.log('list course', this.listCourseAll);
   }
 
   getListCoursePublic() {
     this.courseService.getCoursesPublic().subscribe(resData => {
-      this.listCoursePublic = resData.data;
+      this.listCoursePublic = resData.data.filter(course => course.teacherId === this.userId);
     })
   }
 
   getListCoursePrivate() {
     this.courseService.getCoursesPrivate().subscribe(resData => {
-      console.log('list courses private', resData);
-      this.listCoursePrivate = resData.data;
+      this.listCoursePrivate = resData.data.filter(course => course.teacherId === this.userId);;
     })
   }
 

@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         String[] pathsNoAuth = new String[CommonConstant.PATHS_NO_AUTHENTICATION.size()];
         CommonConstant.PATHS_NO_AUTHENTICATION.toArray(pathsNoAuth);
         http.authorizeRequests()
-                .antMatchers("/api/accounts/**").hasAnyAuthority(RoleConstant.ADMIN) // tat ca api account deu phai can co quyen admin
+                .antMatchers("/api/accounts/**").hasAnyAuthority(RoleConstant.ADMIN, RoleConstant.GIANG_VIEN) // tat ca api account deu phai can co quyen admin
                 .antMatchers(pathsNoAuth).permitAll() // ko can token
                 .anyRequest().authenticated() // nhung request con lai khong thuoc 2 cai tren deu can token
                 .and()

@@ -78,7 +78,7 @@ public class CourseController {
     public CloudResponse<String> deleteCourse(@PathVariable Long id) {
         LOGGER.info("DEL /api/course/delete/{id} - > {}", id);
         courseService.deleteCourse(id);
-        return CloudResponse.ok(SUCCESS, "Delete category success");
+        return CloudResponse.ok(SUCCESS, "Xoá khoá học thành công");
     }
 
     @ApiOperation(value = "Api get khóa học với categories name ")

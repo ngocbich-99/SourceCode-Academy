@@ -17,7 +17,7 @@ p {
 }
 .btn-delete,
 .btn-cancel {
-  width: 212px;
+  width: 200px;
   height: 48px;
 }
 ::ng-deep .mat-dialog-container {

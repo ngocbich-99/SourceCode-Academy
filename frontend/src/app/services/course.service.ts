@@ -120,7 +120,7 @@ export class CourseService {
 
     // delete course
     deleteCourse(id?: number) {
-        return this.http.delete(env.backendBaseUrl + `/api/course/delete/${id}`);
+        return this.http.delete<any>(env.backendBaseUrl + `/api/course/delete/${id}`);
     }
 
     enrollCourse(id?: number): Observable<any> {

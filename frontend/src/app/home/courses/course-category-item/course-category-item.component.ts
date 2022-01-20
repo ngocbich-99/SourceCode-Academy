@@ -56,9 +56,12 @@ export class CourseCategoryItemComponent implements OnInit {
       console.log('The dialog was closed', result);
       if (result) {
         this.courseService.deleteCourse(course.id).subscribe(resData => {
-          this.courses.splice(this.courses.indexOf(course), 1);
-
-          this.toastServiceCodex.showToast('Xoá khoá học thành công!', StatusToast.SUCCESS);
+          if (resData.responseCode !== '00000') {
+            this.toastServiceCodex.showToast(`${resData.message}`, StatusToast.ERROR);
+          } else {
+            this.toastServiceCodex.showToast('Xoá khoá học thành công!', StatusToast.SUCCESS);
+            this.courses.splice(this.courses.indexOf(course), 1);
+          }
         }, error => {
           console.log(error);
           this.toastServiceCodex.showToast('Xoá khoá học thất bại!', StatusToast.ERROR);
